@@ -21,7 +21,7 @@ def _brand():
 	"""The sign-in page and browser tab show Frappe Live, with its logo"""
 	ws = frappe.get_single("Website Settings")
 	changed = False
-	for field, value in (("app_name", "Frappe Live"), ("app_logo", "/assets/frappe_live/images/logo.svg"), ("favicon", "/assets/frappe_live/images/favicon.svg")):
+	for field, value in (("app_name", "Frappe Live"), ("app_logo", "/assets/frappe_live/images/logo.svg?v=2"), ("favicon", "/assets/frappe_live/images/favicon.svg?v=2")):
 		if ws.meta.has_field(field) and ws.get(field) != value:
 			ws.set(field, value)
 			changed = True
