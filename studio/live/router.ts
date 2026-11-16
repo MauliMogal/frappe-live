@@ -24,6 +24,8 @@ export default {
 			},
 		})
 		// Browsing lives on Projects (Other projects, with Join)
+		// Help and feedback is Messages now
+		router.addRoute({ path: "/help", redirect: "/messages" })
 		router.addRoute({ path: "/browse", redirect: { path: "/projects", hash: "#join" } })
 	},
 }
