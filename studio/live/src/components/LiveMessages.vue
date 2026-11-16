@@ -179,7 +179,7 @@ const fbTheme = (t: string) => (t === "I'm stuck" || t === 'Bug' ? 'red' : t ===
         >
           <span class="relative flex size-8 shrink-0 items-center justify-center rounded-full bg-surface-gray-4 text-xs font-semibold text-ink-gray-8">
             {{ initials(r.name) }}
-            <span v-if="r.waiting" class="absolute -right-0.5 -top-0.5 size-2.5 rounded-full border-2 border-surface-base bg-surface-red-5" />
+            <span v-if="r.waiting && isStaff" class="absolute -right-0.5 -top-0.5 size-2.5 rounded-full border-2 border-surface-base bg-surface-red-5" />
           </span>
           <span class="min-w-0 flex-1">
             <span class="flex items-center gap-2">

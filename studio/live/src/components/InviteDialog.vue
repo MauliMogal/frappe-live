@@ -3,6 +3,7 @@ import { ref, computed, watch } from 'vue'
 import { Avatar, Button, Dialog, FormControl, toast } from 'frappe-ui'
 import { state, project, personName, addMember, inviteByEmail } from '../lib/store'
 import { org, wsPeople, currentWs, isWsAdmin, inviteToWs, inviteToProject, projInvitesOf } from '../lib/store'
+import { livePost } from '../lib/liveApi'
 
 // Invite people to a project (opened by the header's Invite button, or from the People pop-up).
 // Pick people from the workspace by name, or type an email. Several at once; Send invites sends them all.
@@ -13,7 +14,7 @@ const pid = computed(() => state.ui.inviteProject as string | null)
 const open = computed({ get: () => !!pid.value, set: (v) => !v && (state.ui.inviteProject = null) })
 const p = computed(() => project(pid.value))
 const wsName = computed(() => currentWs.value?.name || '')
-const canEmail = computed(() => !org.on || isWsAdmin())
+const canEmail = computed(() => !!(state.people.find((x: any) => x.id === state.me) as any)?.canCreateProjects)
 
 const q = ref('')
 const picked = ref<{ id?: string; email?: string }[]>([])
@@ -49,16 +50,27 @@ function onEnter() {
 }
 const unpick = (i: number) => picked.value.splice(i, 1)
 
-function send() {
-  if (!p.value || !picked.value.length) return
-  const n = picked.value.length
-  picked.value.forEach((x) => {
-    if (x.id) org.on ? inviteToProject(p.value!.id, x.id) : addMember(p.value!.id, x.id)
-    else if (x.email) org.on ? inviteToWs(x.email, [p.value!.id]) : inviteByEmail(p.value!.id, x.email)
-  })
-  const who = n === 1 ? (picked.value[0].id ? personName(picked.value[0].id!) : picked.value[0].email) : `${n} people`
-  toast.success(org.on ? `Invitation sent to ${who}. They join when they accept.` : `${who} added to ${p.value.name}.`)
-  open.value = false
+// Frappe Live: an email (usually the customer) goes through the server, which makes their login, adds them to this
+// project only and emails them how to sign in. People already in the workspace are added straight away.
+const sending = ref(false)
+async function send() {
+  if (!p.value || !picked.value.length || sending.value) return
+  sending.value = true
+  const pidNow = p.value.id
+  const emails = picked.value.filter((x) => x.email).map((x) => x.email!)
+  picked.value.filter((x) => x.id).forEach((x) => addMember(pidNow, x.id!))
+  try {
+    for (const email of emails) await livePost('frappe_live.portal.invite_customer', { project: pidNow, email })
+    const n = picked.value.length
+    const who = n === 1 ? (picked.value[0].id ? personName(picked.value[0].id!) : picked.value[0].email) : `${n} people`
+    toast.success(emails.length ? `${who} added. They get an email to sign in.` : `${who} added to ${p.value.name}.`)
+    open.value = false
+    if (emails.length) setTimeout(() => window.location.reload(), 900)
+  } catch (e: any) {
+    toast.error(e.message || 'Could not invite.')
+  } finally {
+    sending.value = false
+  }
 }
 </script>
 
