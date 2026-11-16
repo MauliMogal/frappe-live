@@ -1,5 +1,232 @@
 {
  "allow_guest": 0,
+ "blocks": [
+  {
+   "baseStyles": {
+    "display": "flex",
+    "flexDirection": "column",
+    "height": "100%",
+    "overflowX": "hidden",
+    "width": "100%"
+   },
+   "blockName": "body",
+   "children": [
+    {
+     "children": [
+      {
+       "baseStyles": {
+        "alignItems": "flex-start",
+        "backgroundColor": "var(--surface-gray-1)",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "minHeight": "100%",
+        "overflowY": "auto",
+        "padding": "14vh 16px 48px",
+        "width": "100%"
+       },
+       "blockName": "auth-page",
+       "children": [
+        {
+         "baseStyles": {
+          "backgroundColor": "var(--surface-base)",
+          "borderColor": "var(--outline-gray-1)",
+          "borderRadius": "12px",
+          "borderStyle": "solid",
+          "borderWidth": "1px",
+          "display": "flex",
+          "flexDirection": "column",
+          "maxWidth": "384px",
+          "padding": "32px",
+          "position": "relative",
+          "width": "100%"
+         },
+         "blockName": "card",
+         "children": [
+          {
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "column",
+            "marginBottom": "24px",
+            "textAlign": "center"
+           },
+           "blockName": "card-head",
+           "children": [
+            {
+             "baseStyles": {
+              "alignItems": "center",
+              "backgroundColor": "var(--surface-gray-9)",
+              "borderRadius": "10px",
+              "display": "flex",
+              "flexDirection": "row",
+              "height": "40px",
+              "justifyContent": "center",
+              "margin": "0px auto",
+              "width": "40px"
+             },
+             "blockName": "mark",
+             "children": [
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-1)"
+               },
+               "children": [],
+               "componentId": "Icon-set-up-workspace-072",
+               "componentName": "Icon",
+               "componentProps": {
+                "class": "size-5",
+                "icon": "lucide-list-checks"
+               },
+               "componentSlots": {}
+              }
+             ],
+             "componentId": "box-set-up-workspace-073",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "originalElement": "div"
+            },
+            {
+             "baseStyles": {
+              "color": "var(--ink-gray-5)",
+              "marginTop": "20px"
+             },
+             "children": [],
+             "componentId": "TextBlock-set-up-workspace-074",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "fontSize": "text-xs",
+              "tag": "p",
+              "text": "Step 1 of 2"
+             },
+             "componentSlots": {}
+            },
+            {
+             "baseStyles": {
+              "color": "var(--ink-gray-9)",
+              "fontWeight": "600",
+              "marginTop": "4px"
+             },
+             "children": [],
+             "componentId": "TextBlock-set-up-workspace-075",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "fontSize": "text-2xl",
+              "tag": "h1",
+              "text": "Name your workspace"
+             },
+             "componentSlots": {}
+            },
+            {
+             "baseStyles": {
+              "color": "var(--ink-gray-6)",
+              "marginTop": "6px",
+              "textWrap": "balance"
+             },
+             "children": [],
+             "componentId": "TextBlock-set-up-workspace-076",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "fontSize": "text-p-base",
+              "tag": "p",
+              "text": "This is where your team's work lives."
+             },
+             "componentSlots": {}
+            }
+           ],
+           "componentId": "box-set-up-workspace-077",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "originalElement": "div"
+          },
+          {
+           "baseStyles": {
+            "width": "100%"
+           },
+           "children": [],
+           "componentEvents": {
+            "keydown.enter": {
+             "action": "Run Script",
+             "event": "keydown.enter",
+             "script": "next()"
+            }
+           },
+           "componentId": "FormControl-set-up-workspace-070",
+           "componentName": "FormControl",
+           "componentProps": {
+            "autofocus": true,
+            "description": "You can change this later in Settings.",
+            "error": "{{ nameError || undefined }}",
+            "label": "Workspace name",
+            "modelValue": {
+             "$type": "variable",
+             "name": "name"
+            },
+            "type": "text"
+           },
+           "componentSlots": {}
+          },
+          {
+           "baseStyles": {
+            "marginTop": "16px",
+            "width": "100%"
+           },
+           "children": [],
+           "componentEvents": {
+            "click": {
+             "action": "Run Script",
+             "event": "click",
+             "script": "next()"
+            }
+           },
+           "componentId": "Button-set-up-workspace-071",
+           "componentName": "Button",
+           "componentProps": {
+            "label": "Continue",
+            "size": "md",
+            "theme": "gray",
+            "variant": "solid"
+           },
+           "componentSlots": {}
+          }
+         ],
+         "componentId": "box-set-up-workspace-078",
+         "componentName": "container",
+         "componentProps": {},
+         "componentSlots": {},
+         "mobileStyles": {
+          "padding": "24px"
+         },
+         "originalElement": "div"
+        }
+       ],
+       "componentId": "box-set-up-workspace-079",
+       "componentName": "container",
+       "componentProps": {},
+       "componentSlots": {},
+       "mobileStyles": {
+        "paddingTop": "48px"
+       },
+       "originalElement": "div"
+      }
+     ],
+     "componentId": "AppShell-set-up-workspace",
+     "componentName": "AppShell",
+     "componentProps": {
+      "bare": true
+     },
+     "componentSlots": {},
+     "isCustomVueComponent": true
+    }
+   ],
+   "componentId": "root",
+   "componentName": "div",
+   "componentProps": {},
+   "componentSlots": {},
+   "originalElement": "body"
+  }
+ ],
  "creation": "2026-11-03 12:29:25.504955",
  "docstatus": 0,
  "doctype": "Studio Page",
@@ -9,458 +236,231 @@
     "display": "flex",
     "flexDirection": "column",
     "height": "100%",
-    "width": "100%",
-    "overflowX": "hidden"
+    "overflowX": "hidden",
+    "width": "100%"
    },
    "blockName": "body",
-   "componentId": "root",
-   "componentName": "div",
-   "componentProps": {},
-   "componentSlots": {},
-   "originalElement": "body",
    "children": [
     {
-     "componentId": "AppShell-set-up-workspace",
-     "componentName": "AppShell",
-     "isCustomVueComponent": true,
-     "componentProps": {
-      "bare": true
-     },
-     "componentSlots": {},
      "children": [
       {
-       "componentId": "box-set-up-workspace-079",
-       "componentName": "container",
-       "componentProps": {},
-       "componentSlots": {},
+       "baseStyles": {
+        "alignItems": "flex-start",
+        "backgroundColor": "var(--surface-gray-1)",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "minHeight": "100%",
+        "overflowY": "auto",
+        "padding": "14vh 16px 48px",
+        "width": "100%"
+       },
+       "blockName": "auth-page",
        "children": [
         {
-         "componentId": "box-set-up-workspace-078",
-         "componentName": "container",
-         "componentProps": {},
-         "componentSlots": {},
+         "baseStyles": {
+          "backgroundColor": "var(--surface-base)",
+          "borderColor": "var(--outline-gray-1)",
+          "borderRadius": "12px",
+          "borderStyle": "solid",
+          "borderWidth": "1px",
+          "display": "flex",
+          "flexDirection": "column",
+          "maxWidth": "384px",
+          "padding": "32px",
+          "position": "relative",
+          "width": "100%"
+         },
+         "blockName": "card",
          "children": [
           {
-           "componentId": "box-set-up-workspace-077",
-           "componentName": "container",
-           "componentProps": {},
-           "componentSlots": {},
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "column",
+            "marginBottom": "24px",
+            "textAlign": "center"
+           },
+           "blockName": "card-head",
            "children": [
             {
+             "baseStyles": {
+              "alignItems": "center",
+              "backgroundColor": "var(--surface-gray-9)",
+              "borderRadius": "10px",
+              "display": "flex",
+              "flexDirection": "row",
+              "height": "40px",
+              "justifyContent": "center",
+              "margin": "0px auto",
+              "width": "40px"
+             },
+             "blockName": "mark",
+             "children": [
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-1)"
+               },
+               "children": [],
+               "componentId": "Icon-set-up-workspace-072",
+               "componentName": "Icon",
+               "componentProps": {
+                "class": "size-5",
+                "icon": "lucide-list-checks"
+               },
+               "componentSlots": {}
+              }
+             ],
              "componentId": "box-set-up-workspace-073",
              "componentName": "container",
              "componentProps": {},
              "componentSlots": {},
-             "children": [
-              {
-               "componentId": "Icon-set-up-workspace-072",
-               "componentName": "Icon",
-               "componentProps": {
-                "icon": "lucide-list-checks",
-                "class": "size-5"
-               },
-               "componentSlots": {},
-               "children": [],
-               "baseStyles": {
-                "color": "var(--ink-gray-1)"
-               }
-              }
-             ],
-             "baseStyles": {
-              "display": "flex",
-              "flexDirection": "row",
-              "alignItems": "center",
-              "justifyContent": "center",
-              "width": "40px",
-              "height": "40px",
-              "borderRadius": "10px",
-              "backgroundColor": "var(--surface-gray-9)",
-              "margin": "0px auto"
-             },
-             "blockName": "mark",
              "originalElement": "div"
             },
             {
-             "componentId": "TextBlock-set-up-workspace-074",
-             "componentName": "TextBlock",
-             "componentProps": {
-              "text": "Step 1 of 2",
-              "tag": "p",
-              "fontSize": "text-xs"
-             },
-             "componentSlots": {},
-             "children": [],
              "baseStyles": {
               "color": "var(--ink-gray-5)",
               "marginTop": "20px"
-             }
-            },
-            {
-             "componentId": "TextBlock-set-up-workspace-075",
+             },
+             "children": [],
+             "componentId": "TextBlock-set-up-workspace-074",
              "componentName": "TextBlock",
              "componentProps": {
-              "text": "Name your workspace",
-              "tag": "h1",
-              "fontSize": "text-2xl"
+              "fontSize": "text-xs",
+              "tag": "p",
+              "text": "Step 1 of 2"
              },
-             "componentSlots": {},
-             "children": [],
+             "componentSlots": {}
+            },
+            {
              "baseStyles": {
               "color": "var(--ink-gray-9)",
               "fontWeight": "600",
               "marginTop": "4px"
-             }
-            },
-            {
-             "componentId": "TextBlock-set-up-workspace-076",
+             },
+             "children": [],
+             "componentId": "TextBlock-set-up-workspace-075",
              "componentName": "TextBlock",
              "componentProps": {
-              "text": "This is where your team's work lives.",
-              "tag": "p",
-              "fontSize": "text-p-base"
+              "fontSize": "text-2xl",
+              "tag": "h1",
+              "text": "Name your workspace"
              },
-             "componentSlots": {},
-             "children": [],
+             "componentSlots": {}
+            },
+            {
              "baseStyles": {
               "color": "var(--ink-gray-6)",
               "marginTop": "6px",
               "textWrap": "balance"
-             }
+             },
+             "children": [],
+             "componentId": "TextBlock-set-up-workspace-076",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "fontSize": "text-p-base",
+              "tag": "p",
+              "text": "This is where your team's work lives."
+             },
+             "componentSlots": {}
             }
            ],
-           "baseStyles": {
-            "display": "flex",
-            "flexDirection": "column",
-            "textAlign": "center",
-            "marginBottom": "24px"
-           },
-           "blockName": "card-head",
+           "componentId": "box-set-up-workspace-077",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
            "originalElement": "div"
           },
           {
+           "baseStyles": {
+            "width": "100%"
+           },
+           "children": [],
+           "componentEvents": {
+            "keydown.enter": {
+             "action": "Run Script",
+             "event": "keydown.enter",
+             "script": "next()"
+            }
+           },
            "componentId": "FormControl-set-up-workspace-070",
            "componentName": "FormControl",
            "componentProps": {
-            "type": "text",
+            "autofocus": true,
+            "description": "You can change this later in Settings.",
+            "error": "{{ nameError || undefined }}",
             "label": "Workspace name",
             "modelValue": {
              "$type": "variable",
              "name": "name"
             },
-            "description": "You can change this later in Settings.",
-            "error": "{{ nameError || undefined }}",
-            "autofocus": true
+            "type": "text"
            },
-           "componentSlots": {},
-           "children": [],
-           "baseStyles": {
-            "width": "100%"
-           },
-           "componentEvents": {
-            "keydown.enter": {
-             "event": "keydown.enter",
-             "action": "Run Script",
-             "script": "next()"
-            }
-           }
+           "componentSlots": {}
           },
           {
+           "baseStyles": {
+            "marginTop": "16px",
+            "width": "100%"
+           },
+           "children": [],
+           "componentEvents": {
+            "click": {
+             "action": "Run Script",
+             "event": "click",
+             "script": "next()"
+            }
+           },
            "componentId": "Button-set-up-workspace-071",
            "componentName": "Button",
            "componentProps": {
-            "variant": "solid",
             "label": "Continue",
+            "size": "md",
             "theme": "gray",
-            "size": "md"
+            "variant": "solid"
            },
-           "componentSlots": {},
-           "children": [],
-           "baseStyles": {
-            "width": "100%",
-            "marginTop": "16px"
-           },
-           "componentEvents": {
-            "click": {
-             "event": "click",
-             "action": "Run Script",
-             "script": "next()"
-            }
-           }
+           "componentSlots": {}
           }
          ],
-         "baseStyles": {
-          "display": "flex",
-          "flexDirection": "column",
-          "position": "relative",
-          "width": "100%",
-          "maxWidth": "384px",
-          "backgroundColor": "var(--surface-base)",
-          "borderStyle": "solid",
-          "borderColor": "var(--outline-gray-1)",
-          "borderWidth": "1px",
-          "borderRadius": "12px",
-          "padding": "32px"
-         },
-         "mobileStyles": {
-          "padding": "24px"
-         },
-         "blockName": "card",
-         "originalElement": "div"
-        }
-       ],
-       "baseStyles": {
-        "display": "flex",
-        "flexDirection": "row",
-        "alignItems": "flex-start",
-        "justifyContent": "center",
-        "width": "100%",
-        "minHeight": "100%",
-        "backgroundColor": "var(--surface-gray-1)",
-        "padding": "14vh 16px 48px",
-        "overflowY": "auto"
-       },
-       "mobileStyles": {
-        "paddingTop": "48px"
-       },
-       "blockName": "auth-page",
-       "originalElement": "div"
-      }
-     ]
-    }
-   ]
-  }
- ],
- "blocks": [
-  {
-   "baseStyles": {
-    "display": "flex",
-    "flexDirection": "column",
-    "height": "100%",
-    "width": "100%",
-    "overflowX": "hidden"
-   },
-   "blockName": "body",
-   "componentId": "root",
-   "componentName": "div",
-   "componentProps": {},
-   "componentSlots": {},
-   "originalElement": "body",
-   "children": [
-    {
-     "componentId": "AppShell-set-up-workspace",
-     "componentName": "AppShell",
-     "isCustomVueComponent": true,
-     "componentProps": {
-      "bare": true
-     },
-     "componentSlots": {},
-     "children": [
-      {
-       "componentId": "box-set-up-workspace-079",
-       "componentName": "container",
-       "componentProps": {},
-       "componentSlots": {},
-       "children": [
-        {
          "componentId": "box-set-up-workspace-078",
          "componentName": "container",
          "componentProps": {},
          "componentSlots": {},
-         "children": [
-          {
-           "componentId": "box-set-up-workspace-077",
-           "componentName": "container",
-           "componentProps": {},
-           "componentSlots": {},
-           "children": [
-            {
-             "componentId": "box-set-up-workspace-073",
-             "componentName": "container",
-             "componentProps": {},
-             "componentSlots": {},
-             "children": [
-              {
-               "componentId": "Icon-set-up-workspace-072",
-               "componentName": "Icon",
-               "componentProps": {
-                "icon": "lucide-list-checks",
-                "class": "size-5"
-               },
-               "componentSlots": {},
-               "children": [],
-               "baseStyles": {
-                "color": "var(--ink-gray-1)"
-               }
-              }
-             ],
-             "baseStyles": {
-              "display": "flex",
-              "flexDirection": "row",
-              "alignItems": "center",
-              "justifyContent": "center",
-              "width": "40px",
-              "height": "40px",
-              "borderRadius": "10px",
-              "backgroundColor": "var(--surface-gray-9)",
-              "margin": "0px auto"
-             },
-             "blockName": "mark",
-             "originalElement": "div"
-            },
-            {
-             "componentId": "TextBlock-set-up-workspace-074",
-             "componentName": "TextBlock",
-             "componentProps": {
-              "text": "Step 1 of 2",
-              "tag": "p",
-              "fontSize": "text-xs"
-             },
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {
-              "color": "var(--ink-gray-5)",
-              "marginTop": "20px"
-             }
-            },
-            {
-             "componentId": "TextBlock-set-up-workspace-075",
-             "componentName": "TextBlock",
-             "componentProps": {
-              "text": "Name your workspace",
-              "tag": "h1",
-              "fontSize": "text-2xl"
-             },
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {
-              "color": "var(--ink-gray-9)",
-              "fontWeight": "600",
-              "marginTop": "4px"
-             }
-            },
-            {
-             "componentId": "TextBlock-set-up-workspace-076",
-             "componentName": "TextBlock",
-             "componentProps": {
-              "text": "This is where your team's work lives.",
-              "tag": "p",
-              "fontSize": "text-p-base"
-             },
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {
-              "color": "var(--ink-gray-6)",
-              "marginTop": "6px",
-              "textWrap": "balance"
-             }
-            }
-           ],
-           "baseStyles": {
-            "display": "flex",
-            "flexDirection": "column",
-            "textAlign": "center",
-            "marginBottom": "24px"
-           },
-           "blockName": "card-head",
-           "originalElement": "div"
-          },
-          {
-           "componentId": "FormControl-set-up-workspace-070",
-           "componentName": "FormControl",
-           "componentProps": {
-            "type": "text",
-            "label": "Workspace name",
-            "modelValue": {
-             "$type": "variable",
-             "name": "name"
-            },
-            "description": "You can change this later in Settings.",
-            "error": "{{ nameError || undefined }}",
-            "autofocus": true
-           },
-           "componentSlots": {},
-           "children": [],
-           "baseStyles": {
-            "width": "100%"
-           },
-           "componentEvents": {
-            "keydown.enter": {
-             "event": "keydown.enter",
-             "action": "Run Script",
-             "script": "next()"
-            }
-           }
-          },
-          {
-           "componentId": "Button-set-up-workspace-071",
-           "componentName": "Button",
-           "componentProps": {
-            "variant": "solid",
-            "label": "Continue",
-            "theme": "gray",
-            "size": "md"
-           },
-           "componentSlots": {},
-           "children": [],
-           "baseStyles": {
-            "width": "100%",
-            "marginTop": "16px"
-           },
-           "componentEvents": {
-            "click": {
-             "event": "click",
-             "action": "Run Script",
-             "script": "next()"
-            }
-           }
-          }
-         ],
-         "baseStyles": {
-          "display": "flex",
-          "flexDirection": "column",
-          "position": "relative",
-          "width": "100%",
-          "maxWidth": "384px",
-          "backgroundColor": "var(--surface-base)",
-          "borderStyle": "solid",
-          "borderColor": "var(--outline-gray-1)",
-          "borderWidth": "1px",
-          "borderRadius": "12px",
-          "padding": "32px"
-         },
          "mobileStyles": {
           "padding": "24px"
          },
-         "blockName": "card",
          "originalElement": "div"
         }
        ],
-       "baseStyles": {
-        "display": "flex",
-        "flexDirection": "row",
-        "alignItems": "flex-start",
-        "justifyContent": "center",
-        "width": "100%",
-        "minHeight": "100%",
-        "backgroundColor": "var(--surface-gray-1)",
-        "padding": "14vh 16px 48px",
-        "overflowY": "auto"
-       },
+       "componentId": "box-set-up-workspace-079",
+       "componentName": "container",
+       "componentProps": {},
+       "componentSlots": {},
        "mobileStyles": {
         "paddingTop": "48px"
        },
-       "blockName": "auth-page",
        "originalElement": "div"
       }
-     ]
+     ],
+     "componentId": "AppShell-set-up-workspace",
+     "componentName": "AppShell",
+     "componentProps": {
+      "bare": true
+     },
+     "componentSlots": {},
+     "isCustomVueComponent": true
     }
-   ]
+   ],
+   "componentId": "root",
+   "componentName": "div",
+   "componentProps": {},
+   "componentSlots": {},
+   "originalElement": "body"
   }
  ],
  "frappe_app": "frappe_live",
  "idx": 0,
  "is_standard": 1,
- "modified": "2026-11-03 13:22:26.263954",
+ "modified": "2026-11-17 01:00:00.000000",
  "modified_by": "Administrator",
  "name": "set_up_workspace",
  "owner": "Administrator",
@@ -468,5 +468,6 @@
  "page_title": "Set up workspace",
  "published": 1,
  "route": "/setup",
- "studio_app": "live"
+ "studio_app": "live",
+ "tab_title": "Set up \u00b7 Frappe Live"
 }
