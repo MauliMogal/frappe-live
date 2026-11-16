@@ -1,16 +1,17 @@
 {
+ "app_home": "tasks-my-tasks",
  "app_name": "live",
  "app_title": "Frappe Live",
  "creation": "2026-11-03 12:12:14.556057",
  "docstatus": 0,
  "doctype": "Studio App",
+ "favicon": "/assets/frappe_live/images/favicon.svg",
  "frappe_app": "frappe_live",
  "idx": 0,
  "is_standard": 1,
- "modified": "2026-11-03 12:35:35.982575",
+ "modified": "2026-11-17 01:00:00.000000",
  "modified_by": "Administrator",
  "name": "live",
  "owner": "Administrator",
- "route": "live",
- "app_home": "tasks-my-tasks"
+ "route": "live"
 }
