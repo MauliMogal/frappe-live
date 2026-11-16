@@ -1,5 +1,314 @@
 {
  "allow_guest": 0,
+ "blocks": [
+  {
+   "baseStyles": {
+    "display": "flex",
+    "flexDirection": "column",
+    "height": "100%",
+    "overflowX": "hidden",
+    "width": "100%"
+   },
+   "blockName": "body",
+   "children": [
+    {
+     "children": [
+      {
+       "baseStyles": {
+        "alignItems": "flex-start",
+        "backgroundColor": "var(--surface-gray-1)",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "minHeight": "100%",
+        "overflowY": "auto",
+        "padding": "14vh 16px 48px",
+        "width": "100%"
+       },
+       "blockName": "auth-page",
+       "children": [
+        {
+         "baseStyles": {
+          "backgroundColor": "var(--surface-base)",
+          "borderColor": "var(--outline-gray-1)",
+          "borderRadius": "12px",
+          "borderStyle": "solid",
+          "borderWidth": "1px",
+          "display": "flex",
+          "flexDirection": "column",
+          "maxWidth": "384px",
+          "padding": "32px",
+          "position": "relative",
+          "width": "100%"
+         },
+         "blockName": "card",
+         "children": [
+          {
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "column",
+            "marginBottom": "24px",
+            "textAlign": "center"
+           },
+           "blockName": "card-head",
+           "children": [
+            {
+             "baseStyles": {
+              "alignItems": "center",
+              "backgroundColor": "var(--surface-gray-9)",
+              "borderRadius": "10px",
+              "display": "flex",
+              "flexDirection": "row",
+              "height": "40px",
+              "justifyContent": "center",
+              "margin": "0px auto",
+              "width": "40px"
+             },
+             "blockName": "mark",
+             "children": [
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-1)"
+               },
+               "children": [],
+               "componentId": "Icon-log-in-063",
+               "componentName": "Icon",
+               "componentProps": {
+                "class": "size-5",
+                "icon": "lucide-list-checks"
+               },
+               "componentSlots": {}
+              }
+             ],
+             "componentId": "box-log-in-064",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "originalElement": "div"
+            },
+            {
+             "baseStyles": {
+              "color": "var(--ink-gray-9)",
+              "fontWeight": "600",
+              "marginTop": "20px"
+             },
+             "children": [],
+             "componentId": "TextBlock-log-in-065",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "fontSize": "text-2xl",
+              "tag": "h1",
+              "text": "Log in"
+             },
+             "componentSlots": {}
+            },
+            {
+             "baseStyles": {
+              "color": "var(--ink-gray-6)",
+              "marginTop": "6px",
+              "textWrap": "balance"
+             },
+             "children": [],
+             "componentId": "TextBlock-log-in-066",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "fontSize": "text-p-base",
+              "tag": "p",
+              "text": "Use your Frappe account."
+             },
+             "componentSlots": {}
+            }
+           ],
+           "componentId": "box-log-in-067",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "originalElement": "div"
+          },
+          {
+           "baseStyles": {
+            "width": "100%"
+           },
+           "children": [],
+           "componentId": "FormControl-log-in-055",
+           "componentName": "FormControl",
+           "componentProps": {
+            "autocomplete": "username",
+            "error": "{{ emailError || undefined }}",
+            "label": "Email",
+            "modelValue": {
+             "$type": "variable",
+             "name": "email"
+            },
+            "type": "email"
+           },
+           "componentSlots": {}
+          },
+          {
+           "baseStyles": {
+            "marginTop": "16px",
+            "width": "100%"
+           },
+           "children": [],
+           "componentEvents": {
+            "keydown.enter": {
+             "action": "Run Script",
+             "event": "keydown.enter",
+             "script": "logIn()"
+            }
+           },
+           "componentId": "FormControl-log-in-056",
+           "componentName": "FormControl",
+           "componentProps": {
+            "autocomplete": "current-password",
+            "error": "{{ passwordError || undefined }}",
+            "label": "Password",
+            "modelValue": {
+             "$type": "variable",
+             "name": "password"
+            },
+            "type": "password"
+           },
+           "componentSlots": {}
+          },
+          {
+           "baseStyles": {
+            "marginTop": "16px",
+            "width": "100%"
+           },
+           "children": [],
+           "componentEvents": {
+            "click": {
+             "action": "Run Script",
+             "event": "click",
+             "script": "logIn()"
+            }
+           },
+           "componentId": "Button-log-in-057",
+           "componentName": "Button",
+           "componentProps": {
+            "label": "Log in",
+            "size": "md",
+            "theme": "gray",
+            "variant": "solid"
+           },
+           "componentSlots": {}
+          },
+          {
+           "baseStyles": {
+            "alignItems": "center",
+            "display": "flex",
+            "flexDirection": "row",
+            "gap": "12px",
+            "margin": "20px 0px"
+           },
+           "blockName": "or",
+           "children": [
+            {
+             "baseStyles": {
+              "backgroundColor": "var(--outline-gray-2)",
+              "flex": "1",
+              "height": "1px"
+             },
+             "children": [],
+             "componentId": "box-log-in-058",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "originalElement": "div"
+            },
+            {
+             "baseStyles": {
+              "color": "var(--ink-gray-5)"
+             },
+             "children": [],
+             "componentId": "TextBlock-log-in-059",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "fontSize": "text-xs",
+              "tag": "span",
+              "text": "or"
+             },
+             "componentSlots": {}
+            },
+            {
+             "baseStyles": {
+              "backgroundColor": "var(--outline-gray-2)",
+              "flex": "1",
+              "height": "1px"
+             },
+             "children": [],
+             "componentId": "box-log-in-060",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "originalElement": "div"
+            }
+           ],
+           "componentId": "box-log-in-061",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "originalElement": "div"
+          },
+          {
+           "baseStyles": {
+            "width": "100%"
+           },
+           "children": [],
+           "componentEvents": {
+            "click": {
+             "action": "Run Script",
+             "event": "click",
+             "script": "goOn()"
+            }
+           },
+           "componentId": "Button-log-in-062",
+           "componentName": "Button",
+           "componentProps": {
+            "label": "Continue with Google",
+            "size": "md",
+            "variant": "outline"
+           },
+           "componentSlots": {}
+          }
+         ],
+         "componentId": "box-log-in-068",
+         "componentName": "container",
+         "componentProps": {},
+         "componentSlots": {},
+         "mobileStyles": {
+          "padding": "24px"
+         },
+         "originalElement": "div"
+        }
+       ],
+       "componentId": "box-log-in-069",
+       "componentName": "container",
+       "componentProps": {},
+       "componentSlots": {},
+       "mobileStyles": {
+        "paddingTop": "48px"
+       },
+       "originalElement": "div"
+      }
+     ],
+     "componentId": "AppShell-log-in",
+     "componentName": "AppShell",
+     "componentProps": {
+      "bare": true
+     },
+     "componentSlots": {},
+     "isCustomVueComponent": true
+    }
+   ],
+   "componentId": "root",
+   "componentName": "div",
+   "componentProps": {},
+   "componentSlots": {},
+   "originalElement": "body"
+  }
+ ],
  "creation": "2026-11-03 12:29:25.504955",
  "docstatus": 0,
  "doctype": "Studio Page",
@@ -9,622 +318,313 @@
     "display": "flex",
     "flexDirection": "column",
     "height": "100%",
-    "width": "100%",
-    "overflowX": "hidden"
+    "overflowX": "hidden",
+    "width": "100%"
    },
    "blockName": "body",
-   "componentId": "root",
-   "componentName": "div",
-   "componentProps": {},
-   "componentSlots": {},
-   "originalElement": "body",
    "children": [
     {
-     "componentId": "AppShell-log-in",
-     "componentName": "AppShell",
-     "isCustomVueComponent": true,
-     "componentProps": {
-      "bare": true
-     },
-     "componentSlots": {},
      "children": [
       {
-       "componentId": "box-log-in-069",
-       "componentName": "container",
-       "componentProps": {},
-       "componentSlots": {},
+       "baseStyles": {
+        "alignItems": "flex-start",
+        "backgroundColor": "var(--surface-gray-1)",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "minHeight": "100%",
+        "overflowY": "auto",
+        "padding": "14vh 16px 48px",
+        "width": "100%"
+       },
+       "blockName": "auth-page",
        "children": [
         {
-         "componentId": "box-log-in-068",
-         "componentName": "container",
-         "componentProps": {},
-         "componentSlots": {},
+         "baseStyles": {
+          "backgroundColor": "var(--surface-base)",
+          "borderColor": "var(--outline-gray-1)",
+          "borderRadius": "12px",
+          "borderStyle": "solid",
+          "borderWidth": "1px",
+          "display": "flex",
+          "flexDirection": "column",
+          "maxWidth": "384px",
+          "padding": "32px",
+          "position": "relative",
+          "width": "100%"
+         },
+         "blockName": "card",
          "children": [
           {
-           "componentId": "box-log-in-067",
-           "componentName": "container",
-           "componentProps": {},
-           "componentSlots": {},
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "column",
+            "marginBottom": "24px",
+            "textAlign": "center"
+           },
+           "blockName": "card-head",
            "children": [
             {
+             "baseStyles": {
+              "alignItems": "center",
+              "backgroundColor": "var(--surface-gray-9)",
+              "borderRadius": "10px",
+              "display": "flex",
+              "flexDirection": "row",
+              "height": "40px",
+              "justifyContent": "center",
+              "margin": "0px auto",
+              "width": "40px"
+             },
+             "blockName": "mark",
+             "children": [
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-1)"
+               },
+               "children": [],
+               "componentId": "Icon-log-in-063",
+               "componentName": "Icon",
+               "componentProps": {
+                "class": "size-5",
+                "icon": "lucide-list-checks"
+               },
+               "componentSlots": {}
+              }
+             ],
              "componentId": "box-log-in-064",
              "componentName": "container",
              "componentProps": {},
              "componentSlots": {},
-             "children": [
-              {
-               "componentId": "Icon-log-in-063",
-               "componentName": "Icon",
-               "componentProps": {
-                "icon": "lucide-list-checks",
-                "class": "size-5"
-               },
-               "componentSlots": {},
-               "children": [],
-               "baseStyles": {
-                "color": "var(--ink-gray-1)"
-               }
-              }
-             ],
-             "baseStyles": {
-              "display": "flex",
-              "flexDirection": "row",
-              "alignItems": "center",
-              "justifyContent": "center",
-              "width": "40px",
-              "height": "40px",
-              "borderRadius": "10px",
-              "backgroundColor": "var(--surface-gray-9)",
-              "margin": "0px auto"
-             },
-             "blockName": "mark",
              "originalElement": "div"
             },
             {
-             "componentId": "TextBlock-log-in-065",
-             "componentName": "TextBlock",
-             "componentProps": {
-              "text": "Log in",
-              "tag": "h1",
-              "fontSize": "text-2xl"
-             },
-             "componentSlots": {},
-             "children": [],
              "baseStyles": {
               "color": "var(--ink-gray-9)",
               "fontWeight": "600",
               "marginTop": "20px"
-             }
-            },
-            {
-             "componentId": "TextBlock-log-in-066",
+             },
+             "children": [],
+             "componentId": "TextBlock-log-in-065",
              "componentName": "TextBlock",
              "componentProps": {
-              "text": "Use your Frappe account.",
-              "tag": "p",
-              "fontSize": "text-p-base"
+              "fontSize": "text-2xl",
+              "tag": "h1",
+              "text": "Log in"
              },
-             "componentSlots": {},
-             "children": [],
+             "componentSlots": {}
+            },
+            {
              "baseStyles": {
               "color": "var(--ink-gray-6)",
               "marginTop": "6px",
               "textWrap": "balance"
-             }
+             },
+             "children": [],
+             "componentId": "TextBlock-log-in-066",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "fontSize": "text-p-base",
+              "tag": "p",
+              "text": "Use your Frappe account."
+             },
+             "componentSlots": {}
             }
            ],
-           "baseStyles": {
-            "display": "flex",
-            "flexDirection": "column",
-            "textAlign": "center",
-            "marginBottom": "24px"
-           },
-           "blockName": "card-head",
+           "componentId": "box-log-in-067",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
            "originalElement": "div"
           },
           {
+           "baseStyles": {
+            "width": "100%"
+           },
+           "children": [],
            "componentId": "FormControl-log-in-055",
            "componentName": "FormControl",
            "componentProps": {
-            "type": "email",
+            "autocomplete": "username",
+            "error": "{{ emailError || undefined }}",
             "label": "Email",
             "modelValue": {
              "$type": "variable",
              "name": "email"
             },
-            "autocomplete": "username",
-            "error": "{{ emailError || undefined }}"
+            "type": "email"
            },
-           "componentSlots": {},
-           "children": [],
-           "baseStyles": {
-            "width": "100%"
-           }
+           "componentSlots": {}
           },
           {
+           "baseStyles": {
+            "marginTop": "16px",
+            "width": "100%"
+           },
+           "children": [],
+           "componentEvents": {
+            "keydown.enter": {
+             "action": "Run Script",
+             "event": "keydown.enter",
+             "script": "logIn()"
+            }
+           },
            "componentId": "FormControl-log-in-056",
            "componentName": "FormControl",
            "componentProps": {
-            "type": "password",
+            "autocomplete": "current-password",
+            "error": "{{ passwordError || undefined }}",
             "label": "Password",
             "modelValue": {
              "$type": "variable",
              "name": "password"
             },
-            "autocomplete": "current-password",
-            "error": "{{ passwordError || undefined }}"
+            "type": "password"
            },
-           "componentSlots": {},
-           "children": [],
-           "baseStyles": {
-            "width": "100%",
-            "marginTop": "16px"
-           },
-           "componentEvents": {
-            "keydown.enter": {
-             "event": "keydown.enter",
-             "action": "Run Script",
-             "script": "logIn()"
-            }
-           }
+           "componentSlots": {}
           },
           {
+           "baseStyles": {
+            "marginTop": "16px",
+            "width": "100%"
+           },
+           "children": [],
+           "componentEvents": {
+            "click": {
+             "action": "Run Script",
+             "event": "click",
+             "script": "logIn()"
+            }
+           },
            "componentId": "Button-log-in-057",
            "componentName": "Button",
            "componentProps": {
-            "variant": "solid",
             "label": "Log in",
+            "size": "md",
             "theme": "gray",
-            "size": "md"
+            "variant": "solid"
            },
-           "componentSlots": {},
-           "children": [],
-           "baseStyles": {
-            "width": "100%",
-            "marginTop": "16px"
-           },
-           "componentEvents": {
-            "click": {
-             "event": "click",
-             "action": "Run Script",
-             "script": "logIn()"
-            }
-           }
+           "componentSlots": {}
           },
           {
-           "componentId": "box-log-in-061",
-           "componentName": "container",
-           "componentProps": {},
-           "componentSlots": {},
-           "children": [
-            {
-             "componentId": "box-log-in-058",
-             "componentName": "container",
-             "componentProps": {},
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {
-              "flex": "1",
-              "height": "1px",
-              "backgroundColor": "var(--outline-gray-2)"
-             },
-             "originalElement": "div"
-            },
-            {
-             "componentId": "TextBlock-log-in-059",
-             "componentName": "TextBlock",
-             "componentProps": {
-              "text": "or",
-              "tag": "span",
-              "fontSize": "text-xs"
-             },
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {
-              "color": "var(--ink-gray-5)"
-             }
-            },
-            {
-             "componentId": "box-log-in-060",
-             "componentName": "container",
-             "componentProps": {},
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {
-              "flex": "1",
-              "height": "1px",
-              "backgroundColor": "var(--outline-gray-2)"
-             },
-             "originalElement": "div"
-            }
-           ],
            "baseStyles": {
+            "alignItems": "center",
             "display": "flex",
             "flexDirection": "row",
-            "alignItems": "center",
             "gap": "12px",
             "margin": "20px 0px"
            },
            "blockName": "or",
+           "children": [
+            {
+             "baseStyles": {
+              "backgroundColor": "var(--outline-gray-2)",
+              "flex": "1",
+              "height": "1px"
+             },
+             "children": [],
+             "componentId": "box-log-in-058",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "originalElement": "div"
+            },
+            {
+             "baseStyles": {
+              "color": "var(--ink-gray-5)"
+             },
+             "children": [],
+             "componentId": "TextBlock-log-in-059",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "fontSize": "text-xs",
+              "tag": "span",
+              "text": "or"
+             },
+             "componentSlots": {}
+            },
+            {
+             "baseStyles": {
+              "backgroundColor": "var(--outline-gray-2)",
+              "flex": "1",
+              "height": "1px"
+             },
+             "children": [],
+             "componentId": "box-log-in-060",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "originalElement": "div"
+            }
+           ],
+           "componentId": "box-log-in-061",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
            "originalElement": "div"
           },
           {
-           "componentId": "Button-log-in-062",
-           "componentName": "Button",
-           "componentProps": {
-            "variant": "outline",
-            "label": "Continue with Google",
-            "size": "md"
-           },
-           "componentSlots": {},
-           "children": [],
            "baseStyles": {
             "width": "100%"
            },
+           "children": [],
            "componentEvents": {
             "click": {
-             "event": "click",
              "action": "Run Script",
+             "event": "click",
              "script": "goOn()"
             }
-           }
+           },
+           "componentId": "Button-log-in-062",
+           "componentName": "Button",
+           "componentProps": {
+            "label": "Continue with Google",
+            "size": "md",
+            "variant": "outline"
+           },
+           "componentSlots": {}
           }
          ],
-         "baseStyles": {
-          "display": "flex",
-          "flexDirection": "column",
-          "position": "relative",
-          "width": "100%",
-          "maxWidth": "384px",
-          "backgroundColor": "var(--surface-base)",
-          "borderStyle": "solid",
-          "borderColor": "var(--outline-gray-1)",
-          "borderWidth": "1px",
-          "borderRadius": "12px",
-          "padding": "32px"
-         },
-         "mobileStyles": {
-          "padding": "24px"
-         },
-         "blockName": "card",
-         "originalElement": "div"
-        }
-       ],
-       "baseStyles": {
-        "display": "flex",
-        "flexDirection": "row",
-        "alignItems": "flex-start",
-        "justifyContent": "center",
-        "width": "100%",
-        "minHeight": "100%",
-        "backgroundColor": "var(--surface-gray-1)",
-        "padding": "14vh 16px 48px",
-        "overflowY": "auto"
-       },
-       "mobileStyles": {
-        "paddingTop": "48px"
-       },
-       "blockName": "auth-page",
-       "originalElement": "div"
-      }
-     ]
-    }
-   ]
-  }
- ],
- "blocks": [
-  {
-   "baseStyles": {
-    "display": "flex",
-    "flexDirection": "column",
-    "height": "100%",
-    "width": "100%",
-    "overflowX": "hidden"
-   },
-   "blockName": "body",
-   "componentId": "root",
-   "componentName": "div",
-   "componentProps": {},
-   "componentSlots": {},
-   "originalElement": "body",
-   "children": [
-    {
-     "componentId": "AppShell-log-in",
-     "componentName": "AppShell",
-     "isCustomVueComponent": true,
-     "componentProps": {
-      "bare": true
-     },
-     "componentSlots": {},
-     "children": [
-      {
-       "componentId": "box-log-in-069",
-       "componentName": "container",
-       "componentProps": {},
-       "componentSlots": {},
-       "children": [
-        {
          "componentId": "box-log-in-068",
          "componentName": "container",
          "componentProps": {},
          "componentSlots": {},
-         "children": [
-          {
-           "componentId": "box-log-in-067",
-           "componentName": "container",
-           "componentProps": {},
-           "componentSlots": {},
-           "children": [
-            {
-             "componentId": "box-log-in-064",
-             "componentName": "container",
-             "componentProps": {},
-             "componentSlots": {},
-             "children": [
-              {
-               "componentId": "Icon-log-in-063",
-               "componentName": "Icon",
-               "componentProps": {
-                "icon": "lucide-list-checks",
-                "class": "size-5"
-               },
-               "componentSlots": {},
-               "children": [],
-               "baseStyles": {
-                "color": "var(--ink-gray-1)"
-               }
-              }
-             ],
-             "baseStyles": {
-              "display": "flex",
-              "flexDirection": "row",
-              "alignItems": "center",
-              "justifyContent": "center",
-              "width": "40px",
-              "height": "40px",
-              "borderRadius": "10px",
-              "backgroundColor": "var(--surface-gray-9)",
-              "margin": "0px auto"
-             },
-             "blockName": "mark",
-             "originalElement": "div"
-            },
-            {
-             "componentId": "TextBlock-log-in-065",
-             "componentName": "TextBlock",
-             "componentProps": {
-              "text": "Log in",
-              "tag": "h1",
-              "fontSize": "text-2xl"
-             },
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {
-              "color": "var(--ink-gray-9)",
-              "fontWeight": "600",
-              "marginTop": "20px"
-             }
-            },
-            {
-             "componentId": "TextBlock-log-in-066",
-             "componentName": "TextBlock",
-             "componentProps": {
-              "text": "Use your Frappe account.",
-              "tag": "p",
-              "fontSize": "text-p-base"
-             },
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {
-              "color": "var(--ink-gray-6)",
-              "marginTop": "6px",
-              "textWrap": "balance"
-             }
-            }
-           ],
-           "baseStyles": {
-            "display": "flex",
-            "flexDirection": "column",
-            "textAlign": "center",
-            "marginBottom": "24px"
-           },
-           "blockName": "card-head",
-           "originalElement": "div"
-          },
-          {
-           "componentId": "FormControl-log-in-055",
-           "componentName": "FormControl",
-           "componentProps": {
-            "type": "email",
-            "label": "Email",
-            "modelValue": {
-             "$type": "variable",
-             "name": "email"
-            },
-            "autocomplete": "username",
-            "error": "{{ emailError || undefined }}"
-           },
-           "componentSlots": {},
-           "children": [],
-           "baseStyles": {
-            "width": "100%"
-           }
-          },
-          {
-           "componentId": "FormControl-log-in-056",
-           "componentName": "FormControl",
-           "componentProps": {
-            "type": "password",
-            "label": "Password",
-            "modelValue": {
-             "$type": "variable",
-             "name": "password"
-            },
-            "autocomplete": "current-password",
-            "error": "{{ passwordError || undefined }}"
-           },
-           "componentSlots": {},
-           "children": [],
-           "baseStyles": {
-            "width": "100%",
-            "marginTop": "16px"
-           },
-           "componentEvents": {
-            "keydown.enter": {
-             "event": "keydown.enter",
-             "action": "Run Script",
-             "script": "logIn()"
-            }
-           }
-          },
-          {
-           "componentId": "Button-log-in-057",
-           "componentName": "Button",
-           "componentProps": {
-            "variant": "solid",
-            "label": "Log in",
-            "theme": "gray",
-            "size": "md"
-           },
-           "componentSlots": {},
-           "children": [],
-           "baseStyles": {
-            "width": "100%",
-            "marginTop": "16px"
-           },
-           "componentEvents": {
-            "click": {
-             "event": "click",
-             "action": "Run Script",
-             "script": "logIn()"
-            }
-           }
-          },
-          {
-           "componentId": "box-log-in-061",
-           "componentName": "container",
-           "componentProps": {},
-           "componentSlots": {},
-           "children": [
-            {
-             "componentId": "box-log-in-058",
-             "componentName": "container",
-             "componentProps": {},
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {
-              "flex": "1",
-              "height": "1px",
-              "backgroundColor": "var(--outline-gray-2)"
-             },
-             "originalElement": "div"
-            },
-            {
-             "componentId": "TextBlock-log-in-059",
-             "componentName": "TextBlock",
-             "componentProps": {
-              "text": "or",
-              "tag": "span",
-              "fontSize": "text-xs"
-             },
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {
-              "color": "var(--ink-gray-5)"
-             }
-            },
-            {
-             "componentId": "box-log-in-060",
-             "componentName": "container",
-             "componentProps": {},
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {
-              "flex": "1",
-              "height": "1px",
-              "backgroundColor": "var(--outline-gray-2)"
-             },
-             "originalElement": "div"
-            }
-           ],
-           "baseStyles": {
-            "display": "flex",
-            "flexDirection": "row",
-            "alignItems": "center",
-            "gap": "12px",
-            "margin": "20px 0px"
-           },
-           "blockName": "or",
-           "originalElement": "div"
-          },
-          {
-           "componentId": "Button-log-in-062",
-           "componentName": "Button",
-           "componentProps": {
-            "variant": "outline",
-            "label": "Continue with Google",
-            "size": "md"
-           },
-           "componentSlots": {},
-           "children": [],
-           "baseStyles": {
-            "width": "100%"
-           },
-           "componentEvents": {
-            "click": {
-             "event": "click",
-             "action": "Run Script",
-             "script": "goOn()"
-            }
-           }
-          }
-         ],
-         "baseStyles": {
-          "display": "flex",
-          "flexDirection": "column",
-          "position": "relative",
-          "width": "100%",
-          "maxWidth": "384px",
-          "backgroundColor": "var(--surface-base)",
-          "borderStyle": "solid",
-          "borderColor": "var(--outline-gray-1)",
-          "borderWidth": "1px",
-          "borderRadius": "12px",
-          "padding": "32px"
-         },
          "mobileStyles": {
           "padding": "24px"
          },
-         "blockName": "card",
          "originalElement": "div"
         }
        ],
-       "baseStyles": {
-        "display": "flex",
-        "flexDirection": "row",
-        "alignItems": "flex-start",
-        "justifyContent": "center",
-        "width": "100%",
-        "minHeight": "100%",
-        "backgroundColor": "var(--surface-gray-1)",
-        "padding": "14vh 16px 48px",
-        "overflowY": "auto"
-       },
+       "componentId": "box-log-in-069",
+       "componentName": "container",
+       "componentProps": {},
+       "componentSlots": {},
        "mobileStyles": {
         "paddingTop": "48px"
        },
-       "blockName": "auth-page",
        "originalElement": "div"
       }
-     ]
+     ],
+     "componentId": "AppShell-log-in",
+     "componentName": "AppShell",
+     "componentProps": {
+      "bare": true
+     },
+     "componentSlots": {},
+     "isCustomVueComponent": true
     }
-   ]
+   ],
+   "componentId": "root",
+   "componentName": "div",
+   "componentProps": {},
+   "componentSlots": {},
+   "originalElement": "body"
   }
  ],
  "frappe_app": "frappe_live",
  "idx": 0,
  "is_standard": 1,
- "modified": "2026-11-03 13:22:26.263954",
+ "modified": "2026-11-17 01:00:00.000000",
  "modified_by": "Administrator",
  "name": "log_in",
  "owner": "Administrator",
@@ -632,5 +632,6 @@
  "page_title": "Log in",
  "published": 1,
  "route": "/login",
- "studio_app": "live"
+ "studio_app": "live",
+ "tab_title": "Log in \u00b7 Frappe Live"
 }
