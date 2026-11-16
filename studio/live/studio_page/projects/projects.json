@@ -283,15 +283,15 @@
                "baseStyles": {
                 "flexShrink": "0"
                },
+               "blockName": "view-switch",
                "componentId": "TabButtons-projects-093",
                "componentName": "Dropdown",
                "componentProps": {
-                "options": "{{ viewMenu }}",
+                "align": "end",
                 "button": "{{ viewButton }}",
-                "align": "end"
+                "options": "{{ viewMenu }}"
                },
-               "componentSlots": {},
-               "blockName": "view-switch"
+               "componentSlots": {}
               }
              ],
              "componentId": "box-projects-094",
@@ -933,8 +933,8 @@
                          "componentProps": {
                           "label": "Accept",
                           "size": "sm",
-                          "variant": "solid",
-                          "theme": "gray"
+                          "theme": "gray",
+                          "variant": "solid"
                          },
                          "componentSlots": {},
                          "visibilityCondition": "{{ dataItem.invited }}"
@@ -1720,12 +1720,12 @@
        "isCustomVueComponent": true
       },
       {
+       "children": [],
        "componentId": "notifications_panel-projects",
        "componentName": "notifications_panel",
-       "isStudioComponent": true,
        "componentProps": {},
        "componentSlots": {},
-       "children": []
+       "isStudioComponent": true
       }
      ],
      "componentId": "AppShell-projects",
@@ -2044,15 +2044,15 @@
                "baseStyles": {
                 "flexShrink": "0"
                },
+               "blockName": "view-switch",
                "componentId": "TabButtons-projects-093",
                "componentName": "Dropdown",
                "componentProps": {
-                "options": "{{ viewMenu }}",
+                "align": "end",
                 "button": "{{ viewButton }}",
-                "align": "end"
+                "options": "{{ viewMenu }}"
                },
-               "componentSlots": {},
-               "blockName": "view-switch"
+               "componentSlots": {}
               }
              ],
              "componentId": "box-projects-094",
@@ -2696,8 +2696,8 @@
                          "componentProps": {
                           "label": "Accept",
                           "size": "sm",
-                          "variant": "solid",
-                          "theme": "gray"
+                          "theme": "gray",
+                          "variant": "solid"
                          },
                          "componentSlots": {},
                          "visibilityCondition": "{{ dataItem.invited }}"
@@ -3485,12 +3485,12 @@
        "isCustomVueComponent": true
       },
       {
+       "children": [],
        "componentId": "notifications_panel-projects",
        "componentName": "notifications_panel",
-       "isStudioComponent": true,
        "componentProps": {},
        "componentSlots": {},
-       "children": []
+       "isStudioComponent": true
       }
      ],
      "componentId": "AppShell-projects",
@@ -3528,7 +3528,7 @@
  "frappe_app": "frappe_live",
  "idx": 0,
  "is_standard": 1,
- "modified": "2026-11-03 16:54:48.382406",
+ "modified": "2026-11-17 01:00:00.000000",
  "modified_by": "neha@example.com",
  "name": "projects",
  "owner": "Administrator",
@@ -3536,5 +3536,6 @@
  "page_title": "Projects",
  "published": 1,
  "route": "/projects",
- "studio_app": "live"
+ "studio_app": "live",
+ "tab_title": "Projects \u00b7 Frappe Live"
 }
