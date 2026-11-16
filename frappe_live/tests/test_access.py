@@ -269,3 +269,41 @@ class TestLiveRecords(IntegrationTestCase):
 		frappe.set_user("Administrator")
 		health.update_all()
 		self.assertIn(frappe.db.get_value("Live Onboarding", self.pb, "health"), ("On track", "At risk", "Off track"))
+
+	def test_imported_owner_joins_team_and_leads(self):
+		from frappe_live import portal
+
+		owner = make_user("importowner@frappe.io")
+		frappe.set_user(BOSS)
+		boot_as(BOSS)
+		frappe.set_user(BOSS)
+		res = portal.import_onboardings([{"customer": "Import Co", "app": "CRM", "crm_deal": "TEST-DEAL-1", "owner_user": owner}])
+		pid = res["made"][0]
+		people = api._all("people")
+		oid = next(p["id"] for p in people if p.get("email") == owner)
+		ws = api._get("workspaces", api.COMPANY_WS)
+		self.assertIn(oid, [m["user"] for m in ws["members"]])
+		self.assertEqual(api._get("projects", pid)["members"][0], {"user": oid, "role": "Owner"})
+		self.assertEqual(frappe.db.get_value("Live Onboarding", pid, "owner_user"), owner)
+
+	def test_reports_and_messages_views(self):
+		from frappe_live import portal, views
+
+		frappe.set_user(CUST_A)
+		portal.send_message(self.pa, "Where do I add products?")
+		with self.assertRaises(frappe.PermissionError):
+			views.reports()
+		mine = views.inbox()
+		self.assertEqual([r["project"] for r in mine["rows"]], [self.pa])
+		self.assertFalse(mine["staff"])
+		self.assertEqual(views.conversation(self.pa)["messages"][-1]["text"], "Where do I add products?")
+		with self.assertRaises(frappe.PermissionError):
+			views.conversation(self.pb)
+		frappe.set_user(TEAM)
+		r = views.reports()
+		self.assertGreaterEqual(r["total"], 2)
+		team = views.inbox()
+		self.assertTrue(team["staff"])
+		self.assertEqual(team["rows"][0]["project"], self.pa)
+		self.assertTrue(team["rows"][0]["waiting"])
+		self.assertGreaterEqual(views.waiting(), 1)
