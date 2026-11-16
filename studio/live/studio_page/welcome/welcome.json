@@ -1,0 +1,1052 @@
+{
+ "allow_guest": 0,
+ "blocks": [
+  {
+   "baseStyles": {
+    "display": "flex",
+    "flexDirection": "column",
+    "height": "100%",
+    "overflowX": "hidden",
+    "width": "100%"
+   },
+   "blockName": "body",
+   "children": [
+    {
+     "children": [
+      {
+       "baseStyles": {
+        "alignItems": "flex-start",
+        "backgroundColor": "var(--surface-gray-1)",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "minHeight": "100%",
+        "overflowY": "auto",
+        "padding": "14vh 16px 48px",
+        "width": "100%"
+       },
+       "blockName": "auth-page",
+       "children": [
+        {
+         "baseStyles": {
+          "backgroundColor": "var(--surface-base)",
+          "borderColor": "var(--outline-gray-1)",
+          "borderRadius": "12px",
+          "borderStyle": "solid",
+          "borderWidth": "1px",
+          "display": "flex",
+          "flexDirection": "column",
+          "maxWidth": "{{ step === 'use' ? '448px' : '384px' }}",
+          "padding": "32px",
+          "position": "relative",
+          "width": "100%"
+         },
+         "blockName": "card",
+         "children": [
+          {
+           "baseStyles": {
+            "left": "12px",
+            "position": "absolute",
+            "top": "12px"
+           },
+           "blockName": "corner",
+           "children": [
+            {
+             "componentEvents": {
+              "click": {
+               "action": "Run Script",
+               "event": "click",
+               "script": "backToUse()"
+              }
+             },
+             "componentId": "Button-welcome-112",
+             "componentName": "Button",
+             "componentProps": {
+              "aria-label": "Back",
+              "icon": "lucide-arrow-left",
+              "tooltip": "Back",
+              "variant": "ghost"
+             },
+             "componentSlots": {}
+            }
+           ],
+           "componentId": "box-welcome-113",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "originalElement": "div",
+           "visibilityCondition": "{{ step === 'team' }}"
+          },
+          {
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "column",
+            "marginBottom": "24px",
+            "textAlign": "center"
+           },
+           "blockName": "card-head",
+           "children": [
+            {
+             "baseStyles": {
+              "alignItems": "center",
+              "backgroundColor": "var(--surface-gray-9)",
+              "borderRadius": "10px",
+              "display": "flex",
+              "flexDirection": "row",
+              "height": "40px",
+              "justifyContent": "center",
+              "margin": "0px auto",
+              "width": "40px"
+             },
+             "blockName": "mark",
+             "children": [
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-1)"
+               },
+               "componentId": "Icon-welcome-114",
+               "componentName": "Icon",
+               "componentProps": {
+                "class": "size-5",
+                "icon": "lucide-list-checks"
+               },
+               "componentSlots": {}
+              }
+             ],
+             "componentId": "box-welcome-115",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "originalElement": "div",
+             "visibilityCondition": "{{ !invited }}"
+            },
+            {
+             "baseStyles": {
+              "color": "var(--ink-gray-9)",
+              "fontWeight": "600",
+              "marginTop": "20px"
+             },
+             "componentId": "TextBlock-welcome-116",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "fontSize": "text-2xl",
+              "tag": "h1",
+              "text": "{{ head.title }}"
+             },
+             "componentSlots": {},
+             "visibilityCondition": "{{ head.title }}"
+            },
+            {
+             "baseStyles": {
+              "color": "var(--ink-gray-6)",
+              "marginTop": "6px",
+              "textWrap": "balance"
+             },
+             "componentId": "TextBlock-welcome-117",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "fontSize": "text-p-base",
+              "tag": "p",
+              "text": "{{ head.subtitle }}"
+             },
+             "componentSlots": {},
+             "visibilityCondition": "{{ head.title }}"
+            }
+           ],
+           "componentId": "box-welcome-118",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "originalElement": "div"
+          },
+          {
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%"
+           },
+           "blockName": "step-name",
+           "children": [
+            {
+             "baseStyles": {
+              "width": "100%"
+             },
+             "componentEvents": {
+              "keydown.enter": {
+               "action": "Run Script",
+               "event": "keydown.enter",
+               "script": "saveName()"
+              }
+             },
+             "componentId": "FormControl-welcome-095",
+             "componentName": "FormControl",
+             "componentProps": {
+              "aria-required": "true",
+              "autofocus": true,
+              "label": "Your name",
+              "modelValue": {
+               "$type": "variable",
+               "name": "name"
+              },
+              "placeholder": "Meera",
+              "type": "text"
+             },
+             "componentSlots": {}
+            },
+            {
+             "baseStyles": {
+              "marginTop": "16px",
+              "width": "100%"
+             },
+             "componentEvents": {
+              "click": {
+               "action": "Run Script",
+               "event": "click",
+               "script": "saveName()"
+              }
+             },
+             "componentId": "Button-welcome-096",
+             "componentName": "Button",
+             "componentProps": {
+              "disabled": "{{ !canSaveName }}",
+              "label": "Get started",
+              "size": "md",
+              "theme": "gray",
+              "variant": "solid"
+             },
+             "componentSlots": {}
+            }
+           ],
+           "componentId": "box-welcome-097",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "originalElement": "div",
+           "visibilityCondition": "{{ step === 'name' }}"
+          },
+          {
+           "componentId": "invite_card-welcome",
+           "componentName": "invite_card",
+           "componentProps": {},
+           "componentSlots": {},
+           "isStudioComponent": true,
+           "visibilityCondition": "{{ invited }}"
+          },
+          {
+           "baseStyles": {
+            "alignItems": "stretch",
+            "display": "flex",
+            "flexDirection": "row",
+            "gap": "12px",
+            "width": "100%"
+           },
+           "blockName": "step-use",
+           "children": [
+            {
+             "baseStyles": {
+              "borderColor": "var(--outline-gray-2)",
+              "borderRadius": "10px",
+              "borderStyle": "solid",
+              "borderWidth": "1px",
+              "cursor": "pointer",
+              "display": "flex",
+              "flex": "1",
+              "flexDirection": "column",
+              "padding": "16px",
+              "textAlign": "left"
+             },
+             "blockName": "choice-personal",
+             "children": [
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-7)"
+               },
+               "componentId": "Icon-welcome-099",
+               "componentName": "Icon",
+               "componentProps": {
+                "class": "size-5",
+                "icon": "lucide-user"
+               },
+               "componentSlots": {}
+              },
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-9)",
+                "fontWeight": "500",
+                "marginTop": "12px"
+               },
+               "componentId": "TextBlock-welcome-100",
+               "componentName": "TextBlock",
+               "componentProps": {
+                "fontSize": "text-base",
+                "tag": "p",
+                "text": "Personal"
+               },
+               "componentSlots": {}
+              },
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-5)",
+                "marginTop": "2px"
+               },
+               "componentId": "TextBlock-welcome-101",
+               "componentName": "TextBlock",
+               "componentProps": {
+                "fontSize": "text-p-sm",
+                "tag": "p",
+                "text": "Your own projects and to-dos. Only you can see them."
+               },
+               "componentSlots": {}
+              }
+             ],
+             "componentEvents": {
+              "click": {
+               "action": "Run Script",
+               "event": "click",
+               "script": "personal()"
+              }
+             },
+             "componentId": "box-welcome-102",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "originalElement": "div"
+            },
+            {
+             "baseStyles": {
+              "borderColor": "var(--outline-gray-2)",
+              "borderRadius": "10px",
+              "borderStyle": "solid",
+              "borderWidth": "1px",
+              "cursor": "pointer",
+              "display": "flex",
+              "flex": "1",
+              "flexDirection": "column",
+              "padding": "16px",
+              "textAlign": "left"
+             },
+             "blockName": "choice-company",
+             "children": [
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-7)"
+               },
+               "componentId": "Icon-welcome-103",
+               "componentName": "Icon",
+               "componentProps": {
+                "class": "size-5",
+                "icon": "lucide-building-2"
+               },
+               "componentSlots": {}
+              },
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-9)",
+                "fontWeight": "500",
+                "marginTop": "12px"
+               },
+               "componentId": "TextBlock-welcome-104",
+               "componentName": "TextBlock",
+               "componentProps": {
+                "fontSize": "text-base",
+                "tag": "p",
+                "text": "Company"
+               },
+               "componentSlots": {}
+              },
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-5)",
+                "marginTop": "2px"
+               },
+               "componentId": "TextBlock-welcome-105",
+               "componentName": "TextBlock",
+               "componentProps": {
+                "fontSize": "text-p-sm",
+                "tag": "p",
+                "text": "Shared projects with your company or team."
+               },
+               "componentSlots": {}
+              }
+             ],
+             "componentEvents": {
+              "click": {
+               "action": "Run Script",
+               "event": "click",
+               "script": "toTeam()"
+              }
+             },
+             "componentId": "box-welcome-106",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "originalElement": "div"
+            }
+           ],
+           "componentId": "box-welcome-107",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "mobileStyles": {
+            "flexDirection": "column"
+           },
+           "originalElement": "div",
+           "visibilityCondition": "{{ step === 'use' && !invited }}"
+          },
+          {
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%"
+           },
+           "blockName": "step-team",
+           "children": [
+            {
+             "baseStyles": {
+              "width": "100%"
+             },
+             "componentId": "FormControl-welcome-108",
+             "componentName": "FormControl",
+             "componentProps": {
+              "aria-required": "true",
+              "autofocus": true,
+              "label": "Company name",
+              "modelValue": {
+               "$type": "variable",
+               "name": "company"
+              },
+              "placeholder": "Your company's name",
+              "type": "text"
+             },
+             "componentSlots": {}
+            },
+            {
+             "baseStyles": {
+              "marginTop": "16px",
+              "width": "100%"
+             },
+             "componentId": "FormControl-welcome-109",
+             "componentName": "FormControl",
+             "componentProps": {
+              "description": "{{ emailNote }}",
+              "label": "Invite people (optional)",
+              "modelValue": {
+               "$type": "variable",
+               "name": "emails"
+              },
+              "placeholder": "priya@company.com, karan@company.com",
+              "type": "textarea"
+             },
+             "componentSlots": {}
+            },
+            {
+             "baseStyles": {
+              "marginTop": "16px",
+              "width": "100%"
+             },
+             "componentEvents": {
+              "click": {
+               "action": "Run Script",
+               "event": "click",
+               "script": "createTeam()"
+              }
+             },
+             "componentId": "Button-welcome-110",
+             "componentName": "Button",
+             "componentProps": {
+              "disabled": "{{ !canCreateTeam }}",
+              "label": "Create workspace",
+              "size": "md",
+              "theme": "gray",
+              "variant": "solid"
+             },
+             "componentSlots": {}
+            }
+           ],
+           "componentId": "box-welcome-111",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "originalElement": "div",
+           "visibilityCondition": "{{ step === 'team' }}"
+          }
+         ],
+         "componentId": "box-welcome-119",
+         "componentName": "container",
+         "componentProps": {},
+         "componentSlots": {},
+         "mobileStyles": {
+          "padding": "24px"
+         },
+         "originalElement": "div"
+        }
+       ],
+       "componentId": "box-welcome-120",
+       "componentName": "container",
+       "componentProps": {},
+       "componentSlots": {},
+       "mobileStyles": {
+        "paddingTop": "48px"
+       },
+       "originalElement": "div"
+      },
+      {
+       "componentId": "DemoChoice-welcome-invite-from-workspace",
+       "componentName": "DemoChoice",
+       "componentProps": {
+        "k": "Invite from",
+        "v": "Workspace"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      }
+     ],
+     "componentId": "AppShell-welcome",
+     "componentName": "AppShell",
+     "componentProps": {
+      "bare": true
+     },
+     "componentSlots": {},
+     "isCustomVueComponent": true
+    }
+   ],
+   "componentId": "root",
+   "componentName": "div",
+   "componentProps": {},
+   "componentSlots": {},
+   "originalElement": "body"
+  }
+ ],
+ "creation": "2026-11-03 16:55:24.016108",
+ "docstatus": 0,
+ "doctype": "Studio Page",
+ "draft_blocks": [
+  {
+   "baseStyles": {
+    "display": "flex",
+    "flexDirection": "column",
+    "height": "100%",
+    "overflowX": "hidden",
+    "width": "100%"
+   },
+   "blockName": "body",
+   "children": [
+    {
+     "children": [
+      {
+       "baseStyles": {
+        "alignItems": "flex-start",
+        "backgroundColor": "var(--surface-gray-1)",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "minHeight": "100%",
+        "overflowY": "auto",
+        "padding": "14vh 16px 48px",
+        "width": "100%"
+       },
+       "blockName": "auth-page",
+       "children": [
+        {
+         "baseStyles": {
+          "backgroundColor": "var(--surface-base)",
+          "borderColor": "var(--outline-gray-1)",
+          "borderRadius": "12px",
+          "borderStyle": "solid",
+          "borderWidth": "1px",
+          "display": "flex",
+          "flexDirection": "column",
+          "maxWidth": "{{ step === 'use' ? '448px' : '384px' }}",
+          "padding": "32px",
+          "position": "relative",
+          "width": "100%"
+         },
+         "blockName": "card",
+         "children": [
+          {
+           "baseStyles": {
+            "left": "12px",
+            "position": "absolute",
+            "top": "12px"
+           },
+           "blockName": "corner",
+           "children": [
+            {
+             "componentEvents": {
+              "click": {
+               "action": "Run Script",
+               "event": "click",
+               "script": "backToUse()"
+              }
+             },
+             "componentId": "Button-welcome-112",
+             "componentName": "Button",
+             "componentProps": {
+              "aria-label": "Back",
+              "icon": "lucide-arrow-left",
+              "tooltip": "Back",
+              "variant": "ghost"
+             },
+             "componentSlots": {}
+            }
+           ],
+           "componentId": "box-welcome-113",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "originalElement": "div",
+           "visibilityCondition": "{{ step === 'team' }}"
+          },
+          {
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "column",
+            "marginBottom": "24px",
+            "textAlign": "center"
+           },
+           "blockName": "card-head",
+           "children": [
+            {
+             "baseStyles": {
+              "alignItems": "center",
+              "backgroundColor": "var(--surface-gray-9)",
+              "borderRadius": "10px",
+              "display": "flex",
+              "flexDirection": "row",
+              "height": "40px",
+              "justifyContent": "center",
+              "margin": "0px auto",
+              "width": "40px"
+             },
+             "blockName": "mark",
+             "children": [
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-1)"
+               },
+               "componentId": "Icon-welcome-114",
+               "componentName": "Icon",
+               "componentProps": {
+                "class": "size-5",
+                "icon": "lucide-list-checks"
+               },
+               "componentSlots": {}
+              }
+             ],
+             "componentId": "box-welcome-115",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "originalElement": "div",
+             "visibilityCondition": "{{ !invited }}"
+            },
+            {
+             "baseStyles": {
+              "color": "var(--ink-gray-9)",
+              "fontWeight": "600",
+              "marginTop": "20px"
+             },
+             "componentId": "TextBlock-welcome-116",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "fontSize": "text-2xl",
+              "tag": "h1",
+              "text": "{{ head.title }}"
+             },
+             "componentSlots": {},
+             "visibilityCondition": "{{ head.title }}"
+            },
+            {
+             "baseStyles": {
+              "color": "var(--ink-gray-6)",
+              "marginTop": "6px",
+              "textWrap": "balance"
+             },
+             "componentId": "TextBlock-welcome-117",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "fontSize": "text-p-base",
+              "tag": "p",
+              "text": "{{ head.subtitle }}"
+             },
+             "componentSlots": {},
+             "visibilityCondition": "{{ head.title }}"
+            }
+           ],
+           "componentId": "box-welcome-118",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "originalElement": "div"
+          },
+          {
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%"
+           },
+           "blockName": "step-name",
+           "children": [
+            {
+             "baseStyles": {
+              "width": "100%"
+             },
+             "componentEvents": {
+              "keydown.enter": {
+               "action": "Run Script",
+               "event": "keydown.enter",
+               "script": "saveName()"
+              }
+             },
+             "componentId": "FormControl-welcome-095",
+             "componentName": "FormControl",
+             "componentProps": {
+              "aria-required": "true",
+              "autofocus": true,
+              "label": "Your name",
+              "modelValue": {
+               "$type": "variable",
+               "name": "name"
+              },
+              "placeholder": "Meera",
+              "type": "text"
+             },
+             "componentSlots": {}
+            },
+            {
+             "baseStyles": {
+              "marginTop": "16px",
+              "width": "100%"
+             },
+             "componentEvents": {
+              "click": {
+               "action": "Run Script",
+               "event": "click",
+               "script": "saveName()"
+              }
+             },
+             "componentId": "Button-welcome-096",
+             "componentName": "Button",
+             "componentProps": {
+              "disabled": "{{ !canSaveName }}",
+              "label": "Get started",
+              "size": "md",
+              "theme": "gray",
+              "variant": "solid"
+             },
+             "componentSlots": {}
+            }
+           ],
+           "componentId": "box-welcome-097",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "originalElement": "div",
+           "visibilityCondition": "{{ step === 'name' }}"
+          },
+          {
+           "componentId": "invite_card-welcome",
+           "componentName": "invite_card",
+           "componentProps": {},
+           "componentSlots": {},
+           "isStudioComponent": true,
+           "visibilityCondition": "{{ invited }}"
+          },
+          {
+           "baseStyles": {
+            "alignItems": "stretch",
+            "display": "flex",
+            "flexDirection": "row",
+            "gap": "12px",
+            "width": "100%"
+           },
+           "blockName": "step-use",
+           "children": [
+            {
+             "baseStyles": {
+              "borderColor": "var(--outline-gray-2)",
+              "borderRadius": "10px",
+              "borderStyle": "solid",
+              "borderWidth": "1px",
+              "cursor": "pointer",
+              "display": "flex",
+              "flex": "1",
+              "flexDirection": "column",
+              "padding": "16px",
+              "textAlign": "left"
+             },
+             "blockName": "choice-personal",
+             "children": [
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-7)"
+               },
+               "componentId": "Icon-welcome-099",
+               "componentName": "Icon",
+               "componentProps": {
+                "class": "size-5",
+                "icon": "lucide-user"
+               },
+               "componentSlots": {}
+              },
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-9)",
+                "fontWeight": "500",
+                "marginTop": "12px"
+               },
+               "componentId": "TextBlock-welcome-100",
+               "componentName": "TextBlock",
+               "componentProps": {
+                "fontSize": "text-base",
+                "tag": "p",
+                "text": "Personal"
+               },
+               "componentSlots": {}
+              },
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-5)",
+                "marginTop": "2px"
+               },
+               "componentId": "TextBlock-welcome-101",
+               "componentName": "TextBlock",
+               "componentProps": {
+                "fontSize": "text-p-sm",
+                "tag": "p",
+                "text": "Your own projects and to-dos. Only you can see them."
+               },
+               "componentSlots": {}
+              }
+             ],
+             "componentEvents": {
+              "click": {
+               "action": "Run Script",
+               "event": "click",
+               "script": "personal()"
+              }
+             },
+             "componentId": "box-welcome-102",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "originalElement": "div"
+            },
+            {
+             "baseStyles": {
+              "borderColor": "var(--outline-gray-2)",
+              "borderRadius": "10px",
+              "borderStyle": "solid",
+              "borderWidth": "1px",
+              "cursor": "pointer",
+              "display": "flex",
+              "flex": "1",
+              "flexDirection": "column",
+              "padding": "16px",
+              "textAlign": "left"
+             },
+             "blockName": "choice-company",
+             "children": [
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-7)"
+               },
+               "componentId": "Icon-welcome-103",
+               "componentName": "Icon",
+               "componentProps": {
+                "class": "size-5",
+                "icon": "lucide-building-2"
+               },
+               "componentSlots": {}
+              },
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-9)",
+                "fontWeight": "500",
+                "marginTop": "12px"
+               },
+               "componentId": "TextBlock-welcome-104",
+               "componentName": "TextBlock",
+               "componentProps": {
+                "fontSize": "text-base",
+                "tag": "p",
+                "text": "Company"
+               },
+               "componentSlots": {}
+              },
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-5)",
+                "marginTop": "2px"
+               },
+               "componentId": "TextBlock-welcome-105",
+               "componentName": "TextBlock",
+               "componentProps": {
+                "fontSize": "text-p-sm",
+                "tag": "p",
+                "text": "Shared projects with your company or team."
+               },
+               "componentSlots": {}
+              }
+             ],
+             "componentEvents": {
+              "click": {
+               "action": "Run Script",
+               "event": "click",
+               "script": "toTeam()"
+              }
+             },
+             "componentId": "box-welcome-106",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "originalElement": "div"
+            }
+           ],
+           "componentId": "box-welcome-107",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "mobileStyles": {
+            "flexDirection": "column"
+           },
+           "originalElement": "div",
+           "visibilityCondition": "{{ step === 'use' && !invited }}"
+          },
+          {
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "column",
+            "width": "100%"
+           },
+           "blockName": "step-team",
+           "children": [
+            {
+             "baseStyles": {
+              "width": "100%"
+             },
+             "componentId": "FormControl-welcome-108",
+             "componentName": "FormControl",
+             "componentProps": {
+              "aria-required": "true",
+              "autofocus": true,
+              "label": "Company name",
+              "modelValue": {
+               "$type": "variable",
+               "name": "company"
+              },
+              "placeholder": "Your company's name",
+              "type": "text"
+             },
+             "componentSlots": {}
+            },
+            {
+             "baseStyles": {
+              "marginTop": "16px",
+              "width": "100%"
+             },
+             "componentId": "FormControl-welcome-109",
+             "componentName": "FormControl",
+             "componentProps": {
+              "description": "{{ emailNote }}",
+              "label": "Invite people (optional)",
+              "modelValue": {
+               "$type": "variable",
+               "name": "emails"
+              },
+              "placeholder": "priya@company.com, karan@company.com",
+              "type": "textarea"
+             },
+             "componentSlots": {}
+            },
+            {
+             "baseStyles": {
+              "marginTop": "16px",
+              "width": "100%"
+             },
+             "componentEvents": {
+              "click": {
+               "action": "Run Script",
+               "event": "click",
+               "script": "createTeam()"
+              }
+             },
+             "componentId": "Button-welcome-110",
+             "componentName": "Button",
+             "componentProps": {
+              "disabled": "{{ !canCreateTeam }}",
+              "label": "Create workspace",
+              "size": "md",
+              "theme": "gray",
+              "variant": "solid"
+             },
+             "componentSlots": {}
+            }
+           ],
+           "componentId": "box-welcome-111",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "originalElement": "div",
+           "visibilityCondition": "{{ step === 'team' }}"
+          }
+         ],
+         "componentId": "box-welcome-119",
+         "componentName": "container",
+         "componentProps": {},
+         "componentSlots": {},
+         "mobileStyles": {
+          "padding": "24px"
+         },
+         "originalElement": "div"
+        }
+       ],
+       "componentId": "box-welcome-120",
+       "componentName": "container",
+       "componentProps": {},
+       "componentSlots": {},
+       "mobileStyles": {
+        "paddingTop": "48px"
+       },
+       "originalElement": "div"
+      },
+      {
+       "componentId": "DemoChoice-welcome-invite-from-workspace",
+       "componentName": "DemoChoice",
+       "componentProps": {
+        "k": "Invite from",
+        "v": "Workspace"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      }
+     ],
+     "componentId": "AppShell-welcome",
+     "componentName": "AppShell",
+     "componentProps": {
+      "bare": true
+     },
+     "componentSlots": {},
+     "isCustomVueComponent": true
+    }
+   ],
+   "componentId": "root",
+   "componentName": "div",
+   "componentProps": {},
+   "componentSlots": {},
+   "originalElement": "body"
+  }
+ ],
+ "frappe_app": "frappe_live",
+ "idx": 0,
+ "is_standard": 1,
+ "modified": "2026-11-04 12:53:13.468814",
+ "modified_by": "swarali@example.com",
+ "name": "welcome",
+ "owner": "Administrator",
+ "page_name": "tasks-welcome",
+ "page_title": "Welcome",
+ "published": 1,
+ "route": "/welcome",
+ "studio_app": "live"
+}

@@ -1,0 +1,253 @@
+{
+ "doctype": "Studio Component",
+ "name": "invite_card",
+ "component_id": "invite_card",
+ "component_name": "Invitation card",
+ "block": {
+  "componentId": "box-invite-card-013",
+  "componentName": "container",
+  "componentProps": {},
+  "componentSlots": {},
+  "children": [
+   {
+    "componentId": "box-invite-card-002",
+    "componentName": "container",
+    "componentProps": {},
+    "componentSlots": {},
+    "children": [
+     {
+      "componentId": "TextBlock-invite-card-001",
+      "componentName": "TextBlock",
+      "componentProps": {
+       "text": "{{ invitation.initial }}",
+       "tag": "span",
+       "fontSize": "text-xl"
+      },
+      "componentSlots": {},
+      "children": [],
+      "baseStyles": {
+       "color": "var(--ink-gray-1)",
+       "fontWeight": "600"
+      }
+     }
+    ],
+    "baseStyles": {
+     "display": "flex",
+     "flexDirection": "row",
+     "alignItems": "center",
+     "justifyContent": "center",
+     "width": "48px",
+     "height": "48px",
+     "borderRadius": "12px",
+     "backgroundColor": "var(--surface-gray-9)",
+     "margin": "0px auto"
+    },
+    "visibilityCondition": "{{ invitation.kind === 'workspace' }}",
+    "blockName": "workspace-mark",
+    "originalElement": "div"
+   },
+   {
+    "componentId": "box-invite-card-006",
+    "componentName": "container",
+    "componentProps": {},
+    "componentSlots": {},
+    "children": [
+     {
+      "componentId": "Icon-invite-card-003",
+      "componentName": "Icon",
+      "componentProps": {
+       "icon": "lucide-folder",
+       "class": "size-6"
+      },
+      "componentSlots": {},
+      "children": [],
+      "baseStyles": {
+       "color": "var(--ink-gray-7)"
+      }
+     },
+     {
+      "componentId": "box-invite-card-005",
+      "componentName": "container",
+      "componentProps": {},
+      "componentSlots": {},
+      "children": [
+       {
+        "componentId": "TextBlock-invite-card-004",
+        "componentName": "TextBlock",
+        "componentProps": {
+         "text": "{{ invitation.initial }}",
+         "tag": "span",
+         "fontSize": "text-2xs"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "color": "var(--ink-gray-1)",
+         "fontWeight": "600"
+        }
+       }
+      ],
+      "baseStyles": {
+       "display": "flex",
+       "flexDirection": "row",
+       "alignItems": "center",
+       "justifyContent": "center",
+       "position": "absolute",
+       "right": "-4px",
+       "bottom": "-4px",
+       "width": "20px",
+       "height": "20px",
+       "borderRadius": "6px",
+       "backgroundColor": "var(--surface-gray-9)",
+       "border": "2px solid var(--surface-base)"
+      },
+      "originalElement": "div"
+     }
+    ],
+    "baseStyles": {
+     "display": "flex",
+     "flexDirection": "row",
+     "alignItems": "center",
+     "justifyContent": "center",
+     "position": "relative",
+     "width": "48px",
+     "height": "48px",
+     "borderRadius": "12px",
+     "backgroundColor": "var(--surface-gray-2)",
+     "margin": "0px auto"
+    },
+    "visibilityCondition": "{{ invitation.kind === 'project' }}",
+    "blockName": "project-mark",
+    "originalElement": "div"
+   },
+   {
+    "componentId": "TextBlock-invite-card-007",
+    "componentName": "TextBlock",
+    "componentProps": {
+     "text": "{{ invitation.title }}",
+     "tag": "h1",
+     "fontSize": "text-2xl"
+    },
+    "componentSlots": {},
+    "children": [],
+    "baseStyles": {
+     "color": "var(--ink-gray-9)",
+     "fontWeight": "600",
+     "marginTop": "20px"
+    }
+   },
+   {
+    "componentId": "TextBlock-invite-card-008",
+    "componentName": "TextBlock",
+    "componentProps": {
+     "text": "{{ invitation.text }}",
+     "tag": "p",
+     "fontSize": "text-p-base"
+    },
+    "componentSlots": {},
+    "children": [],
+    "baseStyles": {
+     "color": "var(--ink-gray-6)",
+     "marginTop": "8px",
+     "maxWidth": "384px",
+     "textWrap": "balance",
+     "alignSelf": "center"
+    }
+   },
+   {
+    "componentId": "box-invite-card-011",
+    "componentName": "container",
+    "componentProps": {},
+    "componentSlots": {},
+    "children": [
+     {
+      "componentId": "Button-invite-card-009",
+      "componentName": "Button",
+      "componentProps": {
+       "variant": "solid",
+       "label": "Accept invitation",
+       "theme": "gray",
+       "size": "md"
+      },
+      "componentSlots": {},
+      "children": [],
+      "baseStyles": {
+       "width": "100%"
+      },
+      "componentEvents": {
+       "click": {
+        "event": "click",
+        "action": "Run Script",
+        "script": "inviteAccept()"
+       }
+      }
+     },
+     {
+      "componentId": "Button-invite-card-010",
+      "componentName": "Button",
+      "componentProps": {
+       "variant": "subtle",
+       "label": "{{ invitation.skipLabel }}",
+       "size": "md"
+      },
+      "componentSlots": {},
+      "children": [],
+      "baseStyles": {
+       "width": "100%"
+      },
+      "componentEvents": {
+       "click": {
+        "event": "click",
+        "action": "Run Script",
+        "script": "inviteSkip()"
+       }
+      }
+     }
+    ],
+    "baseStyles": {
+     "display": "flex",
+     "flexDirection": "column",
+     "gap": "8px",
+     "width": "100%",
+     "maxWidth": "{{ invitation.buttonsWidth }}",
+     "margin": "0px auto",
+     "marginTop": "{{ invitation.buttonsGap }}"
+    },
+    "blockName": "answers",
+    "originalElement": "div"
+   },
+   {
+    "componentId": "TextBlock-invite-card-012",
+    "componentName": "TextBlock",
+    "componentProps": {
+     "text": "{{ invitation.footer }}",
+     "tag": "p",
+     "fontSize": "text-p-sm"
+    },
+    "componentSlots": {},
+    "children": [],
+    "baseStyles": {
+     "color": "var(--ink-gray-5)",
+     "marginTop": "16px"
+    }
+   }
+  ],
+  "baseStyles": {
+   "display": "flex",
+   "flexDirection": "column",
+   "textAlign": "center",
+   "width": "100%"
+  },
+  "visibilityCondition": "{{ invitation }}",
+  "blockName": "invitation",
+  "originalElement": "div"
+ },
+ "inputs": [],
+ "is_standard": 1,
+ "creation": "2026-11-03 16:28:34.205372",
+ "modified": "2026-11-03 16:28:34.205372",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "docstatus": 0,
+ "idx": 0
+}

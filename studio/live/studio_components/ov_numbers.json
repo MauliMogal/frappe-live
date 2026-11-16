@@ -1,0 +1,387 @@
+{
+ "doctype": "Studio Component",
+ "name": "ov_numbers",
+ "component_id": "ov_numbers",
+ "component_name": "Overview: Key numbers",
+ "block": {
+  "componentId": "box-ov-numbers-069",
+  "componentName": "container",
+  "componentProps": {},
+  "componentSlots": {},
+  "children": [
+   {
+    "componentId": "box-ov-numbers-056",
+    "componentName": "container",
+    "componentProps": {},
+    "componentSlots": {},
+    "children": [
+     {
+      "componentId": "box-ov-numbers-051",
+      "componentName": "container",
+      "componentProps": {},
+      "componentSlots": {},
+      "children": [
+       {
+        "componentId": "TextBlock-ov-numbers-048",
+        "componentName": "TextBlock",
+        "componentProps": {
+         "text": "Work done",
+         "tag": "span",
+         "fontSize": "text-sm"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "color": "var(--ink-gray-6)"
+        }
+       },
+       {
+        "componentId": "Progress-ov-numbers-049",
+        "componentName": "Progress",
+        "componentProps": {
+         "value": "{{ ov.numbers.workPct }}",
+         "size": "sm"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {}
+       },
+       {
+        "componentId": "TextBlock-ov-numbers-050",
+        "componentName": "TextBlock",
+        "componentProps": {
+         "text": "{{ ov.numbers.workValue }}",
+         "tag": "span",
+         "fontSize": "text-base"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "color": "var(--ink-gray-9)",
+         "fontWeight": "600",
+         "fontVariantNumeric": "tabular-nums",
+         "textAlign": "right"
+        }
+       }
+      ],
+      "baseStyles": {
+       "display": "grid",
+       "gridTemplateColumns": "6rem minmax(0,1fr) 3rem",
+       "alignItems": "center",
+       "columnGap": "12px"
+      },
+      "originalElement": "div"
+     },
+     {
+      "componentId": "box-ov-numbers-055",
+      "componentName": "container",
+      "componentProps": {},
+      "componentSlots": {},
+      "children": [
+       {
+        "componentId": "TextBlock-ov-numbers-052",
+        "componentName": "TextBlock",
+        "componentProps": {
+         "text": "Time used",
+         "tag": "span",
+         "fontSize": "text-sm"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "color": "var(--ink-gray-6)"
+        }
+       },
+       {
+        "componentId": "Progress-ov-numbers-053",
+        "componentName": "Progress",
+        "componentProps": {
+         "value": "{{ ov.numbers.timePct }}",
+         "size": "sm"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {}
+       },
+       {
+        "componentId": "TextBlock-ov-numbers-054",
+        "componentName": "TextBlock",
+        "componentProps": {
+         "text": "{{ ov.numbers.timeValue }}",
+         "tag": "span",
+         "fontSize": "text-base"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "color": "var(--ink-gray-9)",
+         "fontWeight": "600",
+         "fontVariantNumeric": "tabular-nums",
+         "textAlign": "right"
+        }
+       }
+      ],
+      "baseStyles": {
+       "display": "grid",
+       "gridTemplateColumns": "6rem minmax(0,1fr) 3rem",
+       "alignItems": "center",
+       "columnGap": "12px"
+      },
+      "originalElement": "div"
+     }
+    ],
+    "baseStyles": {
+     "minWidth": "0px",
+     "overflow": "hidden",
+     "borderRadius": "12px",
+     "backgroundColor": "var(--surface-base)",
+     "borderStyle": "solid",
+     "borderColor": "var(--outline-gray-2)",
+     "borderWidth": "1px",
+     "boxShadow": "none",
+     "padding": "16px 20px",
+     "width": "100%",
+     "display": "flex",
+     "flexDirection": "column",
+     "justifyContent": "center",
+     "gap": "10px",
+     "gridColumn": "{{ ov.numbers.wideSpan }}"
+    },
+    "blockName": "work-vs-time",
+    "originalElement": "div"
+   },
+   {
+    "componentId": "box-ov-numbers-062",
+    "componentName": "container",
+    "componentProps": {},
+    "componentSlots": {},
+    "children": [
+     {
+      "componentId": "TextBlock-ov-numbers-057",
+      "componentName": "TextBlock",
+      "componentProps": {
+       "text": "Milestones",
+       "tag": "p",
+       "fontSize": "text-sm"
+      },
+      "componentSlots": {},
+      "children": [],
+      "baseStyles": {
+       "color": "var(--ink-gray-6)"
+      }
+     },
+     {
+      "componentId": "TextBlock-ov-numbers-058",
+      "componentName": "TextBlock",
+      "componentProps": {
+       "text": "{{ ov.numbers.msValue }}",
+       "tag": "p",
+       "fontSize": "text-3xl"
+      },
+      "componentSlots": {},
+      "children": [],
+      "baseStyles": {
+       "color": "var(--ink-gray-9)",
+       "fontWeight": "600",
+       "fontVariantNumeric": "tabular-nums",
+       "marginTop": "4px"
+      }
+     },
+     {
+      "componentId": "box-ov-numbers-061",
+      "componentName": "container",
+      "componentProps": {},
+      "componentSlots": {},
+      "children": [
+       {
+        "componentId": "box-ov-numbers-059",
+        "componentName": "container",
+        "componentProps": {},
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "width": "6px",
+         "height": "6px",
+         "borderRadius": "9999px",
+         "backgroundColor": "var(--surface-amber-5)",
+         "flexShrink": "0"
+        },
+        "originalElement": "div"
+       },
+       {
+        "componentId": "TextBlock-ov-numbers-060",
+        "componentName": "TextBlock",
+        "componentProps": {
+         "text": "{{ ov.numbers.msFlag }}",
+         "tag": "span",
+         "fontSize": "text-xs"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "color": "var(--ink-gray-7)"
+        }
+       }
+      ],
+      "baseStyles": {
+       "display": "flex",
+       "flexDirection": "row",
+       "alignItems": "center",
+       "gap": "6px",
+       "marginTop": "2px",
+       "cursor": "pointer"
+      },
+      "visibilityCondition": "{{ ov.numbers.msFlag }}",
+      "componentEvents": {
+       "click": {
+        "event": "click",
+        "action": "Run Script",
+        "script": "ovFilter('atrisk')"
+       }
+      },
+      "originalElement": "div"
+     }
+    ],
+    "baseStyles": {
+     "minWidth": "0px",
+     "overflow": "hidden",
+     "borderRadius": "12px",
+     "backgroundColor": "var(--surface-base)",
+     "borderStyle": "solid",
+     "borderColor": "var(--outline-gray-2)",
+     "borderWidth": "1px",
+     "boxShadow": "none",
+     "padding": "16px 20px",
+     "width": "100%",
+     "display": "flex",
+     "flexDirection": "column"
+    },
+    "originalElement": "div"
+   },
+   {
+    "componentId": "box-ov-numbers-068",
+    "componentName": "container",
+    "componentProps": {},
+    "componentSlots": {},
+    "children": [
+     {
+      "componentId": "TextBlock-ov-numbers-063",
+      "componentName": "TextBlock",
+      "componentProps": {
+       "text": "Open tasks",
+       "tag": "p",
+       "fontSize": "text-sm"
+      },
+      "componentSlots": {},
+      "children": [],
+      "baseStyles": {
+       "color": "var(--ink-gray-6)"
+      }
+     },
+     {
+      "componentId": "TextBlock-ov-numbers-064",
+      "componentName": "TextBlock",
+      "componentProps": {
+       "text": "{{ ov.numbers.openValue }}",
+       "tag": "p",
+       "fontSize": "text-3xl"
+      },
+      "componentSlots": {},
+      "children": [],
+      "baseStyles": {
+       "color": "var(--ink-gray-9)",
+       "fontWeight": "600",
+       "fontVariantNumeric": "tabular-nums",
+       "marginTop": "4px"
+      }
+     },
+     {
+      "componentId": "box-ov-numbers-067",
+      "componentName": "container",
+      "componentProps": {},
+      "componentSlots": {},
+      "children": [
+       {
+        "componentId": "box-ov-numbers-065",
+        "componentName": "container",
+        "componentProps": {},
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "width": "6px",
+         "height": "6px",
+         "borderRadius": "9999px",
+         "backgroundColor": "var(--surface-red-5)",
+         "flexShrink": "0"
+        },
+        "originalElement": "div"
+       },
+       {
+        "componentId": "TextBlock-ov-numbers-066",
+        "componentName": "TextBlock",
+        "componentProps": {
+         "text": "{{ ov.numbers.openFlag }}",
+         "tag": "span",
+         "fontSize": "text-xs"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "color": "var(--ink-gray-7)"
+        }
+       }
+      ],
+      "baseStyles": {
+       "display": "flex",
+       "flexDirection": "row",
+       "alignItems": "center",
+       "gap": "6px",
+       "marginTop": "2px",
+       "cursor": "pointer"
+      },
+      "visibilityCondition": "{{ ov.numbers.openFlag }}",
+      "componentEvents": {
+       "click": {
+        "event": "click",
+        "action": "Run Script",
+        "script": "ovFilter('overdue')"
+       }
+      },
+      "originalElement": "div"
+     }
+    ],
+    "baseStyles": {
+     "minWidth": "0px",
+     "overflow": "hidden",
+     "borderRadius": "12px",
+     "backgroundColor": "var(--surface-base)",
+     "borderStyle": "solid",
+     "borderColor": "var(--outline-gray-2)",
+     "borderWidth": "1px",
+     "boxShadow": "none",
+     "padding": "16px 20px",
+     "width": "100%",
+     "display": "flex",
+     "flexDirection": "column"
+    },
+    "originalElement": "div"
+   }
+  ],
+  "baseStyles": {
+   "display": "grid",
+   "gridTemplateColumns": "{{ ov.numbers.columns }}",
+   "gap": "12px",
+   "width": "100%"
+  },
+  "blockName": "key-numbers",
+  "originalElement": "div"
+ },
+ "inputs": [],
+ "is_standard": 1,
+ "creation": "2026-11-03 16:20:05.310696",
+ "modified": "2026-11-03 16:20:05.310696",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "docstatus": 0,
+ "idx": 0
+}

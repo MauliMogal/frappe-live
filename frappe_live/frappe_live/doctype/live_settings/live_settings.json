@@ -1,0 +1,49 @@
+{
+ "actions": [],
+ "creation": "2026-11-16 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "issingle": 1,
+ "module": "Frappe Live",
+ "name": "Live Settings",
+ "owner": "Administrator",
+ "modified": "2026-11-16 12:00:00.000000",
+ "modified_by": "Administrator",
+ "field_order": [
+  "admin_domain",
+  "super_admins"
+ ],
+ "fields": [
+  {
+   "fieldname": "admin_domain",
+   "fieldtype": "Data",
+   "label": "Admin email domain",
+   "default": "frappe.io",
+   "description": "Anyone who signs in with an email on this domain becomes a Live Admin"
+  },
+  {
+   "fieldname": "super_admins",
+   "fieldtype": "Small Text",
+   "label": "Super admins",
+   "description": "One email per line. They get Live Super Admin when they sign in"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1
+  },
+  {
+   "role": "Live Super Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "row_format": "Dynamic"
+}

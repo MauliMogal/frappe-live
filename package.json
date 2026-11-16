@@ -1,0 +1,10 @@
+{
+  "name": "tasks",
+  "private": true,
+  "description": "JS dependencies of the Tasks Studio app (studio/tasks) beyond Studio's shared set (vue, vue-router, frappe-ui)",
+  "dependencies": {
+    "@vueuse/core": "^14.4.0",
+    "dayjs": "^1.11.21",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
+  }
+}

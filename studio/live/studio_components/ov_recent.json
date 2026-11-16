@@ -1,0 +1,158 @@
+{
+ "doctype": "Studio Component",
+ "name": "ov_recent",
+ "component_id": "ov_recent",
+ "component_name": "Overview: Recent updates",
+ "block": {
+  "componentId": "box-ov-recent-157",
+  "componentName": "container",
+  "componentProps": {},
+  "componentSlots": {},
+  "children": [
+   {
+    "componentId": "TextBlock-ov-recent-149",
+    "componentName": "TextBlock",
+    "componentProps": {
+     "text": "Recent updates",
+     "tag": "h2",
+     "fontSize": "text-sm"
+    },
+    "componentSlots": {},
+    "children": [],
+    "baseStyles": {
+     "color": "var(--ink-gray-6)",
+     "fontWeight": "500",
+     "marginBottom": "8px"
+    }
+   },
+   {
+    "componentId": "Repeater-ov-recent-156",
+    "componentName": "Repeater",
+    "componentProps": {
+     "data": "{{ ov.recent }}",
+     "dataKey": "key"
+    },
+    "componentSlots": {},
+    "children": [
+     {
+      "componentId": "box-ov-recent-155",
+      "componentName": "container",
+      "componentProps": {},
+      "componentSlots": {},
+      "children": [
+       {
+        "componentId": "Avatar-ov-recent-150",
+        "componentName": "Avatar",
+        "componentProps": {
+         "size": "xs",
+         "label": "{{ dataItem.actor }}"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {}
+       },
+       {
+        "componentId": "box-ov-recent-153",
+        "componentName": "container",
+        "componentProps": {},
+        "componentSlots": {},
+        "children": [
+         {
+          "componentId": "TextBlock-ov-recent-151",
+          "componentName": "TextBlock",
+          "componentProps": {
+           "text": "{{ dataItem.actor }}",
+           "tag": "span",
+           "fontSize": "text-sm"
+          },
+          "componentSlots": {},
+          "children": [],
+          "baseStyles": {
+           "color": "var(--ink-gray-9)"
+          }
+         },
+         {
+          "componentId": "TextBlock-ov-recent-152",
+          "componentName": "TextBlock",
+          "componentProps": {
+           "text": "{{ dataItem.text }}",
+           "tag": "span",
+           "fontSize": "text-sm"
+          },
+          "componentSlots": {},
+          "children": [],
+          "baseStyles": {
+           "color": "var(--ink-gray-7)",
+           "overflow": "hidden",
+           "textOverflow": "ellipsis",
+           "whiteSpace": "nowrap"
+          }
+         }
+        ],
+        "baseStyles": {
+         "display": "flex",
+         "flexDirection": "row",
+         "alignItems": "center",
+         "gap": "4px",
+         "flex": "1",
+         "minWidth": "0px"
+        },
+        "originalElement": "div"
+       },
+       {
+        "componentId": "TextBlock-ov-recent-154",
+        "componentName": "TextBlock",
+        "componentProps": {
+         "text": "{{ dataItem.when }}",
+         "tag": "span",
+         "fontSize": "text-xs"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "color": "var(--ink-gray-5)",
+         "flexShrink": "0"
+        }
+       }
+      ],
+      "baseStyles": {
+       "display": "flex",
+       "flexDirection": "row",
+       "alignItems": "center",
+       "gap": "10px",
+       "padding": "8px 0px",
+       "borderStyle": "solid",
+       "borderColor": "var(--outline-gray-1)",
+       "borderWidth": "0px 0px 1px 0px"
+      },
+      "originalElement": "div"
+     }
+    ],
+    "baseStyles": {
+     "display": "flex",
+     "flexDirection": "column",
+     "flexWrap": "nowrap",
+     "gap": "0px",
+     "width": "100%"
+    }
+   }
+  ],
+  "baseStyles": {
+   "display": "flex",
+   "flexDirection": "column",
+   "padding": "0px 4px",
+   "width": "100%"
+  },
+  "visibilityCondition": "{{ ov.recent.length }}",
+  "blockName": "recent-updates",
+  "originalElement": "div"
+ },
+ "inputs": [],
+ "is_standard": 1,
+ "creation": "2026-11-03 16:20:05.310696",
+ "modified": "2026-11-03 16:20:05.310696",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "docstatus": 0,
+ "idx": 0
+}

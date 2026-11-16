@@ -1,0 +1,425 @@
+{
+ "doctype": "Studio Component",
+ "name": "ov_about",
+ "component_id": "ov_about",
+ "component_name": "Overview: About",
+ "block": {
+  "componentId": "box-ov-about-026",
+  "componentName": "container",
+  "componentProps": {},
+  "componentSlots": {},
+  "children": [
+   {
+    "componentId": "box-ov-about-004",
+    "componentName": "container",
+    "componentProps": {},
+    "componentSlots": {},
+    "children": [
+     {
+      "componentId": "TextBlock-ov-about-001",
+      "componentName": "TextBlock",
+      "componentProps": {
+       "text": "About",
+       "tag": "h2",
+       "fontSize": "text-base"
+      },
+      "componentSlots": {},
+      "children": [],
+      "baseStyles": {
+       "color": "var(--ink-gray-9)",
+       "fontWeight": "600"
+      }
+     },
+     {
+      "componentId": "box-ov-about-002",
+      "componentName": "container",
+      "componentProps": {},
+      "componentSlots": {},
+      "children": [],
+      "baseStyles": {
+       "flex": "1"
+      },
+      "originalElement": "div"
+     },
+     {
+      "componentId": "Button-ov-about-003",
+      "componentName": "Button",
+      "componentProps": {
+       "variant": "ghost",
+       "size": "sm",
+       "icon": "lucide-pencil",
+       "tooltip": "Edit project",
+       "aria-label": "Edit project"
+      },
+      "componentSlots": {},
+      "children": [],
+      "baseStyles": {},
+      "visibilityCondition": "{{ ov.about.manage }}",
+      "componentEvents": {
+       "click": {
+        "event": "click",
+        "action": "Run Script",
+        "script": "ovEdit()"
+       }
+      }
+     }
+    ],
+    "baseStyles": {
+     "display": "flex",
+     "flexDirection": "row",
+     "alignItems": "center",
+     "gap": "8px"
+    },
+    "originalElement": "div"
+   },
+   {
+    "componentId": "TextBlock-ov-about-005",
+    "componentName": "TextBlock",
+    "componentProps": {
+     "text": "{{ ov.about.desc }}",
+     "tag": "p",
+     "fontSize": "text-p-sm"
+    },
+    "componentSlots": {},
+    "children": [],
+    "baseStyles": {
+     "color": "var(--ink-gray-6)",
+     "marginTop": "6px"
+    }
+   },
+   {
+    "componentId": "box-ov-about-025",
+    "componentName": "container",
+    "componentProps": {},
+    "componentSlots": {},
+    "children": [
+     {
+      "componentId": "box-ov-about-010",
+      "componentName": "container",
+      "componentProps": {},
+      "componentSlots": {},
+      "children": [
+       {
+        "componentId": "TextBlock-ov-about-008",
+        "componentName": "TextBlock",
+        "componentProps": {
+         "text": "Lead",
+         "tag": "span",
+         "fontSize": "text-sm"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "color": "var(--ink-gray-5)",
+         "width": "80px",
+         "flexShrink": "0"
+        }
+       },
+       {
+        "componentId": "box-ov-about-009",
+        "componentName": "container",
+        "componentProps": {},
+        "componentSlots": {},
+        "children": [
+         {
+          "componentId": "Avatar-ov-about-006",
+          "componentName": "Avatar",
+          "componentProps": {
+           "size": "xs",
+           "label": "{{ ov.about.owner }}"
+          },
+          "componentSlots": {},
+          "children": [],
+          "baseStyles": {}
+         },
+         {
+          "componentId": "TextBlock-ov-about-007",
+          "componentName": "TextBlock",
+          "componentProps": {
+           "text": "{{ ov.about.owner }}",
+           "tag": "span",
+           "fontSize": "text-sm"
+          },
+          "componentSlots": {},
+          "children": [],
+          "baseStyles": {
+           "color": "var(--ink-gray-8)",
+           "overflow": "hidden",
+           "textOverflow": "ellipsis",
+           "whiteSpace": "nowrap"
+          }
+         }
+        ],
+        "baseStyles": {
+         "display": "flex",
+         "flexDirection": "row",
+         "alignItems": "center",
+         "gap": "6px",
+         "minWidth": "0px"
+        },
+        "originalElement": "div"
+       }
+      ],
+      "baseStyles": {
+       "display": "flex",
+       "flexDirection": "row",
+       "alignItems": "center",
+       "gap": "8px"
+      },
+      "visibilityCondition": "{{ ov.about.showOwner }}",
+      "originalElement": "div"
+     },
+     {
+      "componentId": "box-ov-about-014",
+      "componentName": "container",
+      "componentProps": {},
+      "componentSlots": {},
+      "children": [
+       {
+        "componentId": "TextBlock-ov-about-012",
+        "componentName": "TextBlock",
+        "componentProps": {
+         "text": "Dates",
+         "tag": "span",
+         "fontSize": "text-sm"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "color": "var(--ink-gray-5)",
+         "width": "80px",
+         "flexShrink": "0"
+        }
+       },
+       {
+        "componentId": "box-ov-about-013",
+        "componentName": "container",
+        "componentProps": {},
+        "componentSlots": {},
+        "children": [
+         {
+          "componentId": "TextBlock-ov-about-011",
+          "componentName": "TextBlock",
+          "componentProps": {
+           "text": "{{ ov.about.dates }}",
+           "tag": "span",
+           "fontSize": "text-sm"
+          },
+          "componentSlots": {},
+          "children": [],
+          "baseStyles": {
+           "color": "var(--ink-gray-8)",
+           "fontVariantNumeric": "tabular-nums"
+          }
+         }
+        ],
+        "baseStyles": {
+         "display": "flex",
+         "flexDirection": "row",
+         "alignItems": "center",
+         "gap": "6px",
+         "minWidth": "0px"
+        },
+        "originalElement": "div"
+       }
+      ],
+      "baseStyles": {
+       "display": "flex",
+       "flexDirection": "row",
+       "alignItems": "center",
+       "gap": "8px"
+      },
+      "originalElement": "div"
+     },
+     {
+      "componentId": "box-ov-about-019",
+      "componentName": "container",
+      "componentProps": {},
+      "componentSlots": {},
+      "children": [
+       {
+        "componentId": "TextBlock-ov-about-017",
+        "componentName": "TextBlock",
+        "componentProps": {
+         "text": "Time left",
+         "tag": "span",
+         "fontSize": "text-sm"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "color": "var(--ink-gray-5)",
+         "width": "80px",
+         "flexShrink": "0"
+        }
+       },
+       {
+        "componentId": "box-ov-about-018",
+        "componentName": "container",
+        "componentProps": {},
+        "componentSlots": {},
+        "children": [
+         {
+          "componentId": "TextBlock-ov-about-015",
+          "componentName": "TextBlock",
+          "componentProps": {
+           "text": "{{ ov.about.left }}",
+           "tag": "span",
+           "fontSize": "text-sm"
+          },
+          "componentSlots": {},
+          "children": [],
+          "baseStyles": {
+           "color": "var(--ink-gray-8)",
+           "fontVariantNumeric": "tabular-nums",
+           "fontWeight": "{{ ov.about.late ? '500' : '400' }}"
+          }
+         },
+         {
+          "componentId": "box-ov-about-016",
+          "componentName": "container",
+          "componentProps": {},
+          "componentSlots": {},
+          "children": [],
+          "baseStyles": {
+           "width": "6px",
+           "height": "6px",
+           "borderRadius": "9999px",
+           "backgroundColor": "var(--surface-red-5)",
+           "flexShrink": "0"
+          },
+          "visibilityCondition": "{{ ov.about.late }}",
+          "originalElement": "div"
+         }
+        ],
+        "baseStyles": {
+         "display": "flex",
+         "flexDirection": "row",
+         "alignItems": "center",
+         "gap": "6px",
+         "minWidth": "0px"
+        },
+        "originalElement": "div"
+       }
+      ],
+      "baseStyles": {
+       "display": "flex",
+       "flexDirection": "row",
+       "alignItems": "center",
+       "gap": "8px"
+      },
+      "visibilityCondition": "{{ ov.about.hasEnd }}",
+      "originalElement": "div"
+     },
+     {
+      "componentId": "box-ov-about-024",
+      "componentName": "container",
+      "componentProps": {},
+      "componentSlots": {},
+      "children": [
+       {
+        "componentId": "TextBlock-ov-about-022",
+        "componentName": "TextBlock",
+        "componentProps": {
+         "text": "People",
+         "tag": "span",
+         "fontSize": "text-sm"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "color": "var(--ink-gray-5)",
+         "width": "80px",
+         "flexShrink": "0"
+        }
+       },
+       {
+        "componentId": "box-ov-about-023",
+        "componentName": "container",
+        "componentProps": {},
+        "componentSlots": {},
+        "children": [
+         {
+          "componentId": "PeopleStack-ov-about-020",
+          "componentName": "PeopleStack",
+          "componentProps": {
+           "people": "{{ ov.about.team }}",
+           "owners": "{{ ov.about.owners }}",
+           "max": 5,
+           "title": "People"
+          },
+          "componentSlots": {},
+          "children": [],
+          "baseStyles": {},
+          "isCustomVueComponent": true
+         },
+         {
+          "componentId": "TextBlock-ov-about-021",
+          "componentName": "TextBlock",
+          "componentProps": {
+           "text": "{{ ov.about.teamCount }}",
+           "tag": "span",
+           "fontSize": "text-sm"
+          },
+          "componentSlots": {},
+          "children": [],
+          "baseStyles": {
+           "color": "var(--ink-gray-6)"
+          }
+         }
+        ],
+        "baseStyles": {
+         "display": "flex",
+         "flexDirection": "row",
+         "alignItems": "center",
+         "gap": "6px",
+         "minWidth": "0px"
+        },
+        "originalElement": "div"
+       }
+      ],
+      "baseStyles": {
+       "display": "flex",
+       "flexDirection": "row",
+       "alignItems": "center",
+       "gap": "8px"
+      },
+      "visibilityCondition": "{{ ov.about.showOwner }}",
+      "originalElement": "div"
+     }
+    ],
+    "baseStyles": {
+     "display": "flex",
+     "flexDirection": "column",
+     "gap": "12px",
+     "marginTop": "16px"
+    },
+    "originalElement": "div"
+   }
+  ],
+  "baseStyles": {
+   "minWidth": "0px",
+   "overflow": "hidden",
+   "borderRadius": "12px",
+   "backgroundColor": "var(--surface-base)",
+   "borderStyle": "solid",
+   "borderColor": "var(--outline-gray-2)",
+   "borderWidth": "1px",
+   "boxShadow": "none",
+   "padding": "20px",
+   "width": "100%",
+   "display": "flex",
+   "flexDirection": "column"
+  },
+  "blockName": "about",
+  "originalElement": "div"
+ },
+ "inputs": [],
+ "is_standard": 1,
+ "creation": "2026-11-03 16:20:05.310696",
+ "modified": "2026-11-03 16:20:05.310696",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "docstatus": 0,
+ "idx": 0
+}

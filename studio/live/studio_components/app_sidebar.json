@@ -1,0 +1,374 @@
+{
+ "block": {
+  "baseStyles": {
+   "borderColor": "var(--outline-gray-1)",
+   "borderStyle": "solid",
+   "borderWidth": "0px 1px 0px 0px",
+   "height": "100%"
+  },
+  "blockName": "Sidebar",
+  "children": [
+   {
+    "blockName": "workspace",
+    "componentId": "SidebarHeader-sidebar-003",
+    "componentName": "SidebarHeader",
+    "componentProps": {
+     "menuItems": "{{ headerMenu }}",
+     "subtitle": "{{ wsSubtitle }}",
+     "title": "{{ wsTitle }}"
+    },
+    "componentSlots": {
+     "prefix": {
+      "slotContent": [
+       {
+        "baseStyles": {
+         "alignItems": "center",
+         "backgroundColor": "var(--surface-gray-9)",
+         "color": "var(--ink-gray-1)",
+         "display": "flex",
+         "flexDirection": "row",
+         "height": "100%",
+         "justifyContent": "center",
+         "width": "100%"
+        },
+        "blockName": "workspace-mark",
+        "children": [
+         {
+          "baseStyles": {
+           "color": "var(--ink-gray-1)"
+          },
+          "componentId": "Icon-sidebar-mark",
+          "componentName": "Icon",
+          "componentProps": {
+           "class": "size-4",
+           "icon": "{{ wsMarkIcon }}"
+          },
+          "componentSlots": {},
+          "visibilityCondition": "{{ wsMarkIcon }}"
+         },
+         {
+          "baseStyles": {
+           "color": "var(--ink-gray-1)",
+           "fontWeight": "600"
+          },
+          "componentId": "TextBlock-sidebar-mark",
+          "componentName": "TextBlock",
+          "componentProps": {
+           "fontSize": "text-sm",
+           "tag": "span",
+           "text": "{{ wsInitial }}"
+          },
+          "componentSlots": {},
+          "visibilityCondition": "{{ !wsMarkIcon }}"
+         }
+        ],
+        "componentId": "box-sidebar-mark",
+        "componentName": "container",
+        "componentProps": {
+         "aria-hidden": "true"
+        },
+        "componentSlots": {},
+        "originalElement": "div",
+        "parentSlotName": "prefix"
+       }
+      ],
+      "slotName": "prefix"
+     }
+    }
+   },
+   {
+    "baseStyles": {
+     "display": "flex",
+     "flex": "1",
+     "flexDirection": "column",
+     "gap": "2px",
+     "minHeight": "0px",
+     "overflowY": "auto",
+     "padding": "2px 8px 40px"
+    },
+    "blockName": "nav",
+    "children": [
+     {
+      "componentEvents": {
+       "click": {
+        "action": "Run Script",
+        "event": "click",
+        "script": "openSearch()"
+       }
+      },
+      "componentId": "SidebarItem-sidebar-004",
+      "componentName": "SidebarItem",
+      "componentProps": {
+       "icon": "lucide-search",
+       "label": "Search",
+       "suffix": "Ctrl+K"
+      },
+      "componentSlots": {}
+     },
+     {
+      "componentEvents": {
+       "click": {
+        "action": "Run Script",
+        "event": "click",
+        "script": "toggleNotifications()"
+       }
+      },
+      "componentId": "SidebarItem-sidebar-005",
+      "componentName": "SidebarItem",
+      "componentProps": {
+       "active": "{{ notificationsOpen }}",
+       "icon": "lucide-bell",
+       "label": "Notifications",
+       "suffix": "{{ needsLabel }}"
+      },
+      "componentSlots": {}
+     },
+     {
+      "componentId": "SidebarItem-sidebar-006",
+      "componentName": "SidebarItem",
+      "componentProps": {
+       "icon": "lucide-circle-check-big",
+       "label": "My tasks",
+       "route": "/"
+      },
+      "componentSlots": {}
+     },
+     {
+      "componentId": "SidebarItem-sidebar-007",
+      "componentName": "SidebarItem",
+      "componentProps": {
+       "icon": "lucide-notebook-pen",
+       "label": "Notes",
+       "route": "/notes"
+      },
+      "componentSlots": {}
+     },
+     {
+      "componentId": "SidebarItem-sidebar-008",
+      "componentName": "SidebarItem",
+      "componentProps": {
+       "icon": "lucide-folders",
+       "label": "Projects",
+       "route": "/projects"
+      },
+      "componentSlots": {}
+     },
+     {
+      "baseStyles": {
+       "alignItems": "center",
+       "display": "flex",
+       "flexDirection": "row",
+       "gap": "4px",
+       "marginTop": "20px",
+       "width": "100%"
+      },
+      "blockName": "pinned-heading",
+      "children": [
+       {
+        "baseStyles": {
+         "flex": "1"
+        },
+        "children": [
+         {
+          "baseStyles": {
+           "color": "var(--ink-gray-5)"
+          },
+          "componentId": "TextBlock-sidebar-009",
+          "componentName": "TextBlock",
+          "componentProps": {
+           "fontSize": "text-sm",
+           "tag": "span",
+           "text": "Pinned projects"
+          },
+          "componentSlots": {}
+         }
+        ],
+        "componentId": "SidebarLabel-sidebar-010",
+        "componentName": "SidebarLabel",
+        "componentProps": {
+         "divider": true
+        },
+        "componentSlots": {}
+       },
+       {
+        "componentEvents": {
+         "click": {
+          "action": "Run Script",
+          "event": "click",
+          "script": "newProject()"
+         }
+        },
+        "componentId": "Button-sidebar-011",
+        "componentName": "Button",
+        "componentProps": {
+         "aria-label": "New project",
+         "icon": "lucide-plus",
+         "size": "sm",
+         "tooltip": "New project",
+         "variant": "ghost"
+        },
+        "componentSlots": {},
+        "visibilityCondition": "{{ canCreateProject && !sidebarCollapsed }}"
+       }
+      ],
+      "componentId": "box-sidebar-012",
+      "componentName": "container",
+      "componentProps": {},
+      "componentSlots": {},
+      "originalElement": "div"
+     },
+     {
+      "componentEvents": {
+       "click": {
+        "action": "Run Script",
+        "event": "click",
+        "script": "newProject()"
+       }
+      },
+      "componentId": "SidebarItem-sidebar-013",
+      "componentName": "SidebarItem",
+      "componentProps": {
+       "icon": "lucide-folder-plus",
+       "label": "New project"
+      },
+      "componentSlots": {},
+      "visibilityCondition": "{{ sidebarCollapsed && canCreateProject }}"
+     },
+     {
+      "baseStyles": {
+       "display": "flex",
+       "flexDirection": "column",
+       "flexWrap": "nowrap",
+       "gap": "2px",
+       "width": "100%"
+      },
+      "blockName": "pinned-projects",
+      "children": [
+       {
+        "blockName": "pinned-project",
+        "componentId": "SidebarItem-sidebar-002",
+        "componentName": "SidebarItem",
+        "componentProps": {
+         "active": "{{ dataItem.active }}",
+         "icon": "lucide-folder",
+         "label": "{{ dataItem.name }}",
+         "route": "{{ dataItem.route }}"
+        },
+        "componentSlots": {
+         "suffix": {
+          "slotContent": [
+           {
+            "baseStyles": {
+             "height": "24px",
+             "width": "24px"
+            },
+            "classes": [
+             "hidden",
+             "group-hover/sidebar-item:inline-flex",
+             "focus-visible:inline-flex"
+            ],
+            "componentEvents": {
+             "click.stop.prevent": {
+              "action": "Run Script",
+              "event": "click.stop.prevent",
+              "script": "unpin(dataItem.id)"
+             }
+            },
+            "componentId": "Button-sidebar-001",
+            "componentName": "Button",
+            "componentProps": {
+             "aria-label": "Unpin {{ dataItem.name }}",
+             "icon": "lucide-pin-off",
+             "size": "sm",
+             "tooltip": "Unpin from sidebar",
+             "variant": "ghost"
+            },
+            "componentSlots": {},
+            "parentSlotName": "suffix"
+           }
+          ],
+          "slotName": "suffix"
+         }
+        }
+       }
+      ],
+      "componentId": "Repeater-sidebar-014",
+      "componentName": "Repeater",
+      "componentProps": {
+       "data": "{{ pinned }}",
+       "dataKey": "id"
+      },
+      "componentSlots": {},
+      "visibilityCondition": "{{ pinned.length }}"
+     },
+     {
+      "baseStyles": {
+       "color": "var(--ink-gray-5)",
+       "padding": "4px 8px"
+      },
+      "componentId": "TextBlock-sidebar-015",
+      "componentName": "TextBlock",
+      "componentProps": {
+       "fontSize": "text-p-xs",
+       "tag": "p",
+       "text": "{{ pinnedHint }}"
+      },
+      "componentSlots": {},
+      "visibilityCondition": "{{ !sidebarCollapsed && !pinned.length }}"
+     }
+    ],
+    "componentId": "box-sidebar-016",
+    "componentName": "container",
+    "componentProps": {},
+    "componentSlots": {},
+    "originalElement": "div"
+   },
+   {
+    "baseStyles": {
+     "borderColor": "var(--outline-gray-1)",
+     "borderStyle": "solid",
+     "borderWidth": "1px 0px 0px 0px",
+     "marginTop": "auto",
+     "padding": "8px"
+    },
+    "blockName": "bottom",
+    "children": [
+     {
+      "componentId": "SidebarCollapseToggle-sidebar-017",
+      "componentName": "SidebarCollapseToggle",
+      "componentProps": {},
+      "componentSlots": {}
+     }
+    ],
+    "componentId": "box-sidebar-018",
+    "componentName": "container",
+    "componentProps": {},
+    "componentSlots": {},
+    "originalElement": "div"
+   }
+  ],
+  "componentId": "Sidebar-sidebar-019",
+  "componentName": "Sidebar",
+  "componentProps": {
+   "collapsed": {
+    "$type": "variable",
+    "name": "sidebarCollapsed"
+   },
+   "collapsedWidth": "3.25rem",
+   "width": "14rem"
+  },
+  "componentSlots": {}
+ },
+ "component_id": "app_sidebar",
+ "component_name": "App Sidebar",
+ "creation": "2026-11-03 16:54:41.689125",
+ "docstatus": 0,
+ "doctype": "Studio Component",
+ "idx": 0,
+ "is_disabled": 0,
+ "is_standard": 1,
+ "modified": "2026-11-03 16:54:41.327116",
+ "modified_by": "Administrator",
+ "name": "app_sidebar",
+ "owner": "Administrator"
+}

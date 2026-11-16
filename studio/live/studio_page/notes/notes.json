@@ -1,0 +1,2414 @@
+{
+ "allow_guest": 0,
+ "blocks": [
+  {
+   "baseStyles": {
+    "display": "flex",
+    "flexDirection": "column",
+    "height": "100%",
+    "overflowX": "hidden",
+    "width": "100%"
+   },
+   "blockName": "body",
+   "children": [
+    {
+     "children": [
+      {
+       "componentId": "box-notes-062",
+       "componentName": "container",
+       "componentProps": {},
+       "componentSlots": {},
+       "children": [
+        {
+         "componentId": "box-notes-004",
+         "componentName": "container",
+         "componentProps": {},
+         "componentSlots": {},
+         "children": [
+          {
+           "componentId": "Button-notes-001",
+           "componentName": "Button",
+           "componentProps": {
+            "variant": "ghost",
+            "icon": "lucide-panel-left-open",
+            "tooltip": "Show notes",
+            "aria-label": "Show notes"
+           },
+           "componentSlots": {},
+           "children": [],
+           "baseStyles": {},
+           "componentEvents": {
+            "click": {
+             "event": "click",
+             "action": "Run Script",
+             "script": "showList()"
+            }
+           }
+          },
+          {
+           "componentId": "Button-notes-002",
+           "componentName": "Button",
+           "componentProps": {
+            "variant": "ghost",
+            "icon": "lucide-plus",
+            "tooltip": "New note",
+            "aria-label": "New note"
+           },
+           "componentSlots": {},
+           "children": [],
+           "baseStyles": {},
+           "componentEvents": {
+            "click": {
+             "event": "click",
+             "action": "Run Script",
+             "script": "newNote()"
+            }
+           }
+          },
+          {
+           "componentId": "TextBlock-notes-003",
+           "componentName": "TextBlock",
+           "componentProps": {
+            "text": "{{ notesCount }}",
+            "tag": "span",
+            "fontSize": "text-xs"
+           },
+           "componentSlots": {},
+           "children": [],
+           "baseStyles": {
+            "color": "var(--ink-gray-5)",
+            "marginTop": "4px",
+            "fontVariantNumeric": "tabular-nums"
+           }
+          }
+         ],
+         "baseStyles": {
+          "display": "flex",
+          "flexDirection": "column",
+          "alignItems": "center",
+          "gap": "4px",
+          "width": "48px",
+          "flexShrink": "0",
+          "padding": "8px 0px",
+          "backgroundColor": "var(--surface-gray-1)",
+          "borderStyle": "solid",
+          "borderColor": "var(--outline-gray-2)",
+          "borderWidth": "0px 1px 0px 0px"
+         },
+         "visibilityCondition": "{{ !isMobile && !listOpen }}",
+         "blockName": "notes-rail",
+         "originalElement": "div"
+        },
+        {
+         "componentId": "box-notes-039",
+         "componentName": "container",
+         "componentProps": {},
+         "componentSlots": {},
+         "children": [
+          {
+           "componentId": "box-notes-selecting-p",
+           "componentName": "container",
+           "componentProps": {},
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "row",
+            "alignItems": "center",
+            "gap": "6px",
+            "height": "48px",
+            "flexShrink": "0",
+            "padding": "0px 12px 0px 16px"
+           },
+           "blockName": "notes-header-selecting",
+           "originalElement": "div",
+           "visibilityCondition": "{{ selecting }}",
+           "children": [
+            {
+             "componentId": "TextBlock-notes-selhead-p",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "text": "{{ selectHeading }}",
+              "fontSize": "text-base"
+             },
+             "baseStyles": {
+              "color": "var(--ink-gray-9)",
+              "fontWeight": "500",
+              "fontVariantNumeric": "tabular-nums"
+             }
+            },
+            {
+             "componentId": "box-notes-selspacer-p",
+             "componentName": "container",
+             "componentProps": {},
+             "baseStyles": {
+              "flex": "1"
+             },
+             "originalElement": "div"
+            },
+            {
+             "componentId": "Button-notes-seldelete-p",
+             "componentName": "Button",
+             "componentProps": {
+              "variant": "subtle",
+              "theme": "red",
+              "size": "sm",
+              "iconLeft": "lucide-trash-2",
+              "label": "Delete",
+              "disabled": "{{ !picked.length }}"
+             },
+             "baseStyles": {},
+             "componentEvents": {
+              "click": {
+               "event": "click",
+               "action": "Run Script",
+               "script": "deletePicked()"
+              }
+             }
+            },
+            {
+             "componentId": "Button-notes-seldone-p",
+             "componentName": "Button",
+             "componentProps": {
+              "variant": "ghost",
+              "size": "sm",
+              "label": "Done"
+             },
+             "baseStyles": {},
+             "componentEvents": {
+              "click": {
+               "event": "click",
+               "action": "Run Script",
+               "script": "stopSelecting()"
+              }
+             }
+            }
+           ]
+          },
+          {
+           "componentId": "box-notes-033",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "children": [
+            {
+             "componentId": "TextBlock-notes-028",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "text": "Notes",
+              "tag": "h1",
+              "fontSize": "text-lg"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {
+              "color": "var(--ink-gray-9)",
+              "fontWeight": "600"
+             }
+            },
+            {
+             "componentId": "TextBlock-notes-029",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "text": "{{ notesCount }}",
+              "tag": "span",
+              "fontSize": "text-sm"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {
+              "color": "var(--ink-gray-5)",
+              "fontVariantNumeric": "tabular-nums"
+             }
+            },
+            {
+             "componentId": "box-notes-030",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {
+              "flex": "1"
+             },
+             "originalElement": "div"
+            },
+            {
+             "componentId": "Button-notes-031",
+             "componentName": "Button",
+             "componentProps": {
+              "variant": "subtle",
+              "label": "New",
+              "size": "sm",
+              "iconLeft": "lucide-plus"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {},
+             "componentEvents": {
+              "click": {
+               "event": "click",
+               "action": "Run Script",
+               "script": "newNote()"
+              }
+             }
+            },
+            {
+             "componentId": "Button-notes-select-p",
+             "componentName": "Button",
+             "componentProps": {
+              "variant": "ghost",
+              "size": "sm",
+              "label": "Select"
+             },
+             "baseStyles": {},
+             "visibilityCondition": "{{ notesCount }}",
+             "componentEvents": {
+              "click": {
+               "event": "click",
+               "action": "Run Script",
+               "script": "startSelecting()"
+              }
+             }
+            },
+            {
+             "componentId": "Button-notes-032",
+             "componentName": "Button",
+             "componentProps": {
+              "variant": "ghost",
+              "size": "sm",
+              "icon": "lucide-panel-left-close",
+              "tooltip": "Hide notes",
+              "aria-label": "Hide notes"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {},
+             "visibilityCondition": "{{ !isMobile }}",
+             "componentEvents": {
+              "click": {
+               "event": "click",
+               "action": "Run Script",
+               "script": "hideList()"
+              }
+             }
+            }
+           ],
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "row",
+            "alignItems": "center",
+            "gap": "6px",
+            "height": "48px",
+            "flexShrink": "0",
+            "padding": "0px 12px 0px 16px"
+           },
+           "blockName": "notes-header",
+           "originalElement": "div",
+           "visibilityCondition": "{{ !selecting }}"
+          },
+          {
+           "componentId": "box-notes-036",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "children": [
+            {
+             "componentId": "FormControl-notes-034",
+             "componentName": "FormControl",
+             "componentProps": {
+              "type": "search",
+              "modelValue": {
+               "$type": "variable",
+               "name": "q"
+              },
+              "placeholder": "Search notes",
+              "aria-label": "Search notes"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {
+              "width": "100%"
+             }
+            },
+            {
+             "componentId": "TabButtons-notes-035",
+             "componentName": "TabButtons",
+             "componentProps": {
+              "modelValue": {
+               "$type": "variable",
+               "name": "tag"
+              },
+              "options": "{{ tagOptions }}",
+              "aria-label": "Show notes from"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {
+              "width": "100%"
+             },
+             "visibilityCondition": "{{ manyWorkspaces }}",
+             "classes": [
+              "[&>*]:flex-1"
+             ]
+            }
+           ],
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "8px",
+            "padding": "0px 12px 8px"
+           },
+           "blockName": "notes-filters",
+           "originalElement": "div"
+          },
+          {
+           "componentId": "box-notes-038",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "children": [
+            {
+             "componentId": "TextBlock-notes-037",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "text": "{{ listEmptyText }}",
+              "tag": "p",
+              "fontSize": "text-p-sm"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {
+              "color": "var(--ink-gray-5)",
+              "textAlign": "center",
+              "padding": "24px 8px"
+             },
+             "visibilityCondition": "{{ !hasNotes }}"
+            },
+            {
+             "componentId": "List-notes-027",
+             "componentName": "List",
+             "componentProps": {
+              "columns": [
+               "minmax(0,1fr)"
+              ],
+              "divider": "full",
+              "active": {
+               "$type": "variable",
+               "name": "activeNote"
+              },
+              "selectable": "{{ selecting }}",
+              "selection": {
+               "$type": "variable",
+               "name": "picked"
+              }
+             },
+             "componentSlots": {},
+             "children": [
+              {
+               "componentId": "Repeater-notes-026",
+               "componentName": "Repeater",
+               "componentProps": {
+                "data": "{{ groups }}",
+                "dataKey": "label"
+               },
+               "componentSlots": {},
+               "children": [
+                {
+                 "componentId": "ListGroup-notes-025",
+                 "componentName": "ListGroup",
+                 "componentProps": {
+                  "label": "{{ dataItem.label }}"
+                 },
+                 "componentSlots": {},
+                 "children": [
+                  {
+                   "componentId": "ListRows-notes-024",
+                   "componentName": "ListRows",
+                   "componentProps": {
+                    "items": "{{ dataItem.items }}"
+                   },
+                   "componentSlots": {
+                    "default": {
+                     "slotName": "default",
+                     "slotContent": [
+                      {
+                       "componentId": "ListRow-notes-023",
+                       "componentName": "ListRow",
+                       "componentProps": {
+                        "value": "{{ value }}"
+                       },
+                       "componentSlots": {},
+                       "children": [
+                        {
+                         "componentId": "ListCell-notes-021",
+                         "componentName": "ListCell",
+                         "componentProps": {},
+                         "componentSlots": {},
+                         "children": [
+                          {
+                           "componentId": "box-notes-018",
+                           "componentName": "container",
+                           "componentProps": {},
+                           "componentSlots": {},
+                           "children": [
+                            {
+                             "componentId": "box-notes-011",
+                             "componentName": "container",
+                             "componentProps": {},
+                             "componentSlots": {},
+                             "children": [
+                              {
+                               "componentId": "TextBlock-notes-009",
+                               "componentName": "TextBlock",
+                               "componentProps": {
+                                "text": "{{ item.title }}",
+                                "tag": "span",
+                                "fontSize": "text-base"
+                               },
+                               "componentSlots": {},
+                               "children": [],
+                               "baseStyles": {
+                                "color": "{{ item.titleColor }}",
+                                "fontWeight": "500",
+                                "flex": "1",
+                                "minWidth": "0px",
+                                "overflow": "hidden",
+                                "textOverflow": "ellipsis",
+                                "whiteSpace": "nowrap"
+                               }
+                              },
+                              {
+                               "componentId": "Icon-notes-ws-blocks",
+                               "componentName": "Icon",
+                               "componentProps": {
+                                "icon": "{{ item.wsIcon }}",
+                                "class": "size-3.5",
+                                "title": "{{ item.wsName }}",
+                                "aria-hidden": "true"
+                               },
+                               "baseStyles": {
+                                "color": "var(--ink-gray-4)",
+                                "flexShrink": "0"
+                               },
+                               "visibilityCondition": "{{ item.showWs }}",
+                               "componentSlots": {},
+                               "children": []
+                              },
+                              {
+                               "componentId": "TextBlock-notes-010",
+                               "componentName": "TextBlock",
+                               "componentProps": {
+                                "text": "{{ item.when }}",
+                                "tag": "span",
+                                "fontSize": "text-xs"
+                               },
+                               "componentSlots": {},
+                               "children": [],
+                               "baseStyles": {
+                                "color": "var(--ink-gray-5)",
+                                "flexShrink": "0",
+                                "fontVariantNumeric": "tabular-nums"
+                               }
+                              }
+                             ],
+                             "baseStyles": {
+                              "display": "flex",
+                              "flexDirection": "row",
+                              "alignItems": "center",
+                              "gap": "8px",
+                              "width": "100%"
+                             },
+                             "originalElement": "div"
+                            },
+                            {
+                             "componentId": "box-notes-017",
+                             "componentName": "container",
+                             "componentProps": {},
+                             "componentSlots": {},
+                             "children": [
+                              {
+                               "componentId": "TextBlock-notes-012",
+                               "componentName": "TextBlock",
+                               "componentProps": {
+                                "text": "{{ item.snippet }}",
+                                "tag": "span",
+                                "fontSize": "text-sm"
+                               },
+                               "componentSlots": {},
+                               "children": [],
+                               "baseStyles": {
+                                "color": "var(--ink-gray-5)",
+                                "flex": "1",
+                                "minWidth": "0px",
+                                "overflow": "hidden",
+                                "textOverflow": "ellipsis",
+                                "whiteSpace": "nowrap"
+                               },
+                               "visibilityCondition": "{{ item.showSnippet }}"
+                              },
+                              {
+                               "componentId": "box-notes-013",
+                               "componentName": "container",
+                               "componentProps": {},
+                               "componentSlots": {},
+                               "children": [],
+                               "baseStyles": {
+                                "flex": "1"
+                               },
+                               "visibilityCondition": "{{ !item.showSnippet }}",
+                               "originalElement": "div"
+                              },
+                              {
+                               "componentId": "box-notes-016",
+                               "componentName": "container",
+                               "componentProps": {},
+                               "componentSlots": {},
+                               "children": [
+                                {
+                                 "componentId": "Icon-notes-014",
+                                 "componentName": "Icon",
+                                 "componentProps": {
+                                  "icon": "lucide-list-checks",
+                                  "class": "size-3"
+                                 },
+                                 "componentSlots": {},
+                                 "children": [],
+                                 "baseStyles": {
+                                  "color": "var(--ink-gray-5)"
+                                 }
+                                },
+                                {
+                                 "componentId": "TextBlock-notes-015",
+                                 "componentName": "TextBlock",
+                                 "componentProps": {
+                                  "text": "{{ item.made }}",
+                                  "tag": "span",
+                                  "fontSize": "text-xs"
+                                 },
+                                 "componentSlots": {},
+                                 "children": [],
+                                 "baseStyles": {
+                                  "color": "var(--ink-gray-5)"
+                                 }
+                                }
+                               ],
+                               "baseStyles": {
+                                "display": "flex",
+                                "flexDirection": "row",
+                                "alignItems": "center",
+                                "gap": "2px",
+                                "flexShrink": "0"
+                               },
+                               "visibilityCondition": "{{ item.made }}",
+                               "originalElement": "div"
+                              }
+                             ],
+                             "baseStyles": {
+                              "display": "flex",
+                              "flexDirection": "row",
+                              "alignItems": "center",
+                              "gap": "6px",
+                              "marginTop": "4px",
+                              "width": "100%"
+                             },
+                             "visibilityCondition": "{{ item.showMeta }}",
+                             "originalElement": "div"
+                            }
+                           ],
+                           "baseStyles": {
+                            "display": "flex",
+                            "flexDirection": "column",
+                            "flex": "1",
+                            "minWidth": "0px"
+                           },
+                           "blockName": "note-row",
+                           "originalElement": "div"
+                          }
+                         ],
+                         "baseStyles": {
+                          "padding": "8px 0px"
+                         }
+                        }
+                       ],
+                       "baseStyles": {},
+                       "classes": [
+                        "group/row"
+                       ],
+                       "parentSlotName": "default"
+                      }
+                     ]
+                    }
+                   },
+                   "children": [],
+                   "baseStyles": {}
+                  }
+                 ],
+                 "baseStyles": {
+                  "marginTop": "8px"
+                 }
+                }
+               ],
+               "baseStyles": {
+                "display": "contents"
+               },
+               "blockName": "date-groups"
+              }
+             ],
+             "baseStyles": {
+              "width": "100%"
+             },
+             "visibilityCondition": "{{ hasNotes }}",
+             "blockName": "notes-list"
+            }
+           ],
+           "baseStyles": {
+            "flex": "1",
+            "minHeight": "0px",
+            "overflowY": "auto",
+            "padding": "0px 8px 24px"
+           },
+           "blockName": "notes-scroll",
+           "originalElement": "div"
+          }
+         ],
+         "baseStyles": {
+          "display": "flex",
+          "flexDirection": "column",
+          "flexShrink": "0",
+          "width": "288px",
+          "minHeight": "0px",
+          "backgroundColor": "var(--surface-base)",
+          "borderStyle": "solid",
+          "borderColor": "var(--outline-gray-2)",
+          "borderWidth": "0px 1px 0px 0px"
+         },
+         "mobileStyles": {
+          "width": "100%",
+          "borderWidth": "0px"
+         },
+         "visibilityCondition": "{{ (!isMobile && listOpen) || (isMobile && !cur) }}",
+         "blockName": "notes-sidebar",
+         "originalElement": "div"
+        },
+        {
+         "componentId": "box-notes-050",
+         "componentName": "container",
+         "componentProps": {},
+         "componentSlots": {},
+         "children": [
+          {
+           "componentId": "box-notes-048",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "children": [
+            {
+             "componentId": "Button-notes-040",
+             "componentName": "Button",
+             "componentProps": {
+              "variant": "ghost",
+              "icon": "lucide-arrow-left",
+              "aria-label": "Back to Notes"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {},
+             "visibilityCondition": "{{ isMobile }}",
+             "componentEvents": {
+              "click": {
+               "event": "click",
+               "action": "Run Script",
+               "script": "backToList()"
+              }
+             }
+            },
+            {
+             "componentId": "box-notes-043",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "children": [
+              {
+               "componentId": "TextBlock-notes-041",
+               "componentName": "TextBlock",
+               "componentProps": {
+                "text": "Notes",
+                "tag": "span",
+                "fontSize": "text-xs"
+               },
+               "componentSlots": {},
+               "children": [],
+               "baseStyles": {
+                "color": "var(--ink-gray-5)",
+                "cursor": "pointer"
+               },
+               "componentEvents": {
+                "click": {
+                 "event": "click",
+                 "action": "Run Script",
+                 "script": "backToList()"
+                }
+               }
+              },
+              {
+               "componentId": "TextBlock-notes-042",
+               "componentName": "TextBlock",
+               "componentProps": {
+                "text": "{{ curTitle }}",
+                "tag": "p",
+                "fontSize": "text-base"
+               },
+               "componentSlots": {},
+               "children": [],
+               "baseStyles": {
+                "color": "var(--ink-gray-9)",
+                "fontWeight": "600",
+                "overflow": "hidden",
+                "textOverflow": "ellipsis",
+                "whiteSpace": "nowrap"
+               }
+              }
+             ],
+             "baseStyles": {
+              "display": "flex",
+              "flexDirection": "column",
+              "minWidth": "0px"
+             },
+             "visibilityCondition": "{{ isMobile }}",
+             "blockName": "phone-title",
+             "originalElement": "div"
+            },
+            {
+             "componentId": "Dropdown-notes-044",
+             "componentName": "Dropdown",
+             "componentProps": {
+              "options": "{{ tagMenu }}",
+              "button": "{{ tagButton }}"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {},
+             "visibilityCondition": "{{ manyWorkspaces }}",
+             "blockName": "note-workspace"
+            },
+            {
+             "componentId": "TextBlock-notes-045",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "text": "{{ edited }}",
+              "tag": "span",
+              "fontSize": "text-sm"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {
+              "color": "var(--ink-gray-5)",
+              "overflow": "hidden",
+              "textOverflow": "ellipsis",
+              "whiteSpace": "nowrap"
+             },
+             "visibilityCondition": "{{ !isMobile }}"
+            },
+            {
+             "componentId": "box-notes-046",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {
+              "flex": "1"
+             },
+             "originalElement": "div"
+            },
+            {
+             "componentId": "Button-notes-047",
+             "componentName": "Button",
+             "componentProps": {
+              "variant": "solid",
+              "label": "Create tasks",
+              "theme": "gray",
+              "iconLeft": "lucide-list-checks"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {},
+             "componentEvents": {
+              "click": {
+               "event": "click",
+               "action": "Run Script",
+               "script": "createTasks()"
+              }
+             }
+            }
+           ],
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "row",
+            "alignItems": "center",
+            "gap": "8px",
+            "height": "48px",
+            "flexShrink": "0",
+            "padding": "0px 20px"
+           },
+           "mobileStyles": {
+            "padding": "0px 12px"
+           },
+           "blockName": "note-header",
+           "originalElement": "div"
+          },
+          {
+           "componentId": "NoteEditor-notes-049",
+           "componentName": "NoteEditor",
+           "componentProps": {
+            "noteId": "{{ curId }}"
+           },
+           "componentSlots": {},
+           "children": [],
+           "baseStyles": {
+            "flex": "1",
+            "minHeight": "0px"
+           },
+           "blockName": "note-editor",
+           "isCustomVueComponent": true
+          }
+         ],
+         "baseStyles": {
+          "display": "flex",
+          "flexDirection": "column",
+          "flex": "1",
+          "minWidth": "0px",
+          "minHeight": "0px",
+          "backgroundColor": "var(--surface-base)"
+         },
+         "visibilityCondition": "{{ cur }}",
+         "blockName": "note",
+         "originalElement": "div"
+        },
+        {
+         "componentId": "box-notes-058",
+         "componentName": "container",
+         "componentProps": {},
+         "componentSlots": {},
+         "children": [
+          {
+           "componentId": "box-notes-057",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "children": [
+            {
+             "componentId": "box-notes-053",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "children": [
+              {
+               "componentId": "Icon-notes-052",
+               "componentName": "Icon",
+               "componentProps": {
+                "icon": "lucide-notebook-pen",
+                "class": "size-6"
+               },
+               "componentSlots": {},
+               "children": [],
+               "baseStyles": {
+                "color": "var(--ink-gray-6)"
+               }
+              }
+             ],
+             "baseStyles": {
+              "display": "flex",
+              "flexDirection": "row",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "width": "56px",
+              "height": "56px",
+              "borderRadius": "9999px",
+              "backgroundColor": "var(--surface-gray-2)",
+              "marginBottom": "16px"
+             },
+             "originalElement": "div"
+            },
+            {
+             "componentId": "TextBlock-notes-054",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "text": "{{ emptyTitle }}",
+              "tag": "p",
+              "fontSize": "text-lg"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {
+              "color": "var(--ink-gray-9)",
+              "fontWeight": "500"
+             }
+            },
+            {
+             "componentId": "TextBlock-notes-055",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "text": "{{ emptyText }}",
+              "tag": "p",
+              "fontSize": "text-p-base"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {
+              "color": "var(--ink-gray-5)",
+              "marginTop": "6px",
+              "maxWidth": "384px",
+              "textWrap": "balance"
+             }
+            },
+            {
+             "componentId": "box-notes-056",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "children": [
+              {
+               "componentId": "Button-notes-051",
+               "componentName": "Button",
+               "componentProps": {
+                "variant": "subtle",
+                "label": "New note",
+                "iconLeft": "lucide-plus"
+               },
+               "componentSlots": {},
+               "children": [],
+               "baseStyles": {},
+               "componentEvents": {
+                "click": {
+                 "event": "click",
+                 "action": "Run Script",
+                 "script": "newNote()"
+                }
+               }
+              }
+             ],
+             "baseStyles": {
+              "display": "flex",
+              "flexDirection": "row",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "gap": "8px",
+              "marginTop": "20px",
+              "flexWrap": "wrap"
+             },
+             "originalElement": "div"
+            }
+           ],
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "column",
+            "alignItems": "center",
+            "textAlign": "center",
+            "padding": "64px 0px",
+            "width": "100%"
+           },
+           "blockName": "empty-state",
+           "originalElement": "div"
+          }
+         ],
+         "baseStyles": {
+          "display": "flex",
+          "flexDirection": "row",
+          "alignItems": "center",
+          "flex": "1",
+          "justifyContent": "center"
+         },
+         "visibilityCondition": "{{ !cur && !isMobile }}",
+         "blockName": "no-note",
+         "originalElement": "div"
+        },
+        {
+         "componentId": "box-notes-061",
+         "componentName": "container",
+         "componentProps": {
+          "role": "toolbar",
+          "aria-label": "Send the selected lines"
+         },
+         "componentSlots": {},
+         "children": [
+          {
+           "componentId": "Button-notes-059",
+           "componentName": "Button",
+           "componentProps": {
+            "variant": "ghost",
+            "label": "Add to My tasks",
+            "size": "sm",
+            "iconLeft": "lucide-circle-check-big"
+           },
+           "componentSlots": {},
+           "children": [],
+           "baseStyles": {},
+           "componentEvents": {
+            "click": {
+             "event": "click",
+             "action": "Run Script",
+             "script": "quickHome()"
+            }
+           }
+          },
+          {
+           "componentId": "Button-notes-060",
+           "componentName": "Button",
+           "componentProps": {
+            "variant": "ghost",
+            "label": "Create tasks\u2026",
+            "size": "sm",
+            "iconLeft": "lucide-list-checks"
+           },
+           "componentSlots": {},
+           "children": [],
+           "baseStyles": {},
+           "componentEvents": {
+            "click": {
+             "event": "click",
+             "action": "Run Script",
+             "script": "createFromSelection()"
+            }
+           }
+          }
+         ],
+         "baseStyles": {
+          "display": "flex",
+          "flexDirection": "row",
+          "alignItems": "center",
+          "gap": "2px",
+          "position": "fixed",
+          "zIndex": "30",
+          "left": "{{ selLeft }}",
+          "top": "{{ selTop }}",
+          "padding": "4px",
+          "borderRadius": "10px",
+          "backgroundColor": "var(--surface-base)",
+          "borderStyle": "solid",
+          "borderColor": "var(--outline-gray-2)",
+          "borderWidth": "1px",
+          "boxShadow": "0 2px 8px rgb(0 0 0 / 0.12)"
+         },
+         "visibilityCondition": "{{ sel }}",
+         "componentEvents": {
+          "mousedown.prevent": {
+           "event": "mousedown.prevent",
+           "action": "Run Script",
+           "script": "void 0"
+          }
+         },
+         "blockName": "selection-toolbar",
+         "originalElement": "div"
+        }
+       ],
+       "baseStyles": {
+        "display": "flex",
+        "width": "100%",
+        "height": "100%",
+        "minHeight": "0px"
+       },
+       "blockName": "page",
+       "originalElement": "div"
+      },
+      {
+       "componentId": "DesignChoice-notes-notes-list-title-only",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "noteList",
+        "v": "title"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "DesignChoice-notes-create-tasks-grouped",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "notePanel",
+        "v": "grouped"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "DesignChoice-notes-panel-layout-crm",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "panel",
+        "v": "crm"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "DesignChoice-notes-empty-values-not-set",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "emptyValue",
+        "v": "notset"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "DesignChoice-notes-notification-list-full-dividers",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "notifList",
+        "v": "full"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "notifications_panel-notes",
+       "componentName": "notifications_panel",
+       "isStudioComponent": true,
+       "componentProps": {},
+       "componentSlots": {},
+       "children": []
+      }
+     ],
+     "componentId": "AppShell-notes",
+     "componentName": "AppShell",
+     "componentProps": {
+      "bare": false
+     },
+     "componentSlots": {
+      "sidebar": {
+       "slotName": "sidebar",
+       "slotContent": [
+        {
+         "componentId": "app_sidebar-notes",
+         "componentName": "app_sidebar",
+         "isStudioComponent": true,
+         "componentProps": {},
+         "componentSlots": {},
+         "children": [],
+         "parentSlotName": "sidebar"
+        }
+       ]
+      }
+     },
+     "isCustomVueComponent": true
+    }
+   ],
+   "componentId": "root",
+   "componentName": "div",
+   "componentProps": {},
+   "componentSlots": {},
+   "originalElement": "body"
+  }
+ ],
+ "creation": "2026-11-03 12:29:32.065604",
+ "docstatus": 0,
+ "doctype": "Studio Page",
+ "draft_blocks": [
+  {
+   "baseStyles": {
+    "display": "flex",
+    "flexDirection": "column",
+    "height": "100%",
+    "overflowX": "hidden",
+    "width": "100%"
+   },
+   "blockName": "body",
+   "children": [
+    {
+     "children": [
+      {
+       "componentId": "box-notes-062",
+       "componentName": "container",
+       "componentProps": {},
+       "componentSlots": {},
+       "children": [
+        {
+         "componentId": "box-notes-004",
+         "componentName": "container",
+         "componentProps": {},
+         "componentSlots": {},
+         "children": [
+          {
+           "componentId": "Button-notes-001",
+           "componentName": "Button",
+           "componentProps": {
+            "variant": "ghost",
+            "icon": "lucide-panel-left-open",
+            "tooltip": "Show notes",
+            "aria-label": "Show notes"
+           },
+           "componentSlots": {},
+           "children": [],
+           "baseStyles": {},
+           "componentEvents": {
+            "click": {
+             "event": "click",
+             "action": "Run Script",
+             "script": "showList()"
+            }
+           }
+          },
+          {
+           "componentId": "Button-notes-002",
+           "componentName": "Button",
+           "componentProps": {
+            "variant": "ghost",
+            "icon": "lucide-plus",
+            "tooltip": "New note",
+            "aria-label": "New note"
+           },
+           "componentSlots": {},
+           "children": [],
+           "baseStyles": {},
+           "componentEvents": {
+            "click": {
+             "event": "click",
+             "action": "Run Script",
+             "script": "newNote()"
+            }
+           }
+          },
+          {
+           "componentId": "TextBlock-notes-003",
+           "componentName": "TextBlock",
+           "componentProps": {
+            "text": "{{ notesCount }}",
+            "tag": "span",
+            "fontSize": "text-xs"
+           },
+           "componentSlots": {},
+           "children": [],
+           "baseStyles": {
+            "color": "var(--ink-gray-5)",
+            "marginTop": "4px",
+            "fontVariantNumeric": "tabular-nums"
+           }
+          }
+         ],
+         "baseStyles": {
+          "display": "flex",
+          "flexDirection": "column",
+          "alignItems": "center",
+          "gap": "4px",
+          "width": "48px",
+          "flexShrink": "0",
+          "padding": "8px 0px",
+          "backgroundColor": "var(--surface-gray-1)",
+          "borderStyle": "solid",
+          "borderColor": "var(--outline-gray-2)",
+          "borderWidth": "0px 1px 0px 0px"
+         },
+         "visibilityCondition": "{{ !isMobile && !listOpen }}",
+         "blockName": "notes-rail",
+         "originalElement": "div"
+        },
+        {
+         "componentId": "box-notes-039",
+         "componentName": "container",
+         "componentProps": {},
+         "componentSlots": {},
+         "children": [
+          {
+           "componentId": "box-notes-selecting-d",
+           "componentName": "container",
+           "componentProps": {},
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "row",
+            "alignItems": "center",
+            "gap": "6px",
+            "height": "48px",
+            "flexShrink": "0",
+            "padding": "0px 12px 0px 16px"
+           },
+           "blockName": "notes-header-selecting",
+           "originalElement": "div",
+           "visibilityCondition": "{{ selecting }}",
+           "children": [
+            {
+             "componentId": "TextBlock-notes-selhead-d",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "text": "{{ selectHeading }}",
+              "fontSize": "text-base"
+             },
+             "baseStyles": {
+              "color": "var(--ink-gray-9)",
+              "fontWeight": "500",
+              "fontVariantNumeric": "tabular-nums"
+             }
+            },
+            {
+             "componentId": "box-notes-selspacer-d",
+             "componentName": "container",
+             "componentProps": {},
+             "baseStyles": {
+              "flex": "1"
+             },
+             "originalElement": "div"
+            },
+            {
+             "componentId": "Button-notes-seldelete-d",
+             "componentName": "Button",
+             "componentProps": {
+              "variant": "subtle",
+              "theme": "red",
+              "size": "sm",
+              "iconLeft": "lucide-trash-2",
+              "label": "Delete",
+              "disabled": "{{ !picked.length }}"
+             },
+             "baseStyles": {},
+             "componentEvents": {
+              "click": {
+               "event": "click",
+               "action": "Run Script",
+               "script": "deletePicked()"
+              }
+             }
+            },
+            {
+             "componentId": "Button-notes-seldone-d",
+             "componentName": "Button",
+             "componentProps": {
+              "variant": "ghost",
+              "size": "sm",
+              "label": "Done"
+             },
+             "baseStyles": {},
+             "componentEvents": {
+              "click": {
+               "event": "click",
+               "action": "Run Script",
+               "script": "stopSelecting()"
+              }
+             }
+            }
+           ]
+          },
+          {
+           "componentId": "box-notes-033",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "children": [
+            {
+             "componentId": "TextBlock-notes-028",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "text": "Notes",
+              "tag": "h1",
+              "fontSize": "text-lg"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {
+              "color": "var(--ink-gray-9)",
+              "fontWeight": "600"
+             }
+            },
+            {
+             "componentId": "TextBlock-notes-029",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "text": "{{ notesCount }}",
+              "tag": "span",
+              "fontSize": "text-sm"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {
+              "color": "var(--ink-gray-5)",
+              "fontVariantNumeric": "tabular-nums"
+             }
+            },
+            {
+             "componentId": "box-notes-030",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {
+              "flex": "1"
+             },
+             "originalElement": "div"
+            },
+            {
+             "componentId": "Button-notes-031",
+             "componentName": "Button",
+             "componentProps": {
+              "variant": "subtle",
+              "label": "New",
+              "size": "sm",
+              "iconLeft": "lucide-plus"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {},
+             "componentEvents": {
+              "click": {
+               "event": "click",
+               "action": "Run Script",
+               "script": "newNote()"
+              }
+             }
+            },
+            {
+             "componentId": "Button-notes-select-d",
+             "componentName": "Button",
+             "componentProps": {
+              "variant": "ghost",
+              "size": "sm",
+              "label": "Select"
+             },
+             "baseStyles": {},
+             "visibilityCondition": "{{ notesCount }}",
+             "componentEvents": {
+              "click": {
+               "event": "click",
+               "action": "Run Script",
+               "script": "startSelecting()"
+              }
+             }
+            },
+            {
+             "componentId": "Button-notes-032",
+             "componentName": "Button",
+             "componentProps": {
+              "variant": "ghost",
+              "size": "sm",
+              "icon": "lucide-panel-left-close",
+              "tooltip": "Hide notes",
+              "aria-label": "Hide notes"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {},
+             "visibilityCondition": "{{ !isMobile }}",
+             "componentEvents": {
+              "click": {
+               "event": "click",
+               "action": "Run Script",
+               "script": "hideList()"
+              }
+             }
+            }
+           ],
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "row",
+            "alignItems": "center",
+            "gap": "6px",
+            "height": "48px",
+            "flexShrink": "0",
+            "padding": "0px 12px 0px 16px"
+           },
+           "blockName": "notes-header",
+           "originalElement": "div",
+           "visibilityCondition": "{{ !selecting }}"
+          },
+          {
+           "componentId": "box-notes-036",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "children": [
+            {
+             "componentId": "FormControl-notes-034",
+             "componentName": "FormControl",
+             "componentProps": {
+              "type": "search",
+              "modelValue": {
+               "$type": "variable",
+               "name": "q"
+              },
+              "placeholder": "Search notes",
+              "aria-label": "Search notes"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {
+              "width": "100%"
+             }
+            },
+            {
+             "componentId": "TabButtons-notes-035",
+             "componentName": "TabButtons",
+             "componentProps": {
+              "modelValue": {
+               "$type": "variable",
+               "name": "tag"
+              },
+              "options": "{{ tagOptions }}",
+              "aria-label": "Show notes from"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {
+              "width": "100%"
+             },
+             "visibilityCondition": "{{ manyWorkspaces }}",
+             "classes": [
+              "[&>*]:flex-1"
+             ]
+            }
+           ],
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "8px",
+            "padding": "0px 12px 8px"
+           },
+           "blockName": "notes-filters",
+           "originalElement": "div"
+          },
+          {
+           "componentId": "box-notes-038",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "children": [
+            {
+             "componentId": "TextBlock-notes-037",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "text": "{{ listEmptyText }}",
+              "tag": "p",
+              "fontSize": "text-p-sm"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {
+              "color": "var(--ink-gray-5)",
+              "textAlign": "center",
+              "padding": "24px 8px"
+             },
+             "visibilityCondition": "{{ !hasNotes }}"
+            },
+            {
+             "componentId": "List-notes-027",
+             "componentName": "List",
+             "componentProps": {
+              "columns": [
+               "minmax(0,1fr)"
+              ],
+              "divider": "full",
+              "active": {
+               "$type": "variable",
+               "name": "activeNote"
+              },
+              "selectable": "{{ selecting }}",
+              "selection": {
+               "$type": "variable",
+               "name": "picked"
+              }
+             },
+             "componentSlots": {},
+             "children": [
+              {
+               "componentId": "Repeater-notes-026",
+               "componentName": "Repeater",
+               "componentProps": {
+                "data": "{{ groups }}",
+                "dataKey": "label"
+               },
+               "componentSlots": {},
+               "children": [
+                {
+                 "componentId": "ListGroup-notes-025",
+                 "componentName": "ListGroup",
+                 "componentProps": {
+                  "label": "{{ dataItem.label }}"
+                 },
+                 "componentSlots": {},
+                 "children": [
+                  {
+                   "componentId": "ListRows-notes-024",
+                   "componentName": "ListRows",
+                   "componentProps": {
+                    "items": "{{ dataItem.items }}"
+                   },
+                   "componentSlots": {
+                    "default": {
+                     "slotName": "default",
+                     "slotContent": [
+                      {
+                       "componentId": "ListRow-notes-023",
+                       "componentName": "ListRow",
+                       "componentProps": {
+                        "value": "{{ value }}"
+                       },
+                       "componentSlots": {},
+                       "children": [
+                        {
+                         "componentId": "ListCell-notes-021",
+                         "componentName": "ListCell",
+                         "componentProps": {},
+                         "componentSlots": {},
+                         "children": [
+                          {
+                           "componentId": "box-notes-018",
+                           "componentName": "container",
+                           "componentProps": {},
+                           "componentSlots": {},
+                           "children": [
+                            {
+                             "componentId": "box-notes-011",
+                             "componentName": "container",
+                             "componentProps": {},
+                             "componentSlots": {},
+                             "children": [
+                              {
+                               "componentId": "TextBlock-notes-009",
+                               "componentName": "TextBlock",
+                               "componentProps": {
+                                "text": "{{ item.title }}",
+                                "tag": "span",
+                                "fontSize": "text-base"
+                               },
+                               "componentSlots": {},
+                               "children": [],
+                               "baseStyles": {
+                                "color": "{{ item.titleColor }}",
+                                "fontWeight": "500",
+                                "flex": "1",
+                                "minWidth": "0px",
+                                "overflow": "hidden",
+                                "textOverflow": "ellipsis",
+                                "whiteSpace": "nowrap"
+                               }
+                              },
+                              {
+                               "componentId": "Icon-notes-ws-draft_blocks",
+                               "componentName": "Icon",
+                               "componentProps": {
+                                "icon": "{{ item.wsIcon }}",
+                                "class": "size-3.5",
+                                "title": "{{ item.wsName }}",
+                                "aria-hidden": "true"
+                               },
+                               "baseStyles": {
+                                "color": "var(--ink-gray-4)",
+                                "flexShrink": "0"
+                               },
+                               "visibilityCondition": "{{ item.showWs }}",
+                               "componentSlots": {},
+                               "children": []
+                              },
+                              {
+                               "componentId": "TextBlock-notes-010",
+                               "componentName": "TextBlock",
+                               "componentProps": {
+                                "text": "{{ item.when }}",
+                                "tag": "span",
+                                "fontSize": "text-xs"
+                               },
+                               "componentSlots": {},
+                               "children": [],
+                               "baseStyles": {
+                                "color": "var(--ink-gray-5)",
+                                "flexShrink": "0",
+                                "fontVariantNumeric": "tabular-nums"
+                               }
+                              }
+                             ],
+                             "baseStyles": {
+                              "display": "flex",
+                              "flexDirection": "row",
+                              "alignItems": "center",
+                              "gap": "8px",
+                              "width": "100%"
+                             },
+                             "originalElement": "div"
+                            },
+                            {
+                             "componentId": "box-notes-017",
+                             "componentName": "container",
+                             "componentProps": {},
+                             "componentSlots": {},
+                             "children": [
+                              {
+                               "componentId": "TextBlock-notes-012",
+                               "componentName": "TextBlock",
+                               "componentProps": {
+                                "text": "{{ item.snippet }}",
+                                "tag": "span",
+                                "fontSize": "text-sm"
+                               },
+                               "componentSlots": {},
+                               "children": [],
+                               "baseStyles": {
+                                "color": "var(--ink-gray-5)",
+                                "flex": "1",
+                                "minWidth": "0px",
+                                "overflow": "hidden",
+                                "textOverflow": "ellipsis",
+                                "whiteSpace": "nowrap"
+                               },
+                               "visibilityCondition": "{{ item.showSnippet }}"
+                              },
+                              {
+                               "componentId": "box-notes-013",
+                               "componentName": "container",
+                               "componentProps": {},
+                               "componentSlots": {},
+                               "children": [],
+                               "baseStyles": {
+                                "flex": "1"
+                               },
+                               "visibilityCondition": "{{ !item.showSnippet }}",
+                               "originalElement": "div"
+                              },
+                              {
+                               "componentId": "box-notes-016",
+                               "componentName": "container",
+                               "componentProps": {},
+                               "componentSlots": {},
+                               "children": [
+                                {
+                                 "componentId": "Icon-notes-014",
+                                 "componentName": "Icon",
+                                 "componentProps": {
+                                  "icon": "lucide-list-checks",
+                                  "class": "size-3"
+                                 },
+                                 "componentSlots": {},
+                                 "children": [],
+                                 "baseStyles": {
+                                  "color": "var(--ink-gray-5)"
+                                 }
+                                },
+                                {
+                                 "componentId": "TextBlock-notes-015",
+                                 "componentName": "TextBlock",
+                                 "componentProps": {
+                                  "text": "{{ item.made }}",
+                                  "tag": "span",
+                                  "fontSize": "text-xs"
+                                 },
+                                 "componentSlots": {},
+                                 "children": [],
+                                 "baseStyles": {
+                                  "color": "var(--ink-gray-5)"
+                                 }
+                                }
+                               ],
+                               "baseStyles": {
+                                "display": "flex",
+                                "flexDirection": "row",
+                                "alignItems": "center",
+                                "gap": "2px",
+                                "flexShrink": "0"
+                               },
+                               "visibilityCondition": "{{ item.made }}",
+                               "originalElement": "div"
+                              }
+                             ],
+                             "baseStyles": {
+                              "display": "flex",
+                              "flexDirection": "row",
+                              "alignItems": "center",
+                              "gap": "6px",
+                              "marginTop": "4px",
+                              "width": "100%"
+                             },
+                             "visibilityCondition": "{{ item.showMeta }}",
+                             "originalElement": "div"
+                            }
+                           ],
+                           "baseStyles": {
+                            "display": "flex",
+                            "flexDirection": "column",
+                            "flex": "1",
+                            "minWidth": "0px"
+                           },
+                           "blockName": "note-row",
+                           "originalElement": "div"
+                          }
+                         ],
+                         "baseStyles": {
+                          "padding": "8px 0px"
+                         }
+                        }
+                       ],
+                       "baseStyles": {},
+                       "classes": [
+                        "group/row"
+                       ],
+                       "parentSlotName": "default"
+                      }
+                     ]
+                    }
+                   },
+                   "children": [],
+                   "baseStyles": {}
+                  }
+                 ],
+                 "baseStyles": {
+                  "marginTop": "8px"
+                 }
+                }
+               ],
+               "baseStyles": {
+                "display": "contents"
+               },
+               "blockName": "date-groups"
+              }
+             ],
+             "baseStyles": {
+              "width": "100%"
+             },
+             "visibilityCondition": "{{ hasNotes }}",
+             "blockName": "notes-list"
+            }
+           ],
+           "baseStyles": {
+            "flex": "1",
+            "minHeight": "0px",
+            "overflowY": "auto",
+            "padding": "0px 8px 24px"
+           },
+           "blockName": "notes-scroll",
+           "originalElement": "div"
+          }
+         ],
+         "baseStyles": {
+          "display": "flex",
+          "flexDirection": "column",
+          "flexShrink": "0",
+          "width": "288px",
+          "minHeight": "0px",
+          "backgroundColor": "var(--surface-base)",
+          "borderStyle": "solid",
+          "borderColor": "var(--outline-gray-2)",
+          "borderWidth": "0px 1px 0px 0px"
+         },
+         "mobileStyles": {
+          "width": "100%",
+          "borderWidth": "0px"
+         },
+         "visibilityCondition": "{{ (!isMobile && listOpen) || (isMobile && !cur) }}",
+         "blockName": "notes-sidebar",
+         "originalElement": "div"
+        },
+        {
+         "componentId": "box-notes-050",
+         "componentName": "container",
+         "componentProps": {},
+         "componentSlots": {},
+         "children": [
+          {
+           "componentId": "box-notes-048",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "children": [
+            {
+             "componentId": "Button-notes-040",
+             "componentName": "Button",
+             "componentProps": {
+              "variant": "ghost",
+              "icon": "lucide-arrow-left",
+              "aria-label": "Back to Notes"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {},
+             "visibilityCondition": "{{ isMobile }}",
+             "componentEvents": {
+              "click": {
+               "event": "click",
+               "action": "Run Script",
+               "script": "backToList()"
+              }
+             }
+            },
+            {
+             "componentId": "box-notes-043",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "children": [
+              {
+               "componentId": "TextBlock-notes-041",
+               "componentName": "TextBlock",
+               "componentProps": {
+                "text": "Notes",
+                "tag": "span",
+                "fontSize": "text-xs"
+               },
+               "componentSlots": {},
+               "children": [],
+               "baseStyles": {
+                "color": "var(--ink-gray-5)",
+                "cursor": "pointer"
+               },
+               "componentEvents": {
+                "click": {
+                 "event": "click",
+                 "action": "Run Script",
+                 "script": "backToList()"
+                }
+               }
+              },
+              {
+               "componentId": "TextBlock-notes-042",
+               "componentName": "TextBlock",
+               "componentProps": {
+                "text": "{{ curTitle }}",
+                "tag": "p",
+                "fontSize": "text-base"
+               },
+               "componentSlots": {},
+               "children": [],
+               "baseStyles": {
+                "color": "var(--ink-gray-9)",
+                "fontWeight": "600",
+                "overflow": "hidden",
+                "textOverflow": "ellipsis",
+                "whiteSpace": "nowrap"
+               }
+              }
+             ],
+             "baseStyles": {
+              "display": "flex",
+              "flexDirection": "column",
+              "minWidth": "0px"
+             },
+             "visibilityCondition": "{{ isMobile }}",
+             "blockName": "phone-title",
+             "originalElement": "div"
+            },
+            {
+             "componentId": "Dropdown-notes-044",
+             "componentName": "Dropdown",
+             "componentProps": {
+              "options": "{{ tagMenu }}",
+              "button": "{{ tagButton }}"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {},
+             "visibilityCondition": "{{ manyWorkspaces }}",
+             "blockName": "note-workspace"
+            },
+            {
+             "componentId": "TextBlock-notes-045",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "text": "{{ edited }}",
+              "tag": "span",
+              "fontSize": "text-sm"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {
+              "color": "var(--ink-gray-5)",
+              "overflow": "hidden",
+              "textOverflow": "ellipsis",
+              "whiteSpace": "nowrap"
+             },
+             "visibilityCondition": "{{ !isMobile }}"
+            },
+            {
+             "componentId": "box-notes-046",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {
+              "flex": "1"
+             },
+             "originalElement": "div"
+            },
+            {
+             "componentId": "Button-notes-047",
+             "componentName": "Button",
+             "componentProps": {
+              "variant": "solid",
+              "label": "Create tasks",
+              "theme": "gray",
+              "iconLeft": "lucide-list-checks"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {},
+             "componentEvents": {
+              "click": {
+               "event": "click",
+               "action": "Run Script",
+               "script": "createTasks()"
+              }
+             }
+            }
+           ],
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "row",
+            "alignItems": "center",
+            "gap": "8px",
+            "height": "48px",
+            "flexShrink": "0",
+            "padding": "0px 20px"
+           },
+           "mobileStyles": {
+            "padding": "0px 12px"
+           },
+           "blockName": "note-header",
+           "originalElement": "div"
+          },
+          {
+           "componentId": "NoteEditor-notes-049",
+           "componentName": "NoteEditor",
+           "componentProps": {
+            "noteId": "{{ curId }}"
+           },
+           "componentSlots": {},
+           "children": [],
+           "baseStyles": {
+            "flex": "1",
+            "minHeight": "0px"
+           },
+           "blockName": "note-editor",
+           "isCustomVueComponent": true
+          }
+         ],
+         "baseStyles": {
+          "display": "flex",
+          "flexDirection": "column",
+          "flex": "1",
+          "minWidth": "0px",
+          "minHeight": "0px",
+          "backgroundColor": "var(--surface-base)"
+         },
+         "visibilityCondition": "{{ cur }}",
+         "blockName": "note",
+         "originalElement": "div"
+        },
+        {
+         "componentId": "box-notes-058",
+         "componentName": "container",
+         "componentProps": {},
+         "componentSlots": {},
+         "children": [
+          {
+           "componentId": "box-notes-057",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "children": [
+            {
+             "componentId": "box-notes-053",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "children": [
+              {
+               "componentId": "Icon-notes-052",
+               "componentName": "Icon",
+               "componentProps": {
+                "icon": "lucide-notebook-pen",
+                "class": "size-6"
+               },
+               "componentSlots": {},
+               "children": [],
+               "baseStyles": {
+                "color": "var(--ink-gray-6)"
+               }
+              }
+             ],
+             "baseStyles": {
+              "display": "flex",
+              "flexDirection": "row",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "width": "56px",
+              "height": "56px",
+              "borderRadius": "9999px",
+              "backgroundColor": "var(--surface-gray-2)",
+              "marginBottom": "16px"
+             },
+             "originalElement": "div"
+            },
+            {
+             "componentId": "TextBlock-notes-054",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "text": "{{ emptyTitle }}",
+              "tag": "p",
+              "fontSize": "text-lg"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {
+              "color": "var(--ink-gray-9)",
+              "fontWeight": "500"
+             }
+            },
+            {
+             "componentId": "TextBlock-notes-055",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "text": "{{ emptyText }}",
+              "tag": "p",
+              "fontSize": "text-p-base"
+             },
+             "componentSlots": {},
+             "children": [],
+             "baseStyles": {
+              "color": "var(--ink-gray-5)",
+              "marginTop": "6px",
+              "maxWidth": "384px",
+              "textWrap": "balance"
+             }
+            },
+            {
+             "componentId": "box-notes-056",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "children": [
+              {
+               "componentId": "Button-notes-051",
+               "componentName": "Button",
+               "componentProps": {
+                "variant": "subtle",
+                "label": "New note",
+                "iconLeft": "lucide-plus"
+               },
+               "componentSlots": {},
+               "children": [],
+               "baseStyles": {},
+               "componentEvents": {
+                "click": {
+                 "event": "click",
+                 "action": "Run Script",
+                 "script": "newNote()"
+                }
+               }
+              }
+             ],
+             "baseStyles": {
+              "display": "flex",
+              "flexDirection": "row",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "gap": "8px",
+              "marginTop": "20px",
+              "flexWrap": "wrap"
+             },
+             "originalElement": "div"
+            }
+           ],
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "column",
+            "alignItems": "center",
+            "textAlign": "center",
+            "padding": "64px 0px",
+            "width": "100%"
+           },
+           "blockName": "empty-state",
+           "originalElement": "div"
+          }
+         ],
+         "baseStyles": {
+          "display": "flex",
+          "flexDirection": "row",
+          "alignItems": "center",
+          "flex": "1",
+          "justifyContent": "center"
+         },
+         "visibilityCondition": "{{ !cur && !isMobile }}",
+         "blockName": "no-note",
+         "originalElement": "div"
+        },
+        {
+         "componentId": "box-notes-061",
+         "componentName": "container",
+         "componentProps": {
+          "role": "toolbar",
+          "aria-label": "Send the selected lines"
+         },
+         "componentSlots": {},
+         "children": [
+          {
+           "componentId": "Button-notes-059",
+           "componentName": "Button",
+           "componentProps": {
+            "variant": "ghost",
+            "label": "Add to My tasks",
+            "size": "sm",
+            "iconLeft": "lucide-circle-check-big"
+           },
+           "componentSlots": {},
+           "children": [],
+           "baseStyles": {},
+           "componentEvents": {
+            "click": {
+             "event": "click",
+             "action": "Run Script",
+             "script": "quickHome()"
+            }
+           }
+          },
+          {
+           "componentId": "Button-notes-060",
+           "componentName": "Button",
+           "componentProps": {
+            "variant": "ghost",
+            "label": "Create tasks\u2026",
+            "size": "sm",
+            "iconLeft": "lucide-list-checks"
+           },
+           "componentSlots": {},
+           "children": [],
+           "baseStyles": {},
+           "componentEvents": {
+            "click": {
+             "event": "click",
+             "action": "Run Script",
+             "script": "createFromSelection()"
+            }
+           }
+          }
+         ],
+         "baseStyles": {
+          "display": "flex",
+          "flexDirection": "row",
+          "alignItems": "center",
+          "gap": "2px",
+          "position": "fixed",
+          "zIndex": "30",
+          "left": "{{ selLeft }}",
+          "top": "{{ selTop }}",
+          "padding": "4px",
+          "borderRadius": "10px",
+          "backgroundColor": "var(--surface-base)",
+          "borderStyle": "solid",
+          "borderColor": "var(--outline-gray-2)",
+          "borderWidth": "1px",
+          "boxShadow": "0 2px 8px rgb(0 0 0 / 0.12)"
+         },
+         "visibilityCondition": "{{ sel }}",
+         "componentEvents": {
+          "mousedown.prevent": {
+           "event": "mousedown.prevent",
+           "action": "Run Script",
+           "script": "void 0"
+          }
+         },
+         "blockName": "selection-toolbar",
+         "originalElement": "div"
+        }
+       ],
+       "baseStyles": {
+        "display": "flex",
+        "width": "100%",
+        "height": "100%",
+        "minHeight": "0px"
+       },
+       "blockName": "page",
+       "originalElement": "div"
+      },
+      {
+       "componentId": "DesignChoice-notes-notes-list-title-only",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "noteList",
+        "v": "title"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "DesignChoice-notes-create-tasks-grouped",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "notePanel",
+        "v": "grouped"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "DesignChoice-notes-panel-layout-crm",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "panel",
+        "v": "crm"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "DesignChoice-notes-empty-values-not-set",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "emptyValue",
+        "v": "notset"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "DesignChoice-notes-notification-list-full-dividers",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "notifList",
+        "v": "full"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "notifications_panel-notes",
+       "componentName": "notifications_panel",
+       "isStudioComponent": true,
+       "componentProps": {},
+       "componentSlots": {},
+       "children": []
+      }
+     ],
+     "componentId": "AppShell-notes",
+     "componentName": "AppShell",
+     "componentProps": {
+      "bare": false
+     },
+     "componentSlots": {
+      "sidebar": {
+       "slotName": "sidebar",
+       "slotContent": [
+        {
+         "componentId": "app_sidebar-notes",
+         "componentName": "app_sidebar",
+         "isStudioComponent": true,
+         "componentProps": {},
+         "componentSlots": {},
+         "children": [],
+         "parentSlotName": "sidebar"
+        }
+       ]
+      }
+     },
+     "isCustomVueComponent": true
+    }
+   ],
+   "componentId": "root",
+   "componentName": "div",
+   "componentProps": {},
+   "componentSlots": {},
+   "originalElement": "body"
+  }
+ ],
+ "frappe_app": "frappe_live",
+ "idx": 0,
+ "is_standard": 1,
+ "modified": "2026-11-03 17:26:15.023994",
+ "modified_by": "neha@example.com",
+ "name": "notes",
+ "owner": "Administrator",
+ "page_name": "tasks-notes",
+ "page_title": "Notes",
+ "published": 1,
+ "route": "/notes",
+ "studio_app": "live"
+}

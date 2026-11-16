@@ -1,0 +1,158 @@
+{
+ "doctype": "Studio Component",
+ "name": "ov_plan",
+ "component_id": "ov_plan",
+ "component_name": "Overview: Planned vs actual",
+ "block": {
+  "componentId": "box-ov-plan-148",
+  "componentName": "container",
+  "componentProps": {},
+  "componentSlots": {},
+  "children": [
+   {
+    "componentId": "TextBlock-ov-plan-141",
+    "componentName": "TextBlock",
+    "componentProps": {
+     "text": "Planned vs actual",
+     "tag": "h3",
+     "fontSize": "text-base"
+    },
+    "componentSlots": {},
+    "children": [],
+    "baseStyles": {
+     "color": "var(--ink-gray-9)",
+     "fontWeight": "600"
+    }
+   },
+   {
+    "componentId": "TextBlock-ov-plan-142",
+    "componentName": "TextBlock",
+    "componentProps": {
+     "text": "{{ ov.plan.sub }}",
+     "tag": "p",
+     "fontSize": "text-p-sm"
+    },
+    "componentSlots": {},
+    "children": [],
+    "baseStyles": {
+     "color": "var(--ink-gray-5)",
+     "marginTop": "2px"
+    },
+    "visibilityCondition": "{{ ov.plan.sub }}"
+   },
+   {
+    "componentId": "TextBlock-ov-plan-143",
+    "componentName": "TextBlock",
+    "componentProps": {
+     "text": "Add a start and target date to the project to compare against a plan.",
+     "tag": "p",
+     "fontSize": "text-p-sm"
+    },
+    "componentSlots": {},
+    "children": [],
+    "baseStyles": {
+     "color": "var(--ink-gray-5)",
+     "padding": "32px 8px",
+     "textAlign": "center"
+    },
+    "visibilityCondition": "{{ !ov.plan.has }}"
+   },
+   {
+    "componentId": "box-ov-plan-145",
+    "componentName": "container",
+    "componentProps": {},
+    "componentSlots": {},
+    "children": [
+     {
+      "componentId": "AreaChart-ov-plan-144",
+      "componentName": "AreaChart",
+      "componentProps": {
+       "data": "{{ ov.plan.rows }}",
+       "x": "day",
+       "y": [
+        "Planned",
+        "Actual"
+       ],
+       "seriesConfig": "{{ ov.plan.series }}",
+       "yAxis": "{{ ov.plan.yAxis }}",
+       "echartOptions": "{{ ov.plan.options }}"
+      },
+      "componentSlots": {},
+      "children": [],
+      "baseStyles": {
+       "width": "100%",
+       "height": "100%"
+      }
+     }
+    ],
+    "baseStyles": {
+     "height": "208px",
+     "margin": "8px -8px 0px",
+     "minWidth": "0px"
+    },
+    "visibilityCondition": "{{ ov.plan.has && ov.plan.area }}",
+    "originalElement": "div"
+   },
+   {
+    "componentId": "box-ov-plan-147",
+    "componentName": "container",
+    "componentProps": {},
+    "componentSlots": {},
+    "children": [
+     {
+      "componentId": "LineChart-ov-plan-146",
+      "componentName": "LineChart",
+      "componentProps": {
+       "data": "{{ ov.plan.rows }}",
+       "x": "day",
+       "y": [
+        "Planned",
+        "Actual"
+       ],
+       "seriesConfig": "{{ ov.plan.series }}",
+       "yAxis": "{{ ov.plan.yAxis }}",
+       "echartOptions": "{{ ov.plan.options }}"
+      },
+      "componentSlots": {},
+      "children": [],
+      "baseStyles": {
+       "width": "100%",
+       "height": "100%"
+      }
+     }
+    ],
+    "baseStyles": {
+     "height": "208px",
+     "margin": "8px -8px 0px",
+     "minWidth": "0px"
+    },
+    "visibilityCondition": "{{ ov.plan.has && !ov.plan.area }}",
+    "originalElement": "div"
+   }
+  ],
+  "baseStyles": {
+   "minWidth": "0px",
+   "overflow": "hidden",
+   "borderRadius": "12px",
+   "backgroundColor": "var(--surface-base)",
+   "borderStyle": "solid",
+   "borderColor": "var(--outline-gray-2)",
+   "borderWidth": "1px",
+   "boxShadow": "0 1px 2px rgb(0 0 0 / 0.04)",
+   "padding": "20px",
+   "width": "100%",
+   "display": "flex",
+   "flexDirection": "column"
+  },
+  "blockName": "planned-vs-actual",
+  "originalElement": "div"
+ },
+ "inputs": [],
+ "is_standard": 1,
+ "creation": "2026-11-03 16:20:05.310696",
+ "modified": "2026-11-03 16:20:05.310696",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "docstatus": 0,
+ "idx": 0
+}

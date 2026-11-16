@@ -1,0 +1,3295 @@
+{
+ "allow_guest": 0,
+ "blocks": [
+  {
+   "baseStyles": {
+    "display": "flex",
+    "flexDirection": "column",
+    "height": "100%",
+    "overflowX": "hidden",
+    "width": "100%"
+   },
+   "blockName": "body",
+   "children": [
+    {
+     "children": [
+      {
+       "baseStyles": {
+        "display": "flex",
+        "flexDirection": "column",
+        "height": "100%",
+        "minHeight": "0px",
+        "width": "100%"
+       },
+       "blockName": "page",
+       "children": [
+        {
+         "baseStyles": {
+          "alignItems": "center",
+          "backgroundColor": "var(--surface-base)",
+          "borderColor": "var(--outline-gray-1)",
+          "borderStyle": "solid",
+          "borderWidth": "0px 0px 1px 0px",
+          "display": "flex",
+          "flexDirection": "row",
+          "flexShrink": "0",
+          "gap": "8px",
+          "minHeight": "48px",
+          "padding": "0px 20px",
+          "width": "100%"
+         },
+         "blockName": "page-header",
+         "children": [
+          {
+           "baseStyles": {
+            "alignItems": "center",
+            "display": "flex",
+            "flexDirection": "row",
+            "gap": "8px",
+            "minWidth": "0px"
+           },
+           "blockName": "title",
+           "children": [
+            {
+             "baseStyles": {
+              "color": "var(--ink-gray-9)",
+              "fontWeight": "600",
+              "whiteSpace": "nowrap"
+             },
+             "componentId": "TextBlock-my-tasks-008",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "fontSize": "text-lg",
+              "tag": "h1",
+              "text": "My tasks"
+             },
+             "componentSlots": {}
+            },
+            {
+             "baseStyles": {
+              "color": "var(--ink-gray-5)",
+              "whiteSpace": "nowrap"
+             },
+             "componentId": "TextBlock-my-tasks-009",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "fontSize": "text-sm",
+              "tag": "span",
+              "text": "{{ today }}"
+             },
+             "componentSlots": {},
+             "visibilityCondition": "{{ showDate && !isMobile }}"
+            }
+           ],
+           "componentId": "box-my-tasks-010",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "originalElement": "div"
+          },
+          {
+           "baseStyles": {
+            "flex": "1"
+           },
+           "blockName": "spacer",
+           "componentId": "box-my-tasks-002",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "originalElement": "div"
+          },
+          {
+           "componentEvents": {
+            "click": {
+             "action": "Run Script",
+             "event": "click",
+             "script": "newTask()"
+            }
+           },
+           "componentId": "Button-my-tasks-003",
+           "componentName": "Button",
+           "componentProps": {
+            "iconLeft": "lucide-plus",
+            "label": "New task",
+            "theme": "gray",
+            "tooltip": "New task (C)",
+            "variant": "solid"
+           },
+           "componentSlots": {},
+           "visibilityCondition": "{{ !isMobile }}"
+          },
+          {
+           "componentEvents": {
+            "click": {
+             "action": "Run Script",
+             "event": "click",
+             "script": "openNotifications()"
+            }
+           },
+           "componentId": "Button-my-tasks-004",
+           "componentName": "Button",
+           "componentProps": {
+            "aria-label": "Notifications",
+            "iconLeft": "lucide-bell",
+            "label": "{{ needsLabel }}",
+            "variant": "ghost"
+           },
+           "componentSlots": {},
+           "visibilityCondition": "{{ isMobile }}"
+          },
+          {
+           "componentEvents": {
+            "click": {
+             "action": "Run Script",
+             "event": "click",
+             "script": "openSearch()"
+            }
+           },
+           "componentId": "Button-my-tasks-005",
+           "componentName": "Button",
+           "componentProps": {
+            "aria-label": "Search",
+            "icon": "lucide-search",
+            "variant": "ghost"
+           },
+           "componentSlots": {},
+           "visibilityCondition": "{{ isMobile }}"
+          },
+          {
+           "componentId": "Dropdown-my-tasks-006",
+           "componentName": "Dropdown",
+           "componentProps": {
+            "align": "end",
+            "button": {
+             "aria-label": "Account menu",
+             "icon": "lucide-circle-user",
+             "variant": "ghost"
+            },
+            "options": "{{ accountMenu }}"
+           },
+           "componentSlots": {},
+           "visibilityCondition": "{{ isMobile }}"
+          }
+         ],
+         "componentId": "header-my-tasks-007",
+         "componentName": "header",
+         "componentProps": {},
+         "componentSlots": {},
+         "mobileStyles": {
+          "padding": "0px 12px"
+         },
+         "originalElement": "header"
+        },
+        {
+         "baseStyles": {
+          "flex": "1",
+          "minHeight": "0px",
+          "overflowY": "auto",
+          "width": "100%"
+         },
+         "blockName": "body",
+         "children": [
+          {
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "column",
+            "padding": "16px 20px 96px",
+            "width": "100%"
+           },
+           "children": [
+            {
+             "baseStyles": {
+              "display": "flex",
+              "flexDirection": "column",
+              "flexWrap": "nowrap",
+              "gap": "0px",
+              "width": "100%"
+             },
+             "blockName": "workspace-invites",
+             "children": [
+              {
+               "baseStyles": {
+                "alignItems": "center",
+                "backgroundColor": "var(--surface-gray-2)",
+                "borderRadius": "10px",
+                "display": "flex",
+                "flexDirection": "row",
+                "flexWrap": "wrap",
+                "gap": "8px",
+                "marginBottom": "16px",
+                "padding": "12px",
+                "width": "100%"
+               },
+               "blockName": "workspace-invite",
+               "children": [
+                {
+                 "baseStyles": {
+                  "color": "var(--ink-gray-6)"
+                 },
+                 "componentId": "Icon-my-tasks-011",
+                 "componentName": "Icon",
+                 "componentProps": {
+                  "class": "size-4",
+                  "icon": "lucide-mail"
+                 },
+                 "componentSlots": {}
+                },
+                {
+                 "baseStyles": {
+                  "color": "var(--ink-gray-8)",
+                  "flex": "1",
+                  "minWidth": "0px"
+                 },
+                 "componentId": "TextBlock-my-tasks-012",
+                 "componentName": "TextBlock",
+                 "componentProps": {
+                  "fontSize": "text-base",
+                  "tag": "p",
+                  "text": "{{ dataItem.text }}"
+                 },
+                 "componentSlots": {}
+                },
+                {
+                 "componentEvents": {
+                  "click": {
+                   "action": "Run Script",
+                   "event": "click",
+                   "script": "answerWs(dataItem.id, false)"
+                  }
+                 },
+                 "componentId": "Button-my-tasks-013",
+                 "componentName": "Button",
+                 "componentProps": {
+                  "label": "Decline",
+                  "size": "sm",
+                  "variant": "ghost"
+                 },
+                 "componentSlots": {}
+                },
+                {
+                 "componentEvents": {
+                  "click": {
+                   "action": "Run Script",
+                   "event": "click",
+                   "script": "answerWs(dataItem.id, true)"
+                  }
+                 },
+                 "componentId": "Button-my-tasks-014",
+                 "componentName": "Button",
+                 "componentProps": {
+                  "label": "Join",
+                  "size": "sm",
+                  "variant": "outline"
+                 },
+                 "componentSlots": {}
+                }
+               ],
+               "componentId": "box-my-tasks-015",
+               "componentName": "container",
+               "componentProps": {},
+               "componentSlots": {},
+               "originalElement": "div"
+              }
+             ],
+             "componentId": "Repeater-my-tasks-016",
+             "componentName": "Repeater",
+             "componentProps": {
+              "data": "{{ wsInvites }}",
+              "dataKey": "id"
+             },
+             "componentSlots": {},
+             "visibilityCondition": "{{ wsInvites.length }}"
+            },
+            {
+             "baseStyles": {
+              "alignItems": "center",
+              "borderColor": "var(--outline-gray-2)",
+              "borderRadius": "10px",
+              "borderStyle": "solid",
+              "borderWidth": "1px",
+              "display": "flex",
+              "flexDirection": "row",
+              "gap": "8px",
+              "marginBottom": "16px",
+              "padding": "10px 12px",
+              "width": "100%"
+             },
+             "blockName": "hint-can-create",
+             "children": [
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-6)"
+               },
+               "componentId": "Icon-my-tasks-017",
+               "componentName": "Icon",
+               "componentProps": {
+                "class": "size-4",
+                "icon": "lucide-folder-plus"
+               },
+               "componentSlots": {}
+              },
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-8)",
+                "flex": "1"
+               },
+               "componentId": "TextBlock-my-tasks-018",
+               "componentName": "TextBlock",
+               "componentProps": {
+                "fontSize": "text-p-sm",
+                "tag": "p",
+                "text": "You can now create projects."
+               },
+               "componentSlots": {}
+              },
+              {
+               "componentEvents": {
+                "click": {
+                 "action": "Run Script",
+                 "event": "click",
+                 "script": "createFromHint()"
+                }
+               },
+               "componentId": "Button-my-tasks-019",
+               "componentName": "Button",
+               "componentProps": {
+                "label": "Create project",
+                "size": "sm",
+                "variant": "subtle"
+               },
+               "componentSlots": {}
+              },
+              {
+               "componentEvents": {
+                "click": {
+                 "action": "Run Script",
+                 "event": "click",
+                 "script": "dismissCanCreate()"
+                }
+               },
+               "componentId": "Button-my-tasks-020",
+               "componentName": "Button",
+               "componentProps": {
+                "aria-label": "Dismiss",
+                "icon": "lucide-x",
+                "size": "sm",
+                "variant": "ghost"
+               },
+               "componentSlots": {}
+              }
+             ],
+             "componentId": "box-my-tasks-021",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "originalElement": "div",
+             "visibilityCondition": "{{ showCanCreate }}"
+            },
+            {
+             "blockName": "toolbar",
+             "componentId": "FilterSortBar-my-tasks-022",
+             "componentName": "FilterSortBar",
+             "componentProps": {
+              "fields": "{{ filterFields }}",
+              "groups": "{{ groupChoicesShown }}",
+              "labels": "{{ homeLabels }}",
+              "modelValue": {
+               "$type": "variable",
+               "name": "homeFilters"
+              },
+              "preset": {
+               "$type": "variable",
+               "name": "homeChip"
+              },
+              "presets": "{{ tabs }}"
+             },
+             "componentSlots": {
+              "view": {
+               "slotContent": [
+                {
+                 "baseStyles": {
+                  "flexShrink": "0"
+                 },
+                 "blockName": "view-switch",
+                 "componentId": "Dropdown-my-tasks-023",
+                 "componentName": "Dropdown",
+                 "componentProps": {
+                  "button": "{{ viewButton }}",
+                  "options": "{{ viewMenu }}"
+                 },
+                 "componentSlots": {},
+                 "parentSlotName": "view"
+                }
+               ],
+               "slotName": "view"
+              }
+             },
+             "isCustomVueComponent": true,
+             "visibilityCondition": "{{ showToolbar }}"
+            },
+            {
+             "baseStyles": {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "column",
+              "gap": "4px",
+              "padding": "24px 0px",
+              "textAlign": "center",
+              "width": "100%"
+             },
+             "blockName": "no-match",
+             "children": [
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-8)",
+                "fontWeight": "500"
+               },
+               "componentId": "TextBlock-my-tasks-024",
+               "componentName": "TextBlock",
+               "componentProps": {
+                "fontSize": "text-base",
+                "tag": "p",
+                "text": "No tasks match"
+               },
+               "componentSlots": {}
+              },
+              {
+               "baseStyles": {
+                "marginTop": "8px"
+               },
+               "componentEvents": {
+                "click": {
+                 "action": "Run Script",
+                 "event": "click",
+                 "script": "clearFilters()"
+                }
+               },
+               "componentId": "Button-my-tasks-025",
+               "componentName": "Button",
+               "componentProps": {
+                "label": "Clear filters",
+                "variant": "subtle"
+               },
+               "componentSlots": {}
+              }
+             ],
+             "componentId": "box-my-tasks-026",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "originalElement": "div",
+             "visibilityCondition": "{{ noMatch }}"
+            },
+            {
+             "baseStyles": {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "column",
+              "padding": "64px 0px",
+              "textAlign": "center",
+              "width": "100%"
+             },
+             "blockName": "empty-state",
+             "children": [
+              {
+               "baseStyles": {
+                "alignItems": "center",
+                "backgroundColor": "var(--surface-gray-2)",
+                "borderRadius": "9999px",
+                "display": "flex",
+                "flexDirection": "row",
+                "height": "56px",
+                "justifyContent": "center",
+                "marginBottom": "16px",
+                "width": "56px"
+               },
+               "children": [
+                {
+                 "baseStyles": {
+                  "color": "var(--ink-gray-6)"
+                 },
+                 "componentId": "Icon-my-tasks-030",
+                 "componentName": "Icon",
+                 "componentProps": {
+                  "class": "size-6",
+                  "icon": "lucide-list-checks"
+                 },
+                 "componentSlots": {}
+                }
+               ],
+               "componentId": "box-my-tasks-031",
+               "componentName": "container",
+               "componentProps": {},
+               "componentSlots": {},
+               "originalElement": "div"
+              },
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-9)",
+                "fontWeight": "500"
+               },
+               "componentId": "TextBlock-my-tasks-032",
+               "componentName": "TextBlock",
+               "componentProps": {
+                "fontSize": "text-lg",
+                "tag": "p",
+                "text": "{{ noTasksTitle }}"
+               },
+               "componentSlots": {}
+              },
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-5)",
+                "marginTop": "6px",
+                "maxWidth": "384px",
+                "textWrap": "balance"
+               },
+               "componentId": "TextBlock-my-tasks-033",
+               "componentName": "TextBlock",
+               "componentProps": {
+                "fontSize": "text-p-base",
+                "tag": "p",
+                "text": "{{ noTasksText }}"
+               },
+               "componentSlots": {}
+              },
+              {
+               "baseStyles": {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+                "flexWrap": "wrap",
+                "gap": "8px",
+                "justifyContent": "center",
+                "marginTop": "20px"
+               },
+               "children": [
+                {
+                 "componentEvents": {
+                  "click": {
+                   "action": "Run Script",
+                   "event": "click",
+                   "script": "newTask()"
+                  }
+                 },
+                 "componentId": "Button-my-tasks-027",
+                 "componentName": "Button",
+                 "componentProps": {
+                  "iconLeft": "lucide-plus",
+                  "label": "Create",
+                  "variant": "subtle"
+                 },
+                 "componentSlots": {}
+                },
+                {
+                 "componentEvents": {
+                  "click": {
+                   "action": "Run Script",
+                   "event": "click",
+                   "script": "importFrom('file')"
+                  }
+                 },
+                 "componentId": "Button-my-tasks-028",
+                 "componentName": "Button",
+                 "componentProps": {
+                  "iconLeft": "lucide-import",
+                  "label": "Import",
+                  "variant": "subtle"
+                 },
+                 "componentSlots": {}
+                },
+                {
+                 "componentEvents": {
+                  "click": {
+                   "action": "Run Script",
+                   "event": "click",
+                   "script": "importFrom('github')"
+                  }
+                 },
+                 "componentId": "Button-my-tasks-029",
+                 "componentName": "Button",
+                 "componentProps": {
+                  "iconLeft": "lucide-github",
+                  "label": "Import from GitHub",
+                  "variant": "outline"
+                 },
+                 "componentSlots": {}
+                }
+               ],
+               "componentId": "box-my-tasks-034",
+               "componentName": "container",
+               "componentProps": {},
+               "componentSlots": {},
+               "originalElement": "div"
+              }
+             ],
+             "componentId": "box-my-tasks-035",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "originalElement": "div",
+             "visibilityCondition": "{{ noTasks }}"
+            },
+            {
+             "baseStyles": {
+              "marginTop": "16px",
+              "minWidth": "min-content",
+              "width": "100%"
+             },
+             "blockName": "task-list",
+             "componentId": "MyTasksList-my-tasks-036",
+             "componentName": "MyTasksList",
+             "componentProps": {},
+             "componentSlots": {},
+             "isCustomVueComponent": true,
+             "visibilityCondition": "{{ hasTasks }}"
+            },
+            {
+             "baseStyles": {
+              "marginTop": "16px",
+              "width": "100%"
+             },
+             "blockName": "task-list-blocks",
+             "children": [
+              {
+               "children": [
+                {
+                 "children": [
+                  {
+                   "baseStyles": {
+                    "color": "var(--ink-gray-5)"
+                   },
+                   "componentId": "TextBlock-tl-blocks-001",
+                   "componentName": "TextBlock",
+                   "componentProps": {
+                    "fontSize": "text-sm",
+                    "tag": "span",
+                    "text": "Task"
+                   },
+                   "componentSlots": {}
+                  }
+                 ],
+                 "componentId": "ListHeaderCell-tl-blocks-002",
+                 "componentName": "ListHeaderCell",
+                 "componentProps": {},
+                 "componentSlots": {}
+                },
+                {
+                 "children": [
+                  {
+                   "baseStyles": {
+                    "color": "var(--ink-gray-5)"
+                   },
+                   "componentId": "TextBlock-tl-blocks-003",
+                   "componentName": "TextBlock",
+                   "componentProps": {
+                    "fontSize": "text-sm",
+                    "tag": "span",
+                    "text": "Project"
+                   },
+                   "componentSlots": {}
+                  }
+                 ],
+                 "classes": [
+                  "hidden",
+                  "md:flex"
+                 ],
+                 "componentId": "ListHeaderCell-tl-blocks-004",
+                 "componentName": "ListHeaderCell",
+                 "componentProps": {},
+                 "componentSlots": {},
+                 "visibilityCondition": "{{ btShowProject }}"
+                },
+                {
+                 "children": [
+                  {
+                   "baseStyles": {
+                    "color": "var(--ink-gray-5)"
+                   },
+                   "componentId": "TextBlock-tl-blocks-005",
+                   "componentName": "TextBlock",
+                   "componentProps": {
+                    "fontSize": "text-sm",
+                    "tag": "span",
+                    "text": "Status"
+                   },
+                   "componentSlots": {}
+                  }
+                 ],
+                 "classes": [
+                  "hidden",
+                  "md:flex"
+                 ],
+                 "componentId": "ListHeaderCell-tl-blocks-006",
+                 "componentName": "ListHeaderCell",
+                 "componentProps": {},
+                 "componentSlots": {}
+                },
+                {
+                 "children": [
+                  {
+                   "baseStyles": {
+                    "color": "var(--ink-gray-5)"
+                   },
+                   "componentId": "TextBlock-tl-blocks-007",
+                   "componentName": "TextBlock",
+                   "componentProps": {
+                    "fontSize": "text-sm",
+                    "tag": "span",
+                    "text": "Priority"
+                   },
+                   "componentSlots": {}
+                  }
+                 ],
+                 "classes": [
+                  "hidden",
+                  "md:flex"
+                 ],
+                 "componentId": "ListHeaderCell-tl-blocks-008",
+                 "componentName": "ListHeaderCell",
+                 "componentProps": {},
+                 "componentSlots": {}
+                },
+                {
+                 "children": [
+                  {
+                   "baseStyles": {
+                    "color": "var(--ink-gray-5)"
+                   },
+                   "componentId": "TextBlock-tl-blocks-009",
+                   "componentName": "TextBlock",
+                   "componentProps": {
+                    "fontSize": "text-sm",
+                    "tag": "span",
+                    "text": "Due date"
+                   },
+                   "componentSlots": {}
+                  }
+                 ],
+                 "componentId": "ListHeaderCell-tl-blocks-010",
+                 "componentName": "ListHeaderCell",
+                 "componentProps": {},
+                 "componentSlots": {}
+                },
+                {
+                 "componentId": "ListHeaderCell-tl-blocks-011",
+                 "componentName": "ListHeaderCell",
+                 "componentProps": {},
+                 "componentSlots": {}
+                }
+               ],
+               "componentId": "ListHeader-tl-blocks-012",
+               "componentName": "ListHeader",
+               "componentProps": {},
+               "componentSlots": {}
+              },
+              {
+               "baseStyles": {
+                "display": "contents"
+               },
+               "blockName": "groups",
+               "children": [
+                {
+                 "baseStyles": {
+                  "marginTop": "8px"
+                 },
+                 "children": [
+                  {
+                   "componentId": "ListRows-tl-blocks-045",
+                   "componentName": "ListRows",
+                   "componentProps": {
+                    "items": "{{ dataItem.items }}"
+                   },
+                   "componentSlots": {
+                    "default": {
+                     "slotContent": [
+                      {
+                       "baseStyles": {
+                        "minHeight": "40px"
+                       },
+                       "blockName": "task-row",
+                       "children": [
+                        {
+                         "baseStyles": {
+                          "gap": "8px",
+                          "minWidth": "0px"
+                         },
+                         "children": [
+                          {
+                           "baseStyles": {
+                            "alignItems": "center",
+                            "display": "flex",
+                            "flexDirection": "row",
+                            "gap": "6px",
+                            "minWidth": "0px",
+                            "width": "100%"
+                           },
+                           "blockName": "task-title",
+                           "children": [
+                            {
+                             "baseStyles": {
+                              "color": "{{ item.titleColor }}",
+                              "minWidth": "0px",
+                              "overflow": "hidden",
+                              "textDecoration": "{{ item.titleLine }}",
+                              "textOverflow": "ellipsis",
+                              "whiteSpace": "nowrap"
+                             },
+                             "componentId": "TextBlock-tl-blocks-015",
+                             "componentName": "TextBlock",
+                             "componentProps": {
+                              "fontSize": "text-base",
+                              "tag": "span",
+                              "text": "{{ item.title }}"
+                             },
+                             "componentSlots": {}
+                            },
+                            {
+                             "componentEvents": {
+                              "click.stop": {
+                               "action": "Run Script",
+                               "event": "click.stop",
+                               "script": "btToggleSubs(item.name)"
+                              }
+                             },
+                             "componentId": "Button-tl-blocks-016",
+                             "componentName": "Button",
+                             "componentProps": {
+                              "aria-label": "Subtasks",
+                              "iconLeft": "lucide-list-checks",
+                              "iconRight": "{{ item.subIcon }}",
+                              "label": "{{ item.subLabel }}",
+                              "size": "sm",
+                              "variant": "ghost"
+                             },
+                             "componentSlots": {},
+                             "visibilityCondition": "{{ item.hasSubs }}"
+                            }
+                           ],
+                           "componentId": "box-tl-blocks-017",
+                           "componentName": "container",
+                           "componentProps": {},
+                           "componentSlots": {},
+                           "originalElement": "div",
+                           "visibilityCondition": "{{ item.kind === 'task' }}"
+                          },
+                          {
+                           "baseStyles": {
+                            "alignItems": "center",
+                            "display": "flex",
+                            "flexDirection": "row",
+                            "gap": "8px",
+                            "minWidth": "0px",
+                            "paddingLeft": "24px",
+                            "width": "100%"
+                           },
+                           "blockName": "subtask",
+                           "children": [
+                            {
+                             "children": [
+                              {
+                               "componentEvents": {
+                                "update:modelValue": {
+                                 "action": "Run Script",
+                                 "event": "update:modelValue",
+                                 "script": "btTickSub(item.taskId, item.subId)"
+                                }
+                               },
+                               "componentId": "Checkbox-tl-blocks-013",
+                               "componentName": "Checkbox",
+                               "componentProps": {
+                                "disabled": "{{ !item.canTick }}",
+                                "modelValue": "{{ item.done }}"
+                               },
+                               "componentSlots": {}
+                              }
+                             ],
+                             "componentEvents": {
+                              "click.stop": {
+                               "action": "Run Script",
+                               "event": "click.stop",
+                               "script": "void 0"
+                              }
+                             },
+                             "componentId": "box-tl-blocks-014",
+                             "componentName": "container",
+                             "componentProps": {},
+                             "componentSlots": {},
+                             "originalElement": "div"
+                            },
+                            {
+                             "baseStyles": {
+                              "color": "{{ item.titleColor }}",
+                              "minWidth": "0px",
+                              "overflow": "hidden",
+                              "textDecoration": "{{ item.titleLine }}",
+                              "textOverflow": "ellipsis",
+                              "whiteSpace": "nowrap"
+                             },
+                             "componentId": "TextBlock-tl-blocks-018",
+                             "componentName": "TextBlock",
+                             "componentProps": {
+                              "fontSize": "text-sm",
+                              "tag": "span",
+                              "text": "{{ item.title }}"
+                             },
+                             "componentSlots": {}
+                            }
+                           ],
+                           "componentId": "box-tl-blocks-019",
+                           "componentName": "container",
+                           "componentProps": {},
+                           "componentSlots": {},
+                           "originalElement": "div",
+                           "visibilityCondition": "{{ item.kind === 'sub' }}"
+                          },
+                          {
+                           "baseStyles": {
+                            "paddingLeft": "24px",
+                            "width": "100%"
+                           },
+                           "blockName": "add-subtask",
+                           "children": [
+                            {
+                             "baseStyles": {
+                              "width": "100%"
+                             },
+                             "componentEvents": {
+                              "keydown.enter": {
+                               "action": "Run Script",
+                               "event": "keydown.enter",
+                               "script": "btSaveSub(item.taskId, eventArgs[0])"
+                              },
+                              "keydown.esc": {
+                               "action": "Run Script",
+                               "event": "keydown.esc",
+                               "script": "btCancelSub()"
+                              }
+                             },
+                             "componentId": "FormControl-tl-blocks-020",
+                             "componentName": "FormControl",
+                             "componentProps": {
+                              "aria-label": "New subtask",
+                              "placeholder": "Add a subtask and press Enter",
+                              "type": "text"
+                             },
+                             "componentSlots": {}
+                            }
+                           ],
+                           "componentEvents": {
+                            "click.stop": {
+                             "action": "Run Script",
+                             "event": "click.stop",
+                             "script": "void 0"
+                            }
+                           },
+                           "componentId": "box-tl-blocks-021",
+                           "componentName": "container",
+                           "componentProps": {
+                            "data-subadd": "1"
+                           },
+                           "componentSlots": {},
+                           "originalElement": "div",
+                           "visibilityCondition": "{{ item.kind === 'addsub' }}"
+                          }
+                         ],
+                         "componentId": "ListCell-tl-blocks-022",
+                         "componentName": "ListCell",
+                         "componentProps": {},
+                         "componentSlots": {}
+                        },
+                        {
+                         "baseStyles": {
+                          "gap": "6px",
+                          "minWidth": "0px"
+                         },
+                         "children": [
+                          {
+                           "baseStyles": {
+                            "alignItems": "center",
+                            "display": "flex",
+                            "flexDirection": "row",
+                            "gap": "6px",
+                            "minWidth": "0px"
+                           },
+                           "children": [
+                            {
+                             "baseStyles": {
+                              "color": "var(--ink-gray-5)"
+                             },
+                             "componentId": "Icon-tl-blocks-023",
+                             "componentName": "Icon",
+                             "componentProps": {
+                              "class": "size-4",
+                              "icon": "{{ item.projectIcon }}"
+                             },
+                             "componentSlots": {},
+                             "visibilityCondition": "{{ item.projectIcon }}"
+                            },
+                            {
+                             "baseStyles": {
+                              "color": "{{ item.projectColor }}",
+                              "overflow": "hidden",
+                              "textOverflow": "ellipsis",
+                              "whiteSpace": "nowrap"
+                             },
+                             "componentId": "TextBlock-tl-blocks-024",
+                             "componentName": "TextBlock",
+                             "componentProps": {
+                              "fontSize": "text-sm",
+                              "tag": "span",
+                              "text": "{{ item.project }}"
+                             },
+                             "componentSlots": {}
+                            }
+                           ],
+                           "componentId": "box-tl-blocks-025",
+                           "componentName": "container",
+                           "componentProps": {},
+                           "componentSlots": {},
+                           "originalElement": "div",
+                           "visibilityCondition": "{{ item.kind === 'task' }}"
+                          }
+                         ],
+                         "classes": [
+                          "hidden",
+                          "md:flex"
+                         ],
+                         "componentId": "ListCell-tl-blocks-026",
+                         "componentName": "ListCell",
+                         "componentProps": {},
+                         "componentSlots": {},
+                         "visibilityCondition": "{{ btShowProject }}"
+                        },
+                        {
+                         "children": [
+                          {
+                           "children": [
+                            {
+                             "componentId": "StatusControl-tl-blocks-027",
+                             "componentName": "StatusControl",
+                             "componentProps": {
+                              "cell": true,
+                              "task": "{{ item.task }}"
+                             },
+                             "componentSlots": {},
+                             "isCustomVueComponent": true
+                            }
+                           ],
+                           "componentEvents": {
+                            "click.stop": {
+                             "action": "Run Script",
+                             "event": "click.stop",
+                             "script": "void 0"
+                            }
+                           },
+                           "componentId": "box-tl-blocks-028",
+                           "componentName": "container",
+                           "componentProps": {},
+                           "componentSlots": {},
+                           "originalElement": "div",
+                           "visibilityCondition": "{{ item.kind === 'task' }}"
+                          }
+                         ],
+                         "classes": [
+                          "hidden",
+                          "md:flex"
+                         ],
+                         "componentId": "ListCell-tl-blocks-029",
+                         "componentName": "ListCell",
+                         "componentProps": {},
+                         "componentSlots": {}
+                        },
+                        {
+                         "children": [
+                          {
+                           "children": [
+                            {
+                             "componentId": "Dropdown-tl-blocks-032",
+                             "componentName": "Dropdown",
+                             "componentProps": {
+                              "options": "{{ btPrioMenu(item.name) }}"
+                             },
+                             "componentSlots": {
+                              "default": {
+                               "slotContent": [
+                                {
+                                 "baseStyles": {
+                                  "alignItems": "center",
+                                  "borderRadius": "6px",
+                                  "cursor": "pointer",
+                                  "display": "flex",
+                                  "flexDirection": "row",
+                                  "gap": "6px",
+                                  "height": "auto",
+                                  "padding": "4px 8px",
+                                  "width": "auto"
+                                 },
+                                 "blockName": "priority-trigger",
+                                 "children": [
+                                  {
+                                   "baseStyles": {
+                                    "backgroundColor": "{{ item.prioDot }}",
+                                    "borderRadius": "9999px",
+                                    "height": "6px",
+                                    "width": "6px"
+                                   },
+                                   "componentId": "box-tl-blocks-030",
+                                   "componentName": "container",
+                                   "componentProps": {},
+                                   "componentSlots": {},
+                                   "originalElement": "div"
+                                  },
+                                  {
+                                   "baseStyles": {
+                                    "color": "var(--ink-gray-8)"
+                                   },
+                                   "componentId": "TextBlock-tl-blocks-prio-label",
+                                   "componentName": "TextBlock",
+                                   "componentProps": {
+                                    "fontSize": "text-sm",
+                                    "tag": "span",
+                                    "text": "{{ item.prioShort }}"
+                                   },
+                                   "componentSlots": {}
+                                  }
+                                 ],
+                                 "classes": [
+                                  "hover:bg-surface-gray-2"
+                                 ],
+                                 "componentId": "box-tl-blocks-prio-trigger",
+                                 "componentName": "container",
+                                 "componentProps": {
+                                  "aria-label": "Priority: {{ item.prioWord }}. Change",
+                                  "role": "button",
+                                  "tabindex": "0"
+                                 },
+                                 "componentSlots": {},
+                                 "originalElement": "div",
+                                 "parentSlotName": "default"
+                                }
+                               ],
+                               "slotName": "default"
+                              }
+                             },
+                             "visibilityCondition": "{{ item.canPrio }}"
+                            },
+                            {
+                             "baseStyles": {
+                              "alignItems": "center",
+                              "display": "flex",
+                              "flexDirection": "row",
+                              "gap": "6px",
+                              "padding": "0px 8px"
+                             },
+                             "children": [
+                              {
+                               "baseStyles": {
+                                "backgroundColor": "{{ item.prioDot }}",
+                                "borderRadius": "9999px",
+                                "height": "6px",
+                                "width": "6px"
+                               },
+                               "componentId": "box-tl-blocks-030",
+                               "componentName": "container",
+                               "componentProps": {},
+                               "componentSlots": {},
+                               "originalElement": "div",
+                               "parentSlotName": "prefix"
+                              },
+                              {
+                               "baseStyles": {
+                                "color": "var(--ink-gray-7)"
+                               },
+                               "componentId": "TextBlock-tl-blocks-033",
+                               "componentName": "TextBlock",
+                               "componentProps": {
+                                "fontSize": "text-sm",
+                                "tag": "span",
+                                "text": "{{ item.prioShort }}"
+                               },
+                               "componentSlots": {}
+                              }
+                             ],
+                             "componentId": "box-tl-blocks-034",
+                             "componentName": "container",
+                             "componentProps": {},
+                             "componentSlots": {},
+                             "originalElement": "div",
+                             "visibilityCondition": "{{ !item.canPrio }}"
+                            }
+                           ],
+                           "componentEvents": {
+                            "click.stop": {
+                             "action": "Run Script",
+                             "event": "click.stop",
+                             "script": "void 0"
+                            }
+                           },
+                           "componentId": "box-tl-blocks-035",
+                           "componentName": "container",
+                           "componentProps": {},
+                           "componentSlots": {},
+                           "originalElement": "div",
+                           "visibilityCondition": "{{ item.kind === 'task' }}"
+                          }
+                         ],
+                         "classes": [
+                          "hidden",
+                          "md:flex"
+                         ],
+                         "componentId": "ListCell-tl-blocks-036",
+                         "componentName": "ListCell",
+                         "componentProps": {},
+                         "componentSlots": {}
+                        },
+                        {
+                         "children": [
+                          {
+                           "baseStyles": {
+                            "color": "{{ item.dueColor }}",
+                            "whiteSpace": "nowrap"
+                           },
+                           "componentId": "TextBlock-tl-blocks-037",
+                           "componentName": "TextBlock",
+                           "componentProps": {
+                            "fontSize": "text-sm",
+                            "tag": "span",
+                            "text": "{{ item.dueText }}"
+                           },
+                           "componentSlots": {},
+                           "visibilityCondition": "{{ item.kind === 'task' }}"
+                          }
+                         ],
+                         "componentId": "ListCell-tl-blocks-038",
+                         "componentName": "ListCell",
+                         "componentProps": {},
+                         "componentSlots": {}
+                        },
+                        {
+                         "baseStyles": {
+                          "justifyContent": "center"
+                         },
+                         "children": [
+                          {
+                           "children": [
+                            {
+                             "componentId": "Dropdown-tl-blocks-039",
+                             "componentName": "Dropdown",
+                             "componentProps": {
+                              "align": "end",
+                              "button": {
+                               "aria-label": "Task actions",
+                               "icon": "lucide-ellipsis",
+                               "size": "sm",
+                               "variant": "ghost"
+                              },
+                              "options": "{{ btRowMenu(item.name) }}"
+                             },
+                             "componentSlots": {}
+                            }
+                           ],
+                           "componentEvents": {
+                            "click.stop": {
+                             "action": "Run Script",
+                             "event": "click.stop",
+                             "script": "void 0"
+                            }
+                           },
+                           "componentId": "box-tl-blocks-040",
+                           "componentName": "container",
+                           "componentProps": {},
+                           "componentSlots": {},
+                           "originalElement": "div",
+                           "visibilityCondition": "{{ item.kind === 'task' }}"
+                          },
+                          {
+                           "children": [
+                            {
+                             "componentEvents": {
+                              "click": {
+                               "action": "Run Script",
+                               "event": "click",
+                               "script": "btPromote(item.taskId, item.subId)"
+                              }
+                             },
+                             "componentId": "Button-tl-blocks-041",
+                             "componentName": "Button",
+                             "componentProps": {
+                              "aria-label": "Turn into a task",
+                              "icon": "lucide-arrow-up-right",
+                              "size": "sm",
+                              "tooltip": "Turn into a task",
+                              "variant": "ghost"
+                             },
+                             "componentSlots": {}
+                            }
+                           ],
+                           "componentEvents": {
+                            "click.stop": {
+                             "action": "Run Script",
+                             "event": "click.stop",
+                             "script": "void 0"
+                            }
+                           },
+                           "componentId": "box-tl-blocks-042",
+                           "componentName": "container",
+                           "componentProps": {},
+                           "componentSlots": {},
+                           "originalElement": "div",
+                           "visibilityCondition": "{{ item.kind === 'sub' && item.canPromote }}"
+                          }
+                         ],
+                         "componentId": "ListCell-tl-blocks-043",
+                         "componentName": "ListCell",
+                         "componentProps": {},
+                         "componentSlots": {}
+                        }
+                       ],
+                       "componentId": "ListRow-tl-blocks-044",
+                       "componentName": "ListRow",
+                       "componentProps": {
+                        "value": "{{ value }}"
+                       },
+                       "componentSlots": {},
+                       "parentSlotName": "default"
+                      }
+                     ],
+                     "slotName": "default"
+                    }
+                   }
+                  },
+                  {
+                   "baseStyles": {
+                    "alignItems": "center",
+                    "borderColor": "var(--outline-gray-1)",
+                    "borderStyle": "solid",
+                    "borderWidth": "0px 0px 1px 0px",
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "gap": "8px",
+                    "padding": "6px 12px"
+                   },
+                   "blockName": "add-task",
+                   "children": [
+                    {
+                     "baseStyles": {
+                      "color": "var(--ink-gray-5)"
+                     },
+                     "componentId": "Icon-tl-blocks-050",
+                     "componentName": "Icon",
+                     "componentProps": {
+                      "class": "size-4",
+                      "icon": "lucide-plus"
+                     },
+                     "componentSlots": {}
+                    },
+                    {
+                     "baseStyles": {
+                      "flex": "1"
+                     },
+                     "componentEvents": {
+                      "keydown.enter": {
+                       "action": "Run Script",
+                       "event": "keydown.enter",
+                       "script": "btAdd(dataItem.key, eventArgs[0])"
+                      }
+                     },
+                     "componentId": "FormControl-tl-blocks-051",
+                     "componentName": "FormControl",
+                     "componentProps": {
+                      "aria-label": "New task",
+                      "placeholder": "Add a task",
+                      "type": "text"
+                     },
+                     "componentSlots": {}
+                    }
+                   ],
+                   "componentId": "box-tl-blocks-052",
+                   "componentName": "container",
+                   "componentProps": {},
+                   "componentSlots": {},
+                   "originalElement": "div",
+                   "visibilityCondition": "{{ dataItem.canAdd }}"
+                  }
+                 ],
+                 "componentId": "ListGroup-tl-blocks-053",
+                 "componentName": "ListGroup",
+                 "componentProps": {},
+                 "componentSlots": {
+                  "label": {
+                   "slotContent": [
+                    {
+                     "baseStyles": {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "gap": "6px"
+                     },
+                     "children": [
+                      {
+                       "componentEvents": {
+                        "click": {
+                         "action": "Run Script",
+                         "event": "click",
+                         "script": "btToggleGroup(dataItem.key)"
+                        }
+                       },
+                       "componentId": "Button-tl-blocks-046",
+                       "componentName": "Button",
+                       "componentProps": {
+                        "aria-label": "Fold group",
+                        "icon": "{{ dataItem.chevron }}",
+                        "size": "sm",
+                        "variant": "ghost"
+                       },
+                       "componentSlots": {}
+                      },
+                      {
+                       "baseStyles": {
+                        "color": "var(--ink-gray-8)",
+                        "fontWeight": "500"
+                       },
+                       "componentId": "TextBlock-tl-blocks-047",
+                       "componentName": "TextBlock",
+                       "componentProps": {
+                        "fontSize": "text-base",
+                        "tag": "span",
+                        "text": "{{ dataItem.label }}"
+                       },
+                       "componentSlots": {}
+                      },
+                      {
+                       "baseStyles": {
+                        "color": "var(--ink-gray-5)",
+                        "fontVariantNumeric": "tabular-nums"
+                       },
+                       "componentId": "TextBlock-tl-blocks-048",
+                       "componentName": "TextBlock",
+                       "componentProps": {
+                        "fontSize": "text-sm",
+                        "tag": "span",
+                        "text": "{{ dataItem.count }}"
+                       },
+                       "componentSlots": {}
+                      }
+                     ],
+                     "componentId": "box-tl-blocks-049",
+                     "componentName": "container",
+                     "componentProps": {},
+                     "componentSlots": {},
+                     "originalElement": "div",
+                     "parentSlotName": "label"
+                    }
+                   ],
+                   "slotName": "label"
+                  }
+                 }
+                }
+               ],
+               "componentId": "Repeater-tl-blocks-054",
+               "componentName": "Repeater",
+               "componentProps": {
+                "data": "{{ btGroups }}",
+                "dataKey": "key"
+               },
+               "componentSlots": {}
+              }
+             ],
+             "componentId": "List-tl-blocks-055",
+             "componentName": "List",
+             "componentProps": {
+              "active": {
+               "$type": "variable",
+               "name": "btActive"
+              },
+              "columns": "{{ btColumns }}",
+              "divider": "full"
+             },
+             "componentSlots": {},
+             "visibilityCondition": "{{ blockList }}"
+            }
+           ],
+           "componentId": "box-my-tasks-037",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "mobileStyles": {
+            "padding": "16px 12px 96px"
+           },
+           "originalElement": "div"
+          }
+         ],
+         "componentId": "box-my-tasks-038",
+         "componentName": "container",
+         "componentProps": {},
+         "componentSlots": {},
+         "originalElement": "div"
+        }
+       ],
+       "componentId": "box-my-tasks-039",
+       "componentName": "container",
+       "componentProps": {},
+       "componentSlots": {},
+       "originalElement": "div"
+      },
+      {
+       "componentId": "DesignChoice-my-tasks-task-list-frappe",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "group",
+        "v": "frappe"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "DesignChoice-my-tasks-own-tasks-icon-p",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "ownPlace",
+        "v": "icon"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "DesignChoice-my-tasks-filter-bar-search",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "taskSearch",
+        "v": "on"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "DesignChoice-my-tasks-group-headers-heading",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "tableGroup",
+        "v": "heading"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "DesignChoice-my-tasks-panel-layout-crm",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "panel",
+        "v": "crm"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "DesignChoice-my-tasks-empty-values-not-set",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "emptyValue",
+        "v": "notset"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "DesignChoice-my-tasks-notification-list-full-dividers",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "notifList",
+        "v": "full"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "notifications_panel-my-tasks",
+       "componentName": "notifications_panel",
+       "componentProps": {},
+       "componentSlots": {},
+       "isStudioComponent": true
+      }
+     ],
+     "componentId": "AppShell-my-tasks",
+     "componentName": "AppShell",
+     "componentProps": {
+      "bare": false
+     },
+     "componentSlots": {
+      "sidebar": {
+       "slotContent": [
+        {
+         "componentId": "app_sidebar-my-tasks",
+         "componentName": "app_sidebar",
+         "componentProps": {},
+         "componentSlots": {},
+         "isStudioComponent": true,
+         "parentSlotName": "sidebar"
+        }
+       ],
+       "slotName": "sidebar"
+      }
+     },
+     "isCustomVueComponent": true
+    }
+   ],
+   "componentId": "root",
+   "componentName": "div",
+   "componentProps": {},
+   "componentSlots": {},
+   "originalElement": "body"
+  }
+ ],
+ "creation": "2026-11-04 14:31:23.455584",
+ "docstatus": 0,
+ "doctype": "Studio Page",
+ "draft_blocks": [
+  {
+   "baseStyles": {
+    "display": "flex",
+    "flexDirection": "column",
+    "height": "100%",
+    "overflowX": "hidden",
+    "width": "100%"
+   },
+   "blockName": "body",
+   "children": [
+    {
+     "children": [
+      {
+       "baseStyles": {
+        "display": "flex",
+        "flexDirection": "column",
+        "height": "100%",
+        "minHeight": "0px",
+        "width": "100%"
+       },
+       "blockName": "page",
+       "children": [
+        {
+         "baseStyles": {
+          "alignItems": "center",
+          "backgroundColor": "var(--surface-base)",
+          "borderColor": "var(--outline-gray-1)",
+          "borderStyle": "solid",
+          "borderWidth": "0px 0px 1px 0px",
+          "display": "flex",
+          "flexDirection": "row",
+          "flexShrink": "0",
+          "gap": "8px",
+          "minHeight": "48px",
+          "padding": "0px 20px",
+          "width": "100%"
+         },
+         "blockName": "page-header",
+         "children": [
+          {
+           "baseStyles": {
+            "alignItems": "center",
+            "display": "flex",
+            "flexDirection": "row",
+            "gap": "8px",
+            "minWidth": "0px"
+           },
+           "blockName": "title",
+           "children": [
+            {
+             "baseStyles": {
+              "color": "var(--ink-gray-9)",
+              "fontWeight": "600",
+              "whiteSpace": "nowrap"
+             },
+             "componentId": "TextBlock-my-tasks-008",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "fontSize": "text-lg",
+              "tag": "h1",
+              "text": "My tasks"
+             },
+             "componentSlots": {}
+            }
+           ],
+           "componentId": "box-my-tasks-010",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "originalElement": "div"
+          },
+          {
+           "baseStyles": {
+            "flex": "1"
+           },
+           "blockName": "spacer",
+           "componentId": "box-my-tasks-002",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "originalElement": "div"
+          },
+          {
+           "componentEvents": {
+            "click": {
+             "action": "Run Script",
+             "event": "click",
+             "script": "newTask()"
+            }
+           },
+           "componentId": "Button-my-tasks-003",
+           "componentName": "Button",
+           "componentProps": {
+            "iconLeft": "lucide-plus",
+            "label": "New task",
+            "theme": "gray",
+            "tooltip": "New task (C)",
+            "variant": "solid"
+           },
+           "componentSlots": {},
+           "visibilityCondition": "{{ !isMobile }}"
+          },
+          {
+           "componentEvents": {
+            "click": {
+             "action": "Run Script",
+             "event": "click",
+             "script": "openNotifications()"
+            }
+           },
+           "componentId": "Button-my-tasks-004",
+           "componentName": "Button",
+           "componentProps": {
+            "aria-label": "Notifications",
+            "iconLeft": "lucide-bell",
+            "label": "{{ needsLabel }}",
+            "variant": "ghost"
+           },
+           "componentSlots": {},
+           "visibilityCondition": "{{ isMobile }}"
+          },
+          {
+           "componentEvents": {
+            "click": {
+             "action": "Run Script",
+             "event": "click",
+             "script": "openSearch()"
+            }
+           },
+           "componentId": "Button-my-tasks-005",
+           "componentName": "Button",
+           "componentProps": {
+            "aria-label": "Search",
+            "icon": "lucide-search",
+            "variant": "ghost"
+           },
+           "componentSlots": {},
+           "visibilityCondition": "{{ isMobile }}"
+          },
+          {
+           "componentId": "Dropdown-my-tasks-006",
+           "componentName": "Dropdown",
+           "componentProps": {
+            "align": "end",
+            "button": {
+             "aria-label": "Account menu",
+             "icon": "lucide-circle-user",
+             "variant": "ghost"
+            },
+            "options": "{{ accountMenu }}"
+           },
+           "componentSlots": {},
+           "visibilityCondition": "{{ isMobile }}"
+          }
+         ],
+         "componentId": "header-my-tasks-007",
+         "componentName": "header",
+         "componentProps": {},
+         "componentSlots": {},
+         "mobileStyles": {
+          "padding": "0px 12px"
+         },
+         "originalElement": "header"
+        },
+        {
+         "baseStyles": {
+          "flex": "1",
+          "minHeight": "0px",
+          "overflowY": "auto",
+          "width": "100%"
+         },
+         "blockName": "body",
+         "children": [
+          {
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "column",
+            "padding": "16px 20px 96px",
+            "width": "100%"
+           },
+           "children": [
+            {
+             "baseStyles": {
+              "display": "flex",
+              "flexDirection": "column",
+              "flexWrap": "nowrap",
+              "gap": "0px",
+              "width": "100%"
+             },
+             "blockName": "workspace-invites",
+             "children": [
+              {
+               "baseStyles": {
+                "alignItems": "center",
+                "backgroundColor": "var(--surface-gray-2)",
+                "borderRadius": "10px",
+                "display": "flex",
+                "flexDirection": "row",
+                "flexWrap": "wrap",
+                "gap": "8px",
+                "marginBottom": "16px",
+                "padding": "12px",
+                "width": "100%"
+               },
+               "blockName": "workspace-invite",
+               "children": [
+                {
+                 "baseStyles": {
+                  "color": "var(--ink-gray-6)"
+                 },
+                 "componentId": "Icon-my-tasks-011",
+                 "componentName": "Icon",
+                 "componentProps": {
+                  "class": "size-4",
+                  "icon": "lucide-mail"
+                 },
+                 "componentSlots": {}
+                },
+                {
+                 "baseStyles": {
+                  "color": "var(--ink-gray-8)",
+                  "flex": "1",
+                  "minWidth": "0px"
+                 },
+                 "componentId": "TextBlock-my-tasks-012",
+                 "componentName": "TextBlock",
+                 "componentProps": {
+                  "fontSize": "text-base",
+                  "tag": "p",
+                  "text": "{{ dataItem.text }}"
+                 },
+                 "componentSlots": {}
+                },
+                {
+                 "componentEvents": {
+                  "click": {
+                   "action": "Run Script",
+                   "event": "click",
+                   "script": "answerWs(dataItem.id, false)"
+                  }
+                 },
+                 "componentId": "Button-my-tasks-013",
+                 "componentName": "Button",
+                 "componentProps": {
+                  "label": "Decline",
+                  "size": "sm",
+                  "variant": "ghost"
+                 },
+                 "componentSlots": {}
+                },
+                {
+                 "componentEvents": {
+                  "click": {
+                   "action": "Run Script",
+                   "event": "click",
+                   "script": "answerWs(dataItem.id, true)"
+                  }
+                 },
+                 "componentId": "Button-my-tasks-014",
+                 "componentName": "Button",
+                 "componentProps": {
+                  "label": "Join",
+                  "size": "sm",
+                  "variant": "outline"
+                 },
+                 "componentSlots": {}
+                }
+               ],
+               "componentId": "box-my-tasks-015",
+               "componentName": "container",
+               "componentProps": {},
+               "componentSlots": {},
+               "originalElement": "div"
+              }
+             ],
+             "componentId": "Repeater-my-tasks-016",
+             "componentName": "Repeater",
+             "componentProps": {
+              "data": "{{ wsInvites }}",
+              "dataKey": "id"
+             },
+             "componentSlots": {},
+             "visibilityCondition": "{{ wsInvites.length }}"
+            },
+            {
+             "baseStyles": {
+              "alignItems": "center",
+              "borderColor": "var(--outline-gray-2)",
+              "borderRadius": "10px",
+              "borderStyle": "solid",
+              "borderWidth": "1px",
+              "display": "flex",
+              "flexDirection": "row",
+              "gap": "8px",
+              "marginBottom": "16px",
+              "padding": "10px 12px",
+              "width": "100%"
+             },
+             "blockName": "hint-can-create",
+             "children": [
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-6)"
+               },
+               "componentId": "Icon-my-tasks-017",
+               "componentName": "Icon",
+               "componentProps": {
+                "class": "size-4",
+                "icon": "lucide-folder-plus"
+               },
+               "componentSlots": {}
+              },
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-8)",
+                "flex": "1"
+               },
+               "componentId": "TextBlock-my-tasks-018",
+               "componentName": "TextBlock",
+               "componentProps": {
+                "fontSize": "text-p-sm",
+                "tag": "p",
+                "text": "You can now create projects."
+               },
+               "componentSlots": {}
+              },
+              {
+               "componentEvents": {
+                "click": {
+                 "action": "Run Script",
+                 "event": "click",
+                 "script": "createFromHint()"
+                }
+               },
+               "componentId": "Button-my-tasks-019",
+               "componentName": "Button",
+               "componentProps": {
+                "label": "Create project",
+                "size": "sm",
+                "variant": "subtle"
+               },
+               "componentSlots": {}
+              },
+              {
+               "componentEvents": {
+                "click": {
+                 "action": "Run Script",
+                 "event": "click",
+                 "script": "dismissCanCreate()"
+                }
+               },
+               "componentId": "Button-my-tasks-020",
+               "componentName": "Button",
+               "componentProps": {
+                "aria-label": "Dismiss",
+                "icon": "lucide-x",
+                "size": "sm",
+                "variant": "ghost"
+               },
+               "componentSlots": {}
+              }
+             ],
+             "componentId": "box-my-tasks-021",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "originalElement": "div",
+             "visibilityCondition": "{{ showCanCreate }}"
+            },
+            {
+             "blockName": "toolbar",
+             "componentId": "FilterSortBar-my-tasks-022",
+             "componentName": "FilterSortBar",
+             "componentProps": {
+              "fields": "{{ filterFields }}",
+              "groups": "{{ groupChoicesShown }}",
+              "labels": "{{ homeLabels }}",
+              "modelValue": {
+               "$type": "variable",
+               "name": "homeFilters"
+              },
+              "preset": {
+               "$type": "variable",
+               "name": "homeChip"
+              },
+              "presets": "{{ tabs }}"
+             },
+             "componentSlots": {
+              "view": {
+               "parentBlockId": "FilterSortBar-my-tasks-022",
+               "slotContent": [
+                {
+                 "baseStyles": {
+                  "flexShrink": "0"
+                 },
+                 "blockName": "view-switch",
+                 "componentId": "Dropdown-my-tasks-023",
+                 "componentName": "Dropdown",
+                 "componentProps": {
+                  "button": "{{ viewButton }}",
+                  "options": "{{ viewMenu }}"
+                 },
+                 "componentSlots": {},
+                 "parentSlotName": "view"
+                }
+               ],
+               "slotId": "FilterSortBar-my-tasks-022:view",
+               "slotName": "view"
+              }
+             },
+             "isCustomVueComponent": true,
+             "visibilityCondition": "{{ showToolbar }}"
+            },
+            {
+             "baseStyles": {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "column",
+              "gap": "4px",
+              "padding": "24px 0px",
+              "textAlign": "center",
+              "width": "100%"
+             },
+             "blockName": "no-match",
+             "children": [
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-8)",
+                "fontWeight": "500"
+               },
+               "componentId": "TextBlock-my-tasks-024",
+               "componentName": "TextBlock",
+               "componentProps": {
+                "fontSize": "text-base",
+                "tag": "p",
+                "text": "No tasks match"
+               },
+               "componentSlots": {}
+              },
+              {
+               "baseStyles": {
+                "marginTop": "8px"
+               },
+               "componentEvents": {
+                "click": {
+                 "action": "Run Script",
+                 "event": "click",
+                 "script": "clearFilters()"
+                }
+               },
+               "componentId": "Button-my-tasks-025",
+               "componentName": "Button",
+               "componentProps": {
+                "label": "Clear filters",
+                "variant": "subtle"
+               },
+               "componentSlots": {}
+              }
+             ],
+             "componentId": "box-my-tasks-026",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "originalElement": "div",
+             "visibilityCondition": "{{ noMatch }}"
+            },
+            {
+             "baseStyles": {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "column",
+              "padding": "64px 0px",
+              "textAlign": "center",
+              "width": "100%"
+             },
+             "blockName": "empty-state",
+             "children": [
+              {
+               "baseStyles": {
+                "alignItems": "center",
+                "backgroundColor": "var(--surface-gray-2)",
+                "borderRadius": "9999px",
+                "display": "flex",
+                "flexDirection": "row",
+                "height": "56px",
+                "justifyContent": "center",
+                "marginBottom": "16px",
+                "width": "56px"
+               },
+               "children": [
+                {
+                 "baseStyles": {
+                  "color": "var(--ink-gray-6)"
+                 },
+                 "componentId": "Icon-my-tasks-030",
+                 "componentName": "Icon",
+                 "componentProps": {
+                  "class": "size-6",
+                  "icon": "lucide-list-checks"
+                 },
+                 "componentSlots": {}
+                }
+               ],
+               "componentId": "box-my-tasks-031",
+               "componentName": "container",
+               "componentProps": {},
+               "componentSlots": {},
+               "originalElement": "div"
+              },
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-9)",
+                "fontWeight": "500"
+               },
+               "componentId": "TextBlock-my-tasks-032",
+               "componentName": "TextBlock",
+               "componentProps": {
+                "fontSize": "text-lg",
+                "tag": "p",
+                "text": "{{ noTasksTitle }}"
+               },
+               "componentSlots": {}
+              },
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-5)",
+                "marginTop": "6px",
+                "maxWidth": "384px",
+                "textWrap": "balance"
+               },
+               "componentId": "TextBlock-my-tasks-033",
+               "componentName": "TextBlock",
+               "componentProps": {
+                "fontSize": "text-p-base",
+                "tag": "p",
+                "text": "{{ noTasksText }}"
+               },
+               "componentSlots": {}
+              },
+              {
+               "baseStyles": {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+                "flexWrap": "wrap",
+                "gap": "8px",
+                "justifyContent": "center",
+                "marginTop": "20px"
+               },
+               "children": [
+                {
+                 "componentEvents": {
+                  "click": {
+                   "action": "Run Script",
+                   "event": "click",
+                   "script": "newTask()"
+                  }
+                 },
+                 "componentId": "Button-my-tasks-027",
+                 "componentName": "Button",
+                 "componentProps": {
+                  "iconLeft": "lucide-plus",
+                  "label": "Create",
+                  "variant": "subtle"
+                 },
+                 "componentSlots": {}
+                },
+                {
+                 "componentEvents": {
+                  "click": {
+                   "action": "Run Script",
+                   "event": "click",
+                   "script": "importFrom('file')"
+                  }
+                 },
+                 "componentId": "Button-my-tasks-028",
+                 "componentName": "Button",
+                 "componentProps": {
+                  "iconLeft": "lucide-import",
+                  "label": "Import",
+                  "variant": "subtle"
+                 },
+                 "componentSlots": {}
+                },
+                {
+                 "componentEvents": {
+                  "click": {
+                   "action": "Run Script",
+                   "event": "click",
+                   "script": "importFrom('github')"
+                  }
+                 },
+                 "componentId": "Button-my-tasks-029",
+                 "componentName": "Button",
+                 "componentProps": {
+                  "iconLeft": "lucide-github",
+                  "label": "Import from GitHub",
+                  "variant": "outline"
+                 },
+                 "componentSlots": {}
+                }
+               ],
+               "componentId": "box-my-tasks-034",
+               "componentName": "container",
+               "componentProps": {},
+               "componentSlots": {},
+               "originalElement": "div"
+              }
+             ],
+             "componentId": "box-my-tasks-035",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "originalElement": "div",
+             "visibilityCondition": "{{ noTasks }}"
+            },
+            {
+             "baseStyles": {
+              "marginTop": "16px",
+              "minWidth": "min-content",
+              "width": "100%"
+             },
+             "blockName": "task-list",
+             "componentId": "MyTasksList-my-tasks-036",
+             "componentName": "MyTasksList",
+             "componentProps": {},
+             "componentSlots": {},
+             "isCustomVueComponent": true,
+             "visibilityCondition": "{{ hasTasks }}"
+            },
+            {
+             "baseStyles": {
+              "marginTop": "16px",
+              "width": "100%"
+             },
+             "blockName": "task-list-blocks",
+             "children": [
+              {
+               "children": [
+                {
+                 "children": [
+                  {
+                   "baseStyles": {
+                    "color": "var(--ink-gray-5)"
+                   },
+                   "componentId": "TextBlock-tl-blocks-001",
+                   "componentName": "TextBlock",
+                   "componentProps": {
+                    "fontSize": "text-sm",
+                    "tag": "span",
+                    "text": "Task"
+                   },
+                   "componentSlots": {}
+                  }
+                 ],
+                 "componentId": "ListHeaderCell-tl-blocks-002",
+                 "componentName": "ListHeaderCell",
+                 "componentProps": {},
+                 "componentSlots": {}
+                },
+                {
+                 "children": [
+                  {
+                   "baseStyles": {
+                    "color": "var(--ink-gray-5)"
+                   },
+                   "componentId": "TextBlock-tl-blocks-003",
+                   "componentName": "TextBlock",
+                   "componentProps": {
+                    "fontSize": "text-sm",
+                    "tag": "span",
+                    "text": "Project"
+                   },
+                   "componentSlots": {}
+                  }
+                 ],
+                 "classes": [
+                  "hidden",
+                  "md:flex"
+                 ],
+                 "componentId": "ListHeaderCell-tl-blocks-004",
+                 "componentName": "ListHeaderCell",
+                 "componentProps": {},
+                 "componentSlots": {},
+                 "visibilityCondition": "{{ btShowProject }}"
+                },
+                {
+                 "children": [
+                  {
+                   "baseStyles": {
+                    "color": "var(--ink-gray-5)"
+                   },
+                   "componentId": "TextBlock-tl-blocks-005",
+                   "componentName": "TextBlock",
+                   "componentProps": {
+                    "fontSize": "text-sm",
+                    "tag": "span",
+                    "text": "Status"
+                   },
+                   "componentSlots": {}
+                  }
+                 ],
+                 "classes": [
+                  "hidden",
+                  "md:flex"
+                 ],
+                 "componentId": "ListHeaderCell-tl-blocks-006",
+                 "componentName": "ListHeaderCell",
+                 "componentProps": {},
+                 "componentSlots": {}
+                },
+                {
+                 "children": [
+                  {
+                   "baseStyles": {
+                    "color": "var(--ink-gray-5)"
+                   },
+                   "componentId": "TextBlock-tl-blocks-007",
+                   "componentName": "TextBlock",
+                   "componentProps": {
+                    "fontSize": "text-sm",
+                    "tag": "span",
+                    "text": "Priority"
+                   },
+                   "componentSlots": {}
+                  }
+                 ],
+                 "classes": [
+                  "hidden",
+                  "md:flex"
+                 ],
+                 "componentId": "ListHeaderCell-tl-blocks-008",
+                 "componentName": "ListHeaderCell",
+                 "componentProps": {},
+                 "componentSlots": {}
+                },
+                {
+                 "children": [
+                  {
+                   "baseStyles": {
+                    "color": "var(--ink-gray-5)"
+                   },
+                   "componentId": "TextBlock-tl-blocks-009",
+                   "componentName": "TextBlock",
+                   "componentProps": {
+                    "fontSize": "text-sm",
+                    "tag": "span",
+                    "text": "Due date"
+                   },
+                   "componentSlots": {}
+                  }
+                 ],
+                 "componentId": "ListHeaderCell-tl-blocks-010",
+                 "componentName": "ListHeaderCell",
+                 "componentProps": {},
+                 "componentSlots": {}
+                },
+                {
+                 "componentId": "ListHeaderCell-tl-blocks-011",
+                 "componentName": "ListHeaderCell",
+                 "componentProps": {},
+                 "componentSlots": {}
+                }
+               ],
+               "componentId": "ListHeader-tl-blocks-012",
+               "componentName": "ListHeader",
+               "componentProps": {},
+               "componentSlots": {}
+              },
+              {
+               "baseStyles": {
+                "display": "contents"
+               },
+               "blockName": "groups",
+               "children": [
+                {
+                 "baseStyles": {
+                  "marginTop": "8px"
+                 },
+                 "children": [
+                  {
+                   "componentId": "ListRows-tl-blocks-045",
+                   "componentName": "ListRows",
+                   "componentProps": {
+                    "items": "{{ dataItem.items }}"
+                   },
+                   "componentSlots": {
+                    "default": {
+                     "parentBlockId": "ListRows-tl-blocks-045",
+                     "slotContent": [
+                      {
+                       "baseStyles": {
+                        "minHeight": "40px"
+                       },
+                       "blockName": "task-row",
+                       "children": [
+                        {
+                         "baseStyles": {
+                          "gap": "8px",
+                          "minWidth": "0px"
+                         },
+                         "children": [
+                          {
+                           "baseStyles": {
+                            "alignItems": "center",
+                            "display": "flex",
+                            "flexDirection": "row",
+                            "gap": "6px",
+                            "minWidth": "0px",
+                            "width": "100%"
+                           },
+                           "blockName": "task-title",
+                           "children": [
+                            {
+                             "baseStyles": {
+                              "color": "{{ item.titleColor }}",
+                              "minWidth": "0px",
+                              "overflow": "hidden",
+                              "textDecoration": "{{ item.titleLine }}",
+                              "textOverflow": "ellipsis",
+                              "whiteSpace": "nowrap"
+                             },
+                             "componentId": "TextBlock-tl-blocks-015",
+                             "componentName": "TextBlock",
+                             "componentProps": {
+                              "fontSize": "text-base",
+                              "tag": "span",
+                              "text": "{{ item.title }}"
+                             },
+                             "componentSlots": {}
+                            },
+                            {
+                             "componentEvents": {
+                              "click.stop": {
+                               "action": "Run Script",
+                               "event": "click.stop",
+                               "script": "btToggleSubs(item.name)"
+                              }
+                             },
+                             "componentId": "Button-tl-blocks-016",
+                             "componentName": "Button",
+                             "componentProps": {
+                              "aria-label": "Subtasks",
+                              "iconLeft": "lucide-list-checks",
+                              "iconRight": "{{ item.subIcon }}",
+                              "label": "{{ item.subLabel }}",
+                              "size": "sm",
+                              "variant": "ghost"
+                             },
+                             "componentSlots": {},
+                             "visibilityCondition": "{{ item.hasSubs }}"
+                            }
+                           ],
+                           "componentId": "box-tl-blocks-017",
+                           "componentName": "container",
+                           "componentProps": {},
+                           "componentSlots": {},
+                           "originalElement": "div",
+                           "visibilityCondition": "{{ item.kind === 'task' }}"
+                          },
+                          {
+                           "baseStyles": {
+                            "alignItems": "center",
+                            "display": "flex",
+                            "flexDirection": "row",
+                            "gap": "8px",
+                            "minWidth": "0px",
+                            "paddingLeft": "24px",
+                            "width": "100%"
+                           },
+                           "blockName": "subtask",
+                           "children": [
+                            {
+                             "children": [
+                              {
+                               "componentEvents": {
+                                "update:modelValue": {
+                                 "action": "Run Script",
+                                 "event": "update:modelValue",
+                                 "script": "btTickSub(item.taskId, item.subId)"
+                                }
+                               },
+                               "componentId": "Checkbox-tl-blocks-013",
+                               "componentName": "Checkbox",
+                               "componentProps": {
+                                "disabled": "{{ !item.canTick }}",
+                                "modelValue": "{{ item.done }}"
+                               },
+                               "componentSlots": {}
+                              }
+                             ],
+                             "componentEvents": {
+                              "click.stop": {
+                               "action": "Run Script",
+                               "event": "click.stop",
+                               "script": "void 0"
+                              }
+                             },
+                             "componentId": "box-tl-blocks-014",
+                             "componentName": "container",
+                             "componentProps": {},
+                             "componentSlots": {},
+                             "originalElement": "div"
+                            },
+                            {
+                             "baseStyles": {
+                              "color": "{{ item.titleColor }}",
+                              "minWidth": "0px",
+                              "overflow": "hidden",
+                              "textDecoration": "{{ item.titleLine }}",
+                              "textOverflow": "ellipsis",
+                              "whiteSpace": "nowrap"
+                             },
+                             "componentId": "TextBlock-tl-blocks-018",
+                             "componentName": "TextBlock",
+                             "componentProps": {
+                              "fontSize": "text-sm",
+                              "tag": "span",
+                              "text": "{{ item.title }}"
+                             },
+                             "componentSlots": {}
+                            }
+                           ],
+                           "componentId": "box-tl-blocks-019",
+                           "componentName": "container",
+                           "componentProps": {},
+                           "componentSlots": {},
+                           "originalElement": "div",
+                           "visibilityCondition": "{{ item.kind === 'sub' }}"
+                          },
+                          {
+                           "baseStyles": {
+                            "paddingLeft": "24px",
+                            "width": "100%"
+                           },
+                           "blockName": "add-subtask",
+                           "children": [
+                            {
+                             "baseStyles": {
+                              "width": "100%"
+                             },
+                             "componentEvents": {
+                              "keydown.enter": {
+                               "action": "Run Script",
+                               "event": "keydown.enter",
+                               "script": "btSaveSub(item.taskId, eventArgs[0])"
+                              },
+                              "keydown.esc": {
+                               "action": "Run Script",
+                               "event": "keydown.esc",
+                               "script": "btCancelSub()"
+                              }
+                             },
+                             "componentId": "FormControl-tl-blocks-020",
+                             "componentName": "FormControl",
+                             "componentProps": {
+                              "aria-label": "New subtask",
+                              "placeholder": "Add a subtask and press Enter",
+                              "type": "text"
+                             },
+                             "componentSlots": {}
+                            }
+                           ],
+                           "componentEvents": {
+                            "click.stop": {
+                             "action": "Run Script",
+                             "event": "click.stop",
+                             "script": "void 0"
+                            }
+                           },
+                           "componentId": "box-tl-blocks-021",
+                           "componentName": "container",
+                           "componentProps": {
+                            "data-subadd": "1"
+                           },
+                           "componentSlots": {},
+                           "originalElement": "div",
+                           "visibilityCondition": "{{ item.kind === 'addsub' }}"
+                          }
+                         ],
+                         "componentId": "ListCell-tl-blocks-022",
+                         "componentName": "ListCell",
+                         "componentProps": {},
+                         "componentSlots": {}
+                        },
+                        {
+                         "baseStyles": {
+                          "gap": "6px",
+                          "minWidth": "0px"
+                         },
+                         "children": [
+                          {
+                           "baseStyles": {
+                            "alignItems": "center",
+                            "display": "flex",
+                            "flexDirection": "row",
+                            "gap": "6px",
+                            "minWidth": "0px"
+                           },
+                           "children": [
+                            {
+                             "baseStyles": {
+                              "color": "var(--ink-gray-5)"
+                             },
+                             "componentId": "Icon-tl-blocks-023",
+                             "componentName": "Icon",
+                             "componentProps": {
+                              "class": "size-4",
+                              "icon": "{{ item.projectIcon }}"
+                             },
+                             "componentSlots": {},
+                             "visibilityCondition": "{{ item.projectIcon }}"
+                            },
+                            {
+                             "baseStyles": {
+                              "color": "{{ item.projectColor }}",
+                              "overflow": "hidden",
+                              "textOverflow": "ellipsis",
+                              "whiteSpace": "nowrap"
+                             },
+                             "componentId": "TextBlock-tl-blocks-024",
+                             "componentName": "TextBlock",
+                             "componentProps": {
+                              "fontSize": "text-sm",
+                              "tag": "span",
+                              "text": "{{ item.project }}"
+                             },
+                             "componentSlots": {}
+                            }
+                           ],
+                           "componentId": "box-tl-blocks-025",
+                           "componentName": "container",
+                           "componentProps": {},
+                           "componentSlots": {},
+                           "originalElement": "div",
+                           "visibilityCondition": "{{ item.kind === 'task' }}"
+                          }
+                         ],
+                         "classes": [
+                          "hidden",
+                          "md:flex"
+                         ],
+                         "componentId": "ListCell-tl-blocks-026",
+                         "componentName": "ListCell",
+                         "componentProps": {},
+                         "componentSlots": {},
+                         "visibilityCondition": "{{ btShowProject }}"
+                        },
+                        {
+                         "children": [
+                          {
+                           "children": [
+                            {
+                             "componentId": "StatusControl-tl-blocks-027",
+                             "componentName": "StatusControl",
+                             "componentProps": {
+                              "cell": true,
+                              "task": "{{ item.task }}"
+                             },
+                             "componentSlots": {},
+                             "isCustomVueComponent": true
+                            }
+                           ],
+                           "componentEvents": {
+                            "click.stop": {
+                             "action": "Run Script",
+                             "event": "click.stop",
+                             "script": "void 0"
+                            }
+                           },
+                           "componentId": "box-tl-blocks-028",
+                           "componentName": "container",
+                           "componentProps": {},
+                           "componentSlots": {},
+                           "originalElement": "div",
+                           "visibilityCondition": "{{ item.kind === 'task' }}"
+                          }
+                         ],
+                         "classes": [
+                          "hidden",
+                          "md:flex"
+                         ],
+                         "componentId": "ListCell-tl-blocks-029",
+                         "componentName": "ListCell",
+                         "componentProps": {},
+                         "componentSlots": {}
+                        },
+                        {
+                         "children": [
+                          {
+                           "children": [
+                            {
+                             "componentId": "Dropdown-tl-blocks-032",
+                             "componentName": "Dropdown",
+                             "componentProps": {
+                              "options": "{{ btPrioMenu(item.name) }}"
+                             },
+                             "componentSlots": {
+                              "default": {
+                               "parentBlockId": "Dropdown-tl-blocks-032",
+                               "slotContent": [
+                                {
+                                 "baseStyles": {
+                                  "alignItems": "center",
+                                  "borderRadius": "6px",
+                                  "cursor": "pointer",
+                                  "display": "flex",
+                                  "flexDirection": "row",
+                                  "gap": "6px",
+                                  "height": "auto",
+                                  "padding": "4px 8px",
+                                  "width": "auto"
+                                 },
+                                 "blockName": "priority-trigger",
+                                 "children": [
+                                  {
+                                   "baseStyles": {
+                                    "backgroundColor": "{{ item.prioDot }}",
+                                    "borderRadius": "9999px",
+                                    "height": "6px",
+                                    "width": "6px"
+                                   },
+                                   "componentId": "box-tl-blocks-030",
+                                   "componentName": "container",
+                                   "componentProps": {},
+                                   "componentSlots": {},
+                                   "originalElement": "div"
+                                  },
+                                  {
+                                   "baseStyles": {
+                                    "color": "var(--ink-gray-8)"
+                                   },
+                                   "componentId": "TextBlock-tl-blocks-prio-label",
+                                   "componentName": "TextBlock",
+                                   "componentProps": {
+                                    "fontSize": "text-sm",
+                                    "tag": "span",
+                                    "text": "{{ item.prioShort }}"
+                                   },
+                                   "componentSlots": {}
+                                  }
+                                 ],
+                                 "classes": [
+                                  "hover:bg-surface-gray-2"
+                                 ],
+                                 "componentId": "box-tl-blocks-prio-trigger",
+                                 "componentName": "container",
+                                 "componentProps": {
+                                  "aria-label": "Priority: {{ item.prioWord }}. Change",
+                                  "role": "button",
+                                  "tabindex": "0"
+                                 },
+                                 "componentSlots": {},
+                                 "originalElement": "div",
+                                 "parentSlotName": "default"
+                                }
+                               ],
+                               "slotId": "Dropdown-tl-blocks-032:default",
+                               "slotName": "default"
+                              }
+                             },
+                             "visibilityCondition": "{{ item.canPrio }}"
+                            },
+                            {
+                             "baseStyles": {
+                              "alignItems": "center",
+                              "display": "flex",
+                              "flexDirection": "row",
+                              "gap": "6px",
+                              "padding": "0px 8px"
+                             },
+                             "children": [
+                              {
+                               "baseStyles": {
+                                "backgroundColor": "{{ item.prioDot }}",
+                                "borderRadius": "9999px",
+                                "height": "6px",
+                                "width": "6px"
+                               },
+                               "componentId": "box-tl-blocks-030",
+                               "componentName": "container",
+                               "componentProps": {},
+                               "componentSlots": {},
+                               "originalElement": "div",
+                               "parentSlotName": "prefix"
+                              },
+                              {
+                               "baseStyles": {
+                                "color": "var(--ink-gray-7)"
+                               },
+                               "componentId": "TextBlock-tl-blocks-033",
+                               "componentName": "TextBlock",
+                               "componentProps": {
+                                "fontSize": "text-sm",
+                                "tag": "span",
+                                "text": "{{ item.prioShort }}"
+                               },
+                               "componentSlots": {}
+                              }
+                             ],
+                             "componentId": "box-tl-blocks-034",
+                             "componentName": "container",
+                             "componentProps": {},
+                             "componentSlots": {},
+                             "originalElement": "div",
+                             "visibilityCondition": "{{ !item.canPrio }}"
+                            }
+                           ],
+                           "componentEvents": {
+                            "click.stop": {
+                             "action": "Run Script",
+                             "event": "click.stop",
+                             "script": "void 0"
+                            }
+                           },
+                           "componentId": "box-tl-blocks-035",
+                           "componentName": "container",
+                           "componentProps": {},
+                           "componentSlots": {},
+                           "originalElement": "div",
+                           "visibilityCondition": "{{ item.kind === 'task' }}"
+                          }
+                         ],
+                         "classes": [
+                          "hidden",
+                          "md:flex"
+                         ],
+                         "componentId": "ListCell-tl-blocks-036",
+                         "componentName": "ListCell",
+                         "componentProps": {},
+                         "componentSlots": {}
+                        },
+                        {
+                         "children": [
+                          {
+                           "baseStyles": {
+                            "color": "{{ item.dueColor }}",
+                            "whiteSpace": "nowrap"
+                           },
+                           "componentId": "TextBlock-tl-blocks-037",
+                           "componentName": "TextBlock",
+                           "componentProps": {
+                            "fontSize": "text-sm",
+                            "tag": "span",
+                            "text": "{{ item.dueText }}"
+                           },
+                           "componentSlots": {},
+                           "visibilityCondition": "{{ item.kind === 'task' }}"
+                          }
+                         ],
+                         "componentId": "ListCell-tl-blocks-038",
+                         "componentName": "ListCell",
+                         "componentProps": {},
+                         "componentSlots": {}
+                        },
+                        {
+                         "baseStyles": {
+                          "justifyContent": "center"
+                         },
+                         "children": [
+                          {
+                           "children": [
+                            {
+                             "componentId": "Dropdown-tl-blocks-039",
+                             "componentName": "Dropdown",
+                             "componentProps": {
+                              "align": "end",
+                              "button": {
+                               "aria-label": "Task actions",
+                               "icon": "lucide-ellipsis",
+                               "size": "sm",
+                               "variant": "ghost"
+                              },
+                              "options": "{{ btRowMenu(item.name) }}"
+                             },
+                             "componentSlots": {}
+                            }
+                           ],
+                           "componentEvents": {
+                            "click.stop": {
+                             "action": "Run Script",
+                             "event": "click.stop",
+                             "script": "void 0"
+                            }
+                           },
+                           "componentId": "box-tl-blocks-040",
+                           "componentName": "container",
+                           "componentProps": {},
+                           "componentSlots": {},
+                           "originalElement": "div",
+                           "visibilityCondition": "{{ item.kind === 'task' }}"
+                          },
+                          {
+                           "children": [
+                            {
+                             "componentEvents": {
+                              "click": {
+                               "action": "Run Script",
+                               "event": "click",
+                               "script": "btPromote(item.taskId, item.subId)"
+                              }
+                             },
+                             "componentId": "Button-tl-blocks-041",
+                             "componentName": "Button",
+                             "componentProps": {
+                              "aria-label": "Turn into a task",
+                              "icon": "lucide-arrow-up-right",
+                              "size": "sm",
+                              "tooltip": "Turn into a task",
+                              "variant": "ghost"
+                             },
+                             "componentSlots": {}
+                            }
+                           ],
+                           "componentEvents": {
+                            "click.stop": {
+                             "action": "Run Script",
+                             "event": "click.stop",
+                             "script": "void 0"
+                            }
+                           },
+                           "componentId": "box-tl-blocks-042",
+                           "componentName": "container",
+                           "componentProps": {},
+                           "componentSlots": {},
+                           "originalElement": "div",
+                           "visibilityCondition": "{{ item.kind === 'sub' && item.canPromote }}"
+                          }
+                         ],
+                         "componentId": "ListCell-tl-blocks-043",
+                         "componentName": "ListCell",
+                         "componentProps": {},
+                         "componentSlots": {}
+                        }
+                       ],
+                       "componentId": "ListRow-tl-blocks-044",
+                       "componentName": "ListRow",
+                       "componentProps": {
+                        "value": "{{ value }}"
+                       },
+                       "componentSlots": {},
+                       "parentSlotName": "default"
+                      }
+                     ],
+                     "slotId": "ListRows-tl-blocks-045:default",
+                     "slotName": "default"
+                    }
+                   }
+                  },
+                  {
+                   "baseStyles": {
+                    "alignItems": "center",
+                    "borderColor": "var(--outline-gray-1)",
+                    "borderStyle": "solid",
+                    "borderWidth": "0px 0px 1px 0px",
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "gap": "8px",
+                    "padding": "6px 12px"
+                   },
+                   "blockName": "add-task",
+                   "children": [
+                    {
+                     "baseStyles": {
+                      "color": "var(--ink-gray-5)"
+                     },
+                     "componentId": "Icon-tl-blocks-050",
+                     "componentName": "Icon",
+                     "componentProps": {
+                      "class": "size-4",
+                      "icon": "lucide-plus"
+                     },
+                     "componentSlots": {}
+                    },
+                    {
+                     "baseStyles": {
+                      "flex": "1"
+                     },
+                     "componentEvents": {
+                      "keydown.enter": {
+                       "action": "Run Script",
+                       "event": "keydown.enter",
+                       "script": "btAdd(dataItem.key, eventArgs[0])"
+                      }
+                     },
+                     "componentId": "FormControl-tl-blocks-051",
+                     "componentName": "FormControl",
+                     "componentProps": {
+                      "aria-label": "New task",
+                      "placeholder": "Add a task",
+                      "type": "text"
+                     },
+                     "componentSlots": {}
+                    }
+                   ],
+                   "componentId": "box-tl-blocks-052",
+                   "componentName": "container",
+                   "componentProps": {},
+                   "componentSlots": {},
+                   "originalElement": "div",
+                   "visibilityCondition": "{{ dataItem.canAdd }}"
+                  }
+                 ],
+                 "componentId": "ListGroup-tl-blocks-053",
+                 "componentName": "ListGroup",
+                 "componentProps": {},
+                 "componentSlots": {
+                  "label": {
+                   "parentBlockId": "ListGroup-tl-blocks-053",
+                   "slotContent": [
+                    {
+                     "baseStyles": {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "gap": "6px"
+                     },
+                     "children": [
+                      {
+                       "componentEvents": {
+                        "click": {
+                         "action": "Run Script",
+                         "event": "click",
+                         "script": "btToggleGroup(dataItem.key)"
+                        }
+                       },
+                       "componentId": "Button-tl-blocks-046",
+                       "componentName": "Button",
+                       "componentProps": {
+                        "aria-label": "Fold group",
+                        "icon": "{{ dataItem.chevron }}",
+                        "size": "sm",
+                        "variant": "ghost"
+                       },
+                       "componentSlots": {}
+                      },
+                      {
+                       "baseStyles": {
+                        "color": "var(--ink-gray-8)",
+                        "fontWeight": "500"
+                       },
+                       "componentId": "TextBlock-tl-blocks-047",
+                       "componentName": "TextBlock",
+                       "componentProps": {
+                        "fontSize": "text-base",
+                        "tag": "span",
+                        "text": "{{ dataItem.label }}"
+                       },
+                       "componentSlots": {}
+                      },
+                      {
+                       "baseStyles": {
+                        "color": "var(--ink-gray-5)",
+                        "fontVariantNumeric": "tabular-nums"
+                       },
+                       "componentId": "TextBlock-tl-blocks-048",
+                       "componentName": "TextBlock",
+                       "componentProps": {
+                        "fontSize": "text-sm",
+                        "tag": "span",
+                        "text": "{{ dataItem.count }}"
+                       },
+                       "componentSlots": {}
+                      }
+                     ],
+                     "componentId": "box-tl-blocks-049",
+                     "componentName": "container",
+                     "componentProps": {},
+                     "componentSlots": {},
+                     "originalElement": "div",
+                     "parentSlotName": "label"
+                    }
+                   ],
+                   "slotId": "ListGroup-tl-blocks-053:label",
+                   "slotName": "label"
+                  }
+                 }
+                }
+               ],
+               "componentId": "Repeater-tl-blocks-054",
+               "componentName": "Repeater",
+               "componentProps": {
+                "data": "{{ btGroups }}",
+                "dataKey": "key"
+               },
+               "componentSlots": {}
+              }
+             ],
+             "componentId": "List-tl-blocks-055",
+             "componentName": "List",
+             "componentProps": {
+              "active": {
+               "$type": "variable",
+               "name": "btActive"
+              },
+              "columns": "{{ btColumns }}",
+              "divider": "full"
+             },
+             "componentSlots": {},
+             "visibilityCondition": "{{ blockList }}"
+            }
+           ],
+           "componentId": "box-my-tasks-037",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "mobileStyles": {
+            "padding": "16px 12px 96px"
+           },
+           "originalElement": "div"
+          }
+         ],
+         "componentId": "box-my-tasks-038",
+         "componentName": "container",
+         "componentProps": {},
+         "componentSlots": {},
+         "originalElement": "div"
+        }
+       ],
+       "componentId": "box-my-tasks-039",
+       "componentName": "container",
+       "componentProps": {},
+       "componentSlots": {},
+       "originalElement": "div"
+      },
+      {
+       "componentId": "DesignChoice-my-tasks-task-list-frappe",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "group",
+        "v": "frappe"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "DesignChoice-my-tasks-own-tasks-icon-d",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "ownPlace",
+        "v": "icon"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "DesignChoice-my-tasks-filter-bar-search",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "taskSearch",
+        "v": "on"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "DesignChoice-my-tasks-group-headers-heading",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "tableGroup",
+        "v": "heading"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "DesignChoice-my-tasks-panel-layout-crm",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "panel",
+        "v": "crm"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "DesignChoice-my-tasks-empty-values-not-set",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "emptyValue",
+        "v": "notset"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "DesignChoice-my-tasks-notification-list-full-dividers",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "notifList",
+        "v": "full"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "componentId": "notifications_panel-my-tasks",
+       "componentName": "notifications_panel",
+       "componentProps": {},
+       "componentSlots": {},
+       "isStudioComponent": true
+      }
+     ],
+     "componentId": "AppShell-my-tasks",
+     "componentName": "AppShell",
+     "componentProps": {
+      "bare": false
+     },
+     "componentSlots": {
+      "sidebar": {
+       "parentBlockId": "AppShell-my-tasks",
+       "slotContent": [
+        {
+         "componentId": "app_sidebar-my-tasks",
+         "componentName": "app_sidebar",
+         "componentProps": {},
+         "componentSlots": {},
+         "isStudioComponent": true,
+         "parentSlotName": "sidebar"
+        }
+       ],
+       "slotId": "AppShell-my-tasks:sidebar",
+       "slotName": "sidebar"
+      }
+     },
+     "isCustomVueComponent": true
+    }
+   ],
+   "componentId": "root",
+   "componentName": "div",
+   "componentProps": {},
+   "componentSlots": {},
+   "originalElement": "body"
+  }
+ ],
+ "frappe_app": "frappe_live",
+ "idx": 0,
+ "is_standard": 1,
+ "modified": "2026-11-05 12:42:15.551170",
+ "modified_by": "neha@example.com",
+ "name": "my_tasks",
+ "owner": "Administrator",
+ "page_name": "tasks-my-tasks",
+ "page_title": "My tasks",
+ "published": 1,
+ "route": "/",
+ "studio_app": "live"
+}

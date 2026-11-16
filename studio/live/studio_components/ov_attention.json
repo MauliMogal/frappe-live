@@ -1,0 +1,614 @@
+{
+ "doctype": "Studio Component",
+ "name": "ov_attention",
+ "component_id": "ov_attention",
+ "component_name": "Overview: Needs attention",
+ "block": {
+  "componentId": "box-ov-attention-103",
+  "componentName": "container",
+  "componentProps": {},
+  "componentSlots": {},
+  "children": [
+   {
+    "componentId": "box-ov-attention-089",
+    "componentName": "container",
+    "componentProps": {},
+    "componentSlots": {},
+    "children": [
+     {
+      "componentId": "Icon-ov-attention-084",
+      "componentName": "Icon",
+      "componentProps": {
+       "icon": "lucide-circle-alert",
+       "class": "size-4"
+      },
+      "componentSlots": {},
+      "children": [],
+      "baseStyles": {
+       "color": "var(--ink-gray-6)"
+      }
+     },
+     {
+      "componentId": "TextBlock-ov-attention-085",
+      "componentName": "TextBlock",
+      "componentProps": {
+       "text": "Needs attention",
+       "tag": "h2",
+       "fontSize": "text-base"
+      },
+      "componentSlots": {},
+      "children": [],
+      "baseStyles": {
+       "color": "var(--ink-gray-9)",
+       "fontWeight": "600"
+      }
+     },
+     {
+      "componentId": "TextBlock-ov-attention-086",
+      "componentName": "TextBlock",
+      "componentProps": {
+       "text": "{{ ov.attention.count }}",
+       "tag": "span",
+       "fontSize": "text-sm"
+      },
+      "componentSlots": {},
+      "children": [],
+      "baseStyles": {
+       "color": "var(--ink-gray-5)",
+       "fontVariantNumeric": "tabular-nums"
+      }
+     },
+     {
+      "componentId": "box-ov-attention-087",
+      "componentName": "container",
+      "componentProps": {},
+      "componentSlots": {},
+      "children": [],
+      "baseStyles": {
+       "flex": "1"
+      },
+      "originalElement": "div"
+     },
+     {
+      "componentId": "Button-ov-attention-088",
+      "componentName": "Button",
+      "componentProps": {
+       "variant": "ghost",
+       "label": "All milestones",
+       "size": "sm",
+       "iconRight": "lucide-arrow-right"
+      },
+      "componentSlots": {},
+      "children": [],
+      "baseStyles": {},
+      "componentEvents": {
+       "click": {
+        "event": "click",
+        "action": "Run Script",
+        "script": "ovFilter('all')"
+       }
+      }
+     }
+    ],
+    "baseStyles": {
+     "display": "flex",
+     "flexDirection": "row",
+     "alignItems": "center",
+     "gap": "8px",
+     "height": "48px",
+     "padding": "0px 16px",
+     "borderStyle": "solid",
+     "borderColor": "var(--outline-gray-1)",
+     "borderWidth": "0px 0px 1px 0px"
+    },
+    "originalElement": "div"
+   },
+   {
+    "componentId": "box-ov-attention-092",
+    "componentName": "container",
+    "componentProps": {},
+    "componentSlots": {},
+    "children": [
+     {
+      "componentId": "Icon-ov-attention-090",
+      "componentName": "Icon",
+      "componentProps": {
+       "icon": "lucide-check",
+       "class": "size-4"
+      },
+      "componentSlots": {},
+      "children": [],
+      "baseStyles": {
+       "color": "var(--ink-gray-5)"
+      }
+     },
+     {
+      "componentId": "TextBlock-ov-attention-091",
+      "componentName": "TextBlock",
+      "componentProps": {
+       "text": "Nothing needs attention. Every milestone is on track.",
+       "tag": "p",
+       "fontSize": "text-p-sm"
+      },
+      "componentSlots": {},
+      "children": [],
+      "baseStyles": {
+       "color": "var(--ink-gray-6)"
+      }
+     }
+    ],
+    "baseStyles": {
+     "display": "flex",
+     "flexDirection": "row",
+     "alignItems": "center",
+     "gap": "8px",
+     "padding": "16px"
+    },
+    "visibilityCondition": "{{ ov.attention.nothing }}",
+    "originalElement": "div"
+   },
+   {
+    "componentId": "Repeater-ov-attention-093",
+    "componentName": "Repeater",
+    "componentProps": {
+     "data": "{{ ov.attention.needing }}",
+     "dataKey": "id"
+    },
+    "componentSlots": {},
+    "children": [
+     {
+      "componentId": "box-ov-attention-083",
+      "componentName": "container",
+      "componentProps": {},
+      "componentSlots": {},
+      "children": [
+       {
+        "componentId": "box-ov-attention-074",
+        "componentName": "container",
+        "componentProps": {},
+        "componentSlots": {},
+        "children": [
+         {
+          "componentId": "TextBlock-ov-attention-072",
+          "componentName": "TextBlock",
+          "componentProps": {
+           "text": "{{ dataItem.name }}",
+           "tag": "span",
+           "fontSize": "text-base"
+          },
+          "componentSlots": {},
+          "children": [],
+          "baseStyles": {
+           "color": "var(--ink-gray-9)",
+           "fontWeight": "500",
+           "overflow": "hidden",
+           "textOverflow": "ellipsis",
+           "whiteSpace": "nowrap"
+          }
+         },
+         {
+          "componentId": "Badge-ov-attention-070",
+          "componentName": "Badge",
+          "componentProps": {
+           "size": "sm",
+           "variant": "subtle",
+           "theme": "gray",
+           "label": "{{ dataItem.word }}"
+          },
+          "componentSlots": {
+           "prefix": {
+            "slotName": "prefix",
+            "slotContent": [
+             {
+              "componentId": "box-ov-attention-071",
+              "componentName": "container",
+              "componentProps": {},
+              "componentSlots": {},
+              "children": [],
+              "baseStyles": {
+               "width": "6px",
+               "height": "6px",
+               "borderRadius": "9999px",
+               "backgroundColor": "{{ dataItem.dot }}",
+               "flexShrink": "0"
+              },
+              "originalElement": "div",
+              "parentSlotName": "prefix"
+             }
+            ]
+           }
+          },
+          "children": [],
+          "baseStyles": {
+           "flexShrink": "0"
+          }
+         },
+         {
+          "componentId": "TextBlock-ov-attention-073",
+          "componentName": "TextBlock",
+          "componentProps": {
+           "text": "{{ dataItem.due }}",
+           "tag": "span",
+           "fontSize": "text-xs"
+          },
+          "componentSlots": {},
+          "children": [],
+          "baseStyles": {
+           "color": "{{ dataItem.dueColor }}",
+           "fontVariantNumeric": "tabular-nums"
+          }
+         }
+        ],
+        "baseStyles": {
+         "display": "flex",
+         "flexDirection": "row",
+         "alignItems": "center",
+         "flexWrap": "wrap",
+         "gap": "4px 8px",
+         "cursor": "pointer"
+        },
+        "componentEvents": {
+         "click": {
+          "event": "click",
+          "action": "Run Script",
+          "script": "ovMilestone(dataItem.id)"
+         }
+        },
+        "originalElement": "div"
+       },
+       {
+        "componentId": "TextBlock-ov-attention-075",
+        "componentName": "TextBlock",
+        "componentProps": {
+         "text": "{{ dataItem.why }}",
+         "tag": "p",
+         "fontSize": "text-p-sm"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "color": "var(--ink-gray-5)",
+         "marginTop": "4px"
+        },
+        "visibilityCondition": "{{ dataItem.why }}"
+       },
+       {
+        "componentId": "Repeater-ov-attention-082",
+        "componentName": "Repeater",
+        "componentProps": {
+         "data": "{{ dataItem.issues }}",
+         "dataKey": "key"
+        },
+        "componentSlots": {},
+        "children": [
+         {
+          "componentId": "box-ov-attention-081",
+          "componentName": "container",
+          "componentProps": {},
+          "componentSlots": {},
+          "children": [
+           {
+            "componentId": "Icon-ov-attention-076",
+            "componentName": "Icon",
+            "componentProps": {
+             "icon": "{{ dataItem.icon }}",
+             "class": "size-4"
+            },
+            "componentSlots": {},
+            "children": [],
+            "baseStyles": {
+             "color": "{{ dataItem.tone }}"
+            }
+           },
+           {
+            "componentId": "TextBlock-ov-attention-077",
+            "componentName": "TextBlock",
+            "componentProps": {
+             "text": "{{ dataItem.title }}",
+             "tag": "span",
+             "fontSize": "text-sm"
+            },
+            "componentSlots": {},
+            "children": [],
+            "baseStyles": {
+             "color": "var(--ink-gray-9)",
+             "flex": "1",
+             "minWidth": "0px",
+             "cursor": "pointer",
+             "overflow": "hidden",
+             "textOverflow": "ellipsis",
+             "whiteSpace": "nowrap"
+            },
+            "componentEvents": {
+             "click": {
+              "event": "click",
+              "action": "Run Script",
+              "script": "ovOpenTask(dataItem.taskId)"
+             }
+            }
+           },
+           {
+            "componentId": "TextBlock-ov-attention-078",
+            "componentName": "TextBlock",
+            "componentProps": {
+             "text": "{{ dataItem.kind }}",
+             "tag": "span",
+             "fontSize": "text-xs"
+            },
+            "componentSlots": {},
+            "children": [],
+            "baseStyles": {
+             "color": "{{ dataItem.tone }}",
+             "flexShrink": "0"
+            },
+            "mobileStyles": {
+             "display": "none"
+            }
+           },
+           {
+            "componentId": "Avatar-ov-attention-079",
+            "componentName": "Avatar",
+            "componentProps": {
+             "size": "xs",
+             "label": "{{ dataItem.person }}"
+            },
+            "componentSlots": {},
+            "children": [],
+            "baseStyles": {},
+            "visibilityCondition": "{{ dataItem.showAvatar }}"
+           },
+           {
+            "componentId": "Button-ov-attention-080",
+            "componentName": "Button",
+            "componentProps": {
+             "variant": "ghost",
+             "label": "{{ dataItem.action }}",
+             "size": "sm",
+             "disabled": "{{ dataItem.disabled }}"
+            },
+            "componentSlots": {},
+            "children": [],
+            "baseStyles": {},
+            "componentEvents": {
+             "click": {
+              "event": "click",
+              "action": "Run Script",
+              "script": "ovAct(dataItem.taskId, dataItem.key)"
+             }
+            }
+           }
+          ],
+          "baseStyles": {
+           "display": "flex",
+           "flexDirection": "row",
+           "alignItems": "center",
+           "gap": "10px",
+           "padding": "4px 2px 4px 4px",
+           "borderRadius": "8px"
+          },
+          "blockName": "issue",
+          "originalElement": "div",
+          "classes": [
+           "hover:bg-surface-gray-1"
+          ]
+         }
+        ],
+        "baseStyles": {
+         "display": "flex",
+         "flexDirection": "column",
+         "flexWrap": "nowrap",
+         "gap": "2px",
+         "marginTop": "8px",
+         "width": "100%"
+        },
+        "visibilityCondition": "{{ dataItem.issues.length }}"
+       }
+      ],
+      "baseStyles": {
+       "display": "flex",
+       "flexDirection": "column",
+       "padding": "12px 16px",
+       "borderStyle": "solid",
+       "borderColor": "var(--outline-gray-1)",
+       "borderWidth": "0px 0px 1px 0px"
+      },
+      "blockName": "milestone",
+      "originalElement": "div"
+     }
+    ],
+    "baseStyles": {
+     "display": "flex",
+     "flexDirection": "column",
+     "flexWrap": "nowrap",
+     "gap": "0px",
+     "width": "100%"
+    },
+    "visibilityCondition": "{{ ov.attention.needing.length }}"
+   },
+   {
+    "componentId": "box-ov-attention-102",
+    "componentName": "container",
+    "componentProps": {},
+    "componentSlots": {},
+    "children": [
+     {
+      "componentId": "TextBlock-ov-attention-094",
+      "componentName": "TextBlock",
+      "componentProps": {
+       "text": "Not in a milestone",
+       "tag": "p",
+       "fontSize": "text-base"
+      },
+      "componentSlots": {},
+      "children": [],
+      "baseStyles": {
+       "color": "var(--ink-gray-6)",
+       "fontWeight": "500"
+      }
+     },
+     {
+      "componentId": "Repeater-ov-attention-101",
+      "componentName": "Repeater",
+      "componentProps": {
+       "data": "{{ ov.attention.loose }}",
+       "dataKey": "key"
+      },
+      "componentSlots": {},
+      "children": [
+       {
+        "componentId": "box-ov-attention-100",
+        "componentName": "container",
+        "componentProps": {},
+        "componentSlots": {},
+        "children": [
+         {
+          "componentId": "Icon-ov-attention-095",
+          "componentName": "Icon",
+          "componentProps": {
+           "icon": "{{ dataItem.icon }}",
+           "class": "size-4"
+          },
+          "componentSlots": {},
+          "children": [],
+          "baseStyles": {
+           "color": "{{ dataItem.tone }}"
+          }
+         },
+         {
+          "componentId": "TextBlock-ov-attention-096",
+          "componentName": "TextBlock",
+          "componentProps": {
+           "text": "{{ dataItem.title }}",
+           "tag": "span",
+           "fontSize": "text-sm"
+          },
+          "componentSlots": {},
+          "children": [],
+          "baseStyles": {
+           "color": "var(--ink-gray-9)",
+           "flex": "1",
+           "minWidth": "0px",
+           "cursor": "pointer",
+           "overflow": "hidden",
+           "textOverflow": "ellipsis",
+           "whiteSpace": "nowrap"
+          },
+          "componentEvents": {
+           "click": {
+            "event": "click",
+            "action": "Run Script",
+            "script": "ovOpenTask(dataItem.taskId)"
+           }
+          }
+         },
+         {
+          "componentId": "TextBlock-ov-attention-097",
+          "componentName": "TextBlock",
+          "componentProps": {
+           "text": "{{ dataItem.kind }}",
+           "tag": "span",
+           "fontSize": "text-xs"
+          },
+          "componentSlots": {},
+          "children": [],
+          "baseStyles": {
+           "color": "{{ dataItem.tone }}",
+           "flexShrink": "0"
+          },
+          "mobileStyles": {
+           "display": "none"
+          }
+         },
+         {
+          "componentId": "Avatar-ov-attention-098",
+          "componentName": "Avatar",
+          "componentProps": {
+           "size": "xs",
+           "label": "{{ dataItem.person }}"
+          },
+          "componentSlots": {},
+          "children": [],
+          "baseStyles": {},
+          "visibilityCondition": "{{ dataItem.showAvatar }}"
+         },
+         {
+          "componentId": "Button-ov-attention-099",
+          "componentName": "Button",
+          "componentProps": {
+           "variant": "ghost",
+           "label": "{{ dataItem.action }}",
+           "size": "sm",
+           "disabled": "{{ dataItem.disabled }}"
+          },
+          "componentSlots": {},
+          "children": [],
+          "baseStyles": {},
+          "componentEvents": {
+           "click": {
+            "event": "click",
+            "action": "Run Script",
+            "script": "ovAct(dataItem.taskId, dataItem.key)"
+           }
+          }
+         }
+        ],
+        "baseStyles": {
+         "display": "flex",
+         "flexDirection": "row",
+         "alignItems": "center",
+         "gap": "10px",
+         "padding": "4px 2px 4px 4px",
+         "borderRadius": "8px"
+        },
+        "blockName": "issue",
+        "originalElement": "div",
+        "classes": [
+         "hover:bg-surface-gray-1"
+        ]
+       }
+      ],
+      "baseStyles": {
+       "display": "flex",
+       "flexDirection": "column",
+       "flexWrap": "nowrap",
+       "gap": "2px",
+       "marginTop": "8px",
+       "width": "100%"
+      }
+     }
+    ],
+    "baseStyles": {
+     "display": "flex",
+     "flexDirection": "column",
+     "padding": "12px 16px"
+    },
+    "visibilityCondition": "{{ ov.attention.loose.length }}",
+    "originalElement": "div"
+   }
+  ],
+  "baseStyles": {
+   "minWidth": "0px",
+   "overflow": "hidden",
+   "borderRadius": "12px",
+   "backgroundColor": "var(--surface-base)",
+   "borderStyle": "solid",
+   "borderColor": "var(--outline-gray-2)",
+   "borderWidth": "1px",
+   "boxShadow": "0 1px 2px rgb(0 0 0 / 0.04)",
+   "padding": "0px",
+   "width": "100%",
+   "display": "flex",
+   "flexDirection": "column"
+  },
+  "blockName": "needs-attention",
+  "originalElement": "div"
+ },
+ "inputs": [],
+ "is_standard": 1,
+ "creation": "2026-11-03 16:20:05.310696",
+ "modified": "2026-11-03 16:20:05.310696",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "docstatus": 0,
+ "idx": 0
+}

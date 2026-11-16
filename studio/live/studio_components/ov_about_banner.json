@@ -1,0 +1,335 @@
+{
+ "doctype": "Studio Component",
+ "name": "ov_about_banner",
+ "component_id": "ov_about_banner",
+ "component_name": "Overview: About banner",
+ "block": {
+  "componentId": "box-ov-banner-047",
+  "componentName": "container",
+  "componentProps": {},
+  "componentSlots": {},
+  "children": [
+   {
+    "componentId": "box-ov-banner-031",
+    "componentName": "container",
+    "componentProps": {},
+    "componentSlots": {},
+    "children": [
+     {
+      "componentId": "box-ov-banner-029",
+      "componentName": "container",
+      "componentProps": {},
+      "componentSlots": {},
+      "children": [
+       {
+        "componentId": "TextBlock-ov-banner-027",
+        "componentName": "TextBlock",
+        "componentProps": {
+         "text": "{{ ov.about.name }}",
+         "tag": "p",
+         "fontSize": "text-3xl"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "color": "var(--ink-gray-9)",
+         "fontWeight": "600"
+        }
+       },
+       {
+        "componentId": "TextBlock-ov-banner-028",
+        "componentName": "TextBlock",
+        "componentProps": {
+         "text": "{{ ov.about.desc }}",
+         "tag": "p",
+         "fontSize": "text-p-lg"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "color": "var(--ink-gray-6)",
+         "marginTop": "6px",
+         "maxWidth": "672px"
+        }
+       }
+      ],
+      "baseStyles": {
+       "display": "flex",
+       "flexDirection": "column",
+       "flex": "1",
+       "minWidth": "0px"
+      },
+      "originalElement": "div"
+     },
+     {
+      "componentId": "Button-ov-banner-030",
+      "componentName": "Button",
+      "componentProps": {
+       "variant": "ghost",
+       "size": "sm",
+       "icon": "lucide-pencil",
+       "tooltip": "Edit project",
+       "aria-label": "Edit project"
+      },
+      "componentSlots": {},
+      "children": [],
+      "baseStyles": {},
+      "visibilityCondition": "{{ ov.about.manage }}",
+      "componentEvents": {
+       "click": {
+        "event": "click",
+        "action": "Run Script",
+        "script": "ovEdit()"
+       }
+      }
+     }
+    ],
+    "baseStyles": {
+     "display": "flex",
+     "alignItems": "flex-start",
+     "gap": "8px"
+    },
+    "originalElement": "div"
+   },
+   {
+    "componentId": "box-ov-banner-046",
+    "componentName": "container",
+    "componentProps": {},
+    "componentSlots": {},
+    "children": [
+     {
+      "componentId": "box-ov-banner-035",
+      "componentName": "container",
+      "componentProps": {},
+      "componentSlots": {},
+      "children": [
+       {
+        "componentId": "TextBlock-ov-banner-032",
+        "componentName": "TextBlock",
+        "componentProps": {
+         "text": "Lead",
+         "tag": "span",
+         "fontSize": "text-sm"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "color": "var(--ink-gray-5)"
+        }
+       },
+       {
+        "componentId": "Avatar-ov-banner-033",
+        "componentName": "Avatar",
+        "componentProps": {
+         "size": "xs",
+         "label": "{{ ov.about.owner }}"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {}
+       },
+       {
+        "componentId": "TextBlock-ov-banner-034",
+        "componentName": "TextBlock",
+        "componentProps": {
+         "text": "{{ ov.about.owner }}",
+         "tag": "span",
+         "fontSize": "text-sm"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "color": "var(--ink-gray-8)"
+        }
+       }
+      ],
+      "baseStyles": {
+       "display": "flex",
+       "flexDirection": "row",
+       "alignItems": "center",
+       "gap": "6px"
+      },
+      "visibilityCondition": "{{ ov.about.showOwner }}",
+      "originalElement": "div"
+     },
+     {
+      "componentId": "box-ov-banner-038",
+      "componentName": "container",
+      "componentProps": {},
+      "componentSlots": {},
+      "children": [
+       {
+        "componentId": "Icon-ov-banner-036",
+        "componentName": "Icon",
+        "componentProps": {
+         "icon": "lucide-calendar",
+         "class": "size-3.5"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "color": "var(--ink-gray-5)"
+        }
+       },
+       {
+        "componentId": "TextBlock-ov-banner-037",
+        "componentName": "TextBlock",
+        "componentProps": {
+         "text": "{{ ov.about.dates }}",
+         "tag": "span",
+         "fontSize": "text-sm"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "color": "var(--ink-gray-8)",
+         "fontVariantNumeric": "tabular-nums"
+        }
+       }
+      ],
+      "baseStyles": {
+       "display": "flex",
+       "flexDirection": "row",
+       "alignItems": "center",
+       "gap": "6px"
+      },
+      "originalElement": "div"
+     },
+     {
+      "componentId": "box-ov-banner-042",
+      "componentName": "container",
+      "componentProps": {},
+      "componentSlots": {},
+      "children": [
+       {
+        "componentId": "Icon-ov-banner-039",
+        "componentName": "Icon",
+        "componentProps": {
+         "icon": "lucide-hourglass",
+         "class": "size-3.5"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "color": "var(--ink-gray-5)"
+        }
+       },
+       {
+        "componentId": "TextBlock-ov-banner-040",
+        "componentName": "TextBlock",
+        "componentProps": {
+         "text": "{{ ov.about.left }}",
+         "tag": "span",
+         "fontSize": "text-sm"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "color": "var(--ink-gray-8)",
+         "fontVariantNumeric": "tabular-nums"
+        }
+       },
+       {
+        "componentId": "box-ov-banner-041",
+        "componentName": "container",
+        "componentProps": {},
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "width": "6px",
+         "height": "6px",
+         "borderRadius": "9999px",
+         "backgroundColor": "var(--surface-red-5)",
+         "flexShrink": "0"
+        },
+        "visibilityCondition": "{{ ov.about.late }}",
+        "originalElement": "div"
+       }
+      ],
+      "baseStyles": {
+       "display": "flex",
+       "flexDirection": "row",
+       "alignItems": "center",
+       "gap": "6px"
+      },
+      "visibilityCondition": "{{ ov.about.hasEnd }}",
+      "originalElement": "div"
+     },
+     {
+      "componentId": "box-ov-banner-045",
+      "componentName": "container",
+      "componentProps": {},
+      "componentSlots": {},
+      "children": [
+       {
+        "componentId": "PeopleStack-ov-banner-043",
+        "componentName": "PeopleStack",
+        "componentProps": {
+         "people": "{{ ov.about.team }}",
+         "owners": "{{ ov.about.owners }}",
+         "max": 6,
+         "title": "People",
+         "ring": "ring-surface-gray-1"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {},
+        "isCustomVueComponent": true
+       },
+       {
+        "componentId": "TextBlock-ov-banner-044",
+        "componentName": "TextBlock",
+        "componentProps": {
+         "text": "{{ ov.about.teamLabel }}",
+         "tag": "span",
+         "fontSize": "text-sm"
+        },
+        "componentSlots": {},
+        "children": [],
+        "baseStyles": {
+         "color": "var(--ink-gray-6)"
+        }
+       }
+      ],
+      "baseStyles": {
+       "display": "flex",
+       "flexDirection": "row",
+       "alignItems": "center",
+       "gap": "6px",
+       "marginLeft": "auto"
+      },
+      "visibilityCondition": "{{ ov.about.showOwner }}",
+      "originalElement": "div"
+     }
+    ],
+    "baseStyles": {
+     "display": "flex",
+     "flexDirection": "row",
+     "alignItems": "center",
+     "flexWrap": "wrap",
+     "gap": "8px 20px",
+     "marginTop": "16px"
+    },
+    "originalElement": "div"
+   }
+  ],
+  "baseStyles": {
+   "display": "flex",
+   "flexDirection": "column",
+   "width": "100%",
+   "borderRadius": "12px",
+   "backgroundColor": "var(--surface-gray-1)",
+   "padding": "20px 24px"
+  },
+  "blockName": "about-banner",
+  "originalElement": "div"
+ },
+ "inputs": [],
+ "is_standard": 1,
+ "creation": "2026-11-03 16:20:05.310696",
+ "modified": "2026-11-03 16:20:05.310696",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "docstatus": 0,
+ "idx": 0
+}
