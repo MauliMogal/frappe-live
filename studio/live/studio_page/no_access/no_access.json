@@ -1,5 +1,382 @@
 {
  "allow_guest": 0,
+ "blocks": [
+  {
+   "baseStyles": {
+    "display": "flex",
+    "flexDirection": "column",
+    "height": "100%",
+    "overflowX": "hidden",
+    "width": "100%"
+   },
+   "blockName": "body",
+   "children": [
+    {
+     "children": [
+      {
+       "baseStyles": {
+        "display": "flex",
+        "flexDirection": "column",
+        "height": "100%",
+        "minHeight": "0px",
+        "width": "100%"
+       },
+       "blockName": "page",
+       "children": [
+        {
+         "baseStyles": {
+          "alignItems": "center",
+          "backgroundColor": "var(--surface-base)",
+          "borderColor": "var(--outline-gray-1)",
+          "borderStyle": "solid",
+          "borderWidth": "0px 0px 1px 0px",
+          "display": "flex",
+          "flexDirection": "row",
+          "flexShrink": "0",
+          "gap": "8px",
+          "minHeight": "48px",
+          "padding": "0px 20px",
+          "width": "100%"
+         },
+         "blockName": "page-header",
+         "children": [
+          {
+           "baseStyles": {},
+           "children": [],
+           "componentEvents": {
+            "click": {
+             "action": "Run Script",
+             "event": "click",
+             "script": "go('/')"
+            }
+           },
+           "componentId": "Button-no-access-017",
+           "componentName": "Button",
+           "componentProps": {
+            "aria-label": "Back",
+            "icon": "lucide-arrow-left",
+            "variant": "ghost"
+           },
+           "componentSlots": {},
+           "visibilityCondition": "{{ isMobile }}"
+          },
+          {
+           "baseStyles": {
+            "fontSize": "18px",
+            "fontWeight": "600",
+            "minWidth": "0px"
+           },
+           "children": [],
+           "componentId": "Breadcrumbs-no-access-018",
+           "componentName": "Breadcrumbs",
+           "componentProps": {
+            "items": [
+             {
+              "label": "My tasks",
+              "route": "/"
+             },
+             {
+              "label": "No access"
+             }
+            ]
+           },
+           "componentSlots": {}
+          },
+          {
+           "baseStyles": {
+            "flex": "1"
+           },
+           "blockName": "spacer",
+           "children": [],
+           "componentId": "box-no-access-019",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "originalElement": "div"
+          },
+          {
+           "baseStyles": {},
+           "children": [],
+           "componentEvents": {
+            "click": {
+             "action": "Run Script",
+             "event": "click",
+             "script": "newTask()"
+            }
+           },
+           "componentId": "Button-no-access-020",
+           "componentName": "Button",
+           "componentProps": {
+            "iconLeft": "lucide-plus",
+            "label": "New task",
+            "theme": "gray",
+            "tooltip": "New task (C)",
+            "variant": "solid"
+           },
+           "componentSlots": {},
+           "visibilityCondition": "{{ !isMobile }}"
+          },
+          {
+           "baseStyles": {},
+           "children": [],
+           "componentEvents": {
+            "click": {
+             "action": "Run Script",
+             "event": "click",
+             "script": "openNotifications()"
+            }
+           },
+           "componentId": "Button-no-access-021",
+           "componentName": "Button",
+           "componentProps": {
+            "aria-label": "Notifications",
+            "iconLeft": "lucide-bell",
+            "label": "{{ needsLabel }}",
+            "variant": "ghost"
+           },
+           "componentSlots": {},
+           "visibilityCondition": "{{ isMobile }}"
+          },
+          {
+           "baseStyles": {},
+           "children": [],
+           "componentEvents": {
+            "click": {
+             "action": "Run Script",
+             "event": "click",
+             "script": "openSearch()"
+            }
+           },
+           "componentId": "Button-no-access-022",
+           "componentName": "Button",
+           "componentProps": {
+            "aria-label": "Search",
+            "icon": "lucide-search",
+            "variant": "ghost"
+           },
+           "componentSlots": {},
+           "visibilityCondition": "{{ isMobile }}"
+          },
+          {
+           "baseStyles": {},
+           "children": [],
+           "componentId": "Dropdown-no-access-023",
+           "componentName": "Dropdown",
+           "componentProps": {
+            "align": "end",
+            "button": {
+             "aria-label": "Account menu",
+             "icon": "lucide-circle-user",
+             "variant": "ghost"
+            },
+            "options": "{{ accountMenu }}"
+           },
+           "componentSlots": {},
+           "visibilityCondition": "{{ isMobile }}"
+          }
+         ],
+         "componentId": "header-no-access-024",
+         "componentName": "header",
+         "componentProps": {},
+         "componentSlots": {},
+         "mobileStyles": {
+          "padding": "0px 12px"
+         },
+         "originalElement": "header"
+        },
+        {
+         "baseStyles": {
+          "alignItems": "center",
+          "display": "flex",
+          "flexDirection": "column",
+          "padding": "64px 0px",
+          "textAlign": "center",
+          "width": "100%"
+         },
+         "blockName": "empty-state",
+         "children": [
+          {
+           "baseStyles": {
+            "alignItems": "center",
+            "backgroundColor": "var(--surface-gray-2)",
+            "borderRadius": "9999px",
+            "display": "flex",
+            "flexDirection": "row",
+            "height": "56px",
+            "justifyContent": "center",
+            "marginBottom": "16px",
+            "width": "56px"
+           },
+           "children": [
+            {
+             "baseStyles": {
+              "color": "var(--ink-gray-6)"
+             },
+             "children": [],
+             "componentId": "Icon-no-access-026",
+             "componentName": "Icon",
+             "componentProps": {
+              "class": "size-6",
+              "icon": "lucide-lock"
+             },
+             "componentSlots": {}
+            }
+           ],
+           "componentId": "box-no-access-027",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "originalElement": "div"
+          },
+          {
+           "baseStyles": {
+            "color": "var(--ink-gray-9)",
+            "fontWeight": "500"
+           },
+           "children": [],
+           "componentId": "TextBlock-no-access-028",
+           "componentName": "TextBlock",
+           "componentProps": {
+            "fontSize": "text-lg",
+            "tag": "p",
+            "text": "You don't have access to this"
+           },
+           "componentSlots": {}
+          },
+          {
+           "baseStyles": {
+            "color": "var(--ink-gray-5)",
+            "marginTop": "6px",
+            "maxWidth": "384px",
+            "textWrap": "balance"
+           },
+           "children": [],
+           "componentId": "TextBlock-no-access-029",
+           "componentName": "TextBlock",
+           "componentProps": {
+            "fontSize": "text-p-base",
+            "tag": "p",
+            "text": "Ask a project Lead to add you."
+           },
+           "componentSlots": {}
+          },
+          {
+           "baseStyles": {
+            "alignItems": "center",
+            "display": "flex",
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "gap": "8px",
+            "justifyContent": "center",
+            "marginTop": "20px"
+           },
+           "children": [
+            {
+             "baseStyles": {},
+             "children": [],
+             "componentId": "Button-no-access-025",
+             "componentName": "Button",
+             "componentProps": {
+              "label": "Go to My tasks",
+              "route": "/",
+              "variant": "subtle"
+             },
+             "componentSlots": {}
+            }
+           ],
+           "componentId": "box-no-access-030",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "originalElement": "div"
+          }
+         ],
+         "componentId": "box-no-access-031",
+         "componentName": "container",
+         "componentProps": {},
+         "componentSlots": {},
+         "originalElement": "div"
+        }
+       ],
+       "componentId": "box-no-access-032",
+       "componentName": "container",
+       "componentProps": {},
+       "componentSlots": {},
+       "originalElement": "div"
+      },
+      {
+       "children": [],
+       "componentId": "DesignChoice-no-access-panel-layout-crm",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "panel",
+        "v": "crm"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "children": [],
+       "componentId": "DesignChoice-no-access-empty-values-not-set",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "emptyValue",
+        "v": "notset"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "children": [],
+       "componentId": "DesignChoice-no-access-notification-list-full-dividers",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "notifList",
+        "v": "full"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "children": [],
+       "componentId": "notifications_panel-no-access",
+       "componentName": "notifications_panel",
+       "componentProps": {},
+       "componentSlots": {},
+       "isStudioComponent": true
+      }
+     ],
+     "componentId": "AppShell-no-access",
+     "componentName": "AppShell",
+     "componentProps": {
+      "bare": false
+     },
+     "componentSlots": {
+      "sidebar": {
+       "slotContent": [
+        {
+         "children": [],
+         "componentId": "app_sidebar-no-access",
+         "componentName": "app_sidebar",
+         "componentProps": {},
+         "componentSlots": {},
+         "isStudioComponent": true,
+         "parentSlotName": "sidebar"
+        }
+       ],
+       "slotName": "sidebar"
+      }
+     },
+     "isCustomVueComponent": true
+    }
+   ],
+   "componentId": "root",
+   "componentName": "div",
+   "componentProps": {},
+   "componentSlots": {},
+   "originalElement": "body"
+  }
+ ],
  "creation": "2026-11-03 12:29:25.504955",
  "docstatus": 0,
  "doctype": "Studio Page",
@@ -9,73 +386,67 @@
     "display": "flex",
     "flexDirection": "column",
     "height": "100%",
-    "width": "100%",
-    "overflowX": "hidden"
+    "overflowX": "hidden",
+    "width": "100%"
    },
    "blockName": "body",
-   "componentId": "root",
-   "componentName": "div",
-   "componentProps": {},
-   "componentSlots": {},
-   "originalElement": "body",
    "children": [
     {
-     "componentId": "AppShell-no-access",
-     "componentName": "AppShell",
-     "isCustomVueComponent": true,
-     "componentProps": {
-      "bare": false
-     },
-     "componentSlots": {
-      "sidebar": {
-       "slotName": "sidebar",
-       "slotContent": [
-        {
-         "componentId": "app_sidebar-no-access",
-         "componentName": "app_sidebar",
-         "isStudioComponent": true,
-         "componentProps": {},
-         "componentSlots": {},
-         "children": [],
-         "parentSlotName": "sidebar"
-        }
-       ]
-      }
-     },
      "children": [
       {
-       "componentId": "box-no-access-032",
-       "componentName": "container",
-       "componentProps": {},
-       "componentSlots": {},
+       "baseStyles": {
+        "display": "flex",
+        "flexDirection": "column",
+        "height": "100%",
+        "minHeight": "0px",
+        "width": "100%"
+       },
+       "blockName": "page",
        "children": [
         {
-         "componentId": "header-no-access-024",
-         "componentName": "header",
-         "componentProps": {},
-         "componentSlots": {},
+         "baseStyles": {
+          "alignItems": "center",
+          "backgroundColor": "var(--surface-base)",
+          "borderColor": "var(--outline-gray-1)",
+          "borderStyle": "solid",
+          "borderWidth": "0px 0px 1px 0px",
+          "display": "flex",
+          "flexDirection": "row",
+          "flexShrink": "0",
+          "gap": "8px",
+          "minHeight": "48px",
+          "padding": "0px 20px",
+          "width": "100%"
+         },
+         "blockName": "page-header",
          "children": [
           {
+           "baseStyles": {},
+           "children": [],
+           "componentEvents": {
+            "click": {
+             "action": "Run Script",
+             "event": "click",
+             "script": "go('/')"
+            }
+           },
            "componentId": "Button-no-access-017",
            "componentName": "Button",
            "componentProps": {
-            "variant": "ghost",
+            "aria-label": "Back",
             "icon": "lucide-arrow-left",
-            "aria-label": "Back"
+            "variant": "ghost"
            },
            "componentSlots": {},
-           "children": [],
-           "baseStyles": {},
-           "visibilityCondition": "{{ isMobile }}",
-           "componentEvents": {
-            "click": {
-             "event": "click",
-             "action": "Run Script",
-             "script": "go('/')"
-            }
-           }
+           "visibilityCondition": "{{ isMobile }}"
           },
           {
+           "baseStyles": {
+            "fontSize": "18px",
+            "fontWeight": "600",
+            "minWidth": "0px"
+           },
+           "children": [],
            "componentId": "Breadcrumbs-no-access-018",
            "componentName": "Breadcrumbs",
            "componentProps": {
@@ -89,678 +460,307 @@
              }
             ]
            },
-           "componentSlots": {},
-           "children": [],
-           "baseStyles": {
-            "minWidth": "0px",
-            "fontSize": "18px",
-            "fontWeight": "600"
-           }
+           "componentSlots": {}
           },
           {
-           "componentId": "box-no-access-019",
-           "componentName": "container",
-           "componentProps": {},
-           "componentSlots": {},
-           "children": [],
            "baseStyles": {
             "flex": "1"
            },
            "blockName": "spacer",
+           "children": [],
+           "componentId": "box-no-access-019",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
            "originalElement": "div"
           },
           {
+           "baseStyles": {},
+           "children": [],
+           "componentEvents": {
+            "click": {
+             "action": "Run Script",
+             "event": "click",
+             "script": "newTask()"
+            }
+           },
            "componentId": "Button-no-access-020",
            "componentName": "Button",
            "componentProps": {
-            "variant": "solid",
-            "label": "New task",
             "iconLeft": "lucide-plus",
+            "label": "New task",
             "theme": "gray",
-            "tooltip": "New task (C)"
+            "tooltip": "New task (C)",
+            "variant": "solid"
            },
            "componentSlots": {},
-           "children": [],
-           "baseStyles": {},
-           "visibilityCondition": "{{ !isMobile }}",
-           "componentEvents": {
-            "click": {
-             "event": "click",
-             "action": "Run Script",
-             "script": "newTask()"
-            }
-           }
+           "visibilityCondition": "{{ !isMobile }}"
           },
           {
+           "baseStyles": {},
+           "children": [],
+           "componentEvents": {
+            "click": {
+             "action": "Run Script",
+             "event": "click",
+             "script": "openNotifications()"
+            }
+           },
            "componentId": "Button-no-access-021",
            "componentName": "Button",
            "componentProps": {
-            "variant": "ghost",
-            "label": "{{ needsLabel }}",
+            "aria-label": "Notifications",
             "iconLeft": "lucide-bell",
-            "aria-label": "Notifications"
+            "label": "{{ needsLabel }}",
+            "variant": "ghost"
            },
            "componentSlots": {},
-           "children": [],
-           "baseStyles": {},
-           "visibilityCondition": "{{ isMobile }}",
-           "componentEvents": {
-            "click": {
-             "event": "click",
-             "action": "Run Script",
-             "script": "openNotifications()"
-            }
-           }
+           "visibilityCondition": "{{ isMobile }}"
           },
           {
+           "baseStyles": {},
+           "children": [],
+           "componentEvents": {
+            "click": {
+             "action": "Run Script",
+             "event": "click",
+             "script": "openSearch()"
+            }
+           },
            "componentId": "Button-no-access-022",
            "componentName": "Button",
            "componentProps": {
-            "variant": "ghost",
+            "aria-label": "Search",
             "icon": "lucide-search",
-            "aria-label": "Search"
+            "variant": "ghost"
            },
            "componentSlots": {},
-           "children": [],
-           "baseStyles": {},
-           "visibilityCondition": "{{ isMobile }}",
-           "componentEvents": {
-            "click": {
-             "event": "click",
-             "action": "Run Script",
-             "script": "openSearch()"
-            }
-           }
+           "visibilityCondition": "{{ isMobile }}"
           },
           {
+           "baseStyles": {},
+           "children": [],
            "componentId": "Dropdown-no-access-023",
            "componentName": "Dropdown",
            "componentProps": {
-            "options": "{{ accountMenu }}",
             "align": "end",
             "button": {
-             "variant": "ghost",
+             "aria-label": "Account menu",
              "icon": "lucide-circle-user",
-             "aria-label": "Account menu"
-            }
+             "variant": "ghost"
+            },
+            "options": "{{ accountMenu }}"
            },
            "componentSlots": {},
-           "children": [],
-           "baseStyles": {},
            "visibilityCondition": "{{ isMobile }}"
           }
          ],
-         "baseStyles": {
-          "display": "flex",
-          "flexDirection": "row",
-          "alignItems": "center",
-          "gap": "8px",
-          "width": "100%",
-          "minHeight": "48px",
-          "padding": "0px 20px",
-          "flexShrink": "0",
-          "backgroundColor": "var(--surface-base)",
-          "borderStyle": "solid",
-          "borderColor": "var(--outline-gray-1)",
-          "borderWidth": "0px 0px 1px 0px"
-         },
+         "componentId": "header-no-access-024",
+         "componentName": "header",
+         "componentProps": {},
+         "componentSlots": {},
          "mobileStyles": {
           "padding": "0px 12px"
          },
-         "blockName": "page-header",
          "originalElement": "header"
         },
         {
-         "componentId": "box-no-access-031",
-         "componentName": "container",
-         "componentProps": {},
-         "componentSlots": {},
+         "baseStyles": {
+          "alignItems": "center",
+          "display": "flex",
+          "flexDirection": "column",
+          "padding": "64px 0px",
+          "textAlign": "center",
+          "width": "100%"
+         },
+         "blockName": "empty-state",
          "children": [
           {
+           "baseStyles": {
+            "alignItems": "center",
+            "backgroundColor": "var(--surface-gray-2)",
+            "borderRadius": "9999px",
+            "display": "flex",
+            "flexDirection": "row",
+            "height": "56px",
+            "justifyContent": "center",
+            "marginBottom": "16px",
+            "width": "56px"
+           },
+           "children": [
+            {
+             "baseStyles": {
+              "color": "var(--ink-gray-6)"
+             },
+             "children": [],
+             "componentId": "Icon-no-access-026",
+             "componentName": "Icon",
+             "componentProps": {
+              "class": "size-6",
+              "icon": "lucide-lock"
+             },
+             "componentSlots": {}
+            }
+           ],
            "componentId": "box-no-access-027",
            "componentName": "container",
            "componentProps": {},
            "componentSlots": {},
-           "children": [
-            {
-             "componentId": "Icon-no-access-026",
-             "componentName": "Icon",
-             "componentProps": {
-              "icon": "lucide-lock",
-              "class": "size-6"
-             },
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {
-              "color": "var(--ink-gray-6)"
-             }
-            }
-           ],
-           "baseStyles": {
-            "display": "flex",
-            "flexDirection": "row",
-            "alignItems": "center",
-            "justifyContent": "center",
-            "width": "56px",
-            "height": "56px",
-            "borderRadius": "9999px",
-            "backgroundColor": "var(--surface-gray-2)",
-            "marginBottom": "16px"
-           },
            "originalElement": "div"
           },
           {
-           "componentId": "TextBlock-no-access-028",
-           "componentName": "TextBlock",
-           "componentProps": {
-            "text": "You don't have access to this",
-            "tag": "p",
-            "fontSize": "text-lg"
-           },
-           "componentSlots": {},
-           "children": [],
            "baseStyles": {
             "color": "var(--ink-gray-9)",
             "fontWeight": "500"
-           }
-          },
-          {
-           "componentId": "TextBlock-no-access-029",
+           },
+           "children": [],
+           "componentId": "TextBlock-no-access-028",
            "componentName": "TextBlock",
            "componentProps": {
-            "text": "Ask a project Lead to add you.",
+            "fontSize": "text-lg",
             "tag": "p",
-            "fontSize": "text-p-base"
+            "text": "You don't have access to this"
            },
-           "componentSlots": {},
-           "children": [],
+           "componentSlots": {}
+          },
+          {
            "baseStyles": {
             "color": "var(--ink-gray-5)",
             "marginTop": "6px",
             "maxWidth": "384px",
             "textWrap": "balance"
-           }
+           },
+           "children": [],
+           "componentId": "TextBlock-no-access-029",
+           "componentName": "TextBlock",
+           "componentProps": {
+            "fontSize": "text-p-base",
+            "tag": "p",
+            "text": "Ask a project Lead to add you."
+           },
+           "componentSlots": {}
           },
           {
+           "baseStyles": {
+            "alignItems": "center",
+            "display": "flex",
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "gap": "8px",
+            "justifyContent": "center",
+            "marginTop": "20px"
+           },
+           "children": [
+            {
+             "baseStyles": {},
+             "children": [],
+             "componentId": "Button-no-access-025",
+             "componentName": "Button",
+             "componentProps": {
+              "label": "Go to My tasks",
+              "route": "/",
+              "variant": "subtle"
+             },
+             "componentSlots": {}
+            }
+           ],
            "componentId": "box-no-access-030",
            "componentName": "container",
            "componentProps": {},
            "componentSlots": {},
-           "children": [
-            {
-             "componentId": "Button-no-access-025",
-             "componentName": "Button",
-             "componentProps": {
-              "variant": "subtle",
-              "label": "Go to My tasks",
-              "route": "/"
-             },
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {}
-            }
-           ],
-           "baseStyles": {
-            "display": "flex",
-            "flexDirection": "row",
-            "alignItems": "center",
-            "justifyContent": "center",
-            "gap": "8px",
-            "marginTop": "20px",
-            "flexWrap": "wrap"
-           },
            "originalElement": "div"
           }
          ],
-         "baseStyles": {
-          "display": "flex",
-          "flexDirection": "column",
-          "alignItems": "center",
-          "textAlign": "center",
-          "padding": "64px 0px",
-          "width": "100%"
-         },
-         "blockName": "empty-state",
+         "componentId": "box-no-access-031",
+         "componentName": "container",
+         "componentProps": {},
+         "componentSlots": {},
          "originalElement": "div"
         }
        ],
-       "baseStyles": {
-        "display": "flex",
-        "flexDirection": "column",
-        "width": "100%",
-        "height": "100%",
-        "minHeight": "0px"
-       },
-       "blockName": "page",
+       "componentId": "box-no-access-032",
+       "componentName": "container",
+       "componentProps": {},
+       "componentSlots": {},
        "originalElement": "div"
       },
       {
+       "children": [],
        "componentId": "DesignChoice-no-access-panel-layout-crm",
        "componentName": "DesignChoice",
-       "isCustomVueComponent": true,
        "componentProps": {
         "k": "panel",
         "v": "crm"
        },
        "componentSlots": {},
-       "children": []
+       "isCustomVueComponent": true
       },
       {
+       "children": [],
        "componentId": "DesignChoice-no-access-empty-values-not-set",
        "componentName": "DesignChoice",
-       "isCustomVueComponent": true,
        "componentProps": {
         "k": "emptyValue",
         "v": "notset"
        },
        "componentSlots": {},
-       "children": []
+       "isCustomVueComponent": true
       },
       {
+       "children": [],
        "componentId": "DesignChoice-no-access-notification-list-full-dividers",
        "componentName": "DesignChoice",
-       "isCustomVueComponent": true,
        "componentProps": {
         "k": "notifList",
         "v": "full"
        },
        "componentSlots": {},
-       "children": []
+       "isCustomVueComponent": true
       },
       {
+       "children": [],
        "componentId": "notifications_panel-no-access",
        "componentName": "notifications_panel",
-       "isStudioComponent": true,
        "componentProps": {},
        "componentSlots": {},
-       "children": []
+       "isStudioComponent": true
       }
-     ]
-    }
-   ]
-  }
- ],
- "blocks": [
-  {
-   "baseStyles": {
-    "display": "flex",
-    "flexDirection": "column",
-    "height": "100%",
-    "width": "100%",
-    "overflowX": "hidden"
-   },
-   "blockName": "body",
-   "componentId": "root",
-   "componentName": "div",
-   "componentProps": {},
-   "componentSlots": {},
-   "originalElement": "body",
-   "children": [
-    {
+     ],
      "componentId": "AppShell-no-access",
      "componentName": "AppShell",
-     "isCustomVueComponent": true,
      "componentProps": {
       "bare": false
      },
      "componentSlots": {
       "sidebar": {
-       "slotName": "sidebar",
        "slotContent": [
         {
+         "children": [],
          "componentId": "app_sidebar-no-access",
          "componentName": "app_sidebar",
-         "isStudioComponent": true,
          "componentProps": {},
          "componentSlots": {},
-         "children": [],
+         "isStudioComponent": true,
          "parentSlotName": "sidebar"
         }
-       ]
+       ],
+       "slotName": "sidebar"
       }
      },
-     "children": [
-      {
-       "componentId": "box-no-access-032",
-       "componentName": "container",
-       "componentProps": {},
-       "componentSlots": {},
-       "children": [
-        {
-         "componentId": "header-no-access-024",
-         "componentName": "header",
-         "componentProps": {},
-         "componentSlots": {},
-         "children": [
-          {
-           "componentId": "Button-no-access-017",
-           "componentName": "Button",
-           "componentProps": {
-            "variant": "ghost",
-            "icon": "lucide-arrow-left",
-            "aria-label": "Back"
-           },
-           "componentSlots": {},
-           "children": [],
-           "baseStyles": {},
-           "visibilityCondition": "{{ isMobile }}",
-           "componentEvents": {
-            "click": {
-             "event": "click",
-             "action": "Run Script",
-             "script": "go('/')"
-            }
-           }
-          },
-          {
-           "componentId": "Breadcrumbs-no-access-018",
-           "componentName": "Breadcrumbs",
-           "componentProps": {
-            "items": [
-             {
-              "label": "My tasks",
-              "route": "/"
-             },
-             {
-              "label": "No access"
-             }
-            ]
-           },
-           "componentSlots": {},
-           "children": [],
-           "baseStyles": {
-            "minWidth": "0px",
-            "fontSize": "18px",
-            "fontWeight": "600"
-           }
-          },
-          {
-           "componentId": "box-no-access-019",
-           "componentName": "container",
-           "componentProps": {},
-           "componentSlots": {},
-           "children": [],
-           "baseStyles": {
-            "flex": "1"
-           },
-           "blockName": "spacer",
-           "originalElement": "div"
-          },
-          {
-           "componentId": "Button-no-access-020",
-           "componentName": "Button",
-           "componentProps": {
-            "variant": "solid",
-            "label": "New task",
-            "iconLeft": "lucide-plus",
-            "theme": "gray",
-            "tooltip": "New task (C)"
-           },
-           "componentSlots": {},
-           "children": [],
-           "baseStyles": {},
-           "visibilityCondition": "{{ !isMobile }}",
-           "componentEvents": {
-            "click": {
-             "event": "click",
-             "action": "Run Script",
-             "script": "newTask()"
-            }
-           }
-          },
-          {
-           "componentId": "Button-no-access-021",
-           "componentName": "Button",
-           "componentProps": {
-            "variant": "ghost",
-            "label": "{{ needsLabel }}",
-            "iconLeft": "lucide-bell",
-            "aria-label": "Notifications"
-           },
-           "componentSlots": {},
-           "children": [],
-           "baseStyles": {},
-           "visibilityCondition": "{{ isMobile }}",
-           "componentEvents": {
-            "click": {
-             "event": "click",
-             "action": "Run Script",
-             "script": "openNotifications()"
-            }
-           }
-          },
-          {
-           "componentId": "Button-no-access-022",
-           "componentName": "Button",
-           "componentProps": {
-            "variant": "ghost",
-            "icon": "lucide-search",
-            "aria-label": "Search"
-           },
-           "componentSlots": {},
-           "children": [],
-           "baseStyles": {},
-           "visibilityCondition": "{{ isMobile }}",
-           "componentEvents": {
-            "click": {
-             "event": "click",
-             "action": "Run Script",
-             "script": "openSearch()"
-            }
-           }
-          },
-          {
-           "componentId": "Dropdown-no-access-023",
-           "componentName": "Dropdown",
-           "componentProps": {
-            "options": "{{ accountMenu }}",
-            "align": "end",
-            "button": {
-             "variant": "ghost",
-             "icon": "lucide-circle-user",
-             "aria-label": "Account menu"
-            }
-           },
-           "componentSlots": {},
-           "children": [],
-           "baseStyles": {},
-           "visibilityCondition": "{{ isMobile }}"
-          }
-         ],
-         "baseStyles": {
-          "display": "flex",
-          "flexDirection": "row",
-          "alignItems": "center",
-          "gap": "8px",
-          "width": "100%",
-          "minHeight": "48px",
-          "padding": "0px 20px",
-          "flexShrink": "0",
-          "backgroundColor": "var(--surface-base)",
-          "borderStyle": "solid",
-          "borderColor": "var(--outline-gray-1)",
-          "borderWidth": "0px 0px 1px 0px"
-         },
-         "mobileStyles": {
-          "padding": "0px 12px"
-         },
-         "blockName": "page-header",
-         "originalElement": "header"
-        },
-        {
-         "componentId": "box-no-access-031",
-         "componentName": "container",
-         "componentProps": {},
-         "componentSlots": {},
-         "children": [
-          {
-           "componentId": "box-no-access-027",
-           "componentName": "container",
-           "componentProps": {},
-           "componentSlots": {},
-           "children": [
-            {
-             "componentId": "Icon-no-access-026",
-             "componentName": "Icon",
-             "componentProps": {
-              "icon": "lucide-lock",
-              "class": "size-6"
-             },
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {
-              "color": "var(--ink-gray-6)"
-             }
-            }
-           ],
-           "baseStyles": {
-            "display": "flex",
-            "flexDirection": "row",
-            "alignItems": "center",
-            "justifyContent": "center",
-            "width": "56px",
-            "height": "56px",
-            "borderRadius": "9999px",
-            "backgroundColor": "var(--surface-gray-2)",
-            "marginBottom": "16px"
-           },
-           "originalElement": "div"
-          },
-          {
-           "componentId": "TextBlock-no-access-028",
-           "componentName": "TextBlock",
-           "componentProps": {
-            "text": "You don't have access to this",
-            "tag": "p",
-            "fontSize": "text-lg"
-           },
-           "componentSlots": {},
-           "children": [],
-           "baseStyles": {
-            "color": "var(--ink-gray-9)",
-            "fontWeight": "500"
-           }
-          },
-          {
-           "componentId": "TextBlock-no-access-029",
-           "componentName": "TextBlock",
-           "componentProps": {
-            "text": "Ask a project Lead to add you.",
-            "tag": "p",
-            "fontSize": "text-p-base"
-           },
-           "componentSlots": {},
-           "children": [],
-           "baseStyles": {
-            "color": "var(--ink-gray-5)",
-            "marginTop": "6px",
-            "maxWidth": "384px",
-            "textWrap": "balance"
-           }
-          },
-          {
-           "componentId": "box-no-access-030",
-           "componentName": "container",
-           "componentProps": {},
-           "componentSlots": {},
-           "children": [
-            {
-             "componentId": "Button-no-access-025",
-             "componentName": "Button",
-             "componentProps": {
-              "variant": "subtle",
-              "label": "Go to My tasks",
-              "route": "/"
-             },
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {}
-            }
-           ],
-           "baseStyles": {
-            "display": "flex",
-            "flexDirection": "row",
-            "alignItems": "center",
-            "justifyContent": "center",
-            "gap": "8px",
-            "marginTop": "20px",
-            "flexWrap": "wrap"
-           },
-           "originalElement": "div"
-          }
-         ],
-         "baseStyles": {
-          "display": "flex",
-          "flexDirection": "column",
-          "alignItems": "center",
-          "textAlign": "center",
-          "padding": "64px 0px",
-          "width": "100%"
-         },
-         "blockName": "empty-state",
-         "originalElement": "div"
-        }
-       ],
-       "baseStyles": {
-        "display": "flex",
-        "flexDirection": "column",
-        "width": "100%",
-        "height": "100%",
-        "minHeight": "0px"
-       },
-       "blockName": "page",
-       "originalElement": "div"
-      },
-      {
-       "componentId": "DesignChoice-no-access-panel-layout-crm",
-       "componentName": "DesignChoice",
-       "isCustomVueComponent": true,
-       "componentProps": {
-        "k": "panel",
-        "v": "crm"
-       },
-       "componentSlots": {},
-       "children": []
-      },
-      {
-       "componentId": "DesignChoice-no-access-empty-values-not-set",
-       "componentName": "DesignChoice",
-       "isCustomVueComponent": true,
-       "componentProps": {
-        "k": "emptyValue",
-        "v": "notset"
-       },
-       "componentSlots": {},
-       "children": []
-      },
-      {
-       "componentId": "DesignChoice-no-access-notification-list-full-dividers",
-       "componentName": "DesignChoice",
-       "isCustomVueComponent": true,
-       "componentProps": {
-        "k": "notifList",
-        "v": "full"
-       },
-       "componentSlots": {},
-       "children": []
-      },
-      {
-       "componentId": "notifications_panel-no-access",
-       "componentName": "notifications_panel",
-       "isStudioComponent": true,
-       "componentProps": {},
-       "componentSlots": {},
-       "children": []
-      }
-     ]
+     "isCustomVueComponent": true
     }
-   ]
+   ],
+   "componentId": "root",
+   "componentName": "div",
+   "componentProps": {},
+   "componentSlots": {},
+   "originalElement": "body"
   }
  ],
  "frappe_app": "frappe_live",
  "idx": 0,
  "is_standard": 1,
- "modified": "2026-11-03 13:22:26.321339",
+ "modified": "2026-11-17 01:00:00.000000",
  "modified_by": "Administrator",
  "name": "no_access",
  "owner": "Administrator",
@@ -768,5 +768,6 @@
  "page_title": "No access",
  "published": 1,
  "route": "/no-access",
- "studio_app": "live"
+ "studio_app": "live",
+ "tab_title": "No access \u00b7 Frappe Live"
 }
