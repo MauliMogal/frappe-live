@@ -335,4 +335,6 @@ def reset():
 	for doctype, _key in KINDS.values():
 		frappe.db.delete(doctype)
 	frappe.db.delete("Live Map Entry")
+	for doctype in ("Live Onboarding", "Live Feedback", "Live Message", "Live MRR", "Live Session", "Live Check"):
+		frappe.db.delete(doctype)
 	frappe.db.commit()

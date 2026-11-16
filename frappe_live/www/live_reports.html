@@ -1,0 +1,56 @@
+{% extends "templates/web.html" %}
+{% block page_content %}
+<style>
+  .lr { max-width: 1040px; margin: 28px auto; font-size: 14px; }
+  .lr h2 { font-size: 17px; margin: 28px 0 10px; }
+  .lr .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
+  .lr .tile { border: 1px solid var(--border-color, #e2e2e2); border-radius: 8px; padding: 12px 14px; }
+  .lr .tile b { display: block; font-size: 22px; }
+  .lr table { width: 100%; border-collapse: collapse; }
+  .lr th, .lr td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border-color, #eee); }
+  .lr .bar { height: 14px; background: #4c8bf5; border-radius: 3px; }
+  .lr .pill { padding: 1px 8px; border-radius: 10px; font-size: 12px; background: #f1f1f1; }
+  .lr .pill.risk { background: #fdf0d5; } .lr .pill.off { background: #fbe3e3; } .lr .pill.ok { background: #e3f4e8; }
+</style>
+<div class="lr">
+  <a href="/live" style="font-size:13px">&larr; Frappe Live</a>
+  <h1 style="font-size:24px;margin:10px 0 2px">Assisted Onboarding: where we stand</h1>
+  <p class="text-muted">Worked out from the projects just now. Only numbers backed by records.</p>
+
+  <div class="tiles">
+    <div class="tile"><span class="text-muted">Onboardings</span><b>{{ onboardings|length }}</b></div>
+    <div class="tile"><span class="text-muted">On track / at risk / off</span><b>{{ health["On track"] }} / {{ health["At risk"] }} / {{ health["Off track"] }}</b></div>
+    <div class="tile"><span class="text-muted">MRR now (USD)</span><b>{{ "%.0f"|format(mrr_now) }}</b></div>
+    <div class="tile"><span class="text-muted">Median days to live</span><b>{{ median_days_to_live if median_days_to_live is not none else "not yet" }}</b><span class="text-muted">{{ live_count }} live</span></div>
+    <div class="tile"><span class="text-muted">Feedback open</span><b>{{ feedback_open }}</b><span class="text-muted">avg rating {{ avg_rating or "none" }}, recommend {{ recommend or "none" }}</span></div>
+    <div class="tile"><span class="text-muted">Team minutes</span><b>{{ minutes_total }}</b></div>
+  </div>
+
+  <h2>Where each onboarding is</h2>
+  {% set top = (funnel | map(attribute="count") | max) or 1 %}
+  <table>{% for f in funnel %}<tr><td style="width:150px">{{ f.stage }}</td><td><div class="bar" style="width: {{ (f.count / top * 100) | round }}%; min-width: {{ 2 if f.count else 0 }}px"></div></td><td style="width:40px">{{ f.count }}</td></tr>{% endfor %}</table>
+
+  <h2>Every onboarding</h2>
+  <table>
+    <tr><th>Customer</th><th>App</th><th>Run by</th><th>Stage</th><th>Health</th><th>Days</th><th>MRR</th><th>Minutes</th></tr>
+    {% for o in onboardings %}
+    <tr><td><a href="/live/p/{{ o.project }}">{{ o.customer }}</a></td><td>{{ o.app }}</td><td>{{ o.owner_name }}</td><td>{{ o.status }}</td>
+      <td><span class="pill {{ 'ok' if o.health == 'On track' else ('risk' if o.health == 'At risk' else 'off') }}">{{ o.health }}</span></td>
+      <td>{{ o.days if o.days is not none else "" }}</td><td>{{ "%.0f"|format(o.mrr_usd or 0) }}</td><td>{{ o.minutes_total or 0 }}</td></tr>
+    {% else %}<tr><td colspan="8" class="text-muted">No onboardings yet.</td></tr>{% endfor %}
+  </table>
+
+  <h2>MRR by month (USD)</h2>
+  {% if months %}
+  {% set mtop = (months | map(attribute="mrr") | max) or 1 %}
+  <table>{% for m in months %}<tr><td style="width:90px">{{ m.month }}</td><td><div class="bar" style="width: {{ (m.mrr / mtop * 100) | round }}%"></div></td><td style="width:70px">{{ "%.0f"|format(m.mrr) }}</td>
+    <td class="text-muted" style="font-size:12px">{% for u, v in m.by_owner.items() %}{{ owners.get(u, u) }}: {{ "%.0f"|format(v) }}{% if not loop.last %} · {% endif %}{% endfor %}</td></tr>{% endfor %}</table>
+  {% else %}<p class="text-muted">No MRR recorded yet. Add a Live MRR row, with the invoice, when a site is paid.</p>{% endif %}
+
+  <h2>Latest feedback</h2>
+  <table><tr><th>Type</th><th>Project</th><th>Summary</th><th>Votes</th><th>Status</th></tr>
+    {% for f in feedback %}<tr><td>{{ f.type }}</td><td>{{ f.project }}</td><td>{{ f.summary }}</td><td>{{ f.votes or 0 }}</td><td>{{ f.status }}</td></tr>
+    {% else %}<tr><td colspan="5" class="text-muted">No feedback yet.</td></tr>{% endfor %}</table>
+  <p class="text-muted" style="margin-top:20px;font-size:12px">Deeper analysis: Insights, on tables Live Onboarding, Live MRR, Live Feedback, Live Session and Live Check.</p>
+</div>
+{% endblock %}

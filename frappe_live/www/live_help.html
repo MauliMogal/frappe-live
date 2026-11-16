@@ -1,0 +1,91 @@
+{% extends "templates/web.html" %}
+{% block page_content %}
+<div class="live-help" style="max-width: 760px; margin: 32px auto; font-size: 15px;">
+  <a href="/live" style="font-size: 13px;">&larr; Back to Frappe Live</a>
+  <h1 style="font-size: 26px; margin: 12px 0 4px;">Help and feedback</h1>
+  <p class="text-muted">Ask a question, tell us what slowed you down, or send a message. The Frappe team sees it in minutes.</p>
+
+  {% if not projects %}
+    <p>You're not on an onboarding yet. When the team adds you, it shows here.</p>
+  {% else %}
+  <label style="font-weight: 600; margin-top: 16px; display: block;">Project</label>
+  <select id="project" class="form-control" style="max-width: 420px;">
+    {% for p in projects %}<option value="{{ p.id }}">{{ p.name }}</option>{% endfor %}
+  </select>
+
+  <div id="plan" style="margin-top: 20px;"></div>
+
+  <h2 style="font-size: 18px; margin-top: 28px;">Message the team</h2>
+  <textarea id="msg" class="form-control" rows="3" placeholder="Write your question or update"></textarea>
+  <button class="btn btn-primary btn-sm" style="margin-top: 8px;" onclick="liveSend()">Send</button>
+  <div id="thread" style="margin-top: 16px;"></div>
+
+  <h2 style="font-size: 18px; margin-top: 28px;">Share feedback</h2>
+  <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+    <select id="fbtype" class="form-control" style="max-width: 260px;">
+      <option>I'm stuck</option><option>Bug</option><option>Feature request</option><option>Onboarding experience</option><option>Office Hours question</option>
+    </select>
+    <select id="fbrating" class="form-control" style="max-width: 200px;">
+      <option value="">How is it going? (optional)</option>
+      <option value="5">5: Great</option><option value="4">4</option><option value="3">3</option><option value="2">2</option><option value="1">1: Not good</option>
+    </select>
+  </div>
+  <textarea id="fbtext" class="form-control" rows="3" style="margin-top: 8px;" placeholder="What happened, or what would help?"></textarea>
+  <label style="font-size: 13px; margin-top: 6px;"><input type="checkbox" id="fbconsent"> Frappe may quote this publicly, with my name</label><br>
+  <button class="btn btn-default btn-sm" style="margin-top: 8px;" onclick="liveFeedback()">Send feedback</button>
+
+  <h2 style="font-size: 18px; margin-top: 28px;">Office Hours</h2>
+  <p>{{ office_hours }}. Bring your questions and your screen.
+  {% if office_hours_link %}<a href="{{ office_hours_link }}">Join</a>{% endif %}</p>
+  <p class="text-muted" style="font-size: 13px;">Questions with the most votes go first. Vote for the ones you want answered.</p>
+  <div id="questions"></div>
+  {% endif %}
+</div>
+<script>
+const call = (method, args, post) => fetch('/api/method/' + method + (post ? '' : '?' + new URLSearchParams(args)), {
+  method: post ? 'POST' : 'GET',
+  headers: { 'Content-Type': 'application/json', 'X-Frappe-CSRF-Token': frappe.csrf_token },
+  body: post ? JSON.stringify(args) : undefined,
+}).then(r => r.json()).then(r => { if (r.exc_type) { alert(r._server_messages ? JSON.parse(JSON.parse(r._server_messages)[0]).message : r.exc_type); throw r } return r.message });
+const esc = s => String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const projects = {{ projects | json }};
+const flash = t => { const d = document.createElement('div'); d.textContent = t; d.style.cssText = 'position:fixed;bottom:20px;right:20px;background:#222;color:#fff;padding:8px 14px;border-radius:6px'; document.body.appendChild(d); setTimeout(() => d.remove(), 2500); };
+const sel = () => document.getElementById('project').value;
+function drawPlan() {
+  const p = projects.find(x => x.id === sel()); if (!p) return;
+  document.getElementById('plan').innerHTML = '<div style="display:flex;gap:8px;flex-wrap:wrap">' + p.milestones.map(m =>
+    `<div style="border:1px solid var(--border-color,#ddd);border-radius:8px;padding:8px 12px;min-width:130px">
+      <div style="font-weight:600;font-size:13px">${esc(m.name)}</div>
+      <div class="text-muted" style="font-size:12px">${m.total ? m.done + ' of ' + m.total + ' done' : 'No steps yet'}${m.due ? ' · by ' + esc(m.due) : ''}</div></div>`).join('') +
+    '</div><p style="margin-top:8px;font-size:13px"><a href="/live/p/' + p.id + '">Open your full plan</a></p>';
+}
+function drawThread() {
+  call('frappe_live.portal.project_thread', { project: sel() }).then(t => {
+    document.getElementById('thread').innerHTML = t.messages.map(m =>
+      `<div style="margin:6px 0;padding:8px 12px;border-radius:8px;background:${m.direction === 'To customer' ? 'var(--subtle-fg,#f4f5f6)' : 'transparent'};border:1px solid var(--border-color,#eee)">
+        <div style="font-size:12px" class="text-muted">${esc(m.from_name)} · ${esc(m.creation.slice(0, 16))}</div><div>${esc(m.text)}</div></div>`).join('') || '<p class="text-muted">No messages yet.</p>';
+  });
+  call('frappe_live.portal.office_hours_questions', {}).then(q => {
+    document.getElementById('questions').innerHTML = q.map(x =>
+      `<div style="display:flex;gap:8px;align-items:center;margin:4px 0"><button class="btn btn-xs btn-default" onclick="liveVote('${x.name}')">▲ ${x.votes}</button><span>${esc(x.summary)}</span></div>`).join('') || '<p class="text-muted">No questions yet. Add one above with type "Office Hours question".</p>';
+  });
+}
+function liveSend() {
+  const text = document.getElementById('msg').value.trim(); if (!text) return;
+  call('frappe_live.portal.send_message', { project: sel(), text }, true).then(() => { document.getElementById('msg').value = ''; drawThread(); flash('Sent'); });
+}
+function liveFeedback() {
+  const details = document.getElementById('fbtext').value.trim(); if (!details) return;
+  call('frappe_live.portal.send_feedback', { project: sel(), type: document.getElementById('fbtype').value, details,
+    rating: document.getElementById('fbrating').value || null, consent_to_quote: document.getElementById('fbconsent').checked ? 1 : 0 }, true)
+    .then(() => { document.getElementById('fbtext').value = ''; drawThread(); flash('Thanks, the team has it'); });
+}
+function liveVote(name) { call('frappe_live.portal.vote', { feedback: name }, true).then(drawThread); }
+if (projects.length) {
+  const want = new URLSearchParams(location.search).get('project');
+  if (want) document.getElementById('project').value = want;
+  document.getElementById('project').onchange = () => { drawPlan(); drawThread(); };
+  drawPlan(); drawThread();
+}
+</script>
+{% endblock %}

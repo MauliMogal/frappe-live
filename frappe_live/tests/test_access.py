@@ -141,3 +141,131 @@ class TestAccess(IntegrationTestCase):
 		boot = boot_as(TEAM)
 		self.assertEqual(len(boot["records"]["projects"]), 0)
 		self.assertEqual([w["id"] for w in boot["records"]["workspaces"]], ["frappe"])
+
+
+class TestLiveRecords(IntegrationTestCase):
+	@classmethod
+	def setUpClass(cls):
+		super().setUpClass()
+		frappe.set_user("Administrator")
+		api.reset()
+		for dt in ("Live Onboarding", "Live Feedback", "Live Message", "Live MRR", "Live Session", "Live Check"):
+			frappe.db.delete(dt)
+		s = frappe.get_single("Live Settings")
+		s.admin_domain = "frappe.io"
+		s.super_admins = BOSS
+		s.raven_webhook_secret = "test-secret"
+		s.save(ignore_permissions=True)
+		for email in (BOSS, TEAM, CUST_A, CUST_B):
+			make_user(email)
+		boot_as(TEAM)
+		frappe.set_user(TEAM)
+		from frappe_live import portal
+
+		cls.pa = portal.start_onboarding("Acme Traders", "CRM", kickoff_date="2026-11-14", customer_email=CUST_A)
+		cls.pb = portal.start_onboarding("Bolt Logistics", "ERPNext", kickoff_date="2026-11-16", customer_email=CUST_B)
+		frappe.set_user("Administrator")
+
+	def tearDown(self):
+		frappe.set_user("Administrator")
+
+	def test_onboarding_template(self):
+		p = api._get("projects", self.pa)
+		self.assertEqual([m["name"] for m in p["milestones"]], ["Set up", "Start using", "Habit", "Live at day 30", "Live at day 90"])
+		for m in p["milestones"]:
+			self.assertLess(frappe.utils.getdate(m["due"]).weekday(), 5)
+		self.assertEqual(frappe.db.get_value("Live Onboarding", self.pa, "customer"), "Acme Traders")
+		self.assertEqual({x["id"] for x in boot_as(CUST_A)["records"]["projects"]}, {self.pa})
+
+	def test_steps_and_checks(self):
+		from frappe_live import portal
+
+		frappe.set_user(TEAM)
+		ids = portal.add_steps(self.pa, [
+			{"title": "Your deal stages follow how you sell", "milestone": "Set up", "why": "You said every job starts with a site visit", "done_when": "CRM Deal Status names match", "owner": "team", "due": "2026-11-21"},
+			{"title": "Your team adds a real new enquiry", "milestone": "Start using", "owner": "customer", "due": "2026-11-24"},
+		])
+		t1 = api._get("tasks", ids[0])
+		self.assertEqual(t1["due"], "2026-11-23")  # Saturday moves to Monday
+		self.assertIn("Why:", t1["description"])
+		portal.record_check(self.pa, ids[0], 1, "5 stages match")
+		self.assertEqual(api._get("tasks", ids[0])["status"], "done")
+		self.assertIn(ids[1], {t["id"] for t in boot_as(CUST_A)["records"]["tasks"]})
+		frappe.set_user(CUST_A)
+		with self.assertRaises(frappe.PermissionError):
+			portal.add_steps(self.pa, [{"title": "x"}])
+
+	def test_feedback_and_messages_stay_in_their_project(self):
+		from frappe_live import portal
+
+		frappe.set_user(CUST_A)
+		portal.send_feedback(self.pa, "I'm stuck", "Can't find where to add a stage")
+		portal.send_message(self.pa, "Hello team")
+		with self.assertRaises(frappe.PermissionError):
+			portal.send_message(self.pb, "Not my project")
+		self.assertEqual(len(frappe.get_list("Live Feedback")), 1)
+		frappe.set_user(CUST_B)
+		self.assertEqual(len(frappe.get_list("Live Feedback")), 0)
+		self.assertEqual(len(frappe.get_list("Live Message")), 0)
+		with self.assertRaises(frappe.PermissionError):
+			portal.project_thread(self.pa)
+		frappe.set_user(TEAM)
+		self.assertEqual(len(frappe.get_list("Live Message")), 1)
+
+	def test_customers_cannot_touch_money_or_sessions(self):
+		from frappe_live import portal
+
+		frappe.set_user(CUST_A)
+		with self.assertRaises(frappe.PermissionError):
+			portal.record_mrr(self.pa, "2026-11-01", 25)
+		with self.assertRaises(frappe.PermissionError):
+			portal.log_session(self.pa, "2026-11-16", "Help", 30)
+
+	def test_mrr_rolls_up(self):
+		from frappe_live import portal
+
+		frappe.set_user(TEAM)
+		portal.record_mrr(self.pa, "2026-11-10", 25, "New", "USD 25")
+		self.assertEqual(frappe.db.get_value("Live Onboarding", self.pa, "mrr_usd"), 25)
+		self.assertEqual(str(frappe.db.get_value("Live Onboarding", self.pa, "paid_since")), "2026-11-01")
+		portal.log_session(self.pa, "2026-11-16", "First call", 60)
+		self.assertEqual(frappe.db.get_value("Live Onboarding", self.pa, "minutes_total"), 60)
+
+	def test_raven_reply_reaches_project(self):
+		import base64
+		import hashlib
+		import hmac
+		from unittest.mock import patch
+
+		from frappe_live import portal, raven
+
+		frappe.set_user(CUST_A)
+		name = portal.send_message(self.pa, "Where do I add products?")
+		frappe.set_user("Guest")
+		data = {"text": "<p>Settings, then Products.</p>", "owner": TEAM, "is_reply": 1,
+			"replied_message_details": json.dumps({"content": f"Owner: Where do I add products? [LM-{name}] Open project"})}
+		sig = base64.b64encode(hmac.new(b"test-secret", frappe.as_json(data).encode(), hashlib.sha256).digest()).decode()
+
+		class Req:
+			def get_data(self):
+				return json.dumps(data).encode()
+
+		with patch.object(frappe, "request", Req(), create=True), patch.object(frappe, "get_request_header", lambda k, d=None: sig), patch("frappe_live.raven.notify_customer"):
+			frappe.local.form_dict = frappe._dict()
+			out = raven.receive()
+		self.assertTrue(out.get("message"), out)
+		frappe.set_user(CUST_A)
+		texts = [m.text for m in portal.project_thread(self.pa)["messages"]]
+		self.assertIn("Settings, then Products.", texts)
+
+		frappe.set_user("Guest")
+		with patch.object(frappe, "request", Req(), create=True), patch.object(frappe, "get_request_header", lambda k, d=None: "bad"):
+			with self.assertRaises(frappe.PermissionError):
+				raven.receive()
+
+	def test_health(self):
+		from frappe_live import health
+
+		frappe.set_user("Administrator")
+		health.update_all()
+		self.assertIn(frappe.db.get_value("Live Onboarding", self.pb, "health"), ("On track", "At risk", "Off track"))

@@ -1,0 +1,128 @@
+{
+ "actions": [],
+ "autoname": "hash",
+ "creation": "2026-11-16 12:00:00.000000",
+ "modified": "2026-11-16 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "description": "A session with a customer: first call, help, Office Hours",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "module": "Frappe Live",
+ "name": "Live Session",
+ "field_order": [
+  "project",
+  "date",
+  "kind",
+  "minutes",
+  "run_by",
+  "notes",
+  "steps_hit",
+  "blockers",
+  "roadmap_changes",
+  "skill_changes",
+  "product_issues"
+ ],
+ "fields": [
+  {
+   "fieldname": "project",
+   "fieldtype": "Data",
+   "label": "Project ID",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "kind",
+   "fieldtype": "Select",
+   "label": "Kind",
+   "options": "First call\nHelp\nOffice Hours\nGo-live review",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "minutes",
+   "fieldtype": "Int",
+   "label": "Minutes",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "run_by",
+   "fieldtype": "Link",
+   "label": "Run by",
+   "options": "User"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Text Editor",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "steps_hit",
+   "fieldtype": "Small Text",
+   "label": "Steps hit"
+  },
+  {
+   "fieldname": "blockers",
+   "fieldtype": "Small Text",
+   "label": "Blockers"
+  },
+  {
+   "fieldname": "roadmap_changes",
+   "fieldtype": "Small Text",
+   "label": "Roadmap changes"
+  },
+  {
+   "fieldname": "skill_changes",
+   "fieldtype": "Small Text",
+   "label": "Skill and library changes"
+  },
+  {
+   "fieldname": "product_issues",
+   "fieldtype": "Small Text",
+   "label": "Product issues"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "Live Super Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1
+  },
+  {
+   "role": "Live Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1
+  },
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1
+  },
+  {
+   "role": "Live User",
+   "read": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "row_format": "Dynamic",
+ "title_field": "project"
+}

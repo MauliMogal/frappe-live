@@ -25,3 +25,29 @@ on_session_creation = "frappe_live.access.on_session_creation"
 
 # Studio app "live" (studio/live): what the signed-in person may see, as the global `boot`
 studio_app_boot = {"live": "frappe_live.api.get_boot"}
+
+has_permission = {
+	"Live Onboarding": "frappe_live.live_docs.has_permission",
+	"Live Feedback": "frappe_live.live_docs.has_permission",
+	"Live Message": "frappe_live.live_docs.has_permission",
+	"Live MRR": "frappe_live.live_docs.has_permission",
+	"Live Session": "frappe_live.live_docs.has_permission",
+	"Live Check": "frappe_live.live_docs.has_permission",
+}
+permission_query_conditions = {
+	"Live Onboarding": "frappe_live.live_docs.onboarding_query",
+	"Live Feedback": "frappe_live.live_docs.feedback_query",
+	"Live Message": "frappe_live.live_docs.message_query",
+	"Live MRR": "frappe_live.live_docs.mrr_query",
+	"Live Session": "frappe_live.live_docs.session_query",
+	"Live Check": "frappe_live.live_docs.check_query",
+}
+
+scheduler_events = {
+	"daily": ["frappe_live.health.update_all"],
+}
+
+website_route_rules = [
+	{"from_route": "/live-help", "to_route": "live_help"},
+	{"from_route": "/live-reports", "to_route": "live_reports"},
+]

@@ -34,6 +34,14 @@ export function appSidebar(router: any, route: any) {
   }
   const headerMenu = computed(() => [
     { group: me.value?.name || 'You', options: [{ label: 'Profile', icon: 'lucide-circle-user', onClick: () => (state.ui.profile = true) }] },
+    // Frappe Live: help, feedback, messages and Office Hours live on /live-help; reports for the team on /live-reports
+    {
+      group: 'Frappe Live',
+      options: [
+        { label: 'Help and feedback', icon: 'lucide-message-circle', onClick: () => (window.location.href = '/live-help') },
+        ...(me.value?.canCreateProjects ? [{ label: 'Reports', icon: 'lucide-chart-column', onClick: () => (window.location.href = '/live-reports') }] : []),
+      ],
+    },
     {
       group: 'Workspaces',
       options: myWorkspaces.value.map((w: any) => ({

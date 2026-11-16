@@ -1,0 +1,210 @@
+{
+ "actions": [],
+ "autoname": "field:project",
+ "creation": "2026-11-16 12:00:00.000000",
+ "modified": "2026-11-16 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "description": "One assisted onboarding: the customer, their site, plan, live condition and money. Linked to its Live Project.",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "module": "Frappe Live",
+ "name": "Live Onboarding",
+ "field_order": [
+  "project",
+  "customer",
+  "app",
+  "owner_user",
+  "status",
+  "health",
+  "cb1",
+  "site_url",
+  "crm_deal",
+  "plan",
+  "mrr_usd",
+  "paid_since",
+  "kickoff_date",
+  "live_date",
+  "sb1",
+  "used_before",
+  "team_size",
+  "main_pain",
+  "live_condition",
+  "live_check",
+  "setup_users",
+  "minutes_total"
+ ],
+ "fields": [
+  {
+   "fieldname": "project",
+   "fieldtype": "Data",
+   "label": "Project ID",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Data",
+   "label": "Customer",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "app",
+   "fieldtype": "Select",
+   "label": "App",
+   "options": "CRM\nERPNext\nFrappe HR\nHelpdesk\nLearning\nOther",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "owner_user",
+   "fieldtype": "Link",
+   "label": "Run by",
+   "options": "User",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Yet to start\nSet up\nStart using\nHabit\nLive at day 30\nLive at day 90\nPaused\nChurned",
+   "default": "Yet to start",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "health",
+   "fieldtype": "Select",
+   "label": "Health",
+   "options": "On track\nAt risk\nOff track",
+   "default": "On track",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "cb1",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "site_url",
+   "fieldtype": "Data",
+   "label": "Site",
+   "options": "URL"
+  },
+  {
+   "fieldname": "crm_deal",
+   "fieldtype": "Data",
+   "label": "CRM deal (crm.frappe.io)"
+  },
+  {
+   "fieldname": "plan",
+   "fieldtype": "Data",
+   "label": "Frappe Cloud plan"
+  },
+  {
+   "fieldname": "mrr_usd",
+   "fieldtype": "Currency",
+   "label": "MRR (USD)",
+   "options": "USD",
+   "read_only": 1,
+   "description": "From the latest Live MRR row"
+  },
+  {
+   "fieldname": "paid_since",
+   "fieldtype": "Date",
+   "label": "Paid since"
+  },
+  {
+   "fieldname": "kickoff_date",
+   "fieldtype": "Date",
+   "label": "Kickoff (payment) date"
+  },
+  {
+   "fieldname": "live_date",
+   "fieldtype": "Date",
+   "label": "Live date"
+  },
+  {
+   "fieldname": "sb1",
+   "fieldtype": "Section Break",
+   "label": "Baseline"
+  },
+  {
+   "fieldname": "used_before",
+   "fieldtype": "Small Text",
+   "label": "What they used before"
+  },
+  {
+   "fieldname": "team_size",
+   "fieldtype": "Int",
+   "label": "Team size"
+  },
+  {
+   "fieldname": "main_pain",
+   "fieldtype": "Small Text",
+   "label": "Main pain, in their words"
+  },
+  {
+   "fieldname": "live_condition",
+   "fieldtype": "Small Text",
+   "label": "Live means (their words)"
+  },
+  {
+   "fieldname": "live_check",
+   "fieldtype": "Small Text",
+   "label": "Live check on their data"
+  },
+  {
+   "fieldname": "setup_users",
+   "fieldtype": "Small Text",
+   "label": "Setup users (one email per line)"
+  },
+  {
+   "fieldname": "minutes_total",
+   "fieldtype": "Int",
+   "label": "Minutes spent",
+   "read_only": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "Live Super Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1
+  },
+  {
+   "role": "Live Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1
+  },
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1
+  },
+  {
+   "role": "Live User",
+   "read": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "row_format": "Dynamic",
+ "title_field": "customer",
+ "naming_rule": "By fieldname"
+}

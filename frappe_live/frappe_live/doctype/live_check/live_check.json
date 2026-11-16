@@ -1,0 +1,90 @@
+{
+ "actions": [],
+ "autoname": "hash",
+ "creation": "2026-11-16 12:00:00.000000",
+ "modified": "2026-11-16 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "description": "A done-when check run on a customer's site data, by Claude or a skill in Flow",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "module": "Frappe Live",
+ "name": "Live Check",
+ "field_order": [
+  "project",
+  "task",
+  "passed",
+  "evidence",
+  "source"
+ ],
+ "fields": [
+  {
+   "fieldname": "project",
+   "fieldtype": "Data",
+   "label": "Project ID",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "task",
+   "fieldtype": "Data",
+   "label": "Task ID",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "passed",
+   "fieldtype": "Check",
+   "label": "Passed",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "evidence",
+   "fieldtype": "Small Text",
+   "label": "What the data showed"
+  },
+  {
+   "fieldname": "source",
+   "fieldtype": "Select",
+   "label": "Run by",
+   "options": "Claude over MCP\nFlow on their site\nBy hand"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "Live Super Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1
+  },
+  {
+   "role": "Live Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1
+  },
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1
+  },
+  {
+   "role": "Live User",
+   "read": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "row_format": "Dynamic",
+ "title_field": "task"
+}

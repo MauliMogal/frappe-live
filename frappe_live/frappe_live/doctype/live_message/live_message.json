@@ -1,0 +1,110 @@
+{
+ "actions": [],
+ "autoname": "hash",
+ "creation": "2026-11-16 12:00:00.000000",
+ "modified": "2026-11-16 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "description": "A message between a customer and the team, mirrored to Raven",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "module": "Frappe Live",
+ "name": "Live Message",
+ "field_order": [
+  "project",
+  "from_user",
+  "direction",
+  "text",
+  "reply_to",
+  "raven_message",
+  "raven_status"
+ ],
+ "fields": [
+  {
+   "fieldname": "project",
+   "fieldtype": "Data",
+   "label": "Project ID",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "from_user",
+   "fieldtype": "Link",
+   "label": "From",
+   "options": "User",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "direction",
+   "fieldtype": "Select",
+   "label": "Direction",
+   "options": "To team\nTo customer",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "text",
+   "fieldtype": "Small Text",
+   "label": "Message",
+   "reqd": 1
+  },
+  {
+   "fieldname": "reply_to",
+   "fieldtype": "Link",
+   "label": "Reply to",
+   "options": "Live Message"
+  },
+  {
+   "fieldname": "raven_message",
+   "fieldtype": "Data",
+   "label": "Raven message",
+   "read_only": 1
+  },
+  {
+   "fieldname": "raven_status",
+   "fieldtype": "Select",
+   "label": "Raven",
+   "options": "\nSent\nFailed\nNot set up",
+   "read_only": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "Live Super Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1
+  },
+  {
+   "role": "Live Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1
+  },
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1
+  },
+  {
+   "role": "Live User",
+   "read": 1,
+   "create": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "row_format": "Dynamic",
+ "title_field": "text"
+}

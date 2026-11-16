@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frappe Live: go live on Frappe, with your own plan</title>
+<meta name="description" content="One call with Frappe, a roadmap made for your business, and AI that sets up your site. Weekly Office Hours until you are live.">
+<!-- Draft for frappe.io/live. Build it in Frappe Builder with the site's own styles; this file shows the content and order. -->
+<style>
+  :root { --ink: #171717; --quiet: #5c5c5c; --line: #e6e6e6; --tint: #f7f7f7; --accent: #171717; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Inter, system-ui, -apple-system, sans-serif; color: var(--ink); line-height: 1.55; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 64px 0; border-bottom: 1px solid var(--line); }
+  h1 { font-size: 44px; line-height: 1.15; margin: 0 0 16px; letter-spacing: -0.02em; }
+  h2 { font-size: 28px; margin: 0 0 12px; letter-spacing: -0.01em; }
+  h3 { font-size: 17px; margin: 0 0 6px; }
+  p.lead { font-size: 19px; color: var(--quiet); max-width: 680px; }
+  .btn { display: inline-block; padding: 10px 18px; border-radius: 8px; background: var(--accent); color: #fff; text-decoration: none; font-weight: 600; }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 24px; }
+  .card { border: 1px solid var(--line); border-radius: 12px; padding: 20px; background: #fff; }
+  .card p { color: var(--quiet); margin: 0; }
+  .steps { counter-reset: s; list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 12px; }
+  .steps li { counter-increment: s; border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px 16px 64px; position: relative; }
+  .steps li::before { content: counter(s); position: absolute; left: 20px; top: 16px; width: 28px; height: 28px; border-radius: 50%; background: var(--tint); display: grid; place-items: center; font-weight: 600; }
+  .plan { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 24px; }
+  .plan div { border: 1px solid var(--line); border-radius: 10px; padding: 12px; font-size: 14px; }
+  .plan b { display: block; }
+  .plan span { color: var(--quiet); font-size: 13px; }
+  .stories { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 24px; }
+  .story { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .story .img { height: 160px; background: var(--tint); }
+  .story .body { padding: 16px; }
+  .tag { display: inline-block; font-size: 12px; background: var(--tint); border-radius: 10px; padding: 2px 8px; margin-right: 6px; color: var(--quiet); }
+  details { border-bottom: 1px solid var(--line); padding: 14px 0; }
+  summary { font-weight: 600; cursor: pointer; }
+  @media (max-width: 720px) { h1 { font-size: 32px; } .plan { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<section>
+  <div class="wrap">
+    <h1>Go live on Frappe, with your own plan.</h1>
+    <p class="lead">One call with us. A roadmap made for your business, in your words. AI that sets up your site while you approve every change. And a team that stays until your people use it every week.</p>
+    <div class="row">
+      <a class="btn" href="[booking link]">Book your first call</a>
+      <a class="btn ghost" href="#office-hours">Join Office Hours</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Who it's for</h2>
+    <div class="grid">
+      <div class="card"><h3>Moving off Tally or Excel</h3><p>You run the business on sheets and WhatsApp, and you are ready to move it into one system.</p></div>
+      <div class="card"><h3>Starting fresh</h3><p>A new business that wants the right setup from day one, without a long project.</p></div>
+      <div class="card"><h3>Willing to put in the time</h3><p>You or someone on your team will spend a few hours a week. We do the setup; your team does the using.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it works</h2>
+    <ol class="steps">
+      <li><h3>A 60 minute call</h3><p>We ask how you sell, buy, make or support today, what hurts most, and what "working" looks like for you.</p></li>
+      <li><h3>Your roadmap, the same day</h3><p>Steps written in your words, each with why it's there and how we'll know it's done. No two roadmaps are the same.</p></li>
+      <li><h3>AI sets up your site</h3><p>Your stages, your team, your data. You see every change before it's made.</p></li>
+      <li><h3>Your team starts using it</h3><p>The first real lead, order or ticket comes from your people, not from us.</p></li>
+      <li><h3>Live</h3><p>Your team uses it every week, and it does what you said it should. We check at 30 and 90 days.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Your plan, always in front of you</h2>
+    <p class="lead">Five milestones, the same for everyone. The steps inside are yours, and they tick themselves when your own data shows the work is done.</p>
+    <div class="plan">
+      <div><b>Set up</b><span>Your stages, team and data are in</span></div>
+      <div><b>Start using</b><span>Your team does real work in it</span></div>
+      <div><b>Habit</b><span>It's part of every week</span></div>
+      <div><b>Live at day 30</b><span>Your own condition holds</span></div>
+      <div><b>Live at day 90</b><span>And it still does</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="office-hours">
+  <div class="wrap">
+    <h2>Office Hours, every Friday</h2>
+    <p class="lead">4 to 6 pm IST, on Frappe Meet. Bring your questions and your screen. The most-voted questions go first, and one customer who went live shows how they did it.</p>
+    <div class="row"><a class="btn ghost" href="[calendar link]">Add to calendar</a></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>What it costs</h2>
+    <p class="lead">A paid Frappe Cloud site on the $25 plan. The first call is included. Sessions in English, Hindi or Marathi.</p>
+    <div class="grid">
+      <div class="card"><h3>CRM</h3><p>Leads, deals, your team and email.</p></div>
+      <div class="card"><h3>ERPNext</h3><p>Items, customers, suppliers, stock, buying, selling and basic manufacturing.</p></div>
+      <div class="card"><h3>Frappe HR</h3><p>Employees, leave, attendance and expenses.</p></div>
+      <div class="card"><h3>Helpdesk</h3><p>Support inbox, agents, SLAs and saved replies.</p></div>
+      <div class="card"><h3>Learning</h3><p>Your first course, learners and certificates.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Success stories: keep hidden until the first story has the customer's written consent.
+     Same shape as frappe.io/stories: a card per customer with a picture, a headline that names the
+     company and the result, industry and region tags; each card opens the full story. Stories are
+     written from session records only. -->
+<section id="stories" hidden>
+  <div class="wrap">
+    <h2>Success stories</h2>
+    <p class="lead">Businesses that went live with Frappe Live.</p>
+    <div class="stories">
+      <a class="story" href="[story link]" style="text-decoration:none;color:inherit">
+        <div class="img"></div>
+        <div class="body"><span class="tag">[Industry]</span><span class="tag">[Region]</span>
+          <h3>[Company] [result, in one line, from the session records]</h3></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Proof: keep hidden until records back it. Fill from Frappe Live reports. -->
+<section id="proof" hidden>
+  <div class="wrap">
+    <h2>Numbers we can back</h2>
+    <div class="grid">
+      <div class="card"><h3>[n] days</h3><p>Median days from kickoff to live</p></div>
+      <div class="card"><h3>[n]%</h3><p>Still live at day 90</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Questions</h2>
+    <details><summary>Do I need a partner?</summary><p>No. Frappe Live is run by Frappe. If you need custom work later, we'll point you to a partner.</p></details>
+    <details><summary>What does AI do on my site?</summary><p>It sets up your app the standard way: your stages, your team, your data. It shows you each change and waits for your yes.</p></details>
+    <details><summary>What if I get stuck?</summary><p>Ask in your plan, or bring it to Friday Office Hours. Your messages reach the Frappe team directly.</p></details>
+    <details><summary>Can my own team do it?</summary><p>Yes. That's the point: your plan says who does what, and from "Start using" on, it's your team.</p></details>
+  </div>
+</section>
+
+<section style="border:0">
+  <div class="wrap row">
+    <a class="btn" href="[booking link]">Book your first call</a>
+    <a class="btn ghost" href="https://[frappe live site]/live">Open your plan</a>
+  </div>
+</section>
+
+</body>
+</html>

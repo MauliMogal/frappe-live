@@ -11,7 +11,14 @@
  "modified_by": "Administrator",
  "field_order": [
   "admin_domain",
-  "super_admins"
+  "super_admins",
+  "sb_raven",
+  "raven_incoming_webhook",
+  "raven_webhook_secret",
+  "sb_hours",
+  "office_hours_text",
+  "office_hours_link",
+  "booking_link"
  ],
  "fields": [
   {
@@ -26,6 +33,46 @@
    "fieldtype": "Small Text",
    "label": "Super admins",
    "description": "One email per line. They get Live Super Admin when they sign in"
+  },
+  {
+   "fieldname": "sb_raven",
+   "fieldtype": "Section Break",
+   "label": "Raven (frappe.io)"
+  },
+  {
+   "fieldname": "raven_incoming_webhook",
+   "fieldtype": "Password",
+   "label": "Incoming webhook URL",
+   "description": "From a Raven Incoming Webhook on the team's channel. Customer messages and feedback post here."
+  },
+  {
+   "fieldname": "raven_webhook_secret",
+   "fieldtype": "Password",
+   "label": "Outgoing webhook secret",
+   "description": "The secret of the Raven Webhook that calls /api/method/frappe_live.raven.receive"
+  },
+  {
+   "fieldname": "sb_hours",
+   "fieldtype": "Section Break",
+   "label": "Office Hours"
+  },
+  {
+   "fieldname": "office_hours_text",
+   "fieldtype": "Small Text",
+   "label": "When",
+   "default": "Every Friday, 4 to 6 pm IST, on Frappe Meet"
+  },
+  {
+   "fieldname": "office_hours_link",
+   "fieldtype": "Data",
+   "label": "Meeting link",
+   "options": "URL"
+  },
+  {
+   "fieldname": "booking_link",
+   "fieldtype": "Data",
+   "label": "First call booking link",
+   "options": "URL"
   }
  ],
  "permissions": [

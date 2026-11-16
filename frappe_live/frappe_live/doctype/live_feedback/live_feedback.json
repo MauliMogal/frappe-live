@@ -1,0 +1,150 @@
+{
+ "actions": [],
+ "autoname": "hash",
+ "creation": "2026-11-16 12:00:00.000000",
+ "modified": "2026-11-16 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "description": "Feedback from a customer or a team member, on an onboarding",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "module": "Frappe Live",
+ "name": "Live Feedback",
+ "field_order": [
+  "project",
+  "type",
+  "summary",
+  "details",
+  "rating",
+  "milestone",
+  "consent_to_quote",
+  "cb1",
+  "from_user",
+  "status",
+  "votes",
+  "voters",
+  "answer"
+ ],
+ "fields": [
+  {
+   "fieldname": "project",
+   "fieldtype": "Data",
+   "label": "Project ID",
+   "reqd": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "I'm stuck\nBug\nFeature request\nOnboarding experience\nMilestone rating\nRecommend\nOffice Hours question",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "summary",
+   "fieldtype": "Data",
+   "label": "Summary",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "details",
+   "fieldtype": "Small Text",
+   "label": "Details"
+  },
+  {
+   "fieldname": "rating",
+   "fieldtype": "Int",
+   "label": "Rating",
+   "description": "1 to 5 for a milestone, 0 to 10 for recommend"
+  },
+  {
+   "fieldname": "milestone",
+   "fieldtype": "Data",
+   "label": "Milestone"
+  },
+  {
+   "fieldname": "consent_to_quote",
+   "fieldtype": "Check",
+   "label": "May be quoted publicly"
+  },
+  {
+   "fieldname": "cb1",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "from_user",
+   "fieldtype": "Link",
+   "label": "From",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Open\nAnswered\nRoadmap step\nLibrary change\nProduct issue\nClosed",
+   "default": "Open",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "votes",
+   "fieldtype": "Int",
+   "label": "Votes",
+   "read_only": 1,
+   "default": "0"
+  },
+  {
+   "fieldname": "voters",
+   "fieldtype": "Small Text",
+   "label": "Voters",
+   "hidden": 1
+  },
+  {
+   "fieldname": "answer",
+   "fieldtype": "Small Text",
+   "label": "Answer"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "Live Super Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1
+  },
+  {
+   "role": "Live Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1
+  },
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1
+  },
+  {
+   "role": "Live User",
+   "read": 1,
+   "create": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "row_format": "Dynamic",
+ "title_field": "summary"
+}
