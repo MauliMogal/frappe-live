@@ -1,5 +1,312 @@
 {
  "allow_guest": 0,
+ "blocks": [
+  {
+   "baseStyles": {
+    "display": "flex",
+    "flexDirection": "column",
+    "height": "100%",
+    "overflowX": "hidden",
+    "width": "100%"
+   },
+   "blockName": "body",
+   "children": [
+    {
+     "children": [
+      {
+       "baseStyles": {
+        "alignItems": "flex-start",
+        "backgroundColor": "var(--surface-gray-1)",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "minHeight": "100%",
+        "overflowY": "auto",
+        "padding": "14vh 16px 48px",
+        "width": "100%"
+       },
+       "blockName": "auth-page",
+       "children": [
+        {
+         "baseStyles": {
+          "backgroundColor": "var(--surface-base)",
+          "borderColor": "var(--outline-gray-1)",
+          "borderRadius": "12px",
+          "borderStyle": "solid",
+          "borderWidth": "1px",
+          "display": "flex",
+          "flexDirection": "column",
+          "maxWidth": "384px",
+          "padding": "32px",
+          "position": "relative",
+          "width": "100%"
+         },
+         "blockName": "card",
+         "children": [
+          {
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "column",
+            "marginBottom": "24px",
+            "textAlign": "center"
+           },
+           "blockName": "card-head",
+           "children": [
+            {
+             "baseStyles": {
+              "alignItems": "center",
+              "backgroundColor": "var(--surface-gray-9)",
+              "borderRadius": "10px",
+              "display": "flex",
+              "flexDirection": "row",
+              "height": "40px",
+              "justifyContent": "center",
+              "margin": "0px auto",
+              "width": "40px"
+             },
+             "blockName": "mark",
+             "children": [
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-1)"
+               },
+               "children": [],
+               "componentId": "Icon-your-first-task-087",
+               "componentName": "Icon",
+               "componentProps": {
+                "class": "size-5",
+                "icon": "lucide-list-checks"
+               },
+               "componentSlots": {}
+              }
+             ],
+             "componentId": "box-your-first-task-088",
+             "componentName": "container",
+             "componentProps": {},
+             "componentSlots": {},
+             "originalElement": "div"
+            },
+            {
+             "baseStyles": {
+              "color": "var(--ink-gray-5)",
+              "marginTop": "20px"
+             },
+             "children": [],
+             "componentId": "TextBlock-your-first-task-089",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "fontSize": "text-xs",
+              "tag": "p",
+              "text": "Step 2 of 2"
+             },
+             "componentSlots": {}
+            },
+            {
+             "baseStyles": {
+              "color": "var(--ink-gray-9)",
+              "fontWeight": "600",
+              "marginTop": "4px"
+             },
+             "children": [],
+             "componentId": "TextBlock-your-first-task-090",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "fontSize": "text-2xl",
+              "tag": "h1",
+              "text": "What's one thing you need to do?"
+             },
+             "componentSlots": {}
+            },
+            {
+             "baseStyles": {
+              "color": "var(--ink-gray-6)",
+              "marginTop": "6px",
+              "textWrap": "balance"
+             },
+             "children": [],
+             "componentId": "TextBlock-your-first-task-091",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "fontSize": "text-p-base",
+              "tag": "p",
+              "text": "Type it the way you'd say it. Dates and priority are picked up as you type."
+             },
+             "componentSlots": {}
+            }
+           ],
+           "componentId": "box-your-first-task-092",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "originalElement": "div"
+          },
+          {
+           "baseStyles": {
+            "width": "100%"
+           },
+           "children": [],
+           "componentEvents": {
+            "keydown.enter": {
+             "action": "Run Script",
+             "event": "keydown.enter",
+             "script": "add()"
+            }
+           },
+           "componentId": "FormControl-your-first-task-080",
+           "componentName": "FormControl",
+           "componentProps": {
+            "aria-label": "Your first task",
+            "autofocus": true,
+            "modelValue": {
+             "$type": "variable",
+             "name": "text"
+            },
+            "placeholder": "Try \"Send report Friday !high\"",
+            "type": "text"
+           },
+           "componentSlots": {}
+          },
+          {
+           "baseStyles": {
+            "alignItems": "center",
+            "display": "flex",
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "gap": "6px",
+            "marginTop": "16px"
+           },
+           "blockName": "picked-up",
+           "children": [
+            {
+             "baseStyles": {},
+             "children": [],
+             "componentId": "Badge-your-first-task-081",
+             "componentName": "Badge",
+             "componentProps": {
+              "label": "{{ dueLabel }}",
+              "theme": "gray",
+              "variant": "subtle"
+             },
+             "componentSlots": {},
+             "visibilityCondition": "{{ dueLabel }}"
+            },
+            {
+             "baseStyles": {},
+             "children": [],
+             "componentId": "Badge-your-first-task-082",
+             "componentName": "Badge",
+             "componentProps": {
+              "label": "{{ priorityLabel }}",
+              "theme": "gray",
+              "variant": "subtle"
+             },
+             "componentSlots": {},
+             "visibilityCondition": "{{ priorityLabel }}"
+            }
+           ],
+           "componentId": "box-your-first-task-083",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "originalElement": "div",
+           "visibilityCondition": "{{ dueLabel || priorityLabel }}"
+          },
+          {
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "8px",
+            "marginTop": "16px"
+           },
+           "children": [
+            {
+             "baseStyles": {
+              "width": "100%"
+             },
+             "children": [],
+             "componentEvents": {
+              "click": {
+               "action": "Run Script",
+               "event": "click",
+               "script": "add()"
+              }
+             },
+             "componentId": "Button-your-first-task-084",
+             "componentName": "Button",
+             "componentProps": {
+              "disabled": "{{ !canAdd }}",
+              "label": "Add task",
+              "size": "md",
+              "theme": "gray",
+              "variant": "solid"
+             },
+             "componentSlots": {}
+            },
+            {
+             "baseStyles": {
+              "width": "100%"
+             },
+             "children": [],
+             "componentEvents": {
+              "click": {
+               "action": "Run Script",
+               "event": "click",
+               "script": "finish()"
+              }
+             },
+             "componentId": "Button-your-first-task-085",
+             "componentName": "Button",
+             "componentProps": {
+              "label": "Skip for now",
+              "size": "md",
+              "variant": "ghost"
+             },
+             "componentSlots": {}
+            }
+           ],
+           "componentId": "box-your-first-task-086",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "originalElement": "div"
+          }
+         ],
+         "componentId": "box-your-first-task-093",
+         "componentName": "container",
+         "componentProps": {},
+         "componentSlots": {},
+         "mobileStyles": {
+          "padding": "24px"
+         },
+         "originalElement": "div"
+        }
+       ],
+       "componentId": "box-your-first-task-094",
+       "componentName": "container",
+       "componentProps": {},
+       "componentSlots": {},
+       "mobileStyles": {
+        "paddingTop": "48px"
+       },
+       "originalElement": "div"
+      }
+     ],
+     "componentId": "AppShell-your-first-task",
+     "componentName": "AppShell",
+     "componentProps": {
+      "bare": true
+     },
+     "componentSlots": {},
+     "isCustomVueComponent": true
+    }
+   ],
+   "componentId": "root",
+   "componentName": "div",
+   "componentProps": {},
+   "componentSlots": {},
+   "originalElement": "body"
+  }
+ ],
  "creation": "2026-11-03 12:29:25.504955",
  "docstatus": 0,
  "doctype": "Studio Page",
@@ -9,618 +316,311 @@
     "display": "flex",
     "flexDirection": "column",
     "height": "100%",
-    "width": "100%",
-    "overflowX": "hidden"
+    "overflowX": "hidden",
+    "width": "100%"
    },
    "blockName": "body",
-   "componentId": "root",
-   "componentName": "div",
-   "componentProps": {},
-   "componentSlots": {},
-   "originalElement": "body",
    "children": [
     {
-     "componentId": "AppShell-your-first-task",
-     "componentName": "AppShell",
-     "isCustomVueComponent": true,
-     "componentProps": {
-      "bare": true
-     },
-     "componentSlots": {},
      "children": [
       {
-       "componentId": "box-your-first-task-094",
-       "componentName": "container",
-       "componentProps": {},
-       "componentSlots": {},
+       "baseStyles": {
+        "alignItems": "flex-start",
+        "backgroundColor": "var(--surface-gray-1)",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "minHeight": "100%",
+        "overflowY": "auto",
+        "padding": "14vh 16px 48px",
+        "width": "100%"
+       },
+       "blockName": "auth-page",
        "children": [
         {
-         "componentId": "box-your-first-task-093",
-         "componentName": "container",
-         "componentProps": {},
-         "componentSlots": {},
+         "baseStyles": {
+          "backgroundColor": "var(--surface-base)",
+          "borderColor": "var(--outline-gray-1)",
+          "borderRadius": "12px",
+          "borderStyle": "solid",
+          "borderWidth": "1px",
+          "display": "flex",
+          "flexDirection": "column",
+          "maxWidth": "384px",
+          "padding": "32px",
+          "position": "relative",
+          "width": "100%"
+         },
+         "blockName": "card",
          "children": [
           {
-           "componentId": "box-your-first-task-092",
-           "componentName": "container",
-           "componentProps": {},
-           "componentSlots": {},
+           "baseStyles": {
+            "display": "flex",
+            "flexDirection": "column",
+            "marginBottom": "24px",
+            "textAlign": "center"
+           },
+           "blockName": "card-head",
            "children": [
             {
+             "baseStyles": {
+              "alignItems": "center",
+              "backgroundColor": "var(--surface-gray-9)",
+              "borderRadius": "10px",
+              "display": "flex",
+              "flexDirection": "row",
+              "height": "40px",
+              "justifyContent": "center",
+              "margin": "0px auto",
+              "width": "40px"
+             },
+             "blockName": "mark",
+             "children": [
+              {
+               "baseStyles": {
+                "color": "var(--ink-gray-1)"
+               },
+               "children": [],
+               "componentId": "Icon-your-first-task-087",
+               "componentName": "Icon",
+               "componentProps": {
+                "class": "size-5",
+                "icon": "lucide-list-checks"
+               },
+               "componentSlots": {}
+              }
+             ],
              "componentId": "box-your-first-task-088",
              "componentName": "container",
              "componentProps": {},
              "componentSlots": {},
-             "children": [
-              {
-               "componentId": "Icon-your-first-task-087",
-               "componentName": "Icon",
-               "componentProps": {
-                "icon": "lucide-list-checks",
-                "class": "size-5"
-               },
-               "componentSlots": {},
-               "children": [],
-               "baseStyles": {
-                "color": "var(--ink-gray-1)"
-               }
-              }
-             ],
-             "baseStyles": {
-              "display": "flex",
-              "flexDirection": "row",
-              "alignItems": "center",
-              "justifyContent": "center",
-              "width": "40px",
-              "height": "40px",
-              "borderRadius": "10px",
-              "backgroundColor": "var(--surface-gray-9)",
-              "margin": "0px auto"
-             },
-             "blockName": "mark",
              "originalElement": "div"
             },
             {
-             "componentId": "TextBlock-your-first-task-089",
-             "componentName": "TextBlock",
-             "componentProps": {
-              "text": "Step 2 of 2",
-              "tag": "p",
-              "fontSize": "text-xs"
-             },
-             "componentSlots": {},
-             "children": [],
              "baseStyles": {
               "color": "var(--ink-gray-5)",
               "marginTop": "20px"
-             }
-            },
-            {
-             "componentId": "TextBlock-your-first-task-090",
+             },
+             "children": [],
+             "componentId": "TextBlock-your-first-task-089",
              "componentName": "TextBlock",
              "componentProps": {
-              "text": "What's one thing you need to do?",
-              "tag": "h1",
-              "fontSize": "text-2xl"
+              "fontSize": "text-xs",
+              "tag": "p",
+              "text": "Step 2 of 2"
              },
-             "componentSlots": {},
-             "children": [],
+             "componentSlots": {}
+            },
+            {
              "baseStyles": {
               "color": "var(--ink-gray-9)",
               "fontWeight": "600",
               "marginTop": "4px"
-             }
-            },
-            {
-             "componentId": "TextBlock-your-first-task-091",
+             },
+             "children": [],
+             "componentId": "TextBlock-your-first-task-090",
              "componentName": "TextBlock",
              "componentProps": {
-              "text": "Type it the way you'd say it. Dates and priority are picked up as you type.",
-              "tag": "p",
-              "fontSize": "text-p-base"
+              "fontSize": "text-2xl",
+              "tag": "h1",
+              "text": "What's one thing you need to do?"
              },
-             "componentSlots": {},
-             "children": [],
+             "componentSlots": {}
+            },
+            {
              "baseStyles": {
               "color": "var(--ink-gray-6)",
               "marginTop": "6px",
               "textWrap": "balance"
-             }
+             },
+             "children": [],
+             "componentId": "TextBlock-your-first-task-091",
+             "componentName": "TextBlock",
+             "componentProps": {
+              "fontSize": "text-p-base",
+              "tag": "p",
+              "text": "Type it the way you'd say it. Dates and priority are picked up as you type."
+             },
+             "componentSlots": {}
             }
            ],
-           "baseStyles": {
-            "display": "flex",
-            "flexDirection": "column",
-            "textAlign": "center",
-            "marginBottom": "24px"
-           },
-           "blockName": "card-head",
+           "componentId": "box-your-first-task-092",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
            "originalElement": "div"
           },
           {
+           "baseStyles": {
+            "width": "100%"
+           },
+           "children": [],
+           "componentEvents": {
+            "keydown.enter": {
+             "action": "Run Script",
+             "event": "keydown.enter",
+             "script": "add()"
+            }
+           },
            "componentId": "FormControl-your-first-task-080",
            "componentName": "FormControl",
            "componentProps": {
-            "type": "text",
+            "aria-label": "Your first task",
+            "autofocus": true,
             "modelValue": {
              "$type": "variable",
              "name": "text"
             },
             "placeholder": "Try \"Send report Friday !high\"",
-            "autofocus": true,
-            "aria-label": "Your first task"
+            "type": "text"
            },
-           "componentSlots": {},
-           "children": [],
-           "baseStyles": {
-            "width": "100%"
-           },
-           "componentEvents": {
-            "keydown.enter": {
-             "event": "keydown.enter",
-             "action": "Run Script",
-             "script": "add()"
-            }
-           }
+           "componentSlots": {}
           },
           {
-           "componentId": "box-your-first-task-083",
-           "componentName": "container",
-           "componentProps": {},
-           "componentSlots": {},
-           "children": [
-            {
-             "componentId": "Badge-your-first-task-081",
-             "componentName": "Badge",
-             "componentProps": {
-              "variant": "subtle",
-              "theme": "gray",
-              "label": "{{ dueLabel }}"
-             },
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {},
-             "visibilityCondition": "{{ dueLabel }}"
-            },
-            {
-             "componentId": "Badge-your-first-task-082",
-             "componentName": "Badge",
-             "componentProps": {
-              "variant": "subtle",
-              "theme": "gray",
-              "label": "{{ priorityLabel }}"
-             },
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {},
-             "visibilityCondition": "{{ priorityLabel }}"
-            }
-           ],
            "baseStyles": {
+            "alignItems": "center",
             "display": "flex",
             "flexDirection": "row",
-            "alignItems": "center",
             "flexWrap": "wrap",
             "gap": "6px",
             "marginTop": "16px"
            },
-           "visibilityCondition": "{{ dueLabel || priorityLabel }}",
            "blockName": "picked-up",
-           "originalElement": "div"
-          },
-          {
-           "componentId": "box-your-first-task-086",
+           "children": [
+            {
+             "baseStyles": {},
+             "children": [],
+             "componentId": "Badge-your-first-task-081",
+             "componentName": "Badge",
+             "componentProps": {
+              "label": "{{ dueLabel }}",
+              "theme": "gray",
+              "variant": "subtle"
+             },
+             "componentSlots": {},
+             "visibilityCondition": "{{ dueLabel }}"
+            },
+            {
+             "baseStyles": {},
+             "children": [],
+             "componentId": "Badge-your-first-task-082",
+             "componentName": "Badge",
+             "componentProps": {
+              "label": "{{ priorityLabel }}",
+              "theme": "gray",
+              "variant": "subtle"
+             },
+             "componentSlots": {},
+             "visibilityCondition": "{{ priorityLabel }}"
+            }
+           ],
+           "componentId": "box-your-first-task-083",
            "componentName": "container",
            "componentProps": {},
            "componentSlots": {},
-           "children": [
-            {
-             "componentId": "Button-your-first-task-084",
-             "componentName": "Button",
-             "componentProps": {
-              "variant": "solid",
-              "label": "Add task",
-              "theme": "gray",
-              "size": "md",
-              "disabled": "{{ !canAdd }}"
-             },
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {
-              "width": "100%"
-             },
-             "componentEvents": {
-              "click": {
-               "event": "click",
-               "action": "Run Script",
-               "script": "add()"
-              }
-             }
-            },
-            {
-             "componentId": "Button-your-first-task-085",
-             "componentName": "Button",
-             "componentProps": {
-              "variant": "ghost",
-              "label": "Skip for now",
-              "size": "md"
-             },
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {
-              "width": "100%"
-             },
-             "componentEvents": {
-              "click": {
-               "event": "click",
-               "action": "Run Script",
-               "script": "finish()"
-              }
-             }
-            }
-           ],
+           "originalElement": "div",
+           "visibilityCondition": "{{ dueLabel || priorityLabel }}"
+          },
+          {
            "baseStyles": {
             "display": "flex",
             "flexDirection": "column",
             "gap": "8px",
             "marginTop": "16px"
            },
-           "originalElement": "div"
-          }
-         ],
-         "baseStyles": {
-          "display": "flex",
-          "flexDirection": "column",
-          "position": "relative",
-          "width": "100%",
-          "maxWidth": "384px",
-          "backgroundColor": "var(--surface-base)",
-          "borderStyle": "solid",
-          "borderColor": "var(--outline-gray-1)",
-          "borderWidth": "1px",
-          "borderRadius": "12px",
-          "padding": "32px"
-         },
-         "mobileStyles": {
-          "padding": "24px"
-         },
-         "blockName": "card",
-         "originalElement": "div"
-        }
-       ],
-       "baseStyles": {
-        "display": "flex",
-        "flexDirection": "row",
-        "alignItems": "flex-start",
-        "justifyContent": "center",
-        "width": "100%",
-        "minHeight": "100%",
-        "backgroundColor": "var(--surface-gray-1)",
-        "padding": "14vh 16px 48px",
-        "overflowY": "auto"
-       },
-       "mobileStyles": {
-        "paddingTop": "48px"
-       },
-       "blockName": "auth-page",
-       "originalElement": "div"
-      }
-     ]
-    }
-   ]
-  }
- ],
- "blocks": [
-  {
-   "baseStyles": {
-    "display": "flex",
-    "flexDirection": "column",
-    "height": "100%",
-    "width": "100%",
-    "overflowX": "hidden"
-   },
-   "blockName": "body",
-   "componentId": "root",
-   "componentName": "div",
-   "componentProps": {},
-   "componentSlots": {},
-   "originalElement": "body",
-   "children": [
-    {
-     "componentId": "AppShell-your-first-task",
-     "componentName": "AppShell",
-     "isCustomVueComponent": true,
-     "componentProps": {
-      "bare": true
-     },
-     "componentSlots": {},
-     "children": [
-      {
-       "componentId": "box-your-first-task-094",
-       "componentName": "container",
-       "componentProps": {},
-       "componentSlots": {},
-       "children": [
-        {
-         "componentId": "box-your-first-task-093",
-         "componentName": "container",
-         "componentProps": {},
-         "componentSlots": {},
-         "children": [
-          {
-           "componentId": "box-your-first-task-092",
-           "componentName": "container",
-           "componentProps": {},
-           "componentSlots": {},
            "children": [
             {
-             "componentId": "box-your-first-task-088",
-             "componentName": "container",
-             "componentProps": {},
-             "componentSlots": {},
-             "children": [
-              {
-               "componentId": "Icon-your-first-task-087",
-               "componentName": "Icon",
-               "componentProps": {
-                "icon": "lucide-list-checks",
-                "class": "size-5"
-               },
-               "componentSlots": {},
-               "children": [],
-               "baseStyles": {
-                "color": "var(--ink-gray-1)"
-               }
+             "baseStyles": {
+              "width": "100%"
+             },
+             "children": [],
+             "componentEvents": {
+              "click": {
+               "action": "Run Script",
+               "event": "click",
+               "script": "add()"
               }
-             ],
-             "baseStyles": {
-              "display": "flex",
-              "flexDirection": "row",
-              "alignItems": "center",
-              "justifyContent": "center",
-              "width": "40px",
-              "height": "40px",
-              "borderRadius": "10px",
-              "backgroundColor": "var(--surface-gray-9)",
-              "margin": "0px auto"
              },
-             "blockName": "mark",
-             "originalElement": "div"
+             "componentId": "Button-your-first-task-084",
+             "componentName": "Button",
+             "componentProps": {
+              "disabled": "{{ !canAdd }}",
+              "label": "Add task",
+              "size": "md",
+              "theme": "gray",
+              "variant": "solid"
+             },
+             "componentSlots": {}
             },
             {
-             "componentId": "TextBlock-your-first-task-089",
-             "componentName": "TextBlock",
-             "componentProps": {
-              "text": "Step 2 of 2",
-              "tag": "p",
-              "fontSize": "text-xs"
-             },
-             "componentSlots": {},
-             "children": [],
              "baseStyles": {
-              "color": "var(--ink-gray-5)",
-              "marginTop": "20px"
-             }
-            },
-            {
-             "componentId": "TextBlock-your-first-task-090",
-             "componentName": "TextBlock",
-             "componentProps": {
-              "text": "What's one thing you need to do?",
-              "tag": "h1",
-              "fontSize": "text-2xl"
+              "width": "100%"
              },
-             "componentSlots": {},
              "children": [],
-             "baseStyles": {
-              "color": "var(--ink-gray-9)",
-              "fontWeight": "600",
-              "marginTop": "4px"
-             }
-            },
-            {
-             "componentId": "TextBlock-your-first-task-091",
-             "componentName": "TextBlock",
-             "componentProps": {
-              "text": "Type it the way you'd say it. Dates and priority are picked up as you type.",
-              "tag": "p",
-              "fontSize": "text-p-base"
+             "componentEvents": {
+              "click": {
+               "action": "Run Script",
+               "event": "click",
+               "script": "finish()"
+              }
              },
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {
-              "color": "var(--ink-gray-6)",
-              "marginTop": "6px",
-              "textWrap": "balance"
-             }
+             "componentId": "Button-your-first-task-085",
+             "componentName": "Button",
+             "componentProps": {
+              "label": "Skip for now",
+              "size": "md",
+              "variant": "ghost"
+             },
+             "componentSlots": {}
             }
            ],
-           "baseStyles": {
-            "display": "flex",
-            "flexDirection": "column",
-            "textAlign": "center",
-            "marginBottom": "24px"
-           },
-           "blockName": "card-head",
-           "originalElement": "div"
-          },
-          {
-           "componentId": "FormControl-your-first-task-080",
-           "componentName": "FormControl",
-           "componentProps": {
-            "type": "text",
-            "modelValue": {
-             "$type": "variable",
-             "name": "text"
-            },
-            "placeholder": "Try \"Send report Friday !high\"",
-            "autofocus": true,
-            "aria-label": "Your first task"
-           },
-           "componentSlots": {},
-           "children": [],
-           "baseStyles": {
-            "width": "100%"
-           },
-           "componentEvents": {
-            "keydown.enter": {
-             "event": "keydown.enter",
-             "action": "Run Script",
-             "script": "add()"
-            }
-           }
-          },
-          {
-           "componentId": "box-your-first-task-083",
-           "componentName": "container",
-           "componentProps": {},
-           "componentSlots": {},
-           "children": [
-            {
-             "componentId": "Badge-your-first-task-081",
-             "componentName": "Badge",
-             "componentProps": {
-              "variant": "subtle",
-              "theme": "gray",
-              "label": "{{ dueLabel }}"
-             },
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {},
-             "visibilityCondition": "{{ dueLabel }}"
-            },
-            {
-             "componentId": "Badge-your-first-task-082",
-             "componentName": "Badge",
-             "componentProps": {
-              "variant": "subtle",
-              "theme": "gray",
-              "label": "{{ priorityLabel }}"
-             },
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {},
-             "visibilityCondition": "{{ priorityLabel }}"
-            }
-           ],
-           "baseStyles": {
-            "display": "flex",
-            "flexDirection": "row",
-            "alignItems": "center",
-            "flexWrap": "wrap",
-            "gap": "6px",
-            "marginTop": "16px"
-           },
-           "visibilityCondition": "{{ dueLabel || priorityLabel }}",
-           "blockName": "picked-up",
-           "originalElement": "div"
-          },
-          {
            "componentId": "box-your-first-task-086",
            "componentName": "container",
            "componentProps": {},
            "componentSlots": {},
-           "children": [
-            {
-             "componentId": "Button-your-first-task-084",
-             "componentName": "Button",
-             "componentProps": {
-              "variant": "solid",
-              "label": "Add task",
-              "theme": "gray",
-              "size": "md",
-              "disabled": "{{ !canAdd }}"
-             },
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {
-              "width": "100%"
-             },
-             "componentEvents": {
-              "click": {
-               "event": "click",
-               "action": "Run Script",
-               "script": "add()"
-              }
-             }
-            },
-            {
-             "componentId": "Button-your-first-task-085",
-             "componentName": "Button",
-             "componentProps": {
-              "variant": "ghost",
-              "label": "Skip for now",
-              "size": "md"
-             },
-             "componentSlots": {},
-             "children": [],
-             "baseStyles": {
-              "width": "100%"
-             },
-             "componentEvents": {
-              "click": {
-               "event": "click",
-               "action": "Run Script",
-               "script": "finish()"
-              }
-             }
-            }
-           ],
-           "baseStyles": {
-            "display": "flex",
-            "flexDirection": "column",
-            "gap": "8px",
-            "marginTop": "16px"
-           },
            "originalElement": "div"
           }
          ],
-         "baseStyles": {
-          "display": "flex",
-          "flexDirection": "column",
-          "position": "relative",
-          "width": "100%",
-          "maxWidth": "384px",
-          "backgroundColor": "var(--surface-base)",
-          "borderStyle": "solid",
-          "borderColor": "var(--outline-gray-1)",
-          "borderWidth": "1px",
-          "borderRadius": "12px",
-          "padding": "32px"
-         },
+         "componentId": "box-your-first-task-093",
+         "componentName": "container",
+         "componentProps": {},
+         "componentSlots": {},
          "mobileStyles": {
           "padding": "24px"
          },
-         "blockName": "card",
          "originalElement": "div"
         }
        ],
-       "baseStyles": {
-        "display": "flex",
-        "flexDirection": "row",
-        "alignItems": "flex-start",
-        "justifyContent": "center",
-        "width": "100%",
-        "minHeight": "100%",
-        "backgroundColor": "var(--surface-gray-1)",
-        "padding": "14vh 16px 48px",
-        "overflowY": "auto"
-       },
+       "componentId": "box-your-first-task-094",
+       "componentName": "container",
+       "componentProps": {},
+       "componentSlots": {},
        "mobileStyles": {
         "paddingTop": "48px"
        },
-       "blockName": "auth-page",
        "originalElement": "div"
       }
-     ]
+     ],
+     "componentId": "AppShell-your-first-task",
+     "componentName": "AppShell",
+     "componentProps": {
+      "bare": true
+     },
+     "componentSlots": {},
+     "isCustomVueComponent": true
     }
-   ]
+   ],
+   "componentId": "root",
+   "componentName": "div",
+   "componentProps": {},
+   "componentSlots": {},
+   "originalElement": "body"
   }
  ],
  "frappe_app": "frappe_live",
  "idx": 0,
  "is_standard": 1,
- "modified": "2026-11-03 13:22:26.263954",
+ "modified": "2026-11-17 01:00:00.000000",
  "modified_by": "Administrator",
  "name": "your_first_task",
  "owner": "Administrator",
@@ -628,5 +628,6 @@
  "page_title": "Your first task",
  "published": 1,
  "route": "/setup/task",
- "studio_app": "live"
+ "studio_app": "live",
+ "tab_title": "Your first task \u00b7 Frappe Live"
 }
