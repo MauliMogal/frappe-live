@@ -514,7 +514,7 @@ export function homeGroups(space: string | null) {
   const lookTest = (t: any) => isFinishedForMe(t, uid)
   const toReview = list
     .filter((t) => (t.reviewer === uid && t.status === 'review') || answerTest(t) || lookTest(t))
-    .sort((a, b) => (a.suggestion?.at || a.doneAt || submittedAt(a)).localeCompare(b.suggestion?.at || b.doneAt || submittedAt(b)))
+    .sort((a, b) => (a.suggestion?.at || a.doneAt || submittedAt(a) || '').localeCompare(b.suggestion?.at || b.doneAt || submittedAt(b) || ''))
 
   const doNowTest = (t: any) =>
     isOpen(t) && (isOverdue(t) || isDueToday(t) || t.status === 'progress' || t.changesRequested)
@@ -525,7 +525,7 @@ export function homeGroups(space: string | null) {
   })
   const next = mine
     .filter((t) => isOpen(t) && !doNowTest(t))
-    .sort((a, b) => byDue(a, b) || b.createdAt.localeCompare(a.createdAt))
+    .sort((a, b) => byDue(a, b) || (b.createdAt || '').localeCompare(a.createdAt || ''))
 
   const waiting = list
     .filter(
@@ -534,7 +534,7 @@ export function homeGroups(space: string | null) {
           !(t.status === 'review' && t.reviewer === uid) && !answerTest(t)) ||
         (t.assignee === uid && t.status === 'review' && t.reviewer !== uid),
     )
-    .sort((a, b) => waitingSince(a).localeCompare(waitingSince(b)))
+    .sort((a, b) => (waitingSince(a) || '').localeCompare(waitingSince(b) || ''))
 
   const done = list
     .filter((t) => (t.assignee === uid || t.reviewer === uid) && t.status === 'done' && withinDays(t.doneAt, 7))
@@ -579,7 +579,7 @@ export const myNotifications = computed(() =>
       const personal = isPersonalWs(notificationWs(n))
       return inPersonal.value ? personal && ['R1', 'R2'].includes(n.type) : !personal
     })
-    .sort((a, b) => b.at.localeCompare(a.at)),
+    .sort((a, b) => (b.at || '').localeCompare(a.at || '')),
 )
 export const needsCount = computed(
   () => myNotifications.value.filter((n) => n.tab === 'needs' && !n.read).length,
@@ -912,7 +912,7 @@ export const deletedTasks = computed(() =>
   state.tasks
     .filter((t) => t.deletedAt && (t.createdBy === state.me || (t.space !== 'general' && isLead(t.space))))
     .filter((t) => dayjs().diff(dayjs(t.deletedAt), 'day') < 30)
-    .sort((a, b) => b.deletedAt.localeCompare(a.deletedAt)),
+    .sort((a, b) => (b.deletedAt || '').localeCompare(a.deletedAt || '')),
 )
 
 export function reassign(id: string, to: string | null) {
@@ -1666,7 +1666,7 @@ export function weekSummary() {
   const uid = state.me
   const done = state.tasks
     .filter((t) => !t.deletedAt && t.assignee === uid && t.status === 'done' && withinDays(t.doneAt, 7))
-    .sort((a, b) => b.doneAt.localeCompare(a.doneAt))
+    .sort((a, b) => (b.doneAt || '').localeCompare(a.doneAt || ''))
   const feedback = state.tasks
     .filter((t) => !t.deletedAt && t.assignee === uid)
     .flatMap((t) =>
@@ -1674,7 +1674,7 @@ export function weekSummary() {
         .filter((r: any) => r.decidedAt && r.decision !== 'withdrawn' && withinDays(r.decidedAt, 7))
         .map((r: any) => ({ task: t, round: r })),
     )
-    .sort((a, b) => b.round.decidedAt.localeCompare(a.round.decidedAt))
+    .sort((a, b) => (b.round.decidedAt || '').localeCompare(a.round.decidedAt || ''))
   const inReview = state.tasks.filter((t) => !t.deletedAt && t.assignee === uid && t.status === 'review')
   return { done, feedback, inReview }
 }

@@ -106,8 +106,8 @@ export function sortTasks(list: any[], sort: string, dir?: string) {
   const l = [...list]
   const d = (dir || SORT_DIR[sort] || 'asc') === 'desc' ? -1 : 1
   if (sort === 'priority') return l.sort((a, b) => (!a.priority !== !b.priority ? (a.priority ? -1 : 1) : d * (PRI(a.priority) - PRI(b.priority)) || (a.due || '9999').localeCompare(b.due || '9999')))
-  if (sort === 'updated') return l.sort((a, b) => d * (a.updatedAt || a.createdAt).localeCompare(b.updatedAt || b.createdAt))
-  if (sort === 'created') return l.sort((a, b) => d * a.createdAt.localeCompare(b.createdAt))
+  if (sort === 'updated') return l.sort((a, b) => d * (a.updatedAt || a.createdAt || '').localeCompare(b.updatedAt || b.createdAt || ''))
+  if (sort === 'created') return l.sort((a, b) => d * (a.createdAt || '').localeCompare(b.createdAt || ''))
   if (sort === 'title') return l.sort((a, b) => d * a.title.localeCompare(b.title))
   return l.sort((a, b) => (!a.due !== !b.due ? (a.due ? -1 : 1) : d * (a.due || '').localeCompare(b.due || '')) || PRI(a.priority) - PRI(b.priority))
 }

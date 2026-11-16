@@ -68,7 +68,7 @@ export function projectSummary(pid: string) {
   const acts = tasks.flatMap((t) =>
     (t.activity || []).filter((a: any) => !/^created this task/.test(a.text)).map((a: any) => ({ at: a.at, actor: a.actor, text: a.text, task: t })),
   )
-  const recent = [...ups, ...acts].sort((a, b) => b.at.localeCompare(a.at)).slice(0, 5)
+  const recent = [...ups, ...acts].sort((a, b) => (b.at || '').localeCompare(a.at || '')).slice(0, 5)
   const lastUpdate = (p.updates || []).reduce((a: any, u: any) => (!a || u.at > a.at ? u : a), null)
 
   return {

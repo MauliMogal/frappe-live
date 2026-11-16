@@ -158,7 +158,7 @@ const seed: any[] = [
 
 export const notesState = reactive({ notes: seed.map((n) => ({ ...n, body: linesToHtml(n.body), made: [] as any[] })) as any[] })
 
-export const myNotes = computed(() => notesState.notes.filter((n) => n.owner === state.me).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)))
+export const myNotes = computed(() => notesState.notes.filter((n) => n.owner === state.me).sort((a, b) => (b.updatedAt || '').localeCompare(a.updatedAt || '')))
 // The workspace a note is tagged with
 export const noteWs = (n: any) => n?.ws || 'frappe'
 export const note = (id: string | null | undefined) => notesState.notes.find((n) => n.id === id) || null
