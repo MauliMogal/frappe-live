@@ -105,7 +105,8 @@ def reports() -> dict:
 		"live_count": len(live_days),
 		"median_days_to_live": median(live_days) if live_days else None,
 		"months": months,
-		"mrr_now": months[-1]["mrr"] if months else 0,
+		# today's MRR = what each onboarding records now (kept in step with Live MRR rows), so tile and table agree
+		"mrr_now": round(sum(float(o.mrr_usd or 0) for o in obs if o.status != "Churned"), 2),
 		"paying": sum(1 for o in obs if (o.mrr_usd or 0) > 0),
 		"by_owner": sorted(by_owner.values(), key=lambda r: -r["count"]),
 		"feedback": fb[:20],
