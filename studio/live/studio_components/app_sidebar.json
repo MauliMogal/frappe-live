@@ -154,6 +154,28 @@
       "componentSlots": {}
      },
      {
+      "componentId": "SidebarItem-sidebar-live-messages",
+      "componentName": "SidebarItem",
+      "componentProps": {
+       "icon": "lucide-message-circle",
+       "label": "Messages",
+       "route": "/messages",
+       "suffix": "{{ messagesLabel }}"
+      },
+      "componentSlots": {}
+     },
+     {
+      "componentId": "SidebarItem-sidebar-live-reports",
+      "componentName": "SidebarItem",
+      "componentProps": {
+       "icon": "lucide-chart-column",
+       "label": "Reports",
+       "route": "/reports"
+      },
+      "componentSlots": {},
+      "visibilityCondition": "{{ canSeeReports }}"
+     },
+     {
       "baseStyles": {
        "alignItems": "center",
        "display": "flex",
@@ -367,7 +389,7 @@
  "idx": 0,
  "is_disabled": 0,
  "is_standard": 1,
- "modified": "2026-11-03 16:54:41.327116",
+ "modified": "2026-11-16 20:00:00.000000",
  "modified_by": "Administrator",
  "name": "app_sidebar",
  "owner": "Administrator"
