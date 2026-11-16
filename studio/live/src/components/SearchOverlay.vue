@@ -5,7 +5,6 @@ import { Dialog, Avatar } from 'frappe-ui'
 import { state, me, search, task, project, visibleTasks, spaceName, personName, signOut, isMember, org, isWsAdmin, canInviteToWs } from '../lib/store'
 import { can } from '../lib/permissions'
 import { views } from '../lib/viewState'
-import { addNote } from '../lib/notes'
 import { isPinned, togglePin } from '../lib/pins'
 import StatusIcon from './StatusIcon.vue'
 
@@ -145,13 +144,12 @@ const recent = computed(() =>
 const goTo: Item[] = [
   { key: 'g-home', label: 'My tasks', icon: 'lucide-circle-check-big', run: () => go('/') },
   { key: 'g-inbox', label: 'Notifications', icon: 'lucide-bell', run: () => { close(); state.ui.notifications = true } },
-  { key: 'g-notes', label: 'Notes', icon: 'lucide-notebook-pen', run: () => go('/notes') },
+  { key: 'g-messages', label: 'Messages', icon: 'lucide-message-circle', run: () => go('/messages') },
   { key: 'g-projects', label: 'Projects', icon: 'lucide-folders', run: () => go('/projects') },
 ]
 const create = computed<Item[]>(() => [
   { key: 'c-task', label: 'Create task', icon: 'lucide-plus', run: () => { close(); state.ui.quickAdd = true } },
   ...(can.createProject() ? [{ key: 'c-project', label: 'Create project', icon: 'lucide-plus', run: () => { close(); state.ui.createProject = true } }] : []),
-  { key: 'c-note', label: 'Create note', icon: 'lucide-plus', run: () => { const n = addNote(); go('/notes', { note: n.id }) } },
 ])
 const account = computed<Item[]>(() => [
   { key: 'a-settings', label: 'Settings', icon: 'lucide-settings', run: () => { close(); state.ui.settingsTab = 'profile'; state.ui.settings = true } },

@@ -4,7 +4,7 @@ import { useRoute, RouterLink } from 'vue-router'
 import { state, attention, myProjects } from '../lib/store'
 import AttentionDot from './AttentionDot.vue'
 
-// Mobile bottom bar (decided order): My tasks · Notes · New task · Projects.
+// Mobile bottom bar: My tasks · Messages · New task · Projects. (Notes is hidden in Frappe Live.)
 // Notifications live in the page header (bell, next to Search), not here.
 // Only the current place is dark; New task is dark only while the New task panel is open.
 const route = useRoute()
@@ -28,12 +28,12 @@ const isActive = (path: string) =>
       <span class="text-xs-medium">My tasks</span>
     </RouterLink>
     <RouterLink
-      to="/notes"
+      to="/messages"
       class="flex h-14 flex-col items-center justify-center gap-1"
-      :class="isActive('/notes') ? 'text-ink-gray-9' : 'text-ink-gray-5'"
+      :class="isActive('/messages') ? 'text-ink-gray-9' : 'text-ink-gray-5'"
     >
-      <span class="lucide-notebook-pen size-5" aria-hidden="true" />
-      <span class="text-xs-medium">Notes</span>
+      <span class="lucide-message-circle size-5" aria-hidden="true" />
+      <span class="text-xs-medium">Messages</span>
     </RouterLink>
     <button
       type="button"

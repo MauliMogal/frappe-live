@@ -11,7 +11,7 @@ const t = computed(() => props.task)
 // Your own task (My tasks, or a personal project): nobody else reads it, so comments are notes to yourself.
 // No @mentions, no Reply (Round 248).
 const personal = computed(() => t.value.space === 'general' || isSolo(t.value.space))
-const comments = computed(() => [...t.value.comments].sort((a: any, b: any) => a.at.localeCompare(b.at)))
+const comments = computed(() => [...t.value.comments].sort((a: any, b: any) => (a.at || '').localeCompare(b.at || '')))
 const top = computed(() => comments.value.filter((c: any) => !c.replyTo))
 const replies = (id: string) => comments.value.filter((c: any) => c.replyTo === id)
 const firstNewId = computed(() =>

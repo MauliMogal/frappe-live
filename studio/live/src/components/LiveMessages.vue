@@ -110,7 +110,7 @@ async function sendFeedback() {
     fbText.value = ''
     fbRating.value = null
     fbConsent.value = false
-    toast.success('Sent. The Frappe team sees it right away.')
+    toast.success('Sent to the Frappe team.')
     loadConv()
   } catch (e: any) {
     toast.error(e.message)
@@ -141,7 +141,7 @@ const fbTheme = (t: string) => (t === "I'm stuck" || t === 'Bug' ? 'red' : t ===
 </script>
 
 <template>
-  <div class="flex h-full min-h-0 w-full">
+  <div class="flex h-full min-h-0 w-full overflow-hidden">
     <!-- conversations -->
     <aside
       class="flex min-h-0 w-full shrink-0 flex-col border-r border-outline-gray-1 lg:w-[340px]"
@@ -200,7 +200,7 @@ const fbTheme = (t: string) => (t === "I'm stuck" || t === 'Bug' ? 'red' : t ===
     </aside>
 
     <!-- one conversation -->
-    <section class="min-h-0 flex-1 flex-col" :class="sel ? 'flex' : 'hidden lg:flex'">
+    <section class="min-h-0 min-w-0 flex-1 flex-col" :class="sel ? 'flex' : 'hidden lg:flex'">
       <div v-if="!sel" class="flex flex-1 items-center justify-center p-8 text-center">
         <div>
           <span class="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-surface-gray-2">
@@ -220,21 +220,18 @@ const fbTheme = (t: string) => (t === "I'm stuck" || t === 'Bug' ? 'red' : t ===
               <p class="truncate text-base font-semibold text-ink-gray-9">{{ current?.name || conv?.onboarding?.customer }}</p>
               <Badge v-if="current?.app" size="sm" variant="subtle" theme="gray" :label="current.app" />
             </div>
-            <p class="mt-0.5 flex items-center gap-1.5 text-xs text-ink-gray-5">
-              <span v-if="current?.stage" :class="STAGE_BG[current.stage]" class="size-2 rounded-full" />
-              {{ current?.stage }}
-              <template v-if="current?.health && current?.stage !== 'Yet to start'">
-                · <span :class="HEALTH_DOT[current.health]" class="size-2 rounded-full" /> {{ current.health }}
-              </template>
-              <template v-if="conv?.onboarding?.owner_name"> · Run by {{ conv.onboarding.owner_name }}</template>
+            <p class="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs text-ink-gray-5">
+              <span v-if="current?.stage" class="inline-flex items-center gap-1.5"><span :class="STAGE_BG[current.stage]" class="size-2 rounded-full" />{{ current.stage }}</span>
+              <span v-if="current?.health && current?.stage !== 'Yet to start'" class="inline-flex items-center gap-1.5"><span :class="HEALTH_DOT[current.health]" class="size-2 rounded-full" />{{ current.health }}</span>
+              <span v-if="conv?.onboarding?.owner_name">Run by {{ conv.onboarding.owner_name }}</span>
             </p>
           </div>
           <Button variant="subtle" label="Open plan" icon-right="lucide-arrow-up-right" @click="router.push(`/p/${sel}`)" />
         </div>
 
         <!-- the five milestones -->
-        <div v-if="milestones.length" class="grid grid-cols-5 gap-2 border-b border-outline-gray-1 px-4 py-3">
-          <div v-for="(m, i) in milestones" :key="m.id" class="min-w-0">
+        <div v-if="milestones.length" class="flex gap-2 overflow-x-auto border-b border-outline-gray-1 px-4 py-3 lg:grid lg:grid-cols-5 lg:overflow-visible">
+          <div v-for="(m, i) in milestones" :key="m.id" class="min-w-[132px] lg:min-w-0">
             <div class="h-1.5 overflow-hidden rounded-full bg-surface-gray-2">
               <div class="h-full rounded-full bg-surface-gray-7" :style="{ width: `${msPct(m)}%` }" />
             </div>
@@ -294,7 +291,7 @@ const fbTheme = (t: string) => (t === "I'm stuck" || t === 'Bug' ? 'red' : t ===
               <Button variant="solid" :loading="sending" :disabled="!draft.trim()" label="Send" @click="send" />
             </div>
             <p class="mx-auto mt-1.5 max-w-3xl px-1 text-xs text-ink-gray-4">
-              {{ isStaff ? 'Enter to send. The customer is emailed.' : 'Enter to send. The team gets it in Raven right away.' }}
+              {{ isStaff ? 'Enter to send. The customer gets it here and by email.' : 'Enter to send. The Frappe team replies here and by email.' }}
             </p>
           </div>
         </template>

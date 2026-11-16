@@ -211,10 +211,10 @@ const stepPct = (o: any) => (o.steps_total ? Math.round((o.steps_done / o.steps_
           <div class="mt-4 flex flex-col divide-y divide-outline-gray-1">
             <div v-for="r in data.by_owner" :key="r.owner" class="flex items-center gap-3 py-2.5 text-sm">
               <span class="flex size-7 items-center justify-center rounded-full bg-surface-gray-3 text-xs font-medium text-ink-gray-7">{{ (r.owner || '?')[0] }}</span>
-              <span class="flex-1 text-ink-gray-8">{{ r.owner }}</span>
-              <span class="w-24 text-right tabular-nums text-ink-gray-7">{{ r.count }} onboarding{{ r.count === 1 ? '' : 's' }}</span>
-              <span class="w-14 text-right tabular-nums text-ink-gray-7">{{ r.live }} live</span>
-              <span class="w-16 text-right tabular-nums text-ink-gray-9">{{ money(r.mrr) }}</span>
+              <span class="min-w-0 flex-1 truncate text-ink-gray-8">{{ r.owner }}</span>
+              <span class="shrink-0 whitespace-nowrap text-right tabular-nums text-ink-gray-7">{{ r.count }} onboarding{{ r.count === 1 ? '' : 's' }}</span>
+              <span class="w-14 shrink-0 whitespace-nowrap text-right tabular-nums text-ink-gray-7">{{ r.live }} live</span>
+              <span class="w-14 shrink-0 whitespace-nowrap text-right tabular-nums text-ink-gray-9">{{ money(r.mrr) }}</span>
             </div>
           </div>
         </section>
