@@ -530,7 +530,7 @@
  "frappe_app": "frappe_live",
  "idx": 0,
  "is_standard": 1,
- "modified": "2026-11-16 20:00:00.000000",
+ "modified": "2026-11-17 01:00:00.000000",
  "modified_by": "Administrator",
  "name": "reports",
  "owner": "Administrator",
@@ -538,5 +538,6 @@
  "page_title": "Reports",
  "published": 1,
  "route": "/reports",
- "studio_app": "live"
+ "studio_app": "live",
+ "tab_title": "Reports \u00b7 Frappe Live"
 }
