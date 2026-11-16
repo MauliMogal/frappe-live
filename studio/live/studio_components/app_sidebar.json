@@ -21,54 +21,14 @@
      "prefix": {
       "slotContent": [
        {
-        "baseStyles": {
-         "alignItems": "center",
-         "backgroundColor": "var(--surface-gray-9)",
-         "color": "var(--ink-gray-1)",
-         "display": "flex",
-         "flexDirection": "row",
-         "height": "100%",
-         "justifyContent": "center",
-         "width": "100%"
-        },
-        "blockName": "workspace-mark",
-        "children": [
-         {
-          "baseStyles": {
-           "color": "var(--ink-gray-1)"
-          },
-          "componentId": "Icon-sidebar-mark",
-          "componentName": "Icon",
-          "componentProps": {
-           "class": "size-4",
-           "icon": "{{ wsMarkIcon }}"
-          },
-          "componentSlots": {},
-          "visibilityCondition": "{{ wsMarkIcon }}"
-         },
-         {
-          "baseStyles": {
-           "color": "var(--ink-gray-1)",
-           "fontWeight": "600"
-          },
-          "componentId": "TextBlock-sidebar-mark",
-          "componentName": "TextBlock",
-          "componentProps": {
-           "fontSize": "text-sm",
-           "tag": "span",
-           "text": "{{ wsInitial }}"
-          },
-          "componentSlots": {},
-          "visibilityCondition": "{{ !wsMarkIcon }}"
-         }
-        ],
-        "componentId": "box-sidebar-mark",
-        "componentName": "container",
+        "children": [],
+        "componentId": "LiveLogo-sidebar-mark",
+        "componentName": "LiveLogo",
         "componentProps": {
-         "aria-hidden": "true"
+         "size": 32
         },
         "componentSlots": {},
-        "originalElement": "div",
+        "isCustomVueComponent": true,
         "parentSlotName": "prefix"
        }
       ],
@@ -379,7 +339,7 @@
  "idx": 0,
  "is_disabled": 0,
  "is_standard": 1,
- "modified": "2026-11-17 01:00:00.000000",
+ "modified": "2026-11-17 02:00:00.000000",
  "modified_by": "Administrator",
  "name": "app_sidebar",
  "owner": "Administrator"
