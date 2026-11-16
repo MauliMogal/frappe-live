@@ -56,6 +56,7 @@
               "fontWeight": "600",
               "whiteSpace": "nowrap"
              },
+             "children": [],
              "componentId": "TextBlock-my-tasks-008",
              "componentName": "TextBlock",
              "componentProps": {
@@ -70,6 +71,7 @@
               "color": "var(--ink-gray-5)",
               "whiteSpace": "nowrap"
              },
+             "children": [],
              "componentId": "TextBlock-my-tasks-009",
              "componentName": "TextBlock",
              "componentProps": {
@@ -92,6 +94,7 @@
             "flex": "1"
            },
            "blockName": "spacer",
+           "children": [],
            "componentId": "box-my-tasks-002",
            "componentName": "container",
            "componentProps": {},
@@ -99,6 +102,7 @@
            "originalElement": "div"
           },
           {
+           "children": [],
            "componentEvents": {
             "click": {
              "action": "Run Script",
@@ -119,6 +123,7 @@
            "visibilityCondition": "{{ !isMobile }}"
           },
           {
+           "children": [],
            "componentEvents": {
             "click": {
              "action": "Run Script",
@@ -138,6 +143,7 @@
            "visibilityCondition": "{{ isMobile }}"
           },
           {
+           "children": [],
            "componentEvents": {
             "click": {
              "action": "Run Script",
@@ -156,6 +162,7 @@
            "visibilityCondition": "{{ isMobile }}"
           },
           {
+           "children": [],
            "componentId": "Dropdown-my-tasks-006",
            "componentName": "Dropdown",
            "componentProps": {
@@ -226,6 +233,7 @@
                  "baseStyles": {
                   "color": "var(--ink-gray-6)"
                  },
+                 "children": [],
                  "componentId": "Icon-my-tasks-011",
                  "componentName": "Icon",
                  "componentProps": {
@@ -240,6 +248,7 @@
                   "flex": "1",
                   "minWidth": "0px"
                  },
+                 "children": [],
                  "componentId": "TextBlock-my-tasks-012",
                  "componentName": "TextBlock",
                  "componentProps": {
@@ -250,6 +259,7 @@
                  "componentSlots": {}
                 },
                 {
+                 "children": [],
                  "componentEvents": {
                   "click": {
                    "action": "Run Script",
@@ -267,6 +277,7 @@
                  "componentSlots": {}
                 },
                 {
+                 "children": [],
                  "componentEvents": {
                   "click": {
                    "action": "Run Script",
@@ -320,6 +331,7 @@
                "baseStyles": {
                 "color": "var(--ink-gray-6)"
                },
+               "children": [],
                "componentId": "Icon-my-tasks-017",
                "componentName": "Icon",
                "componentProps": {
@@ -333,6 +345,7 @@
                 "color": "var(--ink-gray-8)",
                 "flex": "1"
                },
+               "children": [],
                "componentId": "TextBlock-my-tasks-018",
                "componentName": "TextBlock",
                "componentProps": {
@@ -343,6 +356,7 @@
                "componentSlots": {}
               },
               {
+               "children": [],
                "componentEvents": {
                 "click": {
                  "action": "Run Script",
@@ -360,6 +374,7 @@
                "componentSlots": {}
               },
               {
+               "children": [],
                "componentEvents": {
                 "click": {
                  "action": "Run Script",
@@ -387,6 +402,7 @@
             },
             {
              "blockName": "toolbar",
+             "children": [],
              "componentId": "FilterSortBar-my-tasks-022",
              "componentName": "FilterSortBar",
              "componentProps": {
@@ -411,6 +427,7 @@
                   "flexShrink": "0"
                  },
                  "blockName": "view-switch",
+                 "children": [],
                  "componentId": "Dropdown-my-tasks-023",
                  "componentName": "Dropdown",
                  "componentProps": {
@@ -444,6 +461,7 @@
                 "color": "var(--ink-gray-8)",
                 "fontWeight": "500"
                },
+               "children": [],
                "componentId": "TextBlock-my-tasks-024",
                "componentName": "TextBlock",
                "componentProps": {
@@ -457,6 +475,7 @@
                "baseStyles": {
                 "marginTop": "8px"
                },
+               "children": [],
                "componentEvents": {
                 "click": {
                  "action": "Run Script",
@@ -508,6 +527,7 @@
                  "baseStyles": {
                   "color": "var(--ink-gray-6)"
                  },
+                 "children": [],
                  "componentId": "Icon-my-tasks-030",
                  "componentName": "Icon",
                  "componentProps": {
@@ -528,6 +548,7 @@
                 "color": "var(--ink-gray-9)",
                 "fontWeight": "500"
                },
+               "children": [],
                "componentId": "TextBlock-my-tasks-032",
                "componentName": "TextBlock",
                "componentProps": {
@@ -544,6 +565,7 @@
                 "maxWidth": "384px",
                 "textWrap": "balance"
                },
+               "children": [],
                "componentId": "TextBlock-my-tasks-033",
                "componentName": "TextBlock",
                "componentProps": {
@@ -565,6 +587,7 @@
                },
                "children": [
                 {
+                 "children": [],
                  "componentEvents": {
                   "click": {
                    "action": "Run Script",
@@ -582,6 +605,7 @@
                  "componentSlots": {}
                 },
                 {
+                 "children": [],
                  "componentEvents": {
                   "click": {
                    "action": "Run Script",
@@ -595,23 +619,6 @@
                   "iconLeft": "lucide-import",
                   "label": "Import",
                   "variant": "subtle"
-                 },
-                 "componentSlots": {}
-                },
-                {
-                 "componentEvents": {
-                  "click": {
-                   "action": "Run Script",
-                   "event": "click",
-                   "script": "importFrom('github')"
-                  }
-                 },
-                 "componentId": "Button-my-tasks-029",
-                 "componentName": "Button",
-                 "componentProps": {
-                  "iconLeft": "lucide-github",
-                  "label": "Import from GitHub",
-                  "variant": "outline"
                  },
                  "componentSlots": {}
                 }
@@ -637,6 +644,7 @@
               "width": "100%"
              },
              "blockName": "task-list",
+             "children": [],
              "componentId": "MyTasksList-my-tasks-036",
              "componentName": "MyTasksList",
              "componentProps": {},
@@ -659,6 +667,7 @@
                    "baseStyles": {
                     "color": "var(--ink-gray-5)"
                    },
+                   "children": [],
                    "componentId": "TextBlock-tl-blocks-001",
                    "componentName": "TextBlock",
                    "componentProps": {
@@ -680,6 +689,7 @@
                    "baseStyles": {
                     "color": "var(--ink-gray-5)"
                    },
+                   "children": [],
                    "componentId": "TextBlock-tl-blocks-003",
                    "componentName": "TextBlock",
                    "componentProps": {
@@ -706,6 +716,7 @@
                    "baseStyles": {
                     "color": "var(--ink-gray-5)"
                    },
+                   "children": [],
                    "componentId": "TextBlock-tl-blocks-005",
                    "componentName": "TextBlock",
                    "componentProps": {
@@ -731,6 +742,7 @@
                    "baseStyles": {
                     "color": "var(--ink-gray-5)"
                    },
+                   "children": [],
                    "componentId": "TextBlock-tl-blocks-007",
                    "componentName": "TextBlock",
                    "componentProps": {
@@ -756,6 +768,7 @@
                    "baseStyles": {
                     "color": "var(--ink-gray-5)"
                    },
+                   "children": [],
                    "componentId": "TextBlock-tl-blocks-009",
                    "componentName": "TextBlock",
                    "componentProps": {
@@ -772,6 +785,7 @@
                  "componentSlots": {}
                 },
                 {
+                 "children": [],
                  "componentId": "ListHeaderCell-tl-blocks-011",
                  "componentName": "ListHeaderCell",
                  "componentProps": {},
@@ -795,6 +809,7 @@
                  },
                  "children": [
                   {
+                   "children": [],
                    "componentId": "ListRows-tl-blocks-045",
                    "componentName": "ListRows",
                    "componentProps": {
@@ -835,6 +850,7 @@
                               "textOverflow": "ellipsis",
                               "whiteSpace": "nowrap"
                              },
+                             "children": [],
                              "componentId": "TextBlock-tl-blocks-015",
                              "componentName": "TextBlock",
                              "componentProps": {
@@ -845,6 +861,7 @@
                              "componentSlots": {}
                             },
                             {
+                             "children": [],
                              "componentEvents": {
                               "click.stop": {
                                "action": "Run Script",
@@ -888,6 +905,7 @@
                             {
                              "children": [
                               {
+                               "children": [],
                                "componentEvents": {
                                 "update:modelValue": {
                                  "action": "Run Script",
@@ -926,6 +944,7 @@
                               "textOverflow": "ellipsis",
                               "whiteSpace": "nowrap"
                              },
+                             "children": [],
                              "componentId": "TextBlock-tl-blocks-018",
                              "componentName": "TextBlock",
                              "componentProps": {
@@ -954,6 +973,7 @@
                              "baseStyles": {
                               "width": "100%"
                              },
+                             "children": [],
                              "componentEvents": {
                               "keydown.enter": {
                                "action": "Run Script",
@@ -1017,6 +1037,7 @@
                              "baseStyles": {
                               "color": "var(--ink-gray-5)"
                              },
+                             "children": [],
                              "componentId": "Icon-tl-blocks-023",
                              "componentName": "Icon",
                              "componentProps": {
@@ -1033,6 +1054,7 @@
                               "textOverflow": "ellipsis",
                               "whiteSpace": "nowrap"
                              },
+                             "children": [],
                              "componentId": "TextBlock-tl-blocks-024",
                              "componentName": "TextBlock",
                              "componentProps": {
@@ -1066,6 +1088,7 @@
                           {
                            "children": [
                             {
+                             "children": [],
                              "componentId": "StatusControl-tl-blocks-027",
                              "componentName": "StatusControl",
                              "componentProps": {
@@ -1105,6 +1128,7 @@
                           {
                            "children": [
                             {
+                             "children": [],
                              "componentId": "Dropdown-tl-blocks-032",
                              "componentName": "Dropdown",
                              "componentProps": {
@@ -1134,6 +1158,7 @@
                                     "height": "6px",
                                     "width": "6px"
                                    },
+                                   "children": [],
                                    "componentId": "box-tl-blocks-030",
                                    "componentName": "container",
                                    "componentProps": {},
@@ -1144,6 +1169,7 @@
                                    "baseStyles": {
                                     "color": "var(--ink-gray-8)"
                                    },
+                                   "children": [],
                                    "componentId": "TextBlock-tl-blocks-prio-label",
                                    "componentName": "TextBlock",
                                    "componentProps": {
@@ -1190,6 +1216,7 @@
                                 "height": "6px",
                                 "width": "6px"
                                },
+                               "children": [],
                                "componentId": "box-tl-blocks-030",
                                "componentName": "container",
                                "componentProps": {},
@@ -1201,6 +1228,7 @@
                                "baseStyles": {
                                 "color": "var(--ink-gray-7)"
                                },
+                               "children": [],
                                "componentId": "TextBlock-tl-blocks-033",
                                "componentName": "TextBlock",
                                "componentProps": {
@@ -1250,6 +1278,7 @@
                             "color": "{{ item.dueColor }}",
                             "whiteSpace": "nowrap"
                            },
+                           "children": [],
                            "componentId": "TextBlock-tl-blocks-037",
                            "componentName": "TextBlock",
                            "componentProps": {
@@ -1274,6 +1303,7 @@
                           {
                            "children": [
                             {
+                             "children": [],
                              "componentId": "Dropdown-tl-blocks-039",
                              "componentName": "Dropdown",
                              "componentProps": {
@@ -1306,6 +1336,7 @@
                           {
                            "children": [
                             {
+                             "children": [],
                              "componentEvents": {
                               "click": {
                                "action": "Run Script",
@@ -1376,6 +1407,7 @@
                      "baseStyles": {
                       "color": "var(--ink-gray-5)"
                      },
+                     "children": [],
                      "componentId": "Icon-tl-blocks-050",
                      "componentName": "Icon",
                      "componentProps": {
@@ -1388,6 +1420,7 @@
                      "baseStyles": {
                       "flex": "1"
                      },
+                     "children": [],
                      "componentEvents": {
                       "keydown.enter": {
                        "action": "Run Script",
@@ -1428,6 +1461,7 @@
                      },
                      "children": [
                       {
+                       "children": [],
                        "componentEvents": {
                         "click": {
                          "action": "Run Script",
@@ -1450,6 +1484,7 @@
                         "color": "var(--ink-gray-8)",
                         "fontWeight": "500"
                        },
+                       "children": [],
                        "componentId": "TextBlock-tl-blocks-047",
                        "componentName": "TextBlock",
                        "componentProps": {
@@ -1464,6 +1499,7 @@
                         "color": "var(--ink-gray-5)",
                         "fontVariantNumeric": "tabular-nums"
                        },
+                       "children": [],
                        "componentId": "TextBlock-tl-blocks-048",
                        "componentName": "TextBlock",
                        "componentProps": {
@@ -1534,6 +1570,7 @@
        "originalElement": "div"
       },
       {
+       "children": [],
        "componentId": "DesignChoice-my-tasks-task-list-frappe",
        "componentName": "DesignChoice",
        "componentProps": {
@@ -1544,6 +1581,7 @@
        "isCustomVueComponent": true
       },
       {
+       "children": [],
        "componentId": "DesignChoice-my-tasks-own-tasks-icon-p",
        "componentName": "DesignChoice",
        "componentProps": {
@@ -1554,6 +1592,7 @@
        "isCustomVueComponent": true
       },
       {
+       "children": [],
        "componentId": "DesignChoice-my-tasks-filter-bar-search",
        "componentName": "DesignChoice",
        "componentProps": {
@@ -1564,6 +1603,7 @@
        "isCustomVueComponent": true
       },
       {
+       "children": [],
        "componentId": "DesignChoice-my-tasks-group-headers-heading",
        "componentName": "DesignChoice",
        "componentProps": {
@@ -1574,6 +1614,7 @@
        "isCustomVueComponent": true
       },
       {
+       "children": [],
        "componentId": "DesignChoice-my-tasks-panel-layout-crm",
        "componentName": "DesignChoice",
        "componentProps": {
@@ -1584,6 +1625,7 @@
        "isCustomVueComponent": true
       },
       {
+       "children": [],
        "componentId": "DesignChoice-my-tasks-empty-values-not-set",
        "componentName": "DesignChoice",
        "componentProps": {
@@ -1594,6 +1636,7 @@
        "isCustomVueComponent": true
       },
       {
+       "children": [],
        "componentId": "DesignChoice-my-tasks-notification-list-full-dividers",
        "componentName": "DesignChoice",
        "componentProps": {
@@ -1604,6 +1647,7 @@
        "isCustomVueComponent": true
       },
       {
+       "children": [],
        "componentId": "notifications_panel-my-tasks",
        "componentName": "notifications_panel",
        "componentProps": {},
@@ -1620,6 +1664,7 @@
       "sidebar": {
        "slotContent": [
         {
+         "children": [],
          "componentId": "app_sidebar-my-tasks",
          "componentName": "app_sidebar",
          "componentProps": {},
@@ -1700,6 +1745,7 @@
               "fontWeight": "600",
               "whiteSpace": "nowrap"
              },
+             "children": [],
              "componentId": "TextBlock-my-tasks-008",
              "componentName": "TextBlock",
              "componentProps": {
@@ -1721,6 +1767,7 @@
             "flex": "1"
            },
            "blockName": "spacer",
+           "children": [],
            "componentId": "box-my-tasks-002",
            "componentName": "container",
            "componentProps": {},
@@ -1728,6 +1775,7 @@
            "originalElement": "div"
           },
           {
+           "children": [],
            "componentEvents": {
             "click": {
              "action": "Run Script",
@@ -1748,6 +1796,7 @@
            "visibilityCondition": "{{ !isMobile }}"
           },
           {
+           "children": [],
            "componentEvents": {
             "click": {
              "action": "Run Script",
@@ -1767,6 +1816,7 @@
            "visibilityCondition": "{{ isMobile }}"
           },
           {
+           "children": [],
            "componentEvents": {
             "click": {
              "action": "Run Script",
@@ -1785,6 +1835,7 @@
            "visibilityCondition": "{{ isMobile }}"
           },
           {
+           "children": [],
            "componentId": "Dropdown-my-tasks-006",
            "componentName": "Dropdown",
            "componentProps": {
@@ -1855,6 +1906,7 @@
                  "baseStyles": {
                   "color": "var(--ink-gray-6)"
                  },
+                 "children": [],
                  "componentId": "Icon-my-tasks-011",
                  "componentName": "Icon",
                  "componentProps": {
@@ -1869,6 +1921,7 @@
                   "flex": "1",
                   "minWidth": "0px"
                  },
+                 "children": [],
                  "componentId": "TextBlock-my-tasks-012",
                  "componentName": "TextBlock",
                  "componentProps": {
@@ -1879,6 +1932,7 @@
                  "componentSlots": {}
                 },
                 {
+                 "children": [],
                  "componentEvents": {
                   "click": {
                    "action": "Run Script",
@@ -1896,6 +1950,7 @@
                  "componentSlots": {}
                 },
                 {
+                 "children": [],
                  "componentEvents": {
                   "click": {
                    "action": "Run Script",
@@ -1949,6 +2004,7 @@
                "baseStyles": {
                 "color": "var(--ink-gray-6)"
                },
+               "children": [],
                "componentId": "Icon-my-tasks-017",
                "componentName": "Icon",
                "componentProps": {
@@ -1962,6 +2018,7 @@
                 "color": "var(--ink-gray-8)",
                 "flex": "1"
                },
+               "children": [],
                "componentId": "TextBlock-my-tasks-018",
                "componentName": "TextBlock",
                "componentProps": {
@@ -1972,6 +2029,7 @@
                "componentSlots": {}
               },
               {
+               "children": [],
                "componentEvents": {
                 "click": {
                  "action": "Run Script",
@@ -1989,6 +2047,7 @@
                "componentSlots": {}
               },
               {
+               "children": [],
                "componentEvents": {
                 "click": {
                  "action": "Run Script",
@@ -2016,6 +2075,7 @@
             },
             {
              "blockName": "toolbar",
+             "children": [],
              "componentId": "FilterSortBar-my-tasks-022",
              "componentName": "FilterSortBar",
              "componentProps": {
@@ -2041,6 +2101,7 @@
                   "flexShrink": "0"
                  },
                  "blockName": "view-switch",
+                 "children": [],
                  "componentId": "Dropdown-my-tasks-023",
                  "componentName": "Dropdown",
                  "componentProps": {
@@ -2075,6 +2136,7 @@
                 "color": "var(--ink-gray-8)",
                 "fontWeight": "500"
                },
+               "children": [],
                "componentId": "TextBlock-my-tasks-024",
                "componentName": "TextBlock",
                "componentProps": {
@@ -2088,6 +2150,7 @@
                "baseStyles": {
                 "marginTop": "8px"
                },
+               "children": [],
                "componentEvents": {
                 "click": {
                  "action": "Run Script",
@@ -2139,6 +2202,7 @@
                  "baseStyles": {
                   "color": "var(--ink-gray-6)"
                  },
+                 "children": [],
                  "componentId": "Icon-my-tasks-030",
                  "componentName": "Icon",
                  "componentProps": {
@@ -2159,6 +2223,7 @@
                 "color": "var(--ink-gray-9)",
                 "fontWeight": "500"
                },
+               "children": [],
                "componentId": "TextBlock-my-tasks-032",
                "componentName": "TextBlock",
                "componentProps": {
@@ -2175,6 +2240,7 @@
                 "maxWidth": "384px",
                 "textWrap": "balance"
                },
+               "children": [],
                "componentId": "TextBlock-my-tasks-033",
                "componentName": "TextBlock",
                "componentProps": {
@@ -2196,6 +2262,7 @@
                },
                "children": [
                 {
+                 "children": [],
                  "componentEvents": {
                   "click": {
                    "action": "Run Script",
@@ -2213,6 +2280,7 @@
                  "componentSlots": {}
                 },
                 {
+                 "children": [],
                  "componentEvents": {
                   "click": {
                    "action": "Run Script",
@@ -2226,23 +2294,6 @@
                   "iconLeft": "lucide-import",
                   "label": "Import",
                   "variant": "subtle"
-                 },
-                 "componentSlots": {}
-                },
-                {
-                 "componentEvents": {
-                  "click": {
-                   "action": "Run Script",
-                   "event": "click",
-                   "script": "importFrom('github')"
-                  }
-                 },
-                 "componentId": "Button-my-tasks-029",
-                 "componentName": "Button",
-                 "componentProps": {
-                  "iconLeft": "lucide-github",
-                  "label": "Import from GitHub",
-                  "variant": "outline"
                  },
                  "componentSlots": {}
                 }
@@ -2268,6 +2319,7 @@
               "width": "100%"
              },
              "blockName": "task-list",
+             "children": [],
              "componentId": "MyTasksList-my-tasks-036",
              "componentName": "MyTasksList",
              "componentProps": {},
@@ -2290,6 +2342,7 @@
                    "baseStyles": {
                     "color": "var(--ink-gray-5)"
                    },
+                   "children": [],
                    "componentId": "TextBlock-tl-blocks-001",
                    "componentName": "TextBlock",
                    "componentProps": {
@@ -2311,6 +2364,7 @@
                    "baseStyles": {
                     "color": "var(--ink-gray-5)"
                    },
+                   "children": [],
                    "componentId": "TextBlock-tl-blocks-003",
                    "componentName": "TextBlock",
                    "componentProps": {
@@ -2337,6 +2391,7 @@
                    "baseStyles": {
                     "color": "var(--ink-gray-5)"
                    },
+                   "children": [],
                    "componentId": "TextBlock-tl-blocks-005",
                    "componentName": "TextBlock",
                    "componentProps": {
@@ -2362,6 +2417,7 @@
                    "baseStyles": {
                     "color": "var(--ink-gray-5)"
                    },
+                   "children": [],
                    "componentId": "TextBlock-tl-blocks-007",
                    "componentName": "TextBlock",
                    "componentProps": {
@@ -2387,6 +2443,7 @@
                    "baseStyles": {
                     "color": "var(--ink-gray-5)"
                    },
+                   "children": [],
                    "componentId": "TextBlock-tl-blocks-009",
                    "componentName": "TextBlock",
                    "componentProps": {
@@ -2403,6 +2460,7 @@
                  "componentSlots": {}
                 },
                 {
+                 "children": [],
                  "componentId": "ListHeaderCell-tl-blocks-011",
                  "componentName": "ListHeaderCell",
                  "componentProps": {},
@@ -2426,6 +2484,7 @@
                  },
                  "children": [
                   {
+                   "children": [],
                    "componentId": "ListRows-tl-blocks-045",
                    "componentName": "ListRows",
                    "componentProps": {
@@ -2467,6 +2526,7 @@
                               "textOverflow": "ellipsis",
                               "whiteSpace": "nowrap"
                              },
+                             "children": [],
                              "componentId": "TextBlock-tl-blocks-015",
                              "componentName": "TextBlock",
                              "componentProps": {
@@ -2477,6 +2537,7 @@
                              "componentSlots": {}
                             },
                             {
+                             "children": [],
                              "componentEvents": {
                               "click.stop": {
                                "action": "Run Script",
@@ -2520,6 +2581,7 @@
                             {
                              "children": [
                               {
+                               "children": [],
                                "componentEvents": {
                                 "update:modelValue": {
                                  "action": "Run Script",
@@ -2558,6 +2620,7 @@
                               "textOverflow": "ellipsis",
                               "whiteSpace": "nowrap"
                              },
+                             "children": [],
                              "componentId": "TextBlock-tl-blocks-018",
                              "componentName": "TextBlock",
                              "componentProps": {
@@ -2586,6 +2649,7 @@
                              "baseStyles": {
                               "width": "100%"
                              },
+                             "children": [],
                              "componentEvents": {
                               "keydown.enter": {
                                "action": "Run Script",
@@ -2649,6 +2713,7 @@
                              "baseStyles": {
                               "color": "var(--ink-gray-5)"
                              },
+                             "children": [],
                              "componentId": "Icon-tl-blocks-023",
                              "componentName": "Icon",
                              "componentProps": {
@@ -2665,6 +2730,7 @@
                               "textOverflow": "ellipsis",
                               "whiteSpace": "nowrap"
                              },
+                             "children": [],
                              "componentId": "TextBlock-tl-blocks-024",
                              "componentName": "TextBlock",
                              "componentProps": {
@@ -2698,6 +2764,7 @@
                           {
                            "children": [
                             {
+                             "children": [],
                              "componentId": "StatusControl-tl-blocks-027",
                              "componentName": "StatusControl",
                              "componentProps": {
@@ -2737,6 +2804,7 @@
                           {
                            "children": [
                             {
+                             "children": [],
                              "componentId": "Dropdown-tl-blocks-032",
                              "componentName": "Dropdown",
                              "componentProps": {
@@ -2767,6 +2835,7 @@
                                     "height": "6px",
                                     "width": "6px"
                                    },
+                                   "children": [],
                                    "componentId": "box-tl-blocks-030",
                                    "componentName": "container",
                                    "componentProps": {},
@@ -2777,6 +2846,7 @@
                                    "baseStyles": {
                                     "color": "var(--ink-gray-8)"
                                    },
+                                   "children": [],
                                    "componentId": "TextBlock-tl-blocks-prio-label",
                                    "componentName": "TextBlock",
                                    "componentProps": {
@@ -2824,6 +2894,7 @@
                                 "height": "6px",
                                 "width": "6px"
                                },
+                               "children": [],
                                "componentId": "box-tl-blocks-030",
                                "componentName": "container",
                                "componentProps": {},
@@ -2835,6 +2906,7 @@
                                "baseStyles": {
                                 "color": "var(--ink-gray-7)"
                                },
+                               "children": [],
                                "componentId": "TextBlock-tl-blocks-033",
                                "componentName": "TextBlock",
                                "componentProps": {
@@ -2884,6 +2956,7 @@
                             "color": "{{ item.dueColor }}",
                             "whiteSpace": "nowrap"
                            },
+                           "children": [],
                            "componentId": "TextBlock-tl-blocks-037",
                            "componentName": "TextBlock",
                            "componentProps": {
@@ -2908,6 +2981,7 @@
                           {
                            "children": [
                             {
+                             "children": [],
                              "componentId": "Dropdown-tl-blocks-039",
                              "componentName": "Dropdown",
                              "componentProps": {
@@ -2940,6 +3014,7 @@
                           {
                            "children": [
                             {
+                             "children": [],
                              "componentEvents": {
                               "click": {
                                "action": "Run Script",
@@ -3011,6 +3086,7 @@
                      "baseStyles": {
                       "color": "var(--ink-gray-5)"
                      },
+                     "children": [],
                      "componentId": "Icon-tl-blocks-050",
                      "componentName": "Icon",
                      "componentProps": {
@@ -3023,6 +3099,7 @@
                      "baseStyles": {
                       "flex": "1"
                      },
+                     "children": [],
                      "componentEvents": {
                       "keydown.enter": {
                        "action": "Run Script",
@@ -3064,6 +3141,7 @@
                      },
                      "children": [
                       {
+                       "children": [],
                        "componentEvents": {
                         "click": {
                          "action": "Run Script",
@@ -3086,6 +3164,7 @@
                         "color": "var(--ink-gray-8)",
                         "fontWeight": "500"
                        },
+                       "children": [],
                        "componentId": "TextBlock-tl-blocks-047",
                        "componentName": "TextBlock",
                        "componentProps": {
@@ -3100,6 +3179,7 @@
                         "color": "var(--ink-gray-5)",
                         "fontVariantNumeric": "tabular-nums"
                        },
+                       "children": [],
                        "componentId": "TextBlock-tl-blocks-048",
                        "componentName": "TextBlock",
                        "componentProps": {
@@ -3171,6 +3251,7 @@
        "originalElement": "div"
       },
       {
+       "children": [],
        "componentId": "DesignChoice-my-tasks-task-list-frappe",
        "componentName": "DesignChoice",
        "componentProps": {
@@ -3181,6 +3262,7 @@
        "isCustomVueComponent": true
       },
       {
+       "children": [],
        "componentId": "DesignChoice-my-tasks-own-tasks-icon-d",
        "componentName": "DesignChoice",
        "componentProps": {
@@ -3191,6 +3273,7 @@
        "isCustomVueComponent": true
       },
       {
+       "children": [],
        "componentId": "DesignChoice-my-tasks-filter-bar-search",
        "componentName": "DesignChoice",
        "componentProps": {
@@ -3201,6 +3284,7 @@
        "isCustomVueComponent": true
       },
       {
+       "children": [],
        "componentId": "DesignChoice-my-tasks-group-headers-heading",
        "componentName": "DesignChoice",
        "componentProps": {
@@ -3211,6 +3295,7 @@
        "isCustomVueComponent": true
       },
       {
+       "children": [],
        "componentId": "DesignChoice-my-tasks-panel-layout-crm",
        "componentName": "DesignChoice",
        "componentProps": {
@@ -3221,6 +3306,7 @@
        "isCustomVueComponent": true
       },
       {
+       "children": [],
        "componentId": "DesignChoice-my-tasks-empty-values-not-set",
        "componentName": "DesignChoice",
        "componentProps": {
@@ -3231,6 +3317,7 @@
        "isCustomVueComponent": true
       },
       {
+       "children": [],
        "componentId": "DesignChoice-my-tasks-notification-list-full-dividers",
        "componentName": "DesignChoice",
        "componentProps": {
@@ -3241,6 +3328,7 @@
        "isCustomVueComponent": true
       },
       {
+       "children": [],
        "componentId": "notifications_panel-my-tasks",
        "componentName": "notifications_panel",
        "componentProps": {},
@@ -3258,6 +3346,7 @@
        "parentBlockId": "AppShell-my-tasks",
        "slotContent": [
         {
+         "children": [],
          "componentId": "app_sidebar-my-tasks",
          "componentName": "app_sidebar",
          "componentProps": {},
@@ -3283,7 +3372,7 @@
  "frappe_app": "frappe_live",
  "idx": 0,
  "is_standard": 1,
- "modified": "2026-11-17 01:00:00.000000",
+ "modified": "2026-11-17 02:10:00.000000",
  "modified_by": "neha@example.com",
  "name": "my_tasks",
  "owner": "Administrator",

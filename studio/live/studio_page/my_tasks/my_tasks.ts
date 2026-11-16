@@ -1,4 +1,4 @@
-import { computed } from "vue"
+import { computed, watch } from "vue"
 import dayjs from "dayjs"
 import { toast } from "frappe-ui"
 import { pageHeader } from "@app/src/lib/pageHeader"
@@ -9,11 +9,22 @@ import { taskListBlocks } from "@app/src/lib/taskListBlocks"
 import { design } from "@app/src/lib/look"
 import { views, filters, homeChip } from "@app/src/lib/viewState"
 import { dockedNow } from "@app/src/lib/panelLayout"
+import { sync } from "@app/src/lib/sync"
 import { state, org, myWsInvites, answerWsInvite, personName, currentWs } from "@app/src/lib/store"
 
 // My tasks: header, workspace invites, a one-time hint, the toolbar and the empty states are Studio blocks.
 // The toolbar (FilterSortBar) and the list (MyTasksList) stay components; both read lib/myTasks.ts.
 export default function setup({ router, route }) {
+	// Frappe Live: customers start on Messages, where their plan, the team and feedback are. The team starts here.
+	watch(
+		() => sync.ready && state.me,
+		(ok) => {
+			if (!ok) return
+			const meP: any = state.people.find((x: any) => x.id === state.me)
+			if (meP && !meP.canCreateProjects) router.replace("/messages")
+		},
+		{ immediate: true },
+	)
 	const t = useMyTasks()
 	// Default grouping (Needs attention in a company workspace, Due date in Personal), again on every switch
 	watchWorkspace(t.inCompany)
