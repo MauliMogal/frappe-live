@@ -163,7 +163,7 @@ def _person_for(email: str, full_name: str | None = None, invite: bool = False) 
 			{
 				"doctype": "User",
 				"email": email,
-				"first_name": (full_name or email.split("@")[0]).split(" ")[0],
+				"first_name": (full_name or email.split("@")[0].replace(".", " ").title()).split(" ")[0],
 				"last_name": " ".join((full_name or "").split(" ")[1:]) or None,
 				"user_type": "Website User",
 				"send_welcome_email": 1 if invite else 0,
@@ -327,6 +327,7 @@ def add_steps(project: str, steps: str | list) -> list[str]:
 				"due": weekday(s["due"]) if s.get("due") else None,
 				"labels": labels,
 				"createdBy": me["id"] if me else owner,
+				"createdAt": frappe.utils.now_datetime().isoformat(),
 				"assignee": who,
 				"assignedBy": me["id"] if me else owner,
 				"why": s.get("why"),

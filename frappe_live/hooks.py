@@ -47,6 +47,11 @@ scheduler_events = {
 	"daily": ["frappe_live.health.update_all"],
 }
 
+# The site's root opens the app: people only need to remember the domain
+website_redirects = [
+	{"source": "/", "target": "/live", "status_code": 302},
+]
+
 website_route_rules = [
 	{"from_route": "/live-help", "to_route": "live_help"},
 	{"from_route": "/live-reports", "to_route": "live_reports"},

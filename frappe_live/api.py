@@ -76,8 +76,19 @@ def _check_user():
 
 def _all(kind: str) -> list[dict]:
 	doctype = KINDS[kind][0]
-	rows = frappe.get_all(doctype, fields=["data"], order_by="creation asc", limit_page_length=0)
-	return [frappe.parse_json(r.data) for r in rows if r.data]
+	rows = frappe.get_all(doctype, fields=["data", "creation"], order_by="creation asc", limit_page_length=0)
+	out = []
+	for r in rows:
+		if not r.data:
+			continue
+		rec = frappe.parse_json(r.data)
+		# records written by the server (roadmap steps, imports) can lack fields the app sorts on
+		if kind in DEFAULTS:
+			rec = with_defaults(kind, rec)
+		if kind in ("tasks", "projects", "notes") and not rec.get("createdAt"):
+			rec["createdAt"] = r.creation.isoformat() + "Z" if hasattr(r.creation, "isoformat") else str(r.creation)
+		out.append(rec)
+	return out
 
 
 def _get(kind: str, rid: str) -> dict | None:

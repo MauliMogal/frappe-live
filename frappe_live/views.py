@@ -28,7 +28,11 @@ def _names(users) -> dict:
 	if not users:
 		return {}
 	rows = frappe.get_all("User", filters={"name": ("in", list(users))}, fields=["name", "full_name"])
-	return {r.name: r.full_name or r.name for r in rows}
+	out = {}
+	for r in rows:
+		name = (r.full_name or r.name.split("@")[0]).strip()
+		out[r.name] = name.title() if name.islower() else name
+	return out
 
 
 def monthly_mrr(rows, onboardings):
