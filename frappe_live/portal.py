@@ -411,3 +411,39 @@ def import_onboardings(rows: str | list) -> dict:
 				api.upsert("projects", proj)
 		made.append(pid)
 	return {"made": made, "skipped": skipped}
+
+
+@frappe.whitelist(methods=["POST"])
+def invite_customer(project: str, email: str, full_name: str = "") -> dict:
+	"""Add someone to one project by email, from the app's Invite dialog.
+	A new person gets a login and Frappe's welcome email (set a password, or sign in with a link);
+	someone who already has a login gets an email that they were added. They see only this project."""
+	_need_staff()
+	_need_project(project)
+	email = (email or "").strip().lower()
+	if not re.match(r"^[^\s@]+@[^\s@]+\.[^\s@]+$", email):
+		frappe.throw(_("Enter a valid email."))
+	is_new = not frappe.db.exists("User", email)
+	pid = _person_for(email, full_name or None, invite=True)
+	from frappe_live.access import assign_roles
+
+	assign_roles(email)
+	proj = api._get("projects", project)
+	added = False
+	if not any(m.get("user") == pid for m in proj.get("members", [])):
+		proj.setdefault("members", []).append({"user": pid, "role": "Member"})
+		api.upsert("projects", proj)
+		added = True
+	if not is_new and added:
+		link = frappe.utils.get_url(f"/live/messages?p={project}")
+		who = frappe.db.get_value("User", frappe.session.user, "full_name") or "The Frappe team"
+		frappe.sendmail(
+			recipients=[email],
+			subject=_("You're on {0} in Frappe Live").format(proj.get("name")),
+			message=_(
+				"<p>{0} added you to <b>{1}</b> in Frappe Live.</p>"
+				"<p>See your plan, message the team and share feedback here: <a href='{2}'>{2}</a></p>"
+			).format(frappe.utils.escape_html(who), frappe.utils.escape_html(proj.get("name") or ""), link),
+			now=True,
+		)
+	return {"person": pid, "new_user": is_new, "added": added}
