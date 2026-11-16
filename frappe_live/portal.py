@@ -156,6 +156,7 @@ def _person_for(email: str, full_name: str | None = None, invite: bool = False) 
 	people = api._all("people")
 	found = next((p for p in people if (p.get("email") or "").lower() == email or p.get("user") == email), None)
 	if found:
+		_join_team(found["id"], email)
 		return found["id"]
 	if not frappe.db.exists("User", email):
 		user = frappe.get_doc(
@@ -179,7 +180,25 @@ def _person_for(email: str, full_name: str | None = None, invite: bool = False) 
 		"people",
 		{"id": pid, "name": full_name or email.split("@")[0].title(), "email": email, "user": email, "role": "", "isAdmin": False, "canCreateProjects": level(email) in ("super", "admin"), "onboarded": True},
 	)
+	_join_team(pid, email)
 	return pid
+
+
+def _join_team(pid: str, email: str):
+	"""Staff (frappe.io, super admins) join the team workspace and land in it, like at first sign-in"""
+	lvl = level(email) if frappe.db.exists("User", email) else "user"
+	if lvl not in ("super", "admin") or not frappe.db.exists("Live Workspace", api.COMPANY_WS):
+		return
+	ws = frappe.parse_json(frappe.db.get_value("Live Workspace", api.COMPANY_WS, "data"))
+	if not any(m.get("user") == pid for m in ws.get("members", [])):
+		ws.setdefault("members", []).append({"user": pid, "role": "Admin" if lvl == "super" else "Member"})
+		api.upsert("workspaces", ws)
+	person = api._get("people", pid) or {}
+	if person and (not person.get("canCreateProjects") or (lvl == "super" and not person.get("isAdmin"))):
+		person.update({"canCreateProjects": True, "isAdmin": person.get("isAdmin") or lvl == "super"})
+		api.upsert("people", person)
+	if not frappe.db.exists("Live Map Entry", f"currentWsOf:{pid}"):
+		api.set_map_key("currentWsOf", pid, api.COMPANY_WS)
 
 
 @frappe.whitelist(methods=["POST"])
@@ -212,7 +231,18 @@ def start_onboarding(
 	if not me:
 		api.get_boot()
 		me = api.find_me(api._all("people"))
-	members = [{"user": me["id"], "role": "Owner"}]
+	owner = owner_user if owner_user and level() == "super" else frappe.session.user
+	if owner != frappe.session.user:
+		from frappe_live.access import assign_roles
+
+		_person_for(owner)
+		assign_roles(owner)
+		lead = _person_for(owner)
+		members = [{"user": lead, "role": "Owner"}]
+		if lead != me["id"]:
+			members.append({"user": me["id"], "role": "Member"})
+	else:
+		members = [{"user": me["id"], "role": "Owner"}]
 	if customer_email:
 		members.append({"user": _person_for(customer_email, customer_name, bool(int(invite or 0))), "role": "Member"})
 	offsets = (7, 14, 21, 30, 90)
@@ -240,7 +270,7 @@ def start_onboarding(
 			"project": pid,
 			"customer": customer,
 			"app": app if app in ("CRM", "ERPNext", "Frappe HR", "Helpdesk", "Learning") else "Other",
-			"owner_user": owner_user if owner_user and level() == "super" else frappe.session.user,
+			"owner_user": owner,
 			"status": "Yet to start" if not kickoff_date else "Set up",
 			"kickoff_date": kickoff_date,
 			"crm_deal": crm_deal,
