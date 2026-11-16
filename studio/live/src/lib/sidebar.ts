@@ -5,6 +5,7 @@ import { state, me, inScope } from './store'
 import { org, currentWs, myWorkspaces, myWsInvites, switchWorkspace, answerWsInvite, inPersonal, canInviteToWs } from './store'
 import { pinnedProjects, setPinned } from './pins'
 import { can } from './permissions'
+import { liveWaiting, watchWaiting } from './liveApi'
 
 // What the sidebar (Studio Component `app_sidebar`, Studio's Sidebar blocks) binds to. Every page with the
 // sidebar spreads it into what its script's setup() returns:  return { ...appSidebar(router, route), ... }
@@ -22,6 +23,7 @@ export function appSidebar(router: any, route: any) {
   const narrow = useMediaQuery('(max-width: 1023px)')
   watch(narrow, (v) => v && (sidebarCollapsed.value = true), { immediate: true })
 
+  watchWaiting()
   const openSettings = (tab: string) => {
     state.ui.settingsTab = tab
     state.ui.settings = true
@@ -34,14 +36,6 @@ export function appSidebar(router: any, route: any) {
   }
   const headerMenu = computed(() => [
     { group: me.value?.name || 'You', options: [{ label: 'Profile', icon: 'lucide-circle-user', onClick: () => (state.ui.profile = true) }] },
-    // Frappe Live: help, feedback, messages and Office Hours live on /live-help; reports for the team on /live-reports
-    {
-      group: 'Frappe Live',
-      options: [
-        { label: 'Help and feedback', icon: 'lucide-message-circle', onClick: () => (window.location.href = '/live-help') },
-        ...(me.value?.canCreateProjects ? [{ label: 'Reports', icon: 'lucide-chart-column', onClick: () => (window.location.href = '/live-reports') }] : []),
-      ],
-    },
     {
       group: 'Workspaces',
       options: myWorkspaces.value.map((w: any) => ({
@@ -123,6 +117,9 @@ export function appSidebar(router: any, route: any) {
     notificationsOpen: computed(() => !!state.ui.notifications),
     toggleNotifications: () => (state.ui.notifications = !state.ui.notifications),
     canCreateProject: computed(() => can.createProject()),
+    // Frappe Live: Messages for everyone, Reports for the team (super admins and frappe.io admins)
+    canSeeReports: computed(() => !!me.value?.canCreateProjects),
+    messagesLabel: computed(() => (liveWaiting.value ? String(liveWaiting.value) : '')),
     newProject: () => (state.ui.createProject = true),
     pinned,
     pinnedHint,
