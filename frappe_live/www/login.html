@@ -1,0 +1,23 @@
+{% extends "frappe/www/login.html" %}
+
+{% block script %}
+{{ super() }}
+<script>
+(function () {
+	var text = {
+		"Sign In": ["Sign in to Frappe Live", "Your plan to go live on Frappe, one step at a time."],
+		"Sign Up": ["Join Frappe Live", "Create your account to see your plan."],
+	};
+	document.querySelectorAll(".page-card-head").forEach(function (head) {
+		var h = head.querySelector("h4");
+		var p = head.querySelector(".page-card-subtitle");
+		var t = h && text[h.textContent.trim()];
+		if (!t) return;
+		h.textContent = t[0];
+		if (p) p.textContent = t[1];
+		var img = head.querySelector("img.app-logo");
+		if (img) img.alt = "Frappe Live";
+	});
+})();
+</script>
+{% endblock %}
