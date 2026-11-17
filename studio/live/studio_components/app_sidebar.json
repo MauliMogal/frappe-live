@@ -24,9 +24,7 @@
         "children": [],
         "componentId": "LiveLogo-sidebar-mark",
         "componentName": "LiveLogo",
-        "componentProps": {
-         "size": 32
-        },
+        "componentProps": {},
         "componentSlots": {},
         "isCustomVueComponent": true,
         "parentSlotName": "prefix"
@@ -339,7 +337,7 @@
  "idx": 0,
  "is_disabled": 0,
  "is_standard": 1,
- "modified": "2026-11-17 02:00:00.000000",
+ "modified": "2026-11-17 12:00:00.000000",
  "modified_by": "Administrator",
  "name": "app_sidebar",
  "owner": "Administrator"
