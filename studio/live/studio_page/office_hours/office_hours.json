@@ -1,0 +1,505 @@
+{
+ "allow_guest": 0,
+ "blocks": [
+  {
+   "baseStyles": {
+    "display": "flex",
+    "flexDirection": "column",
+    "height": "100%",
+    "overflowX": "hidden",
+    "width": "100%"
+   },
+   "blockName": "body",
+   "children": [
+    {
+     "children": [
+      {
+       "baseStyles": {
+        "display": "flex",
+        "flexDirection": "column",
+        "height": "100%",
+        "minHeight": "0px",
+        "width": "100%"
+       },
+       "blockName": "page",
+       "children": [
+        {
+         "baseStyles": {
+          "alignItems": "center",
+          "backgroundColor": "var(--surface-base)",
+          "borderColor": "var(--outline-gray-1)",
+          "borderStyle": "solid",
+          "borderWidth": "0px 0px 1px 0px",
+          "display": "flex",
+          "flexDirection": "row",
+          "flexShrink": "0",
+          "gap": "8px",
+          "minHeight": "48px",
+          "padding": "0px 20px",
+          "width": "100%"
+         },
+         "blockName": "page-header",
+         "children": [
+          {
+           "baseStyles": {
+            "fontSize": "18px",
+            "fontWeight": "600",
+            "minWidth": "0px"
+           },
+           "children": [],
+           "componentId": "Breadcrumbs-office-hours-040",
+           "componentName": "Breadcrumbs",
+           "componentProps": {
+            "items": [
+             {
+              "label": "Office Hours"
+             }
+            ]
+           },
+           "componentSlots": {}
+          },
+          {
+           "baseStyles": {
+            "flex": "1"
+           },
+           "blockName": "spacer",
+           "children": [],
+           "componentId": "box-office-hours-041",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "originalElement": "div"
+          },
+          {
+           "baseStyles": {},
+           "children": [],
+           "componentEvents": {
+            "click": {
+             "action": "Run Script",
+             "event": "click",
+             "script": "openNotifications()"
+            }
+           },
+           "componentId": "Button-office-hours-043",
+           "componentName": "Button",
+           "componentProps": {
+            "aria-label": "Notifications",
+            "iconLeft": "lucide-bell",
+            "label": "{{ needsLabel }}",
+            "variant": "ghost"
+           },
+           "componentSlots": {},
+           "visibilityCondition": "{{ isMobile }}"
+          },
+          {
+           "baseStyles": {},
+           "children": [],
+           "componentEvents": {
+            "click": {
+             "action": "Run Script",
+             "event": "click",
+             "script": "openSearch()"
+            }
+           },
+           "componentId": "Button-office-hours-044",
+           "componentName": "Button",
+           "componentProps": {
+            "aria-label": "Search",
+            "icon": "lucide-search",
+            "variant": "ghost"
+           },
+           "componentSlots": {},
+           "visibilityCondition": "{{ isMobile }}"
+          },
+          {
+           "baseStyles": {},
+           "children": [],
+           "componentId": "Dropdown-office-hours-045",
+           "componentName": "Dropdown",
+           "componentProps": {
+            "align": "end",
+            "button": {
+             "aria-label": "Account menu",
+             "icon": "lucide-circle-user",
+             "variant": "ghost"
+            },
+            "options": "{{ accountMenu }}"
+           },
+           "componentSlots": {},
+           "visibilityCondition": "{{ isMobile }}"
+          }
+         ],
+         "componentId": "header-office-hours-046",
+         "componentName": "header",
+         "componentProps": {},
+         "componentSlots": {},
+         "mobileStyles": {
+          "padding": "0px 12px"
+         },
+         "originalElement": "header"
+        },
+        {
+         "baseStyles": {
+          "display": "flex",
+          "flex": "1",
+          "minHeight": "0px",
+          "overflow": "hidden",
+          "width": "100%"
+         },
+         "blockName": "body",
+         "children": [
+          {
+           "children": [],
+           "componentId": "LiveOfficeHours-office-hours",
+           "componentName": "LiveOfficeHours",
+           "componentProps": {},
+           "componentSlots": {},
+           "isCustomVueComponent": true
+          }
+         ],
+         "componentId": "box-office-hours-053",
+         "componentName": "container",
+         "componentProps": {},
+         "componentSlots": {},
+         "originalElement": "div"
+        }
+       ],
+       "componentId": "box-office-hours-054",
+       "componentName": "container",
+       "componentProps": {},
+       "componentSlots": {},
+       "originalElement": "div"
+      },
+      {
+       "children": [],
+       "componentId": "DesignChoice-office-hours-panel-layout-crm",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "panel",
+        "v": "crm"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "children": [],
+       "componentId": "DesignChoice-office-hours-empty-values-not-set",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "emptyValue",
+        "v": "notset"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "children": [],
+       "componentId": "DesignChoice-office-hours-notification-list-full-dividers",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "notifList",
+        "v": "full"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "children": [],
+       "componentId": "notifications_panel-office-hours",
+       "componentName": "notifications_panel",
+       "componentProps": {},
+       "componentSlots": {},
+       "isStudioComponent": true
+      }
+     ],
+     "componentId": "AppShell-office-hours",
+     "componentName": "AppShell",
+     "componentProps": {
+      "bare": false
+     },
+     "componentSlots": {
+      "sidebar": {
+       "slotContent": [
+        {
+         "children": [],
+         "componentId": "app_sidebar-office-hours",
+         "componentName": "app_sidebar",
+         "componentProps": {},
+         "componentSlots": {},
+         "isStudioComponent": true,
+         "parentSlotName": "sidebar"
+        }
+       ],
+       "slotName": "sidebar"
+      }
+     },
+     "isCustomVueComponent": true
+    }
+   ],
+   "componentId": "root",
+   "componentName": "div",
+   "componentProps": {},
+   "componentSlots": {},
+   "originalElement": "body"
+  }
+ ],
+ "creation": "2026-11-17 13:00:00.000000",
+ "docstatus": 0,
+ "doctype": "Studio Page",
+ "draft_blocks": [
+  {
+   "baseStyles": {
+    "display": "flex",
+    "flexDirection": "column",
+    "height": "100%",
+    "overflowX": "hidden",
+    "width": "100%"
+   },
+   "blockName": "body",
+   "children": [
+    {
+     "children": [
+      {
+       "baseStyles": {
+        "display": "flex",
+        "flexDirection": "column",
+        "height": "100%",
+        "minHeight": "0px",
+        "width": "100%"
+       },
+       "blockName": "page",
+       "children": [
+        {
+         "baseStyles": {
+          "alignItems": "center",
+          "backgroundColor": "var(--surface-base)",
+          "borderColor": "var(--outline-gray-1)",
+          "borderStyle": "solid",
+          "borderWidth": "0px 0px 1px 0px",
+          "display": "flex",
+          "flexDirection": "row",
+          "flexShrink": "0",
+          "gap": "8px",
+          "minHeight": "48px",
+          "padding": "0px 20px",
+          "width": "100%"
+         },
+         "blockName": "page-header",
+         "children": [
+          {
+           "baseStyles": {
+            "fontSize": "18px",
+            "fontWeight": "600",
+            "minWidth": "0px"
+           },
+           "children": [],
+           "componentId": "Breadcrumbs-office-hours-040",
+           "componentName": "Breadcrumbs",
+           "componentProps": {
+            "items": [
+             {
+              "label": "Office Hours"
+             }
+            ]
+           },
+           "componentSlots": {}
+          },
+          {
+           "baseStyles": {
+            "flex": "1"
+           },
+           "blockName": "spacer",
+           "children": [],
+           "componentId": "box-office-hours-041",
+           "componentName": "container",
+           "componentProps": {},
+           "componentSlots": {},
+           "originalElement": "div"
+          },
+          {
+           "baseStyles": {},
+           "children": [],
+           "componentEvents": {
+            "click": {
+             "action": "Run Script",
+             "event": "click",
+             "script": "openNotifications()"
+            }
+           },
+           "componentId": "Button-office-hours-043",
+           "componentName": "Button",
+           "componentProps": {
+            "aria-label": "Notifications",
+            "iconLeft": "lucide-bell",
+            "label": "{{ needsLabel }}",
+            "variant": "ghost"
+           },
+           "componentSlots": {},
+           "visibilityCondition": "{{ isMobile }}"
+          },
+          {
+           "baseStyles": {},
+           "children": [],
+           "componentEvents": {
+            "click": {
+             "action": "Run Script",
+             "event": "click",
+             "script": "openSearch()"
+            }
+           },
+           "componentId": "Button-office-hours-044",
+           "componentName": "Button",
+           "componentProps": {
+            "aria-label": "Search",
+            "icon": "lucide-search",
+            "variant": "ghost"
+           },
+           "componentSlots": {},
+           "visibilityCondition": "{{ isMobile }}"
+          },
+          {
+           "baseStyles": {},
+           "children": [],
+           "componentId": "Dropdown-office-hours-045",
+           "componentName": "Dropdown",
+           "componentProps": {
+            "align": "end",
+            "button": {
+             "aria-label": "Account menu",
+             "icon": "lucide-circle-user",
+             "variant": "ghost"
+            },
+            "options": "{{ accountMenu }}"
+           },
+           "componentSlots": {},
+           "visibilityCondition": "{{ isMobile }}"
+          }
+         ],
+         "componentId": "header-office-hours-046",
+         "componentName": "header",
+         "componentProps": {},
+         "componentSlots": {},
+         "mobileStyles": {
+          "padding": "0px 12px"
+         },
+         "originalElement": "header"
+        },
+        {
+         "baseStyles": {
+          "display": "flex",
+          "flex": "1",
+          "minHeight": "0px",
+          "overflow": "hidden",
+          "width": "100%"
+         },
+         "blockName": "body",
+         "children": [
+          {
+           "children": [],
+           "componentId": "LiveOfficeHours-office-hours",
+           "componentName": "LiveOfficeHours",
+           "componentProps": {},
+           "componentSlots": {},
+           "isCustomVueComponent": true
+          }
+         ],
+         "componentId": "box-office-hours-053",
+         "componentName": "container",
+         "componentProps": {},
+         "componentSlots": {},
+         "originalElement": "div"
+        }
+       ],
+       "componentId": "box-office-hours-054",
+       "componentName": "container",
+       "componentProps": {},
+       "componentSlots": {},
+       "originalElement": "div"
+      },
+      {
+       "children": [],
+       "componentId": "DesignChoice-office-hours-panel-layout-crm",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "panel",
+        "v": "crm"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "children": [],
+       "componentId": "DesignChoice-office-hours-empty-values-not-set",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "emptyValue",
+        "v": "notset"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "children": [],
+       "componentId": "DesignChoice-office-hours-notification-list-full-dividers",
+       "componentName": "DesignChoice",
+       "componentProps": {
+        "k": "notifList",
+        "v": "full"
+       },
+       "componentSlots": {},
+       "isCustomVueComponent": true
+      },
+      {
+       "children": [],
+       "componentId": "notifications_panel-office-hours",
+       "componentName": "notifications_panel",
+       "componentProps": {},
+       "componentSlots": {},
+       "isStudioComponent": true
+      }
+     ],
+     "componentId": "AppShell-office-hours",
+     "componentName": "AppShell",
+     "componentProps": {
+      "bare": false
+     },
+     "componentSlots": {
+      "sidebar": {
+       "slotContent": [
+        {
+         "children": [],
+         "componentId": "app_sidebar-office-hours",
+         "componentName": "app_sidebar",
+         "componentProps": {},
+         "componentSlots": {},
+         "isStudioComponent": true,
+         "parentSlotName": "sidebar"
+        }
+       ],
+       "slotName": "sidebar"
+      }
+     },
+     "isCustomVueComponent": true
+    }
+   ],
+   "componentId": "root",
+   "componentName": "div",
+   "componentProps": {},
+   "componentSlots": {},
+   "originalElement": "body"
+  }
+ ],
+ "frappe_app": "frappe_live",
+ "idx": 0,
+ "is_standard": 1,
+ "modified": "2026-11-17 13:00:00.000000",
+ "modified_by": "Administrator",
+ "name": "office_hours",
+ "owner": "Administrator",
+ "page_name": "live-office-hours",
+ "page_title": "Office Hours",
+ "published": 1,
+ "route": "/office-hours",
+ "studio_app": "live",
+ "tab_title": "Office Hours \u00b7 Frappe Live"
+}

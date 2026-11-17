@@ -37,7 +37,7 @@ import {
   slipText,
   milestoneTeam,
 } from '../lib/store'
-import { wsPeople, isSolo } from '../lib/store'
+import { wsPeople, isSolo, me } from '../lib/store'
 import dayjs from 'dayjs'
 import StatusIcon from './StatusIcon.vue'
 import { can, needsReview } from '../lib/permissions'
@@ -103,6 +103,11 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
 const editable = computed(() => !!t.value && can.edit(t.value) && t.value.status !== 'cancelled')
 // Title, description, priority belong to whoever assigned it.
 const briefEditable = computed(() => !!t.value && can.editBrief(t.value))
+const staff = computed(() => !!me.value?.canCreateProjects)
+const ownerOptions = computed(() => [
+  { label: 'Team', onClick: () => updateTask(t.value.id, { owner: 'team' }) },
+  { label: 'Customer', onClick: () => updateTask(t.value.id, { owner: 'customer' }) },
+])
 const muted = computed(() => t.value?.mutedBy.includes(state.me))
 
 // Title
@@ -228,6 +233,7 @@ function copyLink() {
 const tab = ref('comments')
 function pickTab() {
   const x = t.value
+  if (!staff.value) return void (tab.value = 'activity')
   tab.value = x && (x.changesRequested || (x.checklist.length && x.status !== 'done')) ? 'checklist' : 'comments'
 }
 watch(() => state.ui.focusComment, () => (tab.value = 'comments'))
@@ -235,6 +241,8 @@ const tabs = computed(() => {
   const x = t.value
   if (!x) return []
   const done = x.checklist.filter((c: any) => c.done).length
+  // Customers talk to the team in Messages, so they get Activity only
+  if (!staff.value) return [{ key: 'activity', label: 'Activity', icon: 'lucide-history', count: '' }]
   return [
     { key: 'checklist', label: 'Subtasks', icon: 'lucide-list-checks', count: x.checklist.length ? `${done}/${x.checklist.length}` : '' },
     { key: 'files', label: 'Files', icon: 'lucide-paperclip', count: openAttachments.value.length ? String(openAttachments.value.length) : '' },
@@ -258,8 +266,9 @@ const fields = computed(() => {
         : null,
     { key: 'start', label: 'Start date', icon: 'lucide-calendar-arrow-up' },
     { key: 'due', label: 'Due date', icon: 'lucide-calendar' },
-    { key: 'priority', label: 'Priority', icon: 'lucide-signal' },
-    { key: 'labels', label: 'Labels', icon: 'lucide-tag', wide: true },
+    // Frappe Live: no priority (order is the priority). Who does the step instead. Labels stay with the team.
+    x.space !== 'general' ? { key: 'owner', label: 'Done by', icon: 'lucide-user-round-check' } : null,
+    staff.value ? { key: 'labels', label: 'Labels', icon: 'lucide-tag', wide: true } : null,
     // Where it belongs: its project, or your own My tasks (no project) in Personal or a company workspace.
     // Moving it is in ⋯ → Move to.
     { key: 'project', label: 'Belongs to', icon: x.space === 'general' ? 'lucide-circle-check-big' : 'lucide-folder' },
@@ -512,14 +521,11 @@ watch(
             </Tooltip>
           </span>
         </template>
-        <template #field-priority>
-            <Dropdown v-if="briefEditable" :options="priorityOptions">
-              <Button variant="ghost" :aria-label="`Priority: ${PRIORITY[prio(t.priority)].label}`">
-                <PriorityMarker :priority="t.priority" show-label />
-              </Button>
-              <template #item-prefix="{ item }"><PriorityIcon v-if="item?.priority" :priority="item.priority" /></template>
+        <template #field-owner>
+            <Dropdown v-if="staff" :options="ownerOptions">
+              <Button variant="ghost" :label="t.owner === 'customer' ? 'Customer' : 'Team'" />
             </Dropdown>
-            <span v-else class="px-1.5"><PriorityMarker :priority="t.priority" show-label /></span>
+            <span v-else class="px-1.5 text-base text-ink-gray-8">{{ t.owner === 'customer' ? 'You' : 'Frappe team' }}</span>
         </template>
         <template #field-labels>
             <template v-for="l in t.labels" :key="l">

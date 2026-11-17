@@ -2,7 +2,7 @@
  "actions": [],
  "autoname": "hash",
  "creation": "2026-11-16 12:00:00.000000",
- "modified": "2026-11-16 12:00:00.000000",
+ "modified": "2026-11-17 13:00:00.000000",
  "modified_by": "Administrator",
  "owner": "Administrator",
  "description": "Feedback from a customer or a team member, on an onboarding",
@@ -12,6 +12,7 @@
  "name": "Live Feedback",
  "field_order": [
   "project",
+  "task",
   "type",
   "summary",
   "details",
@@ -32,6 +33,12 @@
    "label": "Project ID",
    "reqd": 1,
    "in_standard_filter": 1
+  },
+  {
+   "fieldname": "task",
+   "fieldtype": "Data",
+   "label": "Step",
+   "description": "The step this is about, when the customer was stuck on one"
   },
   {
    "fieldname": "type",

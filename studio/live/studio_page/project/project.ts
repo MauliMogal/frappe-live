@@ -5,6 +5,8 @@ import { sync } from "@app/src/lib/sync"
 import { notificationsPanel } from "@app/src/lib/notificationsPanel"
 import { appSidebar } from "@app/src/lib/sidebar"
 import { can } from "@app/src/lib/permissions"
+// Icons LiveProject uses (Studio collects icons from page files): lucide-message-circle lucide-ellipsis lucide-play
+// lucide-pause lucide-circle-x lucide-circle-check lucide-circle lucide-plus
 import { markProjectSeen } from "@app/src/lib/onboarding"
 import { setPinned } from "@app/src/lib/pins"
 import { emptyFilters, activeFilterCount } from "@app/src/lib/taskView"
@@ -19,7 +21,7 @@ import {
 	moveProjectToWs, isPersonalWs,
 } from "@app/src/lib/store"
 
-// One project: Overview · Milestones · Timeline. The header, tabs, banners, access states, the Overview dashboard
+// One onboarding, for the team: Overview (the LiveProject card) · Roadmap. The header, tabs, banners, access states, the Overview dashboard
 // (the ov_* Studio Components, data from lib/overview.ts), the Timeline scale, the toolbar row and the empty states
 // are Studio blocks. Components: PeoplePopover, InviteWelcome, MilestoneStrip (Path layout), PercentageBar
 // (Workload "share"), PeopleStack, MilestoneRoadmap, FilterSortBar and ProjectTaskList (the milestone list).
@@ -65,14 +67,22 @@ export default function setup({ router, route }) {
 	}
 
 	// Header: Projects › name · People · Invite (Owner) · ⋯ · + New milestone ▾ (New task if you can't add milestones)
+	// Frappe Live: onboardings are listed in Reports. Customers never stay here: their plan is their home in Messages.
 	const crumbs = computed(() =>
-		open.value ? [{ label: "Projects", route: "/projects" }, { label: p.value!.name, route: `/p/${pid.value}` }] : [{ label: "Projects", route: "/projects" }],
+		open.value ? [{ label: "Reports", route: "/reports" }, { label: p.value!.name, route: `/p/${pid.value}` }] : [{ label: "Reports", route: "/reports" }],
+	)
+	const staff = computed(() => !!state.people.find((x: any) => x.id === state.me)?.canCreateProjects)
+	watch(
+		() => sync.ready && state.me,
+		(ok) => ok && !staff.value && router.replace(`/messages?p=${pid.value}`),
+		{ immediate: true },
 	)
 	const peopleOpen = computed({ get: () => projectView.peopleOpen, set: (v: boolean) => (projectView.peopleOpen = v) })
 	const canInvite = computed(() => open.value && lead.value && !t.archived.value && !solo.value)
 	const invite = () => (state.ui.inviteProject = pid.value)
-	const milestoneFirst = computed(() => can.addMilestone(pid.value))
-	const canAdd = computed(() => open.value && !t.archived.value)
+	// The five milestones are the same for everyone, so nobody adds one: the main button adds a step
+	const milestoneFirst = computed(() => false)
+	const canAdd = computed(() => open.value && !t.archived.value && staff.value)
 	function newTask() {
 		state.ui.quickAddSpace = pid.value
 		// The new task lands in the next milestone (you can change it in the panel)
@@ -81,10 +91,9 @@ export default function setup({ router, route }) {
 	}
 	const addMilestone = () => (state.ui.milestone = { pid: pid.value })
 	const mainAdd = () => (milestoneFirst.value ? addMilestone() : newTask())
-	const mainAddLabel = computed(() => (milestoneFirst.value ? "New milestone" : "New task"))
+	const mainAddLabel = computed(() => "New step")
 	const newMenu = computed(() => [
-		...(milestoneFirst.value ? [{ label: "New task", icon: "lucide-plus", onClick: () => newTask() }] : []),
-		{ label: "Import or plan from a list", icon: "lucide-clipboard-paste", onClick: () => (state.ui.importTasks = { pid: pid.value }) },
+		{ label: "Add steps from a list", icon: "lucide-clipboard-paste", onClick: () => (state.ui.importTasks = { pid: pid.value }) },
 	])
 	// New milestone: one button (+ label ▾); its menu has the main action first, then the other ways to add
 	const newMenuAll = computed(() => [{ label: mainAddLabel.value, icon: "lucide-plus", onClick: () => mainAdd() }, ...newMenu.value])
@@ -137,14 +146,13 @@ export default function setup({ router, route }) {
 	})
 
 	// Tabs: the open one can come from the link (?tab=tasks), so a tab can be shared
-	const TAB_KEYS = ["overview", "tasks", "timeline"]
+	const TAB_KEYS = ["overview", "tasks"]
 	const tabFromLink = () => (TAB_KEYS.includes(String(route?.query?.tab)) ? String(route.query.tab) : "overview")
 	const tab = ref(tabFromLink())
 	const tabs = computed(() => [
 		{ label: "Overview", value: "overview" },
-		// The work is organised by milestone, so the tab says so (its key stays "tasks" for old links)
-		{ label: "Milestones", value: "tasks" },
-		{ label: "Timeline", value: "timeline" },
+		// Frappe Live: the steps, by milestone (the key stays "tasks" for old links). No Timeline.
+		{ label: "Roadmap", value: "tasks" },
 	])
 	watch(
 		() => route?.query?.tab,

@@ -1,24 +1,28 @@
 # Copyright (c) 2026, Mauli Mogal and contributors
 # For license information, please see license.txt
 
-"""Whitelisted calls for the help page, the team, and skills (Claude over MCP today, Flow later).
+"""Whitelisted calls for customers, the team, and skills (Claude over MCP today, Flow later).
 
-Customers: my_projects, project_thread, send_feedback, vote, send_message.
-Team: start_onboarding, add_steps, record_check, log_session, record_mrr.
+Customers: my_projects, project_thread, send_feedback, vote, send_message, step_done.
+Team: start_onboarding, set_kickoff, update_onboarding, add_steps, record_check, record_live, log_session,
+record_mrr, invite_customer.
 """
 
-import json
 import re
 
 import frappe
 from frappe import _
-from frappe.utils import add_days, getdate, nowdate
+from frappe.utils import add_days, getdate
 
 from frappe_live import api
 from frappe_live.access import level
 from frappe_live.live_docs import can_see_project, staff, visible_projects
 
 MILESTONES = ("Set up", "Start using", "Habit", "Live at day 30", "Live at day 90")
+# days from kickoff to each milestone's date
+MILESTONE_DAYS = (7, 14, 21, 30, 90)
+# the step a paid invoice ticks (older steps have no `check`, so their title is read)
+PAID_STEP = re.compile(r"paid plan", re.I)
 
 
 def _need_staff():
@@ -39,6 +43,28 @@ def weekday(d) -> str:
 	while d.weekday() >= 5:
 		d = add_days(d, 1)
 	return str(d)
+
+
+def milestone_due(kickoff, i: int) -> str:
+	return weekday(add_days(getdate(kickoff), MILESTONE_DAYS[i]))
+
+
+def _customers(proj: dict) -> list[str]:
+	"""Person ids of the customers on a project (members who are not Frappe staff)"""
+	people = {p.get("id"): p for p in api._all("people")}
+	out = []
+	for m in proj.get("members") or []:
+		person = people.get(m.get("user")) or {}
+		user = person.get("user") or person.get("email")
+		if user and frappe.db.exists("User", user) and level(user) == "user":
+			out.append(m["user"])
+	return out
+
+
+def _health(project: str):
+	from frappe_live.health import update_one
+
+	update_one(project)
 
 
 # customers and team
@@ -71,7 +97,7 @@ def my_projects() -> list[dict]:
 				"open_tasks": sum(1 for t in ptasks if t.get("status") != "done"),
 			}
 		)
-	return sorted(out, key=lambda x: x["name"] or "")
+	return sorted(out, key=lambda x: (x["name"] or "").lower())
 
 
 @frappe.whitelist()
@@ -93,12 +119,15 @@ def project_thread(project: str) -> dict:
 
 
 @frappe.whitelist(methods=["POST"])
-def send_feedback(project: str, type: str, details: str = "", rating: int | None = None, milestone: str = "", consent_to_quote: int = 0) -> str:
+def send_feedback(
+	project: str, type: str, details: str = "", rating: int | None = None, milestone: str = "", consent_to_quote: int = 0, task: str = ""
+) -> str:
 	_need_project(project)
 	doc = frappe.get_doc(
 		{
 			"doctype": "Live Feedback",
 			"project": project,
+			"task": task or None,
 			"type": type,
 			"details": details,
 			"summary": (details or type)[:120],
@@ -219,9 +248,10 @@ def start_onboarding(
 	owner_user: str | None = None,
 ) -> str:
 	"""A new assisted onboarding: a project with the five milestones, its Live Onboarding record,
-	and the customer as a member. Nothing is emailed unless `invite` is set."""
+	and the customer as a member. Milestones get dates only from a kickoff (payment) date.
+	Nothing is emailed unless `invite` is set."""
 	_need_staff()
-	start = getdate(kickoff_date or nowdate())
+	start = getdate(kickoff_date) if kickoff_date else None
 	pid = _slug(f"{customer}-{app}")
 	n = 1
 	while frappe.db.exists("Live Project", pid):
@@ -245,8 +275,7 @@ def start_onboarding(
 		members = [{"user": me["id"], "role": "Owner"}]
 	if customer_email:
 		members.append({"user": _person_for(customer_email, customer_name, bool(int(invite or 0))), "role": "Member"})
-	offsets = (7, 14, 21, 30, 90)
-	milestones = [{"id": f"{pid}-m{i + 1}", "name": name, "due": weekday(add_days(start, offsets[i]))} for i, name in enumerate(MILESTONES)]
+	milestones = [{"id": f"{pid}-m{i + 1}", "name": name, "due": milestone_due(start, i) if start else None} for i, name in enumerate(MILESTONES)]
 	code = re.sub(r"[^A-Z]", "", customer.upper())[:3] or "LIV"
 	api.upsert(
 		"projects",
@@ -254,10 +283,9 @@ def start_onboarding(
 			"id": pid,
 			"name": f"{customer}: {app}",
 			"code": code,
-			"description": f"Assisted Onboarding for {customer} on {app}",
+			"description": "",
 			"status": "active",
-			"priority": "p2",
-			"start": str(start),
+			"start": str(start) if start else None,
 			"target": milestones[-1]["due"],
 			"ws": api.COMPANY_WS,
 			"milestones": milestones,
@@ -269,10 +297,10 @@ def start_onboarding(
 			"doctype": "Live Onboarding",
 			"project": pid,
 			"customer": customer,
-			"app": app if app in ("CRM", "ERPNext", "Frappe HR", "Helpdesk", "Learning") else "Other",
+			"app": app if app in APPS else "Other",
 			"owner_user": owner,
-			"status": "Yet to start" if not kickoff_date else "Set up",
-			"kickoff_date": kickoff_date,
+			"status": "Set up" if start else "Yet to start",
+			"kickoff_date": str(start) if start else None,
 			"crm_deal": crm_deal,
 			"site_url": site_url,
 			"live_condition": live_condition,
@@ -285,11 +313,59 @@ def start_onboarding(
 	return pid
 
 
+APPS = ("CRM", "ERPNext", "Frappe HR", "Helpdesk", "Learning")
+
+
+@frappe.whitelist(methods=["POST"])
+def set_kickoff(project: str, kickoff_date: str) -> dict:
+	"""The customer paid: the kickoff date starts the clock. Dates the five milestones from it."""
+	_need_staff()
+	_need_project(project)
+	start = getdate(kickoff_date)
+	proj = api._get("projects", project)
+	for i, m in enumerate(proj.get("milestones") or []):
+		if m.get("name") in MILESTONES:
+			m["due"] = milestone_due(start, MILESTONES.index(m["name"]))
+	proj["start"] = str(start)
+	proj["target"] = milestone_due(start, len(MILESTONES) - 1)
+	api.upsert("projects", proj)
+	if frappe.db.exists("Live Onboarding", project):
+		frappe.db.set_value("Live Onboarding", project, "kickoff_date", str(start))
+	_health(project)
+	return {"kickoff_date": str(start), "milestones": proj["milestones"]}
+
+
+ONBOARDING_FIELDS = ("customer", "app", "site_url", "crm_deal", "plan", "live_condition", "main_pain", "used_before", "team_size", "status")
+
+
+@frappe.whitelist(methods=["POST"])
+def update_onboarding(project: str, values: str | dict) -> dict:
+	"""Change an onboarding's details from its project page. Status takes only Paused, Churned or back to active."""
+	_need_staff()
+	_need_project(project)
+	values = frappe.parse_json(values) if isinstance(values, str) else values
+	doc = frappe.get_doc("Live Onboarding", project)
+	for field, value in (values or {}).items():
+		if field not in ONBOARDING_FIELDS:
+			continue
+		if field == "status" and value not in ("Paused", "Churned", "Active"):
+			continue
+		if field == "app" and value not in (*APPS, "Other"):
+			continue
+		doc.set(field, None if value == "Active" and field == "status" else value)
+	if doc.status in (None, "", "Active"):
+		doc.status = "Yet to start" if not doc.kickoff_date else "Set up"
+	doc.save()
+	_health(project)
+	return doc.as_dict()
+
+
 @frappe.whitelist(methods=["POST"])
 def add_steps(project: str, steps: str | list) -> list[str]:
 	"""Write roadmap steps as tasks. Each step: title, milestone (one of the five names), why,
-	done_when, owner ("team" or "customer"), due, block, new_block (bool). Used by the
-	frappe-live skill after a first call or a session."""
+	done_when, owner ("team" or "customer"), due, block, new_block (bool), check ("paid" for the step a
+	paid invoice ticks). A customer step goes to the customer on the project, or waits unassigned until
+	one is invited. Used by the frappe-live skill after a first call or a session."""
 	_need_staff()
 	_need_project(project)
 	steps = frappe.parse_json(steps) if isinstance(steps, str) else steps
@@ -297,7 +373,7 @@ def add_steps(project: str, steps: str | list) -> list[str]:
 	by_name = {m["name"].lower(): m["id"] for m in proj.get("milestones") or []}
 	members = proj.get("members") or []
 	owner = next((m["user"] for m in members if m.get("role") == "Owner"), None)
-	customer = next((m["user"] for m in members if m.get("role") != "Owner"), None)
+	customer = next(iter(_customers(proj)), None)
 	existing = [t for t in api._all("tasks") if t.get("space") == project]
 	n = len(existing)
 	ids = []
@@ -308,13 +384,12 @@ def add_steps(project: str, steps: str | list) -> list[str]:
 		while frappe.db.exists("Live Task", tid):
 			n += 1
 			tid = f"{proj.get('code') or 'LIV'}-{n}"
-		who = customer if (s.get("owner") or "").lower() == "customer" and customer else owner
+		step_owner = "customer" if (s.get("owner") or "").lower() == "customer" else "team"
 		desc = []
 		if s.get("why"):
 			desc.append(f"<p><b>Why:</b> {frappe.utils.escape_html(s['why'])}</p>")
 		if s.get("done_when"):
 			desc.append(f"<p><b>Done when:</b> {frappe.utils.escape_html(s['done_when'])}</p>")
-		labels = [x for x in (s.get("block"), "new block" if s.get("new_block") else None) if x]
 		api.upsert(
 			"tasks",
 			{
@@ -323,19 +398,33 @@ def add_steps(project: str, steps: str | list) -> list[str]:
 				"space": project,
 				"milestone": by_name.get((s.get("milestone") or "").lower()),
 				"description": "".join(desc),
-				"priority": s.get("priority") or "p3",
 				"due": weekday(s["due"]) if s.get("due") else None,
-				"labels": labels,
+				"labels": [],
+				"owner": step_owner,
+				"check": s.get("check") or ("paid" if PAID_STEP.search(s["title"]) else None),
+				"block": s.get("block"),
+				"newBlock": bool(s.get("new_block")),
 				"createdBy": me["id"] if me else owner,
 				"createdAt": frappe.utils.now_datetime().isoformat(),
-				"assignee": who,
+				"assignee": customer if step_owner == "customer" else owner,
 				"assignedBy": me["id"] if me else owner,
 				"why": s.get("why"),
 				"doneWhen": s.get("done_when"),
 			},
 		)
 		ids.append(tid)
+	_health(project)
 	return ids
+
+
+def _mark_done(task: dict, note: str):
+	if task.get("status") == "done":
+		return False
+	task["status"] = "done"
+	task["doneAt"] = frappe.utils.now_datetime().isoformat()
+	task.setdefault("activity", []).append({"actor": None, "text": note[:140], "at": task["doneAt"]})
+	api.upsert("tasks", task)
+	return True
 
 
 @frappe.whitelist(methods=["POST"])
@@ -345,13 +434,57 @@ def record_check(project: str, task: str, passed: int, evidence: str = "", sourc
 	_need_project(project)
 	doc = frappe.get_doc({"doctype": "Live Check", "project": project, "task": task, "passed": 1 if int(passed) else 0, "evidence": evidence, "source": source}).insert()
 	if int(passed) and frappe.db.exists("Live Task", task):
-		t = frappe.parse_json(frappe.db.get_value("Live Task", task, "data"))
-		if t.get("status") != "done":
-			t["status"] = "done"
-			t["doneAt"] = frappe.utils.now_datetime().isoformat()
-			t.setdefault("activity", []).append({"actor": None, "text": f"check passed: {evidence[:140]}", "at": t["doneAt"]})
-			api.upsert("tasks", t)
+		_mark_done(api._get("tasks", task), f"check passed: {evidence}")
+	_health(project)
 	return doc.name
+
+
+LIVE_PARTS = ("active", "condition")
+
+
+@frappe.whitelist(methods=["POST"])
+def record_live(project: str, part: str, passed: int, evidence: str = "", source: str = "Claude over MCP") -> str:
+	"""One part of the live check, from site data: "active" (used in the last 7 days) or "condition"
+	(the customer's own live condition holds). Paid comes from MRR records. Live = all three."""
+	_need_staff()
+	_need_project(project)
+	if part not in LIVE_PARTS:
+		frappe.throw(_("Part is active or condition."))
+	doc = frappe.get_doc(
+		{"doctype": "Live Check", "project": project, "task": f"live:{part}", "passed": 1 if int(passed) else 0, "evidence": evidence, "source": source}
+	).insert()
+	_health(project)
+	return doc.name
+
+
+@frappe.whitelist(methods=["POST"])
+def step_done(project: str, task: str) -> bool:
+	"""A customer marks one of their own steps done (the team can mark any). Kept as a check by hand."""
+	_need_project(project)
+	t = api._get("tasks", task)
+	if not t or t.get("space") != project:
+		frappe.throw(_("No such step."))
+	if not staff():
+		me = api.find_me(api._all("people"))
+		if t.get("owner") != "customer" and t.get("assignee") != (me or {}).get("id"):
+			frappe.throw(_("The Frappe team does this step."), frappe.PermissionError)
+	who = frappe.db.get_value("User", frappe.session.user, "full_name") or frappe.session.user
+	changed = _mark_done(t, f"marked done by {who}")
+	if changed:
+		check = frappe.get_doc({"doctype": "Live Check", "project": project, "task": task, "passed": 1, "evidence": f"Marked done by {who}", "source": "By hand"})
+		check.flags.from_step_done = True
+		check.insert(ignore_permissions=True)
+	_health(project)
+	return changed
+
+
+def tick_paid(project: str):
+	"""A paid invoice is recorded: the paid-plan step is done"""
+	for t in api._all("tasks"):
+		if t.get("space") != project or t.get("deletedAt"):
+			continue
+		if t.get("check") == "paid" or (not t.get("check") and PAID_STEP.search(t.get("title") or "")):
+			_mark_done(t, "paid invoice recorded")
 
 
 @frappe.whitelist(methods=["POST"])
@@ -359,16 +492,20 @@ def log_session(project: str, date: str, kind: str, minutes: int, notes: str = "
 	_need_staff()
 	_need_project(project)
 	fields = {k: v for k, v in kwargs.items() if k in ("steps_hit", "blockers", "roadmap_changes", "skill_changes", "product_issues")}
-	return frappe.get_doc({"doctype": "Live Session", "project": project, "date": date, "kind": kind, "minutes": minutes, "notes": notes, **fields}).insert().name
+	name = frappe.get_doc({"doctype": "Live Session", "project": project, "date": date, "kind": kind, "minutes": minutes, "notes": notes, **fields}).insert().name
+	_health(project)
+	return name
 
 
 @frappe.whitelist(methods=["POST"])
 def record_mrr(project: str, month: str, mrr_usd: float, change: str = "New", plan: str = "", churn_reason: str = "") -> str:
 	_need_staff()
 	_need_project(project)
-	return frappe.get_doc(
+	name = frappe.get_doc(
 		{"doctype": "Live MRR", "project": project, "month": month, "mrr_usd": mrr_usd, "change": change, "plan": plan, "churn_reason": churn_reason}
 	).insert().name
+	_health(project)
+	return name
 
 
 @frappe.whitelist(methods=["POST"])
@@ -417,7 +554,8 @@ def import_onboardings(rows: str | list) -> dict:
 def invite_customer(project: str, email: str, full_name: str = "") -> dict:
 	"""Add someone to one project by email, from the app's Invite dialog.
 	A new person gets a login and Frappe's welcome email (set a password, or sign in with a link);
-	someone who already has a login gets an email that they were added. They see only this project."""
+	someone who already has a login gets an email that they were added. They see only this project.
+	Customer steps waiting for someone go to them."""
 	_need_staff()
 	_need_project(project)
 	email = (email or "").strip().lower()
@@ -434,6 +572,11 @@ def invite_customer(project: str, email: str, full_name: str = "") -> dict:
 		proj.setdefault("members", []).append({"user": pid, "role": "Member"})
 		api.upsert("projects", proj)
 		added = True
+	if level(email) == "user":
+		for t in api._all("tasks"):
+			if t.get("space") == project and t.get("owner") == "customer" and not t.get("assignee"):
+				t["assignee"] = pid
+				api.upsert("tasks", t)
 	if not is_new and added:
 		link = frappe.utils.get_url(f"/live/messages?p={project}")
 		who = frappe.db.get_value("User", frappe.session.user, "full_name") or "The Frappe team"
@@ -442,7 +585,7 @@ def invite_customer(project: str, email: str, full_name: str = "") -> dict:
 			subject=_("You're on {0} in Frappe Live").format(proj.get("name")),
 			message=_(
 				"<p>{0} added you to <b>{1}</b> in Frappe Live.</p>"
-				"<p>See your plan, message the team and share feedback here: <a href='{2}'>{2}</a></p>"
+				"<p>See your next step and message the team here: <a href='{2}'>{2}</a></p>"
 			).format(frappe.utils.escape_html(who), frappe.utils.escape_html(proj.get("name") or ""), link),
 			now=True,
 		)

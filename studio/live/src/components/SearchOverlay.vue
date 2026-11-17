@@ -15,6 +15,8 @@ import StatusIcon from './StatusIcon.vue'
 type Item = { key: string; label: string; icon?: string; status?: string; avatar?: string; meta?: string; more?: boolean; muted?: boolean; run: () => void }
 type Section = { label: string; items: Item[] }
 
+// The team sees everything; customers only their plan
+const staffOnly = computed(() => !!me.value?.canCreateProjects)
 const router = useRouter()
 const route = useRoute()
 const open = computed({ get: () => state.ui.search, set: (v) => (state.ui.search = v) })
@@ -72,16 +74,14 @@ const pageSection = computed<Section | null>(() => {
               label: p.name,
               items: [
                 ['overview', 'Overview', 'lucide-layout-dashboard'],
-                ['tasks', 'Tasks', 'lucide-list-checks'],
-                ['timeline', 'Timeline', 'lucide-chart-gantt'],
+                ['tasks', 'Roadmap', 'lucide-list-checks'],
               ].map(([v, l, i]) => ({ key: `tab-${v}`, label: l, icon: i, meta: route.query.tab === v || (!route.query.tab && v === 'overview') ? 'Current' : '', run: () => go(route.path, { tab: v }) })),
             },
           ]),
       },
     ]
-    if (can.addMilestone(p.id) && p.status !== 'archived') items.push({ key: 'p-ms', label: 'New milestone', icon: 'lucide-flag-triangle-right', run: () => { close(); state.ui.milestone = { pid: p.id } } })
-    if (isMember(p.id) && p.status !== 'archived') items.push({ key: 'p-imp', label: 'Import a plan', icon: 'lucide-file-up', run: () => { close(); state.ui.importTasks = { pid: p.id } } })
-    if (isMember(p.id)) items.push({ key: 'p-pin', label: isPinned(p.id) ? 'Unpin from sidebar' : 'Pin to sidebar', icon: isPinned(p.id) ? 'lucide-pin-off' : 'lucide-pin', run: () => { togglePin(p.id); close() } })
+    if (staffOnly.value && p.status !== 'archived') items.push({ key: 'p-imp', label: 'Add steps from a list', icon: 'lucide-file-up', run: () => { close(); state.ui.importTasks = { pid: p.id } } })
+    if (staffOnly.value) items.push({ key: 'p-msg', label: 'Open messages', icon: 'lucide-message-circle', run: () => go('/messages', { p: p.id }) })
     return { label: p.name, items }
   }
   if (route.path === '/') {
@@ -141,22 +141,26 @@ const recent = computed(() =>
     .filter((t: any) => t && !t.deletedAt)
     .slice(0, 4),
 )
-const goTo: Item[] = [
-  { key: 'g-home', label: 'My tasks', icon: 'lucide-circle-check-big', run: () => go('/') },
-  { key: 'g-inbox', label: 'Notifications', icon: 'lucide-bell', run: () => { close(); state.ui.notifications = true } },
-  { key: 'g-messages', label: 'Messages', icon: 'lucide-message-circle', run: () => go('/messages') },
-  { key: 'g-projects', label: 'Projects', icon: 'lucide-folders', run: () => go('/projects') },
-]
-const create = computed<Item[]>(() => [
-  { key: 'c-task', label: 'Create task', icon: 'lucide-plus', run: () => { close(); state.ui.quickAdd = true } },
-  ...(can.createProject() ? [{ key: 'c-project', label: 'Create project', icon: 'lucide-plus', run: () => { close(); state.ui.createProject = true } }] : []),
-])
+// Frappe Live: the team's places, and the actions that start the work. Customers only have Messages.
+const goTo = computed<Item[]>(() =>
+  staffOnly.value
+    ? [
+        { key: 'g-inbox', label: 'Inbox', icon: 'lucide-inbox', run: () => go('/inbox') },
+        { key: 'g-messages', label: 'Messages', icon: 'lucide-message-circle', run: () => go('/messages') },
+        { key: 'g-office-hours', label: 'Office Hours', icon: 'lucide-calendar', run: () => go('/office-hours') },
+        { key: 'g-reports', label: 'Reports', icon: 'lucide-chart-column', run: () => go('/reports') },
+      ]
+    : [{ key: 'g-messages', label: 'Your plan', icon: 'lucide-message-circle', run: () => go('/messages') }],
+)
+const create = computed<Item[]>(() =>
+  staffOnly.value ? [{ key: 'c-onboarding', label: 'Start onboarding', icon: 'lucide-plus', run: () => go('/reports') }] : [],
+)
 const account = computed<Item[]>(() => [
   { key: 'a-settings', label: 'Settings', icon: 'lucide-settings', run: () => { close(); state.ui.settingsTab = 'profile'; state.ui.settings = true } },
   ...((org.on ? canInviteToWs.value : me.value.isAdmin) ? [{ key: 'a-invite', label: 'Invite people', icon: 'lucide-user-plus', run: () => { close(); state.ui.settingsTab = org.on ? 'workspace' : 'people'; state.ui.settings = true } }] : []),
   { key: 'a-logout', label: 'Log out', icon: 'lucide-log-out', run: () => { close(); signOut(); router.push('/login') } },
 ])
-const commands = computed(() => [...(pageSection.value?.items || []), ...goTo.map((i) => ({ ...i, label: `Go to ${i.label}` })), ...create.value, ...account.value])
+const commands = computed(() => [...(pageSection.value?.items || []), ...goTo.value.map((i) => ({ ...i, label: `Go to ${i.label}` })), ...create.value, ...account.value])
 
 // A person's row opens the tasks between you
 const personTasks = (uid: string) => () => [
@@ -176,7 +180,7 @@ const sections = computed<Section[]>(() => {
     return [
       ...(pageSection.value ? [pageSection.value] : []),
       { label: 'Recent', items: recent.value.map((t: any) => taskItem(t, 'lucide-history')) },
-      { label: 'Go to', items: goTo },
+      { label: 'Go to', items: goTo.value },
       { label: 'Create', items: create.value },
       { label: 'Account', items: account.value },
     ].filter((x) => x.items.length)

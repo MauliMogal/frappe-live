@@ -329,8 +329,21 @@ def save(payload: str, client: str | None = None):
 	viewer = viewer_for(frappe.session.user)
 	check(viewer, data)
 	apply(data)
+	_refresh_health(data)
 	broadcast(data, client)
 	return {"ok": True}
+
+
+def _refresh_health(payload: dict):
+	"""A step changed in the app: work out that onboarding's stage and health again"""
+	from frappe_live.health import update_one
+
+	records = payload.get("records") or {}
+	touched = {str(t.get("space")) for t in (records.get("tasks") or {}).get("upserts") or [] if t.get("space")}
+	touched |= {str(p.get("id")) for p in (records.get("projects") or {}).get("upserts") or [] if p.get("id")}
+	for project in touched:
+		if frappe.db.exists("Live Onboarding", project):
+			update_one(project)
 
 
 @frappe.whitelist(methods=["POST"])

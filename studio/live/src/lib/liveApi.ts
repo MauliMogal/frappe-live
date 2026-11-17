@@ -58,6 +58,8 @@ export function ago(iso: string) {
   if (!iso) return ''
   const d = new Date(iso.replace(' ', 'T'))
   const s = (Date.now() - d.getTime()) / 1000
+  // a date still ahead (a milestone due later) reads as the date
+  if (s < -60) return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })
   if (s < 60) return 'just now'
   if (s < 3600) return `${Math.floor(s / 60)}m ago`
   if (s < 86400) return `${Math.floor(s / 3600)}h ago`
@@ -72,6 +74,17 @@ export function watchWaiting() {
   if (polling) return
   polling = true
   const tick = () => liveGet('frappe_live.views.waiting').then((n) => (liveWaiting.value = n || 0)).catch(() => {})
+  tick()
+  setInterval(tick, 3 * 60 * 1000)
+}
+
+// How many rows wait in the team's Inbox (the sidebar's Inbox count). Team only.
+export const liveNeeds = ref(0)
+let needsPolling = false
+export function watchNeeds() {
+  if (needsPolling) return
+  needsPolling = true
+  const tick = () => liveGet('frappe_live.views.needs_me').then((d) => (liveNeeds.value = d?.rows?.length || 0)).catch(() => {})
   tick()
   setInterval(tick, 3 * 60 * 1000)
 }

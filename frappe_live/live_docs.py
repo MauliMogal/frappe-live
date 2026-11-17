@@ -124,11 +124,12 @@ class LiveFeedback(_LiveDoc):
 					frappe.throw(_("Only the team can change that."), frappe.PermissionError)
 
 	def after_insert(self):
-		from frappe_live.raven import post_to_raven
+		from frappe_live.raven import tell_team
 
 		if not staff():
 			who = frappe.db.get_value("User", self.from_user, "full_name") or self.from_user
-			post_to_raven(self.project, f"**{self.type}** from {who}: {self.summary}", tag=f"LF-{self.name}")
+			step = _step_title(self.project, self.task)
+			tell_team(self.project, f"{self.type} from {who}" + (f" on {step}" if step else ""), self.details or self.summary or "", tag=f"LF-{self.name}")
 
 
 class LiveMessage(_LiveDoc):
@@ -138,11 +139,11 @@ class LiveMessage(_LiveDoc):
 			self.direction = "To customer" if staff(self.from_user) else "To team"
 
 	def after_insert(self):
-		from frappe_live.raven import notify_customer, post_to_raven
+		from frappe_live.raven import notify_customer, tell_team
 
 		if self.direction == "To team":
 			who = frappe.db.get_value("User", self.from_user, "full_name") or self.from_user
-			status = post_to_raven(self.project, f"{who}: {self.text}", tag=f"LM-{self.name}")
+			status = tell_team(self.project, f"Message from {who}", self.text, tag=f"LM-{self.name}")
 			self.db_set("raven_status", status)
 		else:
 			notify_customer(self)
@@ -161,9 +162,15 @@ class LiveMRR(_LiveDoc):
 
 	def on_update(self):
 		_refresh_onboarding_money(self.project)
+		if (self.mrr_usd or 0) > 0:
+			from frappe_live.portal import tick_paid
+
+			tick_paid(self.project)
+		_refresh_health(self.project)
 
 	def on_trash(self):
 		_refresh_onboarding_money(self.project, skip=self.name)
+		_refresh_health(self.project)
 
 
 class LiveSession(_LiveDoc):
@@ -184,7 +191,7 @@ class LiveSession(_LiveDoc):
 class LiveCheck(_LiveDoc):
 	def validate(self):
 		super().validate()
-		if not staff():
+		if not staff() and not self.flags.from_step_done:
 			frappe.throw(_("Only the team or a skill records checks."), frappe.PermissionError)
 
 
@@ -213,3 +220,18 @@ def _refresh_minutes(project: str, skip: str | None = None):
 		filters["name"] = ["!=", skip]
 	total = sum(r.minutes or 0 for r in frappe.get_all("Live Session", filters=filters, fields=["minutes"]))
 	frappe.db.set_value("Live Onboarding", project, "minutes_total", total, update_modified=False)
+
+
+def _refresh_health(project: str):
+	from frappe_live.health import update_one
+
+	if project and frappe.db.exists("Live Onboarding", project):
+		update_one(project)
+
+
+def _step_title(project: str, task: str | None) -> str:
+	if not task:
+		return ""
+	data = frappe.db.get_value("Live Task", task, "data")
+	t = frappe.parse_json(data) if data else {}
+	return t.get("title") if t.get("space") == project else ""

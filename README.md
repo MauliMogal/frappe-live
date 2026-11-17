@@ -18,15 +18,19 @@ Every record a person receives is filtered on the server (`frappe_live/access.py
 
 | Part | Where |
 | --- | --- |
-| The app (projects, milestones, tasks, notes, timeline) | `/live` (Studio app `live`) |
-| Help and feedback, messages, Office Hours questions with votes | `/live-help` |
-| Reports: stage, health, days to live, MRR by month and owner, feedback | `/live-reports` (team only) |
+| Inbox: what needs the team today (customers waiting, slipping, moved, paid with no roadmap) | `/live/inbox` (team) |
+| Messages: the customer's home (next step with Done and Stuck, milestones, Office Hours) and one stream per customer for the team | `/live/messages` |
+| A project: the onboarding card (live check, next steps, details, sessions) and the roadmap | `/live/p/<project>` (team) |
+| Office Hours, Fridays: questions by customer, log the call once | `/live/office-hours` (team) |
+| Reports: live by day 30 and 90, days to live, MRR by month and owner, every onboarding, Start onboarding | `/live/reports` (team) |
 | Onboarding details, feedback, messages, MRR, sessions, checks | Live Onboarding, Live Feedback, Live Message, Live MRR, Live Session, Live Check |
-| Methods for the team and for skills | `frappe_live.portal` |
-| Raven bridge (frappe.io) | `frappe_live.raven` |
-| Daily stage and health | `frappe_live.health` |
+| Methods for the team and for skills | `frappe_live.portal`, `frappe_live.views` |
+| Raven bridge (frappe.io), with email to the team when Raven isn't set up | `frappe_live.raven` |
+| Stage, health and live | `frappe_live.health` |
 | Skill for Claude and Flow | `skills/frappe-live` |
 | Draft of frappe.io/live | `website/frappe-io-live.html` |
+
+Live is a record: paid (MRR), active in the last 7 days and the customer's own condition (checks from their site, `record_live`). The first day all three hold is `live_date`.
 
 ## Install (Frappe Cloud, private bench, version-16)
 
@@ -45,7 +49,7 @@ Then in **Live Settings**: super admin emails, admin domain, Office Hours link, 
 
 1. On frappe.io Raven, create a channel (for example `frappe-live-inbox`), a bot, and a **Raven Incoming Webhook** for that channel. Put its URL in Live Settings, "Incoming webhook URL".
 2. Create a **Raven Webhook**: trigger Message Sent, condition on that channel, request URL `https://<live site>/api/method/frappe_live.raven.receive`, security on with a secret, data fields `text`, `owner`, `is_reply`, `replied_message_details`, `is_bot_message`. Put the secret in Live Settings.
-3. Customer messages and feedback post to the channel. Reply to a post (Reply, not a thread) and the answer reaches the customer by email and on `/live-help`.
+3. Customer messages and feedback post to the channel. Reply to a post (Reply, not a thread) and the answer reaches the customer by email and in Messages. Until Raven is set up, customer messages are emailed to the onboarding's owner.
 
 ## Import the current onboardings
 

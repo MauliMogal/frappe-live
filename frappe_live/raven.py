@@ -39,7 +39,7 @@ def post_to_raven(project: str, text: str, tag: str) -> str:
 	url = _settings().get_password("raven_incoming_webhook", raise_exception=False)
 	if not url:
 		return "Not set up"
-	link = get_url(f"/live/p/{project}")
+	link = get_url(f"/live/messages?p={project}")
 	content = f"**[{_project_name(project)}]** {text}\n\n[{tag}] [Open project]({link}) · Reply to this message to answer."
 	try:
 		import requests
@@ -50,6 +50,35 @@ def post_to_raven(project: str, text: str, tag: str) -> str:
 	except Exception:
 		frappe.log_error("Frappe Live: Raven post failed")
 		return "Failed"
+
+
+def _team_emails(project: str) -> list[str]:
+	"""Who hears about a customer's message: the onboarding's owner, else the super admins"""
+	from frappe_live.access import super_admin_emails
+
+	owner = frappe.db.get_value("Live Onboarding", project, "owner_user")
+	email = frappe.db.get_value("User", owner, "email") if owner else None
+	return [email] if email else sorted(super_admin_emails())
+
+
+def tell_team(project: str, title: str, text: str, tag: str) -> str:
+	"""A customer wrote. Post to Raven; if Raven isn't set up or the post failed, email the team,
+	so nothing a customer sends goes unseen. Returns the Raven status to store."""
+	status = post_to_raven(project, f"**{title}**: {text}", tag)
+	if status != "Sent":
+		recipients = _team_emails(project)
+		if recipients:
+			link = get_url(f"/live/messages?p={project}")
+			try:
+				# queued, never sent inline: a mail problem must not lose the customer's message
+				frappe.sendmail(
+					recipients=recipients,
+					subject=_("{0}: {1}").format(_project_name(project) or project, title),
+					message=f"<p>{frappe.utils.escape_html(text or '')}</p><p><a href='{link}'>Reply in Frappe Live</a></p>",
+				)
+			except Exception:
+				frappe.log_error("Frappe Live: team email failed")
+	return status
 
 
 def notify_customer(message):
@@ -69,7 +98,7 @@ def notify_customer(message):
 	frappe.sendmail(
 		recipients=recipients,
 		subject=_("Reply from Frappe Live: {0}").format(project.get("name") or message.project),
-		message=f"<p>{frappe.utils.escape_html(message.text)}</p><p><a href='{get_url('/live-help')}?project={message.project}'>Open your messages</a></p>",
+		message=f"<p>{frappe.utils.escape_html(message.text)}</p><p><a href='{get_url(f'/live/messages?p={message.project}')}'>Open Frappe Live</a></p>",
 		reference_doctype="Live Message",
 		reference_name=message.name,
 	)

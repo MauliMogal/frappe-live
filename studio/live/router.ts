@@ -1,4 +1,3 @@
-import { state } from "./src/lib/store"
 import { filters } from "./src/lib/viewState"
 
 // App-wide routing for the Tasks Studio app. Pages are Studio pages; these are the prototype's old links,
@@ -15,14 +14,7 @@ export default {
 				return { path: "/", query: to.query }
 			},
 		})
-		// Notifications has no page. Old /inbox links go to My tasks and open the Notifications surface.
-		router.addRoute({
-			path: "/inbox",
-			redirect: () => {
-				setTimeout(() => (state.ui.notifications = true))
-				return "/"
-			},
-		})
+		// /inbox is the team's Inbox page now (Studio page "inbox")
 		// Browsing lives on Projects (Other projects, with Join)
 		// Help and feedback is Messages now
 		router.addRoute({ path: "/help", redirect: "/messages" })

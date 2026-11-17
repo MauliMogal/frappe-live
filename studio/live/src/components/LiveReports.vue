@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { Badge, Button, Tooltip } from 'frappe-ui'
-import { liveGet, STAGES, STAGE_BG, HEALTH_DOT, money, ago } from '../lib/liveApi'
+import { Badge, Button, Tooltip, toast } from 'frappe-ui'
+import { liveGet, livePost, STAGES, STAGE_BG, HEALTH_DOT, money, ago } from '../lib/liveApi'
 import { state, person } from '../lib/store'
 
 // Reports: where every Assisted Onboarding stands. Team only (super admins and frappe.io admins).
@@ -47,18 +47,38 @@ const counts = computed(() => {
   }
 })
 const funnel = computed(() => (data.value?.funnel || []).filter((f: any) => f.count > 0))
+const pct = (x: any) => (x?.of ? `${Math.round((x.live / x.of) * 100)}%` : '–')
 const tiles = computed(() => {
   const d = data.value
   if (!d) return []
+  const waiting = d.funnel.find((f: any) => f.stage === 'Yet to start')?.count || 0
   return [
-    { label: 'Onboardings', value: d.total, hint: `${d.funnel.find((f: any) => f.stage === 'Yet to start')?.count || 0} yet to start` },
-    { label: 'Live', value: d.live_count, hint: d.total ? `${Math.round((d.live_count / d.total) * 100)}% of all` : 'none yet' },
+    { label: 'Onboardings', value: d.total, hint: `${waiting} yet to start · ${d.live_count} live` },
+    { label: 'Live by day 30', value: pct(d.live_by_30), hint: d.live_by_30.of ? `${d.live_by_30.live} of ${d.live_by_30.of} past day 30` : 'no one past day 30 yet' },
+    { label: 'Live by day 90', value: pct(d.live_by_90), hint: d.live_by_90.of ? `${d.live_by_90.live} of ${d.live_by_90.of} past day 90` : 'no one past day 90 yet' },
     { label: 'Median days to live', value: d.median_days_to_live ?? '–', hint: d.live_count ? `from ${d.live_count} live` : 'no one live yet' },
     { label: 'MRR', value: money(d.mrr_now), hint: `${d.paying} paying` },
-    { label: 'Needs attention', value: (d.health['At risk'] || 0) + (d.health['Off track'] || 0), hint: `${d.health['Off track'] || 0} off track` },
-    { label: 'Team minutes', value: d.minutes_total, hint: 'logged in sessions' },
+    { label: 'Minutes per customer', value: d.started ? Math.round(d.minutes_total / d.started) : '–', hint: `${d.minutes_total} min logged` },
   ]
 })
+
+// Start an onboarding from a deal. Nothing is emailed: invite the customer from Messages when ready.
+const APPS = ['ERPNext', 'CRM', 'Frappe HR', 'Helpdesk', 'Learning']
+const startOpen = ref(false)
+const start = ref<any>({ customer: '', app: 'ERPNext', crm_deal: '', kickoff_date: '', live_condition: '', site_url: '' })
+async function startOnboarding() {
+  if (!start.value.customer.trim()) return toast.error('Who is the customer?')
+  try {
+    const args = Object.fromEntries(Object.entries(start.value).filter(([, v]) => v !== ''))
+    const pid = await livePost('frappe_live.portal.start_onboarding', args)
+    startOpen.value = false
+    start.value = { customer: '', app: 'ERPNext', crm_deal: '', kickoff_date: '', live_condition: '', site_url: '' }
+    toast.success('Onboarding started')
+    router.push(`/p/${pid}`)
+  } catch (e: any) {
+    toast.error(e.message)
+  }
+}
 const maxMrr = computed(() => Math.max(1, ...(data.value?.months || []).map((m: any) => m.mrr)))
 const monthName = (ym: string) => new Date(`${ym}-01T00:00:00`).toLocaleDateString('en-IN', { month: 'short' })
 const open = (o: any) => router.push(`/p/${o.project}`)
@@ -77,6 +97,32 @@ const stepPct = (o: any) => (o.steps_total ? Math.round((o.steps_done / o.steps_
     </div>
 
     <template v-if="data">
+      <div class="flex items-center">
+        <p class="text-sm text-ink-gray-5">Every number comes from records. Nothing is estimated.</p>
+        <Button class="ml-auto" variant="solid" label="Start onboarding" icon-left="lucide-plus" @click="startOpen = !startOpen" />
+      </div>
+      <div v-if="startOpen" class="grid gap-3 rounded-5 border border-outline-gray-2 p-4 text-sm sm:grid-cols-[140px_1fr] sm:items-center">
+        <label class="text-ink-gray-5">Customer</label>
+        <input v-model="start.customer" placeholder="Company name" class="h-8 rounded-3 border-0 bg-surface-gray-2 px-2 text-sm" />
+        <label class="text-ink-gray-5">App</label>
+        <select v-model="start.app" class="h-8 rounded-3 border-0 bg-surface-gray-2 px-2 text-sm">
+          <option v-for="a in APPS" :key="a">{{ a }}</option>
+        </select>
+        <label class="text-ink-gray-5">CRM deal</label>
+        <input v-model="start.crm_deal" placeholder="CRM-DEAL-2026-00000" class="h-8 rounded-3 border-0 bg-surface-gray-2 px-2 text-sm" />
+        <label class="text-ink-gray-5">Site</label>
+        <input v-model="start.site_url" placeholder="https://company.frappe.cloud" class="h-8 rounded-3 border-0 bg-surface-gray-2 px-2 text-sm" />
+        <label class="text-ink-gray-5">Paid on</label>
+        <input v-model="start.kickoff_date" type="date" class="h-8 rounded-3 border-0 bg-surface-gray-2 px-2 text-sm" />
+        <label class="text-ink-gray-5">Live when</label>
+        <input v-model="start.live_condition" placeholder="every sale goes through ERPNext" class="h-8 rounded-3 border-0 bg-surface-gray-2 px-2 text-sm" />
+        <span />
+        <div class="flex gap-2">
+          <Button variant="solid" label="Start" @click="startOnboarding" />
+          <Button variant="ghost" label="Cancel" @click="startOpen = false" />
+        </div>
+      </div>
+
       <!-- the numbers that matter -->
       <div class="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
         <div v-for="t in tiles" :key="t.label" class="rounded-5 border border-outline-gray-1 bg-surface-base p-4 shadow-sm">
@@ -112,7 +158,7 @@ const stepPct = (o: any) => (o.steps_total ? Math.round((o.steps_done / o.steps_
           <h2 class="mr-2 text-lg font-semibold text-ink-gray-9">Every onboarding</h2>
           <div class="flex rounded-4 bg-surface-gray-2 p-0.5">
             <button
-              v-for="f in [{ k: 'all', l: 'All' }, { k: 'mine', l: 'Mine' }, { k: 'risk', l: 'Needs attention' }]"
+              v-for="f in [{ k: 'all', l: 'All' }, { k: 'mine', l: 'Mine' }, { k: 'risk', l: 'At risk' }]"
               :key="f.k"
               class="rounded-3 px-2.5 py-1 text-sm"
               :class="filter === f.k ? 'bg-surface-base text-ink-gray-9 shadow-sm' : 'text-ink-gray-6 hover:text-ink-gray-8'"
@@ -189,7 +235,7 @@ const stepPct = (o: any) => (o.steps_total ? Math.round((o.steps_done / o.steps_
         <!-- MRR -->
         <section class="rounded-5 border border-outline-gray-1 p-5">
           <h2 class="text-lg font-semibold text-ink-gray-9">MRR by month</h2>
-          <p class="text-sm text-ink-gray-5">From recorded invoices only. Each customer's latest value carries forward.</p>
+          <p class="text-sm text-ink-gray-5">From recorded invoices. Each customer's latest value carries forward.</p>
           <div v-if="data.months.length" class="mt-5 flex h-40 items-end gap-2">
             <Tooltip v-for="m in data.months" :key="m.month" :text="`${m.month}: ${money(m.mrr)}`">
               <div class="flex max-w-[56px] flex-1 flex-col items-center gap-1.5">
@@ -225,9 +271,7 @@ const stepPct = (o: any) => (o.steps_total ? Math.round((o.steps_done / o.steps_
         <div class="flex items-baseline justify-between gap-4">
           <div>
             <h2 class="text-lg font-semibold text-ink-gray-9">What customers are telling us</h2>
-            <p class="text-sm text-ink-gray-5">
-              {{ data.feedback_open }} open · average rating {{ data.avg_rating ?? '–' }} · would recommend {{ data.recommend ?? '–' }}/10
-            </p>
+            <p class="text-sm text-ink-gray-5">{{ data.feedback_open }} open</p>
           </div>
           <Button variant="subtle" label="Open Messages" icon-left="lucide-message-circle" @click="router.push('/messages')" />
         </div>

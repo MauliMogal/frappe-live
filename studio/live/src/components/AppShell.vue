@@ -69,11 +69,19 @@ function onKey(e: KeyboardEvent) {
     return
   }
   if (typing(e) || e.metaKey || e.ctrlKey || e.altKey) return
-  if (e.key === 'c') {
+  if (!person(state.me)?.canCreateProjects) return
+  // g then i / m / o / r: Inbox, Messages, Office Hours, Reports
+  if (gPressed && GO[e.key]) {
     e.preventDefault()
-    state.ui.quickAdd = true
+    gPressed = false
+    router.push(GO[e.key])
+    return
   }
+  gPressed = e.key === 'g'
+  if (gPressed) setTimeout(() => (gPressed = false), 1200)
 }
+const GO: Record<string, string> = { i: '/inbox', m: '/messages', o: '/office-hours', r: '/reports' }
+let gPressed = false
 onMounted(() => {
   window.addEventListener('keydown', onKey)
   // Light mode by default. People can switch in Settings → Appearance.

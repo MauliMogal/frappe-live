@@ -169,6 +169,12 @@ class TestLiveRecords(IntegrationTestCase):
 	def tearDown(self):
 		frappe.set_user("Administrator")
 
+	def _clear_talk(self):
+		"""Messages and feedback a test leaves behind would be counted by the next one"""
+		frappe.set_user("Administrator")
+		for dt in ("Live Message", "Live Feedback", "Live Session"):
+			frappe.db.delete(dt, {"project": ("in", (self.pa, self.pb))})
+
 	def test_onboarding_template(self):
 		p = api._get("projects", self.pa)
 		self.assertEqual([m["name"] for m in p["milestones"]], ["Set up", "Start using", "Habit", "Live at day 30", "Live at day 90"])
@@ -307,3 +313,100 @@ class TestLiveRecords(IntegrationTestCase):
 		self.assertEqual(team["rows"][0]["project"], self.pa)
 		self.assertTrue(team["rows"][0]["waiting"])
 		self.assertGreaterEqual(views.waiting(), 1)
+
+	def test_no_dates_before_kickoff(self):
+		from frappe_live import portal
+
+		frappe.set_user(TEAM)
+		pid = portal.start_onboarding("Later Co", "CRM")
+		self.assertTrue(all(m["due"] is None for m in api._get("projects", pid)["milestones"]))
+		self.assertEqual(frappe.db.get_value("Live Onboarding", pid, "status"), "Yet to start")
+		portal.set_kickoff(pid, "2026-11-16")
+		dues = [m["due"] for m in api._get("projects", pid)["milestones"]]
+		self.assertEqual(dues[0], "2026-11-23")
+		self.assertTrue(all(dues))
+
+	def test_customer_steps_done_and_stuck(self):
+		from frappe_live import portal, views
+
+		frappe.set_user(TEAM)
+		team_step, cust_step = portal.add_steps(self.pb, [
+			{"title": "Company and warehouses are right", "milestone": "Set up", "owner": "team"},
+			{"title": "Your products are in", "milestone": "Set up", "owner": "customer", "why": "Sales start with products", "done_when": "Item count matches"},
+		])
+		self.assertEqual(api._get("tasks", cust_step)["owner"], "customer")
+		self.assertNotEqual(api._get("tasks", cust_step)["assignee"], api._get("tasks", team_step)["assignee"])
+		self.assertEqual(api._get("tasks", team_step)["labels"], [])
+		frappe.set_user(CUST_B)
+		self.assertEqual(views.conversation(self.pb)["next_step"]["id"], cust_step)
+		portal.send_feedback(self.pb, "I'm stuck", "Where is the item list?", task=cust_step)
+		with self.assertRaises(frappe.PermissionError):
+			portal.step_done(self.pb, team_step)
+		self.assertTrue(portal.step_done(self.pb, cust_step))
+		self.assertEqual(api._get("tasks", cust_step)["status"], "done")
+		self.assertIsNone(views.conversation(self.pb)["next_step"])
+		frappe.set_user(TEAM)
+		self.assertTrue(frappe.db.exists("Live Check", {"project": self.pb, "task": cust_step, "source": "By hand"}))
+		self.assertTrue(frappe.db.exists("Live Feedback", {"project": self.pb, "task": cust_step}))
+		frappe.db.delete("Live Feedback", {"project": self.pb})
+
+	def test_paid_invoice_ticks_paid_step(self):
+		from frappe_live import portal
+
+		frappe.set_user(TEAM)
+		(step,) = portal.add_steps(self.pb, [{"title": "Site is on a paid plan", "milestone": "Set up", "owner": "team"}])
+		self.assertEqual(api._get("tasks", step)["check"], "paid")
+		portal.record_mrr(self.pb, "2026-11-16", 25, "New", "USD 25")
+		self.assertEqual(api._get("tasks", step)["status"], "done")
+
+	def test_live_is_a_record(self):
+		from frappe_live import portal, views
+
+		frappe.set_user(TEAM)
+		pid = portal.start_onboarding("Live Co", "CRM", kickoff_date=frappe.utils.add_days(frappe.utils.nowdate(), -40), live_condition="every new client goes through CRM")
+		self.assertFalse(frappe.db.get_value("Live Onboarding", pid, "live_date"))
+		portal.record_mrr(pid, frappe.utils.nowdate(), 25)
+		portal.record_live(pid, "active", 1, "12 logins this week")
+		self.assertFalse(frappe.db.get_value("Live Onboarding", pid, "live_date"))
+		portal.record_live(pid, "condition", 1, "9 of 9 new clients are in CRM")
+		self.assertEqual(str(frappe.db.get_value("Live Onboarding", pid, "live_date")), frappe.utils.nowdate())
+		self.assertEqual(frappe.db.get_value("Live Onboarding", pid, "status"), "Live at day 30")
+		r = views.reports()
+		self.assertGreaterEqual(r["live_count"], 1)
+		self.assertGreaterEqual(r["live_by_30"]["of"], 1)
+		with self.assertRaises(frappe.ValidationError):
+			portal.record_live(pid, "happy", 1)
+
+	def test_customer_message_reaches_team_without_raven(self):
+		self.addCleanup(self._clear_talk)
+		from unittest.mock import patch
+
+		from frappe_live import portal, views
+
+		frappe.set_user(CUST_A)
+		with patch("frappe.sendmail") as mail:
+			portal.send_message(self.pa, "Is anyone there?")
+		self.assertTrue(mail.called)
+		self.assertIn(TEAM, mail.call_args.kwargs["recipients"])
+		frappe.set_user(TEAM)
+		rows = views.needs_me()["rows"]
+		row = next(r for r in rows if r["kind"] == "waiting" and r["project"] == self.pa)
+		views.inbox_mark(row["key"], "done")
+		self.assertFalse(any(r["key"] == row["key"] for r in views.needs_me()["rows"]))
+		views.inbox_mark(row["key"], "undo")
+		self.assertTrue(any(r["key"] == row["key"] for r in views.needs_me()["rows"]))
+		frappe.set_user(CUST_A)
+		with self.assertRaises(frappe.PermissionError):
+			views.needs_me()
+
+	def test_office_hours_shares_minutes(self):
+		self.addCleanup(self._clear_talk)
+		from frappe_live import portal, views
+
+		frappe.set_user(CUST_A)
+		portal.send_feedback(self.pa, "Office Hours question", "How do I import leads?")
+		frappe.set_user(TEAM)
+		self.assertTrue(any(q.project == self.pa for q in views.office_hours()["questions"]))
+		views.log_office_hours([self.pa, self.pb], 120, "Imports")
+		self.assertEqual(frappe.get_all("Live Session", filters={"project": self.pa, "kind": "Office Hours"}, pluck="minutes"), [60])
+		self.assertFalse(any(q.project == self.pa for q in views.office_hours()["questions"]))

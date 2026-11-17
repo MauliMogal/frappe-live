@@ -1626,13 +1626,15 @@ export function importLines(text: string) {
 // ── Reminders ─────────────────────────────────────────────────────────────────
 // Project work isn't on Home, so the Inbox reminds you (Action needed), every morning:
 // your project task is due tomorrow / due today / overdue, or a milestone you're in is due within 3 days.
+// Each browser makes only its own person's reminders: a customer may not write the team's (the server refuses
+// the whole save), and nobody needs reminders made for them by someone else's tab.
 export function seedReminders() {
   const today = dayjs().startOf('day')
   const morning = dayjs().hour(9).minute(0).second(0)
   const when = (morning.isAfter(dayjs()) ? dayjs() : morning).toISOString()
   state.tasks.forEach((t) => {
     // (Personal tasks too, Round 246: they're the Personal workspace's only notifications)
-    if (t.deletedAt || !t.assignee || !t.due || !isOpen(t)) return
+    if (t.deletedAt || t.assignee !== state.me || !t.due || !isOpen(t)) return
     if (t.space !== 'general' && project(t.space)?.status !== 'active') return
     const diff = dayjs(t.due).startOf('day').diff(today, 'day')
     const kind = diff < 0 ? 'overdue' : diff === 0 ? 'today' : diff === 1 ? 'tomorrow' : null
@@ -1648,7 +1650,7 @@ export function seedReminders() {
         const diff = dayjs(m.due).startOf('day').diff(today, 'day')
         const s = milestoneStats(p.id, m.id)
         if (diff < 0 || diff > 3 || (s.total && s.done === s.total)) return
-        p.members.forEach((mem: any) =>
+        p.members.filter((mem: any) => mem.user === state.me).forEach((mem: any) =>
           !state.notifications.some((n) => n.id === `rm-${m.id}-${mem.user}`) &&
           state.notifications.push({
             id: `rm-${m.id}-${mem.user}`, to: mem.user, type: 'R2', tab: 'needs', project: p.id,

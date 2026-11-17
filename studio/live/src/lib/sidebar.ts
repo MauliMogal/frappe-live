@@ -5,11 +5,11 @@ import { state, me, inScope } from './store'
 import { org, currentWs, myWorkspaces, myWsInvites, switchWorkspace, answerWsInvite, inPersonal, canInviteToWs } from './store'
 import { pinnedProjects, setPinned } from './pins'
 import { can } from './permissions'
-import { liveWaiting, watchWaiting } from './liveApi'
+import { liveWaiting, watchWaiting, liveNeeds, watchNeeds } from './liveApi'
 
 // What the sidebar (Studio Component `app_sidebar`, Studio's Sidebar blocks) binds to. Every page with the
 // sidebar spreads it into what its script's setup() returns:  return { ...appSidebar(router, route), ... }
-// Mirrors the prototype's AppSidebar.vue: Search · Notifications · My tasks · Notes · Projects, then Pinned projects.
+// Frappe Live: Search · Inbox · Messages · Office Hours · Reports. Customers see Search and Messages.
 // The header is Frappe UI's SidebarHeader: the workspace (its first letter as the logo), "Tasks" / "Only you" under
 // it, and the account menu (Profile, your workspaces, invites, Invite people, Settings, Create workspace).
 export function appSidebar(router: any, route: any) {
@@ -24,6 +24,11 @@ export function appSidebar(router: any, route: any) {
   watch(narrow, (v) => v && (sidebarCollapsed.value = true), { immediate: true })
 
   watchWaiting()
+  watch(
+    () => me.value?.canCreateProjects,
+    (staff) => staff && watchNeeds(),
+    { immediate: true },
+  )
   const openSettings = (tab: string) => {
     state.ui.settingsTab = tab
     state.ui.settings = true
@@ -120,6 +125,7 @@ export function appSidebar(router: any, route: any) {
     // Frappe Live: Messages for everyone, Reports for the team (super admins and frappe.io admins)
     canSeeReports: computed(() => !!me.value?.canCreateProjects),
     messagesLabel: computed(() => (liveWaiting.value ? String(liveWaiting.value) : '')),
+    inboxLabel: computed(() => (liveNeeds.value ? String(liveNeeds.value) : '')),
     newProject: () => (state.ui.createProject = true),
     pinned,
     pinnedHint,

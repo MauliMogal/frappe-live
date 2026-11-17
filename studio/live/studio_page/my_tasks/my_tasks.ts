@@ -15,13 +15,14 @@ import { state, org, myWsInvites, answerWsInvite, personName, currentWs } from "
 // My tasks: header, workspace invites, a one-time hint, the toolbar and the empty states are Studio blocks.
 // The toolbar (FilterSortBar) and the list (MyTasksList) stay components; both read lib/myTasks.ts.
 export default function setup({ router, route }) {
-	// Frappe Live: customers start on Messages, where their plan, the team and feedback are. The team starts here.
+	// Frappe Live: customers start on Messages (their home: next step, plan, Office Hours, the team).
+	// The team starts on Inbox. My tasks is no longer a place of its own.
 	watch(
 		() => sync.ready && state.me,
 		(ok) => {
 			if (!ok) return
 			const meP: any = state.people.find((x: any) => x.id === state.me)
-			if (meP && !meP.canCreateProjects) router.replace("/messages")
+			if (meP) router.replace(meP.canCreateProjects ? "/inbox" : "/messages")
 		},
 		{ immediate: true },
 	)

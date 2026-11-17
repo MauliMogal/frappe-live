@@ -25,7 +25,7 @@ Call `frappe_live.portal.start_onboarding` with `customer`, `app` (CRM, ERPNext,
 ## Make the roadmap from call notes
 
 1. Read the notes and the app's step library (the implementation skill's `reference/steps.md` and `reference/interview.md`).
-2. Keep the steps that apply. For each: `title` (their words), `milestone` (one of the five names), `why`, `done_when`, `owner` (`team` or `customer`), `due`, `block` (the library key), `new_block` true when no library step fits.
+2. Keep the steps that apply. For each: `title` (their words), `milestone` (one of the five names), `why`, `done_when`, `owner` (`team` or `customer`), `due`, `block` (the library key), `new_block` true when no library step fits, `check` `paid` on the step a paid invoice ticks. The live condition is not a step: put it in `live_condition` on `start_onboarding`, or `update_onboarding`.
 3. Show the list. On a yes, call `frappe_live.portal.add_steps` with `project` and `steps`.
 4. Out-of-scope asks are not steps. Send each as feedback: `send_feedback` with type `Feature request`.
 
@@ -36,14 +36,18 @@ After every session, add or change steps the same way, and log it (below).
 | What | Call |
 |---|---|
 | A done-when check ran | `record_check` with `project`, `task`, `passed`, `evidence`, `source`. A pass marks the task done |
+| A live check ran on their site | `record_live` with `project`, `part` (`active`: their own people used the site in the last 7 days; `condition`: their live condition holds), `passed`, `evidence`, `source`. Paid comes from MRR. When all three hold, `live_date` is set for you |
+| They paid (kickoff) | `set_kickoff` with `project`, `kickoff_date`. Dates the five milestones from it |
+| Details changed | `update_onboarding` with `project`, `values` (customer, app, site_url, crm_deal, plan, live_condition, main_pain, used_before, team_size, status Paused, Churned or Active) |
 | A session | `log_session` with `project`, `date`, `kind` (First call, Help, Office Hours, Go-live review), `minutes`, `notes`, and `steps_hit`, `blockers`, `roadmap_changes`, `skill_changes`, `product_issues` |
-| A paid site, or a plan change | `record_mrr` with `project`, `month`, `mrr_usd`, `change` (New, Upgrade, Downgrade, Churn), `plan`. Only with proof: the invoice |
+| A paid site, or a plan change | `record_mrr` with `project`, `month`, `mrr_usd`, `change` (New, Upgrade, Downgrade, Churn), `plan`. Only with proof: the invoice. A paid row ticks the paid-plan step |
 | A message to the customer | `send_message` with `project`, `text`. Staff messages email the customer |
 
 ## Where things stand
 
-- `frappe_live.health.refresh` works out every onboarding's stage and health from its tasks.
-- `/live-reports` shows the portfolio, days to live, MRR by month and owner, and feedback.
+- Stage and health update by themselves when a step, check, session, message or MRR row changes. `frappe_live.health.refresh` redoes all of them.
+- `frappe_live.views.needs_me` is the team's Inbox: customers waiting, slipping, moved, paid with no roadmap.
+- `/live/reports` shows the portfolio, live by day 30 and 90, days to live, MRR by month and owner, and feedback.
 - Read `Live Onboarding` (fields `customer`, `app`, `owner_user`, `status`, `health`, `mrr_usd`, `kickoff_date`, `live_date`) for a quick answer.
 
 Health: Off track when a Set up task is over 7 days late or nothing happened for 14 days; At risk when anything is late or nothing happened for 7 days.
@@ -52,4 +56,4 @@ Health: Off track when a Set up task is over 7 days late or nothing happened for
 
 - **Customers see only their project.** They can comment and work tasks in it, send feedback and messages. They can't create projects or edit milestones.
 - **A project's tasks live in `Live Task` as JSON.** Write them through `add_steps`, not by hand, so the interface finds every field.
-- **Live means** activity by their own people in the last 7 days, on a paid plan, plus their live condition. Set `live_date` on the Live Onboarding when it first holds.
+- **Live means** activity by their own people in the last 7 days, on a paid plan, plus their live condition. Record the two site checks with `record_live`; never set `live_date` by hand.
