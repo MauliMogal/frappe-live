@@ -4,20 +4,21 @@ import { useRoute, RouterLink } from 'vue-router'
 import { me } from '../lib/store'
 import { liveNeeds } from '../lib/liveApi'
 
-// Phones, the team only: Inbox · Messages · Office Hours · Reports. Customers have one place (Messages), so no bar.
+// Phones, the team only: Inbox · My tasks · Projects · Messages · Reports. Customers have one place (Messages), so no bar.
 const route = useRoute()
 const staff = computed(() => !!me.value?.canCreateProjects)
 const LINKS = [
   { to: '/inbox', icon: 'lucide-inbox', label: 'Inbox' },
+  { to: '/', icon: 'lucide-circle-check-big', label: 'My tasks' },
+  { to: '/projects', icon: 'lucide-folders', label: 'Projects' },
   { to: '/messages', icon: 'lucide-message-circle', label: 'Messages' },
-  { to: '/office-hours', icon: 'lucide-calendar', label: 'Office Hours' },
   { to: '/reports', icon: 'lucide-chart-column', label: 'Reports' },
 ]
-const isActive = (path: string) => route.path.startsWith(path) || (path === '/reports' && route.path.startsWith('/p/'))
+const isActive = (path: string) => (path === '/' ? route.path === '/' : route.path.startsWith(path) || (path === '/projects' && route.path.startsWith('/p/')))
 </script>
 
 <template>
-  <nav v-if="staff" class="grid grid-cols-4 border-t border-outline-gray-1 bg-surface-base pb-[env(safe-area-inset-bottom)]" aria-label="Main">
+  <nav v-if="staff" class="grid grid-cols-5 border-t border-outline-gray-1 bg-surface-base pb-[env(safe-area-inset-bottom)]" aria-label="Main">
     <RouterLink
       v-for="l in LINKS"
       :key="l.to"

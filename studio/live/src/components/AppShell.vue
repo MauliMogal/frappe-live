@@ -70,7 +70,7 @@ function onKey(e: KeyboardEvent) {
   }
   if (typing(e) || e.metaKey || e.ctrlKey || e.altKey) return
   if (!person(state.me)?.canCreateProjects) return
-  // g then i / m / o / r: Inbox, Messages, Office Hours, Reports
+  // g then i / t / p / m / o / r: Inbox, My tasks, Projects, Messages, Office Hours, Reports
   if (gPressed && GO[e.key]) {
     e.preventDefault()
     gPressed = false
@@ -80,7 +80,7 @@ function onKey(e: KeyboardEvent) {
   gPressed = e.key === 'g'
   if (gPressed) setTimeout(() => (gPressed = false), 1200)
 }
-const GO: Record<string, string> = { i: '/inbox', m: '/messages', o: '/office-hours', r: '/reports' }
+const GO: Record<string, string> = { i: '/inbox', t: '/', p: '/projects', m: '/messages', o: '/office-hours', r: '/reports' }
 let gPressed = false
 onMounted(() => {
   window.addEventListener('keydown', onKey)

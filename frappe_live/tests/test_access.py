@@ -410,3 +410,11 @@ class TestLiveRecords(IntegrationTestCase):
 		views.log_office_hours([self.pa, self.pb], 120, "Imports")
 		self.assertEqual(frappe.get_all("Live Session", filters={"project": self.pa, "kind": "Office Hours"}, pluck="minutes"), [60])
 		self.assertFalse(any(q.project == self.pa for q in views.office_hours()["questions"]))
+
+	def test_reminders_only_for_yourself(self):
+		frappe.set_user(CUST_A)
+		v = api.viewer_for(CUST_A)
+		mine = {"id": "rm-x", "to": v.me, "type": "R2", "project": self.pa}
+		other = {"id": "rm-y", "to": "someone-else", "type": "R2", "project": self.pa}
+		self.assertTrue(v.can_write("notifications", None, mine))
+		self.assertFalse(v.can_write("notifications", None, other))

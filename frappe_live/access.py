@@ -197,6 +197,9 @@ class Viewer:
 			return (old is None or old.get("owner") == me) and (new is None or new.get("owner") == me)
 		if kind == "notifications":
 			if old is None and new is not None:
+				# a due-date reminder (R1, R2) has no actor: each person's own browser makes it for them alone
+				if new.get("type") in ("R1", "R2") and not new.get("actor"):
+					return new.get("to") == me
 				return new.get("actor") == me and new.get("to") in self.people
 			return (old or {}).get("to") == me and (new is None or new.get("to") == me)
 		if kind == "people":

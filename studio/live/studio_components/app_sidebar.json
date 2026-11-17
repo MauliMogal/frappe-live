@@ -76,6 +76,28 @@
       "visibilityCondition": "{{ canSeeReports }}"
      },
      {
+      "componentId": "SidebarItem-sidebar-006",
+      "componentName": "SidebarItem",
+      "componentProps": {
+       "icon": "lucide-circle-check-big",
+       "label": "My tasks",
+       "route": "/"
+      },
+      "componentSlots": {},
+      "visibilityCondition": "{{ canSeeReports }}"
+     },
+     {
+      "componentId": "SidebarItem-sidebar-008",
+      "componentName": "SidebarItem",
+      "componentProps": {
+       "icon": "lucide-folders",
+       "label": "Projects",
+       "route": "/projects"
+      },
+      "componentSlots": {},
+      "visibilityCondition": "{{ canSeeReports }}"
+     },
+     {
       "componentId": "SidebarItem-sidebar-live-messages",
       "componentName": "SidebarItem",
       "componentProps": {
@@ -159,7 +181,7 @@
  "idx": 0,
  "is_disabled": 0,
  "is_standard": 1,
- "modified": "2026-11-17 13:00:00.000000",
+ "modified": "2026-11-17 17:00:00.000000",
  "modified_by": "Administrator",
  "name": "app_sidebar",
  "owner": "Administrator"

@@ -15,6 +15,7 @@ import {
 	answerProjectInvite, inPersonal, isWsAdmin,
 } from "@app/src/lib/store"
 import { can } from "@app/src/lib/permissions"
+import { liveGet } from "@app/src/lib/liveApi"
 
 // All projects: Folders (default) or List, in sections: My projects, Invitations, and (Admins) Other projects in
 // the workspace. Toolbar: search · status (TabButtons) · sort · Folders | List. The page is Studio blocks; this
@@ -93,8 +94,23 @@ export default function setup({ router, route }) {
 			})
 	})
 
+	// Frappe Live: an onboarding's health is the one Reports and Inbox show (frappe_live.health), not the
+	// Tasks guess from progress vs time. Not started yet reads "Yet to start".
+	const onboarding = ref<Record<string, { stage: string; health: string }>>({})
+	liveGet("frappe_live.views.inbox")
+		.then((d: any) => (onboarding.value = Object.fromEntries((d?.rows || []).map((r: any) => [r.project, { stage: r.stage, health: r.health }]))))
+		.catch(() => {})
+	const LIVE_KEY: Record<string, string> = { "On track": "on", "At risk": "risk", "Off track": "off" }
+
 	// Health: grey pill, coloured dot. A brand-new project (no milestones, no tasks) shows none.
 	function health(p: any) {
+		const o = onboarding.value[p.id]
+		if (o) {
+			if (o.stage === "Yet to start" || o.stage === "Paused" || o.stage === "Churned" || !LIVE_KEY[o.health])
+				return { show: true, label: o.stage || "Yet to start", why: "From Frappe Live", color: "var(--surface-gray-5)" }
+			const m = HEALTH[LIVE_KEY[o.health]]
+			return { show: true, label: m.label, why: `${o.stage} · from Frappe Live`, color: `var(--${m.dot.replace(/^bg-/, "")})` }
+		}
 		const fresh = !milestonesOf(p.id).length && !state.tasks.some((t: any) => t.space === p.id && !t.deletedAt)
 		const h = currentHealth(p.id)
 		const meta = HEALTH[h.key] || HEALTH.on

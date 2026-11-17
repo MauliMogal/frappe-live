@@ -330,7 +330,7 @@ def needs_me(everyone: int = 0) -> dict:
 			left = date_diff(m["due"], today)
 			open_steps = [t for t in steps if t.get("milestone") == m["id"] and t.get("status") != "done"]
 			if open_steps and left <= 3:
-				when = "overdue" if left < 0 else "due today" if left == 0 else f"due in {left} days"
+				when = "overdue" if left < 0 else "due today" if left == 0 else f"due in {left} day{'' if left == 1 else 's'}"
 				add(f"slip:{project}:{m['id']}:{m['due']}", "slipping", project, f"{m['name']} {when}", f"{len(open_steps)} open steps", m["due"], left < 0)
 				break
 		if o.health in ("At risk", "Off track") and not any(r["project"] == project and r["kind"] in ("slipping", "roadmap") for r in rows):
@@ -349,7 +349,7 @@ def needs_me(everyone: int = 0) -> dict:
 				and date_diff(t["due"], today) <= 3
 			):
 				left = date_diff(t["due"], today)
-				when = "overdue" if left < 0 else "due today" if left == 0 else f"due in {left} days"
+				when = "overdue" if left < 0 else "due today" if left == 0 else f"due in {left} day{'' if left == 1 else 's'}"
 				add(f"step:{t['id']}:{t['due']}", "step", project, t.get("title"), f"Your step, {when}", t["due"], left < 0)
 
 	others = [o for o in obs if o.app == "Other"]

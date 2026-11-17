@@ -146,6 +146,8 @@ const goTo = computed<Item[]>(() =>
   staffOnly.value
     ? [
         { key: 'g-inbox', label: 'Inbox', icon: 'lucide-inbox', run: () => go('/inbox') },
+        { key: 'g-my-tasks', label: 'My tasks', icon: 'lucide-circle-check-big', run: () => go('/') },
+        { key: 'g-projects', label: 'Projects', icon: 'lucide-folders', run: () => go('/projects') },
         { key: 'g-messages', label: 'Messages', icon: 'lucide-message-circle', run: () => go('/messages') },
         { key: 'g-office-hours', label: 'Office Hours', icon: 'lucide-calendar', run: () => go('/office-hours') },
         { key: 'g-reports', label: 'Reports', icon: 'lucide-chart-column', run: () => go('/reports') },
